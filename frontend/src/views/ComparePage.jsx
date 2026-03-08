@@ -7,6 +7,7 @@ import { MBTI_TYPES } from '../data/mbti.js';
 import { ENN_DYNAMICS, ENN_TIPS, MBTI_INSIGHTS, MBTI_TIPS, INSTINCT_STACK_DYNAMICS } from '../data/pairLookup.js';
 import FnBadge from '../components/FnBadge.jsx';
 import { getWingDynamics, wingStrengthLabel, wingStrengthDesc, computeWingStrengthDelta } from '../utils/enneagram.js';
+import { computeArchetypeName } from '../utils/archetype.js';
 import { analyzeGroup } from '../utils/group.js';
 
 const INSTINCT_LABELS = { sp: 'SP', sx: 'SX', so: 'SO' };
@@ -495,16 +496,21 @@ export default function ComparePage() {
         <p style={S.body}>Pairwise and group dynamics for 2–6 people</p>
       </div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16, alignItems: 'center' }}>
-        {persons.map((p, i) => (
-          <button key={i} onClick={() => setEditing(editing === i ? null : i)} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 14px', borderRadius: 20, border: `1px solid ${editing === i ? G.gold : G.border}`, background: editing === i ? G.goldDim : G.bg2, color: G.text, fontSize: 13 }}>
-            <span style={{ fontWeight: 500 }}>{p.label}</span>
-            {(p.ennType || p.mbti) && (
-              <span style={{ ...S.mono, fontSize: 11, color: G.gold }}>
-                {p.ennType ? `${p.ennType}w${p.ennWing || '?'}` : ''}{p.instinctStack ? ` ${p.instinctStack.map(i => i.toUpperCase()).join('/')}` : ''}{p.ennType && p.mbti ? ' · ' : ''}{p.mbti || ''}
-              </span>
-            )}
-          </button>
-        ))}
+        {persons.map((p, i) => {
+          const archetype = computeArchetypeName(p.ennType, p.mbti, p.instinctStack?.[0]);
+          return (
+            <button key={i} onClick={() => setEditing(editing === i ? null : i)} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 14px', borderRadius: 20, border: `1px solid ${editing === i ? G.gold : G.border}`, background: editing === i ? G.goldDim : G.bg2, color: G.text, fontSize: 13 }}>
+              <span style={{ fontWeight: 500 }}>{p.label}</span>
+              {archetype ? (
+                <span style={{ fontSize: 11, color: G.gold, fontStyle: 'italic' }}>{archetype}</span>
+              ) : (p.ennType || p.mbti) && (
+                <span style={{ ...S.mono, fontSize: 11, color: G.gold }}>
+                  {p.ennType ? `${p.ennType}w${p.ennWing || '?'}` : ''}{p.instinctStack ? ` ${p.instinctStack.map(i => i.toUpperCase()).join('/')}` : ''}{p.ennType && p.mbti ? ' · ' : ''}{p.mbti || ''}
+                </span>
+              )}
+            </button>
+          );
+        })}
         {persons.length < 6 && editing === null && (
           <button onClick={addPerson} style={{ width: 32, height: 32, borderRadius: '50%', border: `1px solid ${G.border}`, background: G.bg3, color: G.textDim, fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>+</button>
         )}
@@ -562,8 +568,10 @@ export default function ComparePage() {
                       <button onClick={() => togglePair(i, j)} style={{ width: '100%', padding: '14px 16px', background: 'transparent', border: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: G.text }}>
                         <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500 }}>
                           {pA.label} × {pB.label}
-                          <span style={{ ...S.mono, fontSize: 11, marginLeft: 10, color: expanded ? G.gold : G.textFaint }}>
-                            {pA.ennType ? `${pA.ennType}w${pA.ennWing || '?'}` : ''}{pA.mbti ? ` ${pA.mbti}` : ''} vs {pB.ennType ? `${pB.ennType}w${pB.ennWing || '?'}` : ''}{pB.mbti ? ` ${pB.mbti}` : ''}
+                          <span style={{ fontSize: 11, marginLeft: 10, color: expanded ? G.gold : G.textFaint, fontStyle: 'italic' }}>
+                            {computeArchetypeName(pA.ennType, pA.mbti, pA.instinctStack?.[0]) || `${pA.ennType ? `${pA.ennType}w${pA.ennWing || '?'}` : ''}${pA.mbti ? ` ${pA.mbti}` : ''}`}
+                            {' vs '}
+                            {computeArchetypeName(pB.ennType, pB.mbti, pB.instinctStack?.[0]) || `${pB.ennType ? `${pB.ennType}w${pB.ennWing || '?'}` : ''}${pB.mbti ? ` ${pB.mbti}` : ''}`}
                           </span>
                         </span>
                         <span style={{ color: expanded ? G.gold : G.textFaint, fontSize: 16 }}>{expanded ? '−' : '+'}</span>

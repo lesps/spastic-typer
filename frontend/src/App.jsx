@@ -8,12 +8,13 @@ import ComparePage from './views/ComparePage.jsx';
 
 export default function App() {
   const [view, setView] = useState('typer');
+  const [explorerTab, setExplorerTab] = useState('enneagram');
 
   return (
     <>
       <style>{baseCSS}</style>
-      {view === 'typer'    && <GuidedTyper />}
-      {view === 'explorer' && <Explorer />}
+      {view === 'typer'    && <GuidedTyper setView={setView} setExplorerTab={setExplorerTab} />}
+      {view === 'explorer' && <Explorer initialTab={explorerTab} />}
       {view === 'model'    && <MentalModel />}
       {view === 'compare'  && <ComparePage />}
       <BottomNav view={view} setView={setView} />
