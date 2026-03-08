@@ -65,7 +65,6 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
   const [urlInput, setUrlInput] = useState('');
   const [urlError, setUrlError] = useState('');
   const [instOrder, setInstOrder] = useState(person.instinctStack || ['sp', 'sx', 'so']);
-  const [instEnabled, setInstEnabled] = useState(true);
 
   const adj1 = person.ennType ? (person.ennType === 1 ? 9 : person.ennType - 1) : null;
   const adj2 = person.ennType ? (person.ennType === 9 ? 1 : person.ennType + 1) : null;
@@ -115,12 +114,10 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
     } catch { setUrlError('Invalid URL or format.'); }
   };
 
+  const isComplete = mode !== 'manual' || !!(person.ennType && person.mbti && instOrder.length === 3);
+
   const handleDone = () => {
-    updatePerson(idx, p => ({
-      ...p,
-      label,
-      instinctStack: instEnabled ? instOrder : null,
-    }));
+    updatePerson(idx, p => ({ ...p, label, instinctStack: instOrder }));
     onDone();
   };
 
@@ -190,7 +187,7 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
       {mode === 'manual' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div>
-            <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Enneagram Type <span style={{ color: G.textFaint, fontWeight: 400 }}>(optional)</span></label>
+            <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Enneagram Type</label>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(9,1fr)', gap: 4 }}>
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(t => (
                 <button key={t} onClick={() => updatePerson(idx, p => ({ ...p, ennType: t, ennWing: null, ennWingStrength: null }))} style={{ padding: '8px 4px', borderRadius: 8, border: `1px solid ${person.ennType === t ? G.gold : G.border}`, background: person.ennType === t ? G.goldDim : G.bg3, color: person.ennType === t ? G.gold : G.textDim, fontSize: 13, fontFamily: "'DM Mono',monospace" }}>
@@ -238,29 +235,20 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
             </div>
           )}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
-              <label style={{ fontSize: 12, color: G.textDim }}>Instinct Stack <span style={{ color: G.textFaint, fontWeight: 400 }}>(optional)</span></label>
-              <label style={{ display: 'flex', alignItems: 'center', gap: 5, cursor: 'pointer', fontSize: 11, color: G.textFaint }}>
-                <input type="checkbox" checked={instEnabled} onChange={e => setInstEnabled(e.target.checked)} style={{ accentColor: G.gold }} />
-                Include
-              </label>
-            </div>
-            <div style={{ opacity: instEnabled ? 1 : 0.35, pointerEvents: instEnabled ? 'auto' : 'none' }}>
-              {instOrder.map((inst, i) => (
-                <div key={inst} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, padding: '8px 12px', background: i === 0 ? G.goldDim : G.bg3, border: `1px solid ${i === 0 ? G.goldBorder : G.border}`, borderRadius: 8 }}>
-                  <span style={{ ...S.mono, fontSize: 13, color: i === 0 ? G.gold : G.textDim, minWidth: 28 }}>{inst.toUpperCase()}</span>
-                  <span style={{ fontSize: 11, color: G.textFaint, flex: 1 }}>{['Dominant', 'Secondary', 'Repressed'][i]}</span>
-                  <div style={{ display: 'flex', gap: 4 }}>
-                    {i > 0 && <button onClick={() => moveInstinct(i, i - 1)} style={{ padding: '2px 8px', borderRadius: 6, border: `1px solid ${G.border}`, background: 'transparent', color: G.textDim, fontSize: 14 }}>↑</button>}
-                    {i < 2 && <button onClick={() => moveInstinct(i, i + 1)} style={{ padding: '2px 8px', borderRadius: 6, border: `1px solid ${G.border}`, background: 'transparent', color: G.textDim, fontSize: 14 }}>↓</button>}
-                  </div>
+            <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Instinct Stack</label>
+            {instOrder.map((inst, i) => (
+              <div key={inst} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, padding: '8px 12px', background: i === 0 ? G.goldDim : G.bg3, border: `1px solid ${i === 0 ? G.goldBorder : G.border}`, borderRadius: 8 }}>
+                <span style={{ ...S.mono, fontSize: 13, color: i === 0 ? G.gold : G.textDim, minWidth: 28 }}>{inst.toUpperCase()}</span>
+                <span style={{ fontSize: 11, color: G.textFaint, flex: 1 }}>{['Dominant', 'Secondary', 'Repressed'][i]}</span>
+                <div style={{ display: 'flex', gap: 4 }}>
+                  {i > 0 && <button onClick={() => moveInstinct(i, i - 1)} style={{ padding: '2px 8px', borderRadius: 6, border: `1px solid ${G.border}`, background: 'transparent', color: G.textDim, fontSize: 14 }}>↑</button>}
+                  {i < 2 && <button onClick={() => moveInstinct(i, i + 1)} style={{ padding: '2px 8px', borderRadius: 6, border: `1px solid ${G.border}`, background: 'transparent', color: G.textDim, fontSize: 14 }}>↓</button>}
                 </div>
-              ))}
-            </div>
-            {!instEnabled && <p style={{ fontSize: 11, color: G.textFaint, marginTop: 4 }}>Instinct stack will not be included in this profile.</p>}
+              </div>
+            ))}
           </div>
           <div>
-            <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>MBTI Type <span style={{ color: G.textFaint, fontWeight: 400 }}>(optional)</span></label>
+            <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>MBTI Type</label>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 4 }}>
               {Object.keys(MBTI_TYPES).map(t => (
                 <button key={t} onClick={() => updatePerson(idx, p => ({ ...p, mbti: t }))} style={{ padding: '7px 4px', borderRadius: 8, border: `1px solid ${person.mbti === t ? G.gold : G.border}`, background: person.mbti === t ? G.goldDim : G.bg3, color: person.mbti === t ? G.gold : G.textDim, fontSize: 11, fontFamily: "'DM Mono',monospace" }}>
@@ -282,7 +270,12 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
         </div>
       )}
 
-      <button style={{ ...S.btn, width: '100%', marginTop: 16 }} onClick={handleDone}>Done ✓</button>
+      {!isComplete && mode === 'manual' && (
+        <p style={{ fontSize: 11, color: G.textFaint, marginTop: 12, textAlign: 'center' }}>
+          Select an Enneagram type, MBTI type, and instinct stack to continue.
+        </p>
+      )}
+      <button style={{ ...S.btn, width: '100%', marginTop: 8, opacity: isComplete ? 1 : 0.4 }} onClick={isComplete ? handleDone : undefined}>Done ✓</button>
     </div>
   );
 }
@@ -316,15 +309,17 @@ export default function ComparePage() {
     setExpandedPairs(prev => { const n = new Set(prev); n.has(k) ? n.delete(k) : n.add(k); return n; });
   };
 
+  const isPersonComplete = (p) => !!(p.ennType && p.mbti && p.instinctStack);
+
   const validPairs = [];
   for (let i = 0; i < persons.length; i++) for (let j = i + 1; j < persons.length; j++) {
-    if ((persons[i].ennType || persons[i].mbti) && (persons[j].ennType || persons[j].mbti)) validPairs.push([i, j]);
+    if (isPersonComplete(persons[i]) && isPersonComplete(persons[j])) validPairs.push([i, j]);
   }
 
   const isPairExpanded = (i, j) => expandedPairs.has(pairKey(i, j));
-  const readyCount = persons.filter(p => p.ennType || p.mbti).length;
+  const readyCount = persons.filter(isPersonComplete).length;
   const hasResults = readyCount >= 2;
-  const groupInsights = hasResults ? analyzeGroup(persons.filter(p => p.ennType || p.mbti)) : [];
+  const groupInsights = hasResults ? analyzeGroup(persons.filter(isPersonComplete)) : [];
 
   const handleShare = () => {
     const hash = '#' + encodePersons(persons);
@@ -534,8 +529,8 @@ export default function ComparePage() {
       )}
       {editing === null && !hasResults && (
         <div style={{ ...S.card, textAlign: 'center', padding: '28px 20px' }}>
-          <p style={S.body}>Set at least two people to see analysis. Click a person chip above to get started.</p>
-          <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginTop: 8 }}>To share a comparison, fill in both people then click Share → copy the URL.</p>
+          <p style={S.body}>Complete all three systems for at least two people to see analysis. Click a person chip above to get started.</p>
+          <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginTop: 8 }}>Each person needs an Enneagram type, MBTI type, and instinct stack.</p>
         </div>
       )}
       {editing === null && hasResults && (
