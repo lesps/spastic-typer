@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, ENN_QUESTIONS, INSTINCT_QS, WING_DESC, ENN_DISAMBIG } from '../data/enneagram.js';
-import { MBTI_QUESTIONS, MBTI_TYPES } from '../data/mbti.js';
+import { MBTI_QUESTIONS, MBTI_DISAMBIG, MBTI_TYPES } from '../data/mbti.js';
 import LikertScale from '../components/LikertScale.jsx';
 import ProgressBar from '../components/ProgressBar.jsx';
 import FnBadge from '../components/FnBadge.jsx';
@@ -33,6 +33,9 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   const [mbtiAnswers, setMbtiAnswers] = useState({});
   const [branchAnswers, setBranchAnswers] = useState({});
   const [disambigPair, setDisambigPair] = useState(null);
+  const [mbtiDisambigDims, setMbtiDisambigDims] = useState([]);
+  const [mbtiDisambigIdx, setMbtiDisambigIdx] = useState(0);
+  const [mbtiDisambigAnswers, setMbtiDisambigAnswers] = useState({});
   const [result, setResult] = useState(null);
   const [exportData, setExportData] = useState(null);
   const [shareMsg, setShareMsg] = useState('');
@@ -60,14 +63,29 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     return { coreType: core, wing, scores, wingStrengthDelta: delta, display: `${core}w${wing}` };
   };
 
-  const scoreMBTI = () => {
-    const sc = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
-    MBTI_QUESTIONS.forEach((q, i) => {
-      if (mbtiAnswers[i] === 'a') sc[q.dim[0]]++;
-      else if (mbtiAnswers[i] === 'b') sc[q.dim[1]]++;
+  const MBTI_DIMS = { EI: ['E','I'], SN: ['S','N'], TF: ['T','F'], JP: ['J','P'] };
+
+  const scoreMBTI = (disambigAnswers = {}) => {
+    const scFinal = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
+    ['EI','SN','TF','JP'].forEach(dim => {
+      const [pos, neg] = MBTI_DIMS[dim];
+      const baseQs = MBTI_QUESTIONS.filter(q => q.dim === dim);
+      let posTotal = 0, count = 0;
+      baseQs.forEach(q => {
+        const idx = MBTI_QUESTIONS.indexOf(q);
+        if (mbtiAnswers[idx] !== undefined) { posTotal += mbtiAnswers[idx]; count++; }
+      });
+      if (disambigAnswers[dim]) {
+        (MBTI_DISAMBIG[dim] || []).forEach((_, i) => {
+          if (disambigAnswers[dim][i] !== undefined) { posTotal += disambigAnswers[dim][i]; count++; }
+        });
+      }
+      scFinal[pos] = posTotal;
+      scFinal[neg] = count * 6 - posTotal;
     });
-    const r = (sc.E >= sc.I ? 'E' : 'I') + (sc.S >= sc.N ? 'S' : 'N') + (sc.T >= sc.F ? 'T' : 'F') + (sc.J >= sc.P ? 'J' : 'P');
-    return { result: r, scores: sc };
+    const r = (scFinal.E >= scFinal.I ? 'E' : 'I') + (scFinal.S >= scFinal.N ? 'S' : 'N') +
+              (scFinal.T >= scFinal.F ? 'T' : 'F') + (scFinal.J >= scFinal.P ? 'J' : 'P');
+    return { result: r, scores: scFinal };
   };
 
   const scoreInstinct = (finalInstAnswers) => {
@@ -145,13 +163,56 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     }, 150);
   };
 
-  const handleMBTIAnswer = (opt) => {
-    const nm = { ...mbtiAnswers, [qi]: opt };
+  const handleMBTIAnswer = (v) => {
+    const nm = { ...mbtiAnswers, [qi]: v };
     setMbtiAnswers(nm);
     setTimeout(() => {
-      if (qi < MBTI_QUESTIONS.length - 1) setQi(qi + 1);
-      else {
-        const r = scoreMBTI();
+      if (qi < MBTI_QUESTIONS.length - 1) {
+        setQi(qi + 1);
+      } else {
+        // Check for close dimensions and trigger disambiguation if needed
+        const closeDims = ['EI','SN','TF','JP'].filter(dim => {
+          const baseQs = MBTI_QUESTIONS.filter(q => q.dim === dim);
+          let posTotal = 0, count = 0;
+          baseQs.forEach(q => {
+            const idx = MBTI_QUESTIONS.indexOf(q);
+            if (nm[idx] !== undefined) { posTotal += nm[idx]; count++; }
+          });
+          const negTotal = count * 6 - posTotal;
+          return Math.abs(posTotal - negTotal) <= 6;
+        });
+        if (closeDims.length > 0) {
+          setMbtiDisambigDims(closeDims);
+          setMbtiDisambigIdx(0);
+          setMbtiDisambigAnswers({});
+          setQi(0);
+          setPhase('mbti-disambig');
+        } else {
+          const r = scoreMBTI({});
+          const backup = { ...r, exportedAt: new Date().toISOString() };
+          writeLS(LS.mbti, backup);
+          setSaved(s => ({ ...s, mbti: backup }));
+          setResult(r);
+          setPhase('mbti-result');
+        }
+      }
+    }, 150);
+  };
+
+  const handleMBTIDisambigAnswer = (v) => {
+    const currentDim = mbtiDisambigDims[mbtiDisambigIdx];
+    const dimAnswers = { ...(mbtiDisambigAnswers[currentDim] || {}), [qi]: v };
+    const nb = { ...mbtiDisambigAnswers, [currentDim]: dimAnswers };
+    setMbtiDisambigAnswers(nb);
+    const totalQs = MBTI_DISAMBIG[currentDim].length;
+    setTimeout(() => {
+      if (qi < totalQs - 1) {
+        setQi(qi + 1);
+      } else if (mbtiDisambigIdx < mbtiDisambigDims.length - 1) {
+        setMbtiDisambigIdx(mbtiDisambigIdx + 1);
+        setQi(0);
+      } else {
+        const r = scoreMBTI(nb);
         const backup = { ...r, exportedAt: new Date().toISOString() };
         writeLS(LS.mbti, backup);
         setSaved(s => ({ ...s, mbti: backup }));
@@ -164,7 +225,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   // --- Retake / reset ---
   const reset = () => { setPhase('choose'); setQi(0); setAnswers({}); setInstAnswers({}); setMbtiAnswers({}); setBranchAnswers({}); setDisambigPair(null); setResult(null); setExportData(null); };
   const retakeEnn = () => { clearLS(LS.enn); setSaved(s => ({ ...s, enn: null })); setPhase('enn'); setQi(0); setAnswers({}); setInstAnswers({}); setBranchAnswers({}); setDisambigPair(null); };
-  const retakeMBTI = () => { clearLS(LS.mbti); setSaved(s => ({ ...s, mbti: null })); setPhase('mbti'); setQi(0); setMbtiAnswers({}); };
+  const retakeMBTI = () => { clearLS(LS.mbti); setSaved(s => ({ ...s, mbti: null })); setPhase('mbti'); setQi(0); setMbtiAnswers({}); setMbtiDisambigDims([]); setMbtiDisambigIdx(0); setMbtiDisambigAnswers({}); };
   const retakeInst = () => { clearLS(LS.inst); setSaved(s => ({ ...s, inst: null })); setPhase('instinct'); setQi(0); setInstAnswers({}); };
 
   const handleExportAll = () => {
@@ -290,8 +351,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 </div>
               ) : (
                 <>
-                  <p style={{ ...S.body, marginTop: 8 }}>20 binary-choice questions across four dimensions. Results include full cognitive stack analysis.</p>
-                  <div style={{ marginTop: 12 }}><span style={S.tag}>~3 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>20 questions</span></div>
+                  <p style={{ ...S.body, marginTop: 8 }}>20 Likert-scale questions across four dimensions. Adaptive follow-up shown when dimensions are close. Results include full cognitive stack analysis.</p>
+                  <div style={{ marginTop: 12 }}><span style={S.tag}>~4 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>20+ questions</span></div>
                 </>
               )}
             </div>
@@ -481,20 +542,52 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   // --- MBTI questions ---
   if (phase === 'mbti') {
     const q = MBTI_QUESTIONS[qi];
+    const dimLabels = { EI: 'E vs I', SN: 'S vs N', TF: 'T vs F', JP: 'J vs P' };
     return (
       <div style={S.page}><div style={S.container}>
         <ProgressBar current={qi + 1} total={MBTI_QUESTIONS.length} />
         <div style={{ ...S.card, marginTop: 20 }}>
-          <p style={{ ...S.mono, marginBottom: 12 }}>Question {qi + 1} of {MBTI_QUESTIONS.length} · {q.dim}</p>
-          <p style={{ ...S.body, fontSize: 13, marginBottom: 16 }}>Which resonates more with you?</p>
-          {['a', 'b'].map(opt => (
-            <button key={opt} onClick={() => handleMBTIAnswer(opt)} style={{ width: '100%', textAlign: 'left', background: G.bg3, border: `1px solid ${G.border}`, borderRadius: 10, padding: '14px 16px', fontSize: 14, color: G.text, marginBottom: 8, lineHeight: 1.6 }}>
-              {opt === 'a' ? q.a : q.b}
-            </button>
-          ))}
+          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1} of {MBTI_QUESTIONS.length} · {dimLabels[q.dim]}</p>
+          <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
+          <LikertScale value={mbtiAnswers[qi]} onChange={handleMBTIAnswer} />
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
+            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
+            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+          </div>
         </div>
         {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
         <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Cancel</button>
+      </div></div>
+    );
+  }
+
+  // --- MBTI disambiguation (branching) questions ---
+  if (phase === 'mbti-disambig' && mbtiDisambigDims.length > 0) {
+    const currentDim = mbtiDisambigDims[mbtiDisambigIdx];
+    const questions = MBTI_DISAMBIG[currentDim];
+    const q = questions[qi];
+    const dimFull = { EI: 'E vs I', SN: 'S vs N', TF: 'T vs F', JP: 'J vs P' };
+    const prevAnswers = mbtiDisambigAnswers[currentDim] || {};
+    const overallQ = mbtiDisambigDims.slice(0, mbtiDisambigIdx).reduce((s, d) => s + MBTI_DISAMBIG[d].length, 0) + qi + 1;
+    const overallTotal = mbtiDisambigDims.reduce((s, d) => s + MBTI_DISAMBIG[d].length, 0);
+    return (
+      <div style={S.page}><div style={S.container}>
+        <ProgressBar current={overallQ} total={overallTotal} />
+        <div style={{ textAlign: 'center', marginBottom: 16 }}>
+          <h3 style={S.h3}>Clarifying Questions</h3>
+          <p style={{ ...S.body, fontSize: 13 }}>Your {dimFull[currentDim]} result was too close to call. These questions help distinguish the dimension.</p>
+        </div>
+        <div style={S.card}>
+          <p style={{ ...S.mono, marginBottom: 6 }}>Question {overallQ} of {overallTotal} · {dimFull[currentDim]}</p>
+          <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
+          <LikertScale value={prevAnswers[qi]} onChange={handleMBTIDisambigAnswer} />
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
+            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
+            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+          </div>
+        </div>
+        {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
+        <button onClick={() => { const r = scoreMBTI(mbtiDisambigAnswers); const backup = { ...r, exportedAt: new Date().toISOString() }; writeLS(LS.mbti, backup); setSaved(s => ({ ...s, mbti: backup })); setResult(r); setPhase('mbti-result'); }} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Skip →</button>
       </div></div>
     );
   }
