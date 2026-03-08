@@ -5,8 +5,10 @@ on:
     branches:
       - master
       - main
+      - claude/add-user-auth-profiles-h2sAP
     paths:
       - 'frontend/**'
+      - '.github/workflows/deploy.yml'
 
 permissions:
   contents: write
