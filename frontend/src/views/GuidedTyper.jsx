@@ -9,6 +9,7 @@ import FnBadge from '../components/FnBadge.jsx';
 import ExportModal from '../components/ExportModal.jsx';
 import { generateExportMarkdown } from '../utils/export.js';
 import { computeWingStrengthDelta } from '../utils/enneagram.js';
+import { computeArchetypeName } from '../utils/archetype.js';
 
 const INSTINCT_LABELS = { sp: 'Self-Preservation', sx: 'Sexual (One-to-One)', so: 'Social' };
 const INSTINCT_DESC = {
@@ -23,7 +24,8 @@ function readLS(key) { try { const v = localStorage.getItem(key); return v ? JSO
 function writeLS(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch {} }
 function clearLS(key) { try { localStorage.removeItem(key); } catch {} }
 
-export default function GuidedTyper() {
+export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {} }) {
+  const goToExplorer = (tab) => { setExplorerTab(tab); setView('explorer'); };
   const [phase, setPhase] = useState('choose');
   const [qi, setQi] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -197,6 +199,7 @@ export default function GuidedTyper() {
     const doneCount = [saved.enn, saved.mbti, saved.inst].filter(Boolean).length;
     const hasAny = doneCount > 0;
     const allDone = doneCount === 3;
+    const archetypeName = allDone ? computeArchetypeName(saved.enn?.coreType, saved.mbti?.result, saved.inst?.instinctStack?.[0]) : null;
     return (
       <div style={S.page}><div style={S.container}>
         <div style={{ textAlign: 'center', marginBottom: 16, marginTop: 20 }}>
@@ -227,10 +230,11 @@ export default function GuidedTyper() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
               <div style={{ flex: 1 }}>
                 <h3 style={{ ...S.h3, marginBottom: 4 }}>Your Profile</h3>
+                {archetypeName && <p style={{ fontSize: 13, color: G.gold, marginBottom: 4, fontStyle: 'italic' }}>{archetypeName}</p>}
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 6 }}>
                   {saved.enn && <span style={S.tag}>{saved.enn.display}</span>}
                   {saved.mbti && <span style={S.tag}>{saved.mbti.result}</span>}
-                  {saved.inst && !saved.enn && <span style={S.tag}>{saved.inst.instinctStack?.map(i => i.toUpperCase()).join('/')}</span>}
+                  {saved.inst && <span style={S.tag}>{saved.inst.instinctStack?.map(i => i.toUpperCase()).join('/')}</span>}
                 </div>
                 {!allDone && (
                   <p style={{ fontSize: 11, color: G.textFaint, marginTop: 6 }}>
@@ -403,6 +407,7 @@ export default function GuidedTyper() {
           </div>
         </div>
         <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={reset}>← Back to Assessments</button>
+        <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={() => goToExplorer('enneagram')}>Learn more on the Explorer tab →</button>
       </div></div>
     );
   }
@@ -468,6 +473,7 @@ export default function GuidedTyper() {
           ))}
         </div>
         <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={reset}>← Back to Assessments</button>
+        <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={() => goToExplorer('instinct')}>Learn more on the Explorer tab →</button>
       </div></div>
     );
   }
@@ -544,6 +550,7 @@ export default function GuidedTyper() {
           </div>
         )}
         <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={reset}>← Back to Assessments</button>
+        <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={() => goToExplorer('mbti')}>Learn more on the Explorer tab →</button>
       </div></div>
     );
   }
