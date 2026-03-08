@@ -15,7 +15,7 @@ export default function App() {
       <style>{baseCSS}</style>
       {view === 'typer'    && <GuidedTyper setView={setView} setExplorerTab={setExplorerTab} />}
       {view === 'explorer' && <Explorer initialTab={explorerTab} />}
-      {view === 'model'    && <MentalModel />}
+      {view === 'model'    && <MentalModel setView={setView} />}
       {view === 'compare'  && <ComparePage />}
       <BottomNav view={view} setView={setView} />
     </>

@@ -1,25 +1,58 @@
+// Each question is a statement rated 1 (Very unlike me) → 5 (Very much like me).
+// pole: the MBTI letter favored by high agreement (5 = strongly that pole).
+// All 5 questions per dimension use the same pole (E, S, T, J) for symmetric scoring.
 export const MBTI_QUESTIONS = [
-  { a: 'I feel energized after spending time with a group of people.', b: 'I feel energized after time alone.', dim: 'EI' },
-  { a: 'I prefer to talk through my ideas with others to develop them.', b: 'I prefer to fully develop my ideas internally before sharing.', dim: 'EI' },
-  { a: 'I tend to have a wide circle of friends and acquaintances.', b: 'I tend to have a few deep, close relationships.', dim: 'EI' },
-  { a: 'I\'m comfortable being the center of attention in social settings.', b: 'I prefer to observe and contribute selectively in groups.', dim: 'EI' },
-  { a: 'I process experiences by discussing them with others.', b: 'I process experiences by reflecting on them privately.', dim: 'EI' },
-  { a: 'I focus on concrete facts and what\'s actually happening now.', b: 'I focus on patterns, possibilities, and future implications.', dim: 'SN' },
-  { a: 'I trust direct experience and proven methods.', b: 'I trust my intuition and enjoy theoretical exploration.', dim: 'SN' },
-  { a: 'I prefer step-by-step instructions and practical details.', b: 'I prefer to understand the big picture before the details.', dim: 'SN' },
-  { a: 'I tend to describe things literally and specifically.', b: 'I tend to use metaphors, analogies, and abstract language.', dim: 'SN' },
-  { a: 'I\'m more interested in what IS than what COULD BE.', b: 'I\'m more interested in what COULD BE than what IS.', dim: 'SN' },
-  { a: 'I make decisions primarily based on logic and objective analysis.', b: 'I make decisions primarily based on values and impact on people.', dim: 'TF' },
-  { a: 'I think it\'s more important to be truthful than tactful.', b: 'I think it\'s more important to be tactful than brutally truthful.', dim: 'TF' },
-  { a: 'I\'m energized by solving technical or analytical problems.', b: 'I\'m energized by helping people and building relationships.', dim: 'TF' },
-  { a: 'I tend to notice logical inconsistencies first.', b: 'I tend to notice interpersonal dynamics and emotional undercurrents first.', dim: 'TF' },
-  { a: 'Fairness means applying consistent principles to everyone.', b: 'Fairness means considering individual circumstances and needs.', dim: 'TF' },
-  { a: 'I prefer to have things decided and settled.', b: 'I prefer to keep my options open and stay flexible.', dim: 'JP' },
-  { a: 'I feel more comfortable with structure, plans, and schedules.', b: 'I feel more comfortable with spontaneity and improvisation.', dim: 'JP' },
-  { a: 'I like to finish one project before starting another.', b: 'I often juggle multiple projects and enjoy variety.', dim: 'JP' },
-  { a: 'I feel stressed when things are unresolved or up in the air.', b: 'I feel stressed when locked into rigid schedules or plans.', dim: 'JP' },
-  { a: 'I make decisions quickly and move to action.', b: 'I gather more information and delay deciding as long as possible.', dim: 'JP' },
+  // EI — pole: 'E' (high = Extrovert)
+  { text: 'I feel naturally energized after spending time in social settings or groups.', dim: 'EI', pole: 'E' },
+  { text: 'I prefer to talk through my ideas out loud before I fully form them internally.', dim: 'EI', pole: 'E' },
+  { text: 'I tend to have a wide circle of friends and enjoy getting to know many people.', dim: 'EI', pole: 'E' },
+  { text: 'I am comfortable being the center of attention and generally do not mind it.', dim: 'EI', pole: 'E' },
+  { text: 'I process my experiences most effectively by discussing them with others.', dim: 'EI', pole: 'E' },
+  // SN — pole: 'S' (high = Sensor)
+  { text: 'I focus best on concrete facts and what is actually happening in the present moment.', dim: 'SN', pole: 'S' },
+  { text: 'I trust direct experience and proven methods more than theoretical possibilities.', dim: 'SN', pole: 'S' },
+  { text: 'I prefer clear, step-by-step instructions over high-level conceptual frameworks.', dim: 'SN', pole: 'S' },
+  { text: 'I tend to describe things literally and in concrete, specific terms.', dim: 'SN', pole: 'S' },
+  { text: 'I am more interested in what is real and practical than in speculation or hypotheticals.', dim: 'SN', pole: 'S' },
+  // TF — pole: 'T' (high = Thinker)
+  { text: 'I make decisions primarily based on logic and objective analysis.', dim: 'TF', pole: 'T' },
+  { text: 'I believe honesty and accuracy matter more than softening the truth to spare feelings.', dim: 'TF', pole: 'T' },
+  { text: 'I am most energized by analytical or technical problem-solving.', dim: 'TF', pole: 'T' },
+  { text: 'I tend to notice logical inconsistencies before I notice interpersonal tension.', dim: 'TF', pole: 'T' },
+  { text: 'I believe fairness means applying consistent principles equally to everyone.', dim: 'TF', pole: 'T' },
+  // JP — pole: 'J' (high = Judger)
+  { text: 'I prefer to have plans settled in advance and feel uncomfortable when things are unresolved.', dim: 'JP', pole: 'J' },
+  { text: 'I feel more comfortable and productive with structure, schedules, and clear expectations.', dim: 'JP', pole: 'J' },
+  { text: 'I prefer to complete one project fully before starting another.', dim: 'JP', pole: 'J' },
+  { text: 'I feel stressed when things are left open-ended or up in the air.', dim: 'JP', pole: 'J' },
+  { text: 'I prefer to make decisions quickly and move to action rather than gather more information.', dim: 'JP', pole: 'J' },
 ];
+
+// Targeted disambiguation questions triggered when a dimension result is too close to call.
+// Threshold: |posScore - negScore| <= 6 (within ~1-2 questions of neutral on a 5-point Likert scale).
+// Same format as MBTI_QUESTIONS. All questions favor the same pole as the base questions.
+export const MBTI_DISAMBIG = {
+  EI: [
+    { text: 'When I have a completely free afternoon with no obligations, my first impulse is to spend it with people or go somewhere social.', dim: 'EI', pole: 'E' },
+    { text: 'After a long social event, I feel recharged and ready for more — not drained or in need of alone time.', dim: 'EI', pole: 'E' },
+    { text: 'I figure out what I think and feel primarily through talking and interacting with others, not by reflecting privately.', dim: 'EI', pole: 'E' },
+  ],
+  SN: [
+    { text: 'When starting a new task, I prefer detailed, concrete instructions over a high-level conceptual overview.', dim: 'SN', pole: 'S' },
+    { text: 'I trust observable facts and direct hands-on experience far more than intuitive hunches or abstract impressions.', dim: 'SN', pole: 'S' },
+    { text: 'I would rather refine and perfect an existing, proven approach than experiment with an untested creative one.', dim: 'SN', pole: 'S' },
+  ],
+  TF: [
+    { text: 'When someone asks for my input on a problem, my first instinct is to give clear logical analysis rather than emotional support.', dim: 'TF', pole: 'T' },
+    { text: 'I find it relatively easy to give honest critical feedback, even knowing the person worked hard on what I am critiquing.', dim: 'TF', pole: 'T' },
+    { text: 'If a decision is logically correct, I am comfortable with it even if it causes discomfort to some people involved.', dim: 'TF', pole: 'T' },
+  ],
+  JP: [
+    { text: 'I feel most comfortable when I know the plan for the day or week in advance and can rely on it not changing.', dim: 'JP', pole: 'J' },
+    { text: 'I feel relief — not disappointment — when a decision gets made and the uncertainty is behind me.', dim: 'JP', pole: 'J' },
+    { text: 'When working on a project, I feel most satisfied making steady, linear progress toward a clearly defined finish line.', dim: 'JP', pole: 'J' },
+  ],
+};
 
 export const MBTI_TYPES = {
   INTJ: { name: 'The Architect', stack: ['Ni', 'Te', 'Fi', 'Se'], desc: 'Strategic, independent, and determined. INTJs are driven by their vision of the future and have a natural talent for turning insights into long-range plans. They are blunt, knowledgeable, and competent — private individuals who apply logic and reason to their drive for self-improvement.', ennCorr: '1, 5, 3' },
