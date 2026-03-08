@@ -21,13 +21,14 @@ export function generateExportMarkdown(ennResult, mbtiResult) {
     md += `- **Growth Arrow:** → Type ${arrows.growth} (${ENN_TYPES[arrows.growth].name})\n`;
     md += `- **Stress Arrow:** → Type ${arrows.stress} (${ENN_TYPES[arrows.stress].name})\n\n`;
     md += `### Wing: ${wKey}\n\n${WING_DESC[wKey] || ''}\n\n`;
-    md += `### Instinctual Variant: ${ennResult.instinct?.toUpperCase()}\n\n`;
-    if (ennResult.instinct === 'sp') md += `**Self-Preservation** — Primary focus on physical security, health, comfort, and resource management.\n\n`;
-    else if (ennResult.instinct === 'sx') md += `**Sexual (One-to-One)** — Primary focus on intensity, chemistry, and transformative one-on-one connection.\n\n`;
-    else md += `**Social** — Primary focus on group belonging, social roles, and contribution.\n\n`;
-    if (ennResult.instScores) {
-      const sorted = Object.entries(ennResult.instScores).sort((a, b) => b[1] - a[1]);
-      md += `**Instinct Stack:** ${sorted.map(([k, v]) => `${k.toUpperCase()} ${v > 0 ? '+' : ''}${v}`).join(' > ')}\n\n`;
+    const instStack = ennResult.instinctStack || (ennResult.instScores ? Object.entries(ennResult.instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k) : null);
+    const instLabels = { sp: 'Self-Preservation', sx: 'Sexual (One-to-One)', so: 'Social' };
+    const instDescs = { sp: 'Primary focus on physical security, health, comfort, and resource management.', sx: 'Primary focus on intensity, chemistry, and transformative one-on-one connection.', so: 'Primary focus on group belonging, social roles, and contribution.' };
+    if (instStack) {
+      md += `### Instinctual Drive Stack: ${instStack.map(i => i.toUpperCase()).join('/')}\n\n`;
+      instStack.forEach((inst, i) => {
+        md += `${['**Dominant**', '**Secondary**', '**Repressed**'][i]} — **${inst.toUpperCase()} · ${instLabels[inst]}:** ${instDescs[inst]}\n\n`;
+      });
     }
     if (ennResult.scores) {
       const sorted = Object.entries(ennResult.scores).sort((a, b) => b[1] - a[1]);
@@ -71,9 +72,10 @@ export function generateExportMarkdown(ennResult, mbtiResult) {
   if (ennResult && mbtiResult) {
     const ennCore = ennResult.coreType, mbtiCode = mbtiResult.result;
     const t = MBTI_TYPES[mbtiCode], ennT = ENN_TYPES[ennCore];
-    const center = ENN_CENTER[ennCore], inst = ennResult.instinct;
+    const center = ENN_CENTER[ennCore], instStack2 = ennResult.instinctStack, inst = instStack2?.[0] || ennResult.instinct;
     const isE = mbtiCode[0] === 'E', isN = mbtiCode[1] === 'N', isT = mbtiCode[2] === 'T', isJ = mbtiCode[3] === 'J';
-    md += `## Cross-System Synthesis\n\n**Combined Profile:** ${ennResult.display} + ${mbtiCode}\n\n`;
+    const instDisplay = instStack2 ? instStack2.map(i => i.toUpperCase()).join('/') : (ennResult.instinct?.toUpperCase() || '');
+    md += `## Cross-System Synthesis\n\n**Combined Profile:** ${ennResult.coreType}w${ennResult.wing} ${instDisplay} + ${mbtiCode}\n\n`;
     md += `The Enneagram ${ennCore} (${ennT.name}) describes *why* this person is motivated. The ${mbtiCode} (${t?.name}) describes *how* they process and act.\n\n`;
     md += `### Communication Preferences\n\n`;
     md += `- **Pace:** ${isE ? 'Thinks out loud; rapid back-and-forth.' : 'Needs time to process; don\'t rush responses.'}\n`;

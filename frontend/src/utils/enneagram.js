@@ -1,6 +1,56 @@
 import { ENN_TYPES, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC, INSTINCT_COMPAT } from '../data/enneagram.js';
 import { G } from '../styles/theme.js';
 
+// Returns structured analysis for a full instinct stack pair.
+// stackA and stackB are ordered arrays e.g. ['sx', 'sp', 'so']
+export function getInstinctStackInteraction(stackA, stackB) {
+  if (!stackA?.length || !stackB?.length) return null;
+  const domA = stackA[0], domB = stackB[0];
+  const repA = stackA[2], repB = stackB[2];
+  const notes = [];
+
+  // Dominant pairing
+  const domKey = [domA, domB].sort().join('-');
+  const domPair = INSTINCT_COMPAT[domKey];
+  if (domPair) {
+    notes.push({
+      label: `Dominant: ${domA.toUpperCase()} × ${domB.toUpperCase()}`,
+      bond: domPair.bond,
+      tension: domPair.tension,
+      tier: 'dominant',
+    });
+  }
+
+  // Stack alignment
+  const sameOrder = stackA.join('/') === stackB.join('/');
+  const reversed = stackA.join('/') === [...stackB].reverse().join('/');
+  if (sameOrder) {
+    notes.push({ label: 'Identical Stack Order', note: 'Both share the exact same instinctual priority sequence — maximum resonance in motivational rhythm and blind spots.', tier: 'alignment' });
+  } else if (reversed) {
+    notes.push({ label: 'Mirror-Reversed Stack', note: `${stackA.map(i => i.toUpperCase()).join('/')} vs ${stackB.map(i => i.toUpperCase()).join('/')} — each person's dominant is the other's repressed. Maximum complementarity and maximum potential friction.`, tier: 'alignment' });
+  }
+
+  // Secondary (aux) pairing — only when doms differ
+  if (domA !== domB) {
+    const secA = stackA[1], secB = stackB[1];
+    if (secA === secB) {
+      notes.push({ label: `Shared Secondary: ${secA.toUpperCase()}`, note: `Both share ${secA.toUpperCase()} as their secondary drive — a quiet common ground beneath differing dominant motivations.`, tier: 'secondary' });
+    } else if (secA === domB) {
+      notes.push({ label: `A's Secondary Matches B's Dominant`, note: `Person A's secondary ${secA.toUpperCase()} resonates with Person B's primary motivation — A can naturally attune to how B leads.`, tier: 'secondary' });
+    } else if (secB === domA) {
+      notes.push({ label: `B's Secondary Matches A's Dominant`, note: `Person B's secondary ${secB.toUpperCase()} resonates with Person A's primary motivation — B can naturally attune to how A leads.`, tier: 'secondary' });
+    }
+  }
+
+  // Repressed pairing — shared blind spot
+  if (repA && repB && repA === repB) {
+    const repLabels = { sp: 'Self-Preservation', sx: 'Sexual/One-to-One', so: 'Social' };
+    notes.push({ label: `Shared Blind Spot: ${repA.toUpperCase()}`, note: `Both have ${repLabels[repA]} as their repressed instinct — neither naturally prioritises this domain. They may mutually neglect ${repA === 'sp' ? 'physical security and resource management' : repA === 'sx' ? 'one-on-one depth and intensity' : 'social context and group dynamics'}.`, tier: 'repressed' });
+  }
+
+  return notes;
+}
+
 export function getInstinctKey(a, b) {
   const pair = [a, b].sort().join('-');
   return INSTINCT_COMPAT[pair] || null;

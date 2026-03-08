@@ -1,21 +1,67 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, WING_DESC } from '../data/enneagram.js';
 import { MBTI_TYPES } from '../data/mbti.js';
-import { COG_FUNCTIONS } from '../data/cognitive.js';
+import { ENN_DYNAMICS, ENN_TIPS, MBTI_INSIGHTS, MBTI_TIPS, INSTINCT_STACK_DYNAMICS } from '../data/pairLookup.js';
 import FnBadge from '../components/FnBadge.jsx';
-import { getEnnInteraction, getEnnTips, getInstinctKey, getWingDynamics, wingStrengthLabel, wingStrengthDesc, computeWingStrengthDelta } from '../utils/enneagram.js';
-import { getMBTIInteraction, getMBTITips } from '../utils/mbti.js';
+import { getWingDynamics, wingStrengthLabel, wingStrengthDesc, computeWingStrengthDelta } from '../utils/enneagram.js';
 import { analyzeGroup } from '../utils/group.js';
-import { apiLookupUser } from '../api.js';
 
-const emptyPerson = (n) => ({ label: `Person ${n}`, ennType: null, ennWing: null, ennWingStrength: null, ennInstinct: null, mbti: null, ennScores: null });
+const INSTINCT_LABELS = { sp: 'SP', sx: 'SX', so: 'SO' };
 
-export default function ComparePage({ user }) {
-  const [persons, setPersons] = useState([emptyPerson(1), emptyPerson(2)]);
+const emptyPerson = (n) => ({ label: `Person ${n}`, ennType: null, ennWing: null, ennWingStrength: null, instinctStack: null, mbti: null, ennScores: null });
+
+// --- URL encoding helpers ---
+// Format: #p1=4w5:strong:sx/sp/so:INFP&p2=8w9:moderate:sp/so/sx:ENTJ
+function encodePersons(persons) {
+  return persons.map((p, i) => {
+    const parts = [
+      p.ennType ? `${p.ennType}w${p.ennWing || '?'}` : '',
+      p.ennWingStrength || '',
+      p.instinctStack ? p.instinctStack.join('/') : '',
+      p.mbti || '',
+    ];
+    return `p${i + 1}=${encodeURIComponent(parts.join(':'))}`;
+  }).join('&');
+}
+
+function decodePersons(hash) {
+  if (!hash) return null;
+  const raw = hash.startsWith('#') ? hash.slice(1) : hash;
+  const parts = raw.split('&');
+  return parts.map((part, i) => {
+    const [, encoded] = part.split('=');
+    if (!encoded) return emptyPerson(i + 1);
+    const [ennStr, wingStr, instStr, mbti] = decodeURIComponent(encoded).split(':');
+    const p = emptyPerson(i + 1);
+    if (ennStr && ennStr !== 'w?') {
+      const m = ennStr.match(/^(\d)w(\d)$/);
+      if (m) { p.ennType = parseInt(m[1]); p.ennWing = parseInt(m[2]); }
+    }
+    if (wingStr) p.ennWingStrength = wingStr;
+    if (instStr) p.instinctStack = instStr.split('/').filter(Boolean);
+    if (mbti && MBTI_TYPES[mbti]) p.mbti = mbti;
+    return p;
+  });
+}
+
+// --- Lookup helpers ---
+function ennKey(c1, c2) {
+  c1 = parseInt(c1); c2 = parseInt(c2);
+  return `${Math.min(c1, c2)}-${Math.max(c1, c2)}`;
+}
+function mbtiKey(t1, t2) { return [t1, t2].sort().join('-'); }
+function stackKey(sA, sB) { return [sA.join('/'), sB.join('/')].sort().join('|'); }
+
+export default function ComparePage() {
+  const [persons, setPersons] = useState(() => {
+    const decoded = decodePersons(window.location.hash);
+    return decoded && decoded.length >= 2 ? decoded : [emptyPerson(1), emptyPerson(2)];
+  });
   const [editing, setEditing] = useState(null);
   const [expandedPairs, setExpandedPairs] = useState(new Set(['0-1']));
+  const [shareMsg, setShareMsg] = useState('');
 
   const addPerson = () => {
     if (persons.length >= 6) return;
@@ -47,14 +93,27 @@ export default function ComparePage({ user }) {
   const hasResults = readyCount >= 2;
   const groupInsights = hasResults ? analyzeGroup(persons.filter(p => p.ennType || p.mbti)) : [];
 
+  const handleShare = () => {
+    const hash = '#' + encodePersons(persons);
+    const url = window.location.origin + window.location.pathname + hash;
+    navigator.clipboard.writeText(url).then(() => {
+      setShareMsg('Link copied!');
+      setTimeout(() => setShareMsg(''), 3000);
+    }).catch(() => {
+      window.location.hash = encodePersons(persons);
+      setShareMsg('Hash updated — copy URL from address bar');
+      setTimeout(() => setShareMsg(''), 5000);
+    });
+  };
+
   const PersonEditor = ({ idx, person, onDone }) => {
-    const [mode, setMode] = useState('username');
+    const [mode, setMode] = useState('url');
     const [label, setLabel] = useState(person.label);
     const [fileError, setFileError] = useState('');
     const [fileName, setFileName] = useState('');
-    const [usernameInput, setUsernameInput] = useState(idx === 0 && user ? user.username : '');
-    const [usernameError, setUsernameError] = useState('');
-    const [usernameLoading, setUsernameLoading] = useState(false);
+    const [urlInput, setUrlInput] = useState('');
+    const [urlError, setUrlError] = useState('');
+    const [instOrder, setInstOrder] = useState(person.instinctStack || ['sp', 'sx', 'so']);
 
     const adj1 = person.ennType ? (person.ennType === 1 ? 9 : person.ennType - 1) : null;
     const adj2 = person.ennType ? (person.ennType === 9 ? 1 : person.ennType + 1) : null;
@@ -70,8 +129,12 @@ export default function ComparePage({ user }) {
           if (data.type === 'enneagram' && data.resultData) {
             const d = data.resultData;
             const delta = computeWingStrengthDelta(d.coreType, d.wing, d.scores);
-            next.ennType = d.coreType; next.ennWing = d.wing; next.ennInstinct = d.instinct;
-            next.ennScores = d.scores; next.ennWingStrength = delta;
+            next.ennType = d.coreType;
+            next.ennWing = d.wing;
+            // Support both instinctStack array (new) and legacy instinct string
+            next.instinctStack = d.instinctStack || (d.instinct ? [d.instinct, ...(['sp', 'sx', 'so'].filter(i => i !== d.instinct))] : null);
+            next.ennScores = d.scores;
+            next.ennWingStrength = delta;
           }
           if (data.type === 'mbti' && data.resultData) next.mbti = data.resultData.result;
           return next;
@@ -80,28 +143,41 @@ export default function ComparePage({ user }) {
       } catch { setFileError('Could not parse file — use a backup .json from the Typer.'); }
     };
 
-    const handleLoadByUsername = async () => {
-      if (!usernameInput.trim()) return;
-      setUsernameLoading(true); setUsernameError('');
+    const handleLoadByURL = () => {
+      if (!urlInput.trim()) return;
+      setUrlError('');
       try {
-        const profile = await apiLookupUser(usernameInput.trim());
-        updatePerson(idx, p => ({
-          ...p,
-          label: profile.username,
-          ennType: profile.enn_type || p.ennType,
-          ennWing: profile.enn_wing || p.ennWing,
-          ennInstinct: profile.enn_instinct || p.ennInstinct,
-          ennWingStrength: profile.enn_wing_strength || p.ennWingStrength,
-          mbti: profile.mbti_type || p.mbti,
-        }));
-        setLabel(profile.username);
-        setUsernameError('');
-      } catch (e) {
-        setUsernameError(e.message || 'User not found');
-      } finally { setUsernameLoading(false); }
+        let hash = '';
+        try {
+          const u = new URL(urlInput.trim());
+          hash = u.hash;
+        } catch {
+          // treat as raw hash
+          hash = urlInput.trim();
+        }
+        if (!hash) { setUrlError('No profile data found in this URL.'); return; }
+        const decoded = decodePersons(hash);
+        if (!decoded || !decoded[idx]) { setUrlError('Could not read profile from this URL.'); return; }
+        const src = decoded[idx];
+        updatePerson(idx, p => ({ ...p, ...src, label: src.label || label }));
+      } catch { setUrlError('Invalid URL or format.'); }
     };
 
-    const handleDone = () => { updatePerson(idx, p => ({ ...p, label })); onDone(); };
+    const handleDone = () => {
+      updatePerson(idx, p => ({
+        ...p,
+        label,
+        instinctStack: p.ennType ? instOrder : p.instinctStack,
+      }));
+      onDone();
+    };
+
+    const moveInstinct = (from, to) => {
+      const next = [...instOrder];
+      const [item] = next.splice(from, 1);
+      next.splice(to, 0, item);
+      setInstOrder(next);
+    };
 
     return (
       <div style={{ ...S.cardGold, marginBottom: 16 }}>
@@ -114,30 +190,29 @@ export default function ComparePage({ user }) {
           <input style={{ ...S.input, fontSize: 14 }} value={label} onChange={e => setLabel(e.target.value)} placeholder="Person's name" />
         </div>
         <div style={{ display: 'flex', gap: 0, marginBottom: 16, background: G.bg3, borderRadius: 8, padding: 3 }}>
-          {[{ id: 'username', label: 'By Username' }, { id: 'upload', label: 'Upload Backup' }, { id: 'manual', label: 'Manual Entry' }].map(m => (
+          {[{ id: 'url', label: 'By URL' }, { id: 'upload', label: 'Upload Backup' }, { id: 'manual', label: 'Manual Entry' }].map(m => (
             <button key={m.id} onClick={() => setMode(m.id)} style={{ flex: 1, padding: '7px 8px', borderRadius: 6, border: 'none', background: mode === m.id ? G.bg2 : 'transparent', color: mode === m.id ? G.text : G.textDim, fontSize: 12, fontWeight: mode === m.id ? 500 : 400 }}>
               {m.label}
             </button>
           ))}
         </div>
 
-        {mode === 'username' && (
+        {mode === 'url' && (
           <div>
-            <p style={{ ...S.body, fontSize: 13, marginBottom: 10 }}>Enter a username to load their saved type profile.</p>
+            <p style={{ ...S.body, fontSize: 13, marginBottom: 10 }}>Paste a share URL (generated by the Share button below) to load someone's profile.</p>
             <div style={{ display: 'flex', gap: 8 }}>
-              <input style={{ ...S.input, fontSize: 14, flex: 1 }} value={usernameInput} onChange={e => setUsernameInput(e.target.value)} placeholder="Username" onKeyDown={e => e.key === 'Enter' && handleLoadByUsername()} />
-              <button onClick={handleLoadByUsername} disabled={usernameLoading} style={{ ...S.btn, padding: '10px 16px', fontSize: 13, opacity: usernameLoading ? 0.6 : 1 }}>
-                {usernameLoading ? '...' : 'Load'}
-              </button>
+              <input style={{ ...S.input, fontSize: 13, flex: 1 }} value={urlInput} onChange={e => setUrlInput(e.target.value)} placeholder="Paste share URL here" onKeyDown={e => e.key === 'Enter' && handleLoadByURL()} />
+              <button onClick={handleLoadByURL} style={{ ...S.btn, padding: '10px 16px', fontSize: 13 }}>Load</button>
             </div>
-            {usernameError && <p style={{ color: '#e85050', fontSize: 13, marginTop: 8 }}>{usernameError}</p>}
+            {urlError && <p style={{ color: '#e85050', fontSize: 13, marginTop: 8 }}>{urlError}</p>}
             {(person.ennType || person.mbti) && (
               <div style={{ marginTop: 10, padding: '10px 12px', background: G.bg3, borderRadius: 8 }}>
                 <p style={{ fontSize: 12, color: G.textDim, marginBottom: 4 }}>Loaded:</p>
-                {person.ennType && <p style={{ ...S.mono, fontSize: 13 }}>{person.ennType}w{person.ennWing || '?'}{person.ennInstinct ? ` ${person.ennInstinct.toUpperCase()}` : ''}</p>}
+                {person.ennType && <p style={{ ...S.mono, fontSize: 13 }}>{person.ennType}w{person.ennWing || '?'}{person.instinctStack ? ` ${person.instinctStack.map(i => i.toUpperCase()).join('/')}` : ''}</p>}
                 {person.mbti && <p style={{ ...S.mono, fontSize: 13, marginTop: person.ennType ? 2 : 0 }}>{person.mbti}</p>}
               </div>
             )}
+            <p style={{ ...S.body, fontSize: 12, marginTop: 12, color: G.textFaint }}>No URL yet? After completing a quiz, use Export → Download JSON, then use Upload Backup here.</p>
           </div>
         )}
 
@@ -153,7 +228,7 @@ export default function ComparePage({ user }) {
             {(person.ennType || person.mbti) && (
               <div style={{ marginTop: 10, padding: '10px 12px', background: G.bg3, borderRadius: 8 }}>
                 <p style={{ fontSize: 12, color: G.textDim, marginBottom: 4 }}>Loaded:</p>
-                {person.ennType && <p style={{ ...S.mono, fontSize: 13 }}>{person.ennType}w{person.ennWing || '?'}{person.ennInstinct ? ` ${person.ennInstinct.toUpperCase()}` : ''}</p>}
+                {person.ennType && <p style={{ ...S.mono, fontSize: 13 }}>{person.ennType}w{person.ennWing || '?'}{person.instinctStack ? ` ${person.instinctStack.map(i => i.toUpperCase()).join('/')}` : ''}</p>}
                 {person.mbti && <p style={{ ...S.mono, fontSize: 13, marginTop: person.ennType ? 2 : 0 }}>{person.mbti}</p>}
               </div>
             )}
@@ -197,16 +272,21 @@ export default function ComparePage({ user }) {
                 {person.ennWingStrength && <p style={{ fontSize: 11, color: G.textFaint, marginTop: 4 }}>{wingStrengthDesc(person.ennWingStrength)}</p>}
               </div>
             )}
-            <div>
-              <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Instinctual Variant</label>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 4 }}>
-                {['sp', 'sx', 'so'].map(i => (
-                  <button key={i} onClick={() => updatePerson(idx, p => ({ ...p, ennInstinct: i }))} style={{ padding: '8px', borderRadius: 8, border: `1px solid ${person.ennInstinct === i ? G.gold : G.border}`, background: person.ennInstinct === i ? G.goldDim : G.bg3, color: person.ennInstinct === i ? G.gold : G.textDim, fontSize: 13, fontFamily: "'DM Mono',monospace" }}>
-                    {i.toUpperCase()}
-                  </button>
+            {person.ennType && (
+              <div>
+                <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Instinct Stack — drag to reorder (top = dominant)</label>
+                {instOrder.map((inst, i) => (
+                  <div key={inst} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, padding: '8px 12px', background: i === 0 ? G.goldDim : G.bg3, border: `1px solid ${i === 0 ? G.goldBorder : G.border}`, borderRadius: 8 }}>
+                    <span style={{ ...S.mono, fontSize: 13, color: i === 0 ? G.gold : G.textDim, minWidth: 28 }}>{inst.toUpperCase()}</span>
+                    <span style={{ fontSize: 11, color: G.textFaint, flex: 1 }}>{['Dominant', 'Secondary', 'Repressed'][i]}</span>
+                    <div style={{ display: 'flex', gap: 4 }}>
+                      {i > 0 && <button onClick={() => moveInstinct(i, i - 1)} style={{ padding: '2px 8px', borderRadius: 6, border: `1px solid ${G.border}`, background: 'transparent', color: G.textDim, fontSize: 14 }}>↑</button>}
+                      {i < 2 && <button onClick={() => moveInstinct(i, i + 1)} style={{ padding: '2px 8px', borderRadius: 6, border: `1px solid ${G.border}`, background: 'transparent', color: G.textDim, fontSize: 14 }}>↓</button>}
+                    </div>
+                  </div>
                 ))}
               </div>
-            </div>
+            )}
             <div>
               <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>MBTI Type</label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 4 }}>
@@ -228,12 +308,24 @@ export default function ComparePage({ user }) {
   const PairResults = ({ pA, pB }) => {
     const bothEnn = pA.ennType && pB.ennType;
     const bothMBTI = pA.mbti && pB.mbti;
-    const ennDyn = bothEnn ? getEnnInteraction(pA.ennType, pB.ennType) : [];
-    const ennT = bothEnn ? getEnnTips(pA.ennType, pB.ennType) : [];
-    const mbtiRes = bothMBTI ? getMBTIInteraction(pA.mbti, pB.mbti) : null;
-    const mbtiT = bothMBTI ? getMBTITips(pA.mbti, pB.mbti) : [];
-    const instKey = (pA.ennInstinct && pB.ennInstinct) ? getInstinctKey(pA.ennInstinct, pB.ennInstinct) : null;
+
+    // Enneagram lookups
+    const ennDyn = bothEnn ? (ENN_DYNAMICS[ennKey(pA.ennType, pB.ennType)] || []) : [];
+    const ennT = bothEnn ? (ENN_TIPS[ennKey(pA.ennType, pB.ennType)] || []) : [];
     const wingDyn = bothEnn ? getWingDynamics(pA, pB) : null;
+
+    // Instinct stack lookup
+    const stackA = pA.instinctStack, stackB = pB.instinctStack;
+    const instStackDyn = (stackA?.length === 3 && stackB?.length === 3)
+      ? (INSTINCT_STACK_DYNAMICS[stackKey(stackA, stackB)] || null)
+      : null;
+
+    // MBTI lookups
+    const mbtiKey2 = bothMBTI ? mbtiKey(pA.mbti, pB.mbti) : null;
+    const mbtiInsights = mbtiKey2 ? (MBTI_INSIGHTS[mbtiKey2] || []) : [];
+    const mbtiTips = mbtiKey2 ? (MBTI_TIPS[mbtiKey2] || []) : [];
+    const mbtiStacks = bothMBTI ? { stack1: MBTI_TYPES[pA.mbti]?.stack, stack2: MBTI_TYPES[pB.mbti]?.stack } : null;
+    const shared = mbtiStacks ? mbtiStacks.stack1.filter(f => mbtiStacks.stack2.includes(f)) : [];
 
     return (
       <div>
@@ -261,13 +353,24 @@ export default function ComparePage({ user }) {
                 {wingDyn.map((note, i) => <p key={i} style={{ ...S.body, marginBottom: 6 }}>{note}</p>)}
               </div>
             )}
-            {instKey && (
+            {instStackDyn && (
               <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#30a888', borderLeftStyle: 'solid' }}>
-                <h3 style={S.h3}>Instinct: {pA.ennInstinct?.toUpperCase()} × {pB.ennInstinct?.toUpperCase()}</h3>
-                <div style={{ marginTop: 6 }}>
-                  <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}><span style={{ color: '#50c878', fontSize: 14, marginTop: 1 }}>+</span><p style={S.body}>{instKey.bond}</p></div>
-                  <div style={{ display: 'flex', gap: 8 }}><span style={{ color: '#e88050', fontSize: 14, marginTop: 1 }}>−</span><p style={S.body}>{instKey.tension}</p></div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                  <span style={{ fontSize: 14, color: '#30a888' }}>⟳</span>
+                  <h3 style={{ ...S.h3, marginBottom: 0 }}>Instinct Stack Dynamics</h3>
                 </div>
+                <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+                  {stackA && <div style={{ padding: '4px 10px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}><span style={{ ...S.mono, fontSize: 12, color: G.gold }}>{stackA.map(i => i.toUpperCase()).join('/')}</span></div>}
+                  {stackB && <div style={{ padding: '4px 10px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}><span style={{ ...S.mono, fontSize: 12, color: G.gold }}>{stackB.map(i => i.toUpperCase()).join('/')}</span></div>}
+                </div>
+                {instStackDyn.map((note, i) => (
+                  <div key={i} style={{ marginBottom: 12 }}>
+                    <p style={{ ...S.mono, fontSize: 12, color: note.tier === 'dominant' ? G.gold : note.tier === 'alignment' ? '#4a88d8' : note.tier === 'repressed' ? '#e88050' : G.textDim, marginBottom: 4 }}>{note.label}</p>
+                    {note.note && <p style={S.body}>{note.note}</p>}
+                    {note.bond && <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#50c878', fontSize: 14, marginTop: 1 }}>+</span><p style={S.body}>{note.bond}</p></div>}
+                    {note.tension && <div style={{ display: 'flex', gap: 8 }}><span style={{ color: '#e88050', fontSize: 14, marginTop: 1 }}>−</span><p style={S.body}>{note.tension}</p></div>}
+                  </div>
+                ))}
               </div>
             )}
             {ennT.map((tip, i) => (
@@ -286,13 +389,13 @@ export default function ComparePage({ user }) {
             ))}
           </>
         )}
-        {bothMBTI && mbtiRes && (
+        {bothMBTI && mbtiStacks && (
           <>
             <div style={S.card}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 28px 1fr', gap: 4, alignItems: 'center' }}>
                 <div style={{ textAlign: 'center' }}>
                   <p style={{ ...S.mono, fontSize: 14, marginBottom: 8 }}>{pA.mbti}</p>
-                  {mbtiRes.stack1.map((fn, i) => (
+                  {mbtiStacks.stack1.map((fn, i) => (
                     <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, marginBottom: 4 }}>
                       <span style={{ fontSize: 9, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}>{['DOM', 'AUX', 'TER', 'INF'][i]}</span>
                       <FnBadge fn={fn} />
@@ -300,18 +403,18 @@ export default function ComparePage({ user }) {
                   ))}
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, paddingTop: 32 }}>
-                  {mbtiRes.stack1.map((fn, i) => {
-                    const fn2 = mbtiRes.stack2[i], match = fn === fn2, shared = mbtiRes.shared.includes(fn) || mbtiRes.shared.includes(fn2);
+                  {mbtiStacks.stack1.map((fn, i) => {
+                    const fn2 = mbtiStacks.stack2[i], match = fn === fn2, isShared = shared.includes(fn) || shared.includes(fn2);
                     return (
                       <div key={i} style={{ width: 20, height: 20, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: match ? 'rgba(80,200,120,0.1)' : 'transparent' }}>
-                        <span style={{ fontSize: 9, color: match ? '#50c878' : shared ? G.gold : G.textFaint }}>{match ? '=' : shared ? '~' : '×'}</span>
+                        <span style={{ fontSize: 9, color: match ? '#50c878' : isShared ? G.gold : G.textFaint }}>{match ? '=' : isShared ? '~' : '×'}</span>
                       </div>
                     );
                   })}
                 </div>
                 <div style={{ textAlign: 'center' }}>
                   <p style={{ ...S.mono, fontSize: 14, marginBottom: 8 }}>{pB.mbti}</p>
-                  {mbtiRes.stack2.map((fn, i) => (
+                  {mbtiStacks.stack2.map((fn, i) => (
                     <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, marginBottom: 4 }}>
                       <FnBadge fn={fn} />
                       <span style={{ fontSize: 9, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}>{['DOM', 'AUX', 'TER', 'INF'][i]}</span>
@@ -319,15 +422,15 @@ export default function ComparePage({ user }) {
                   ))}
                 </div>
               </div>
-              {mbtiRes.shared.length > 0 && <p style={{ ...S.body, fontSize: 11, textAlign: 'center', marginTop: 10 }}>Shared: {mbtiRes.shared.map(f => <FnBadge key={f} fn={f} />)}</p>}
+              {shared.length > 0 && <p style={{ ...S.body, fontSize: 11, textAlign: 'center', marginTop: 10 }}>Shared: {shared.map(f => <FnBadge key={f} fn={f} />)}</p>}
             </div>
-            {mbtiRes.insights.map((ins, i) => (
+            {mbtiInsights.map((ins, i) => (
               <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: ins.color || G.gold, borderLeftStyle: 'solid' }}>
                 <h3 style={{ ...S.h3, color: ins.color || G.gold }}>{ins.label}</h3>
                 <p style={S.body}>{ins.desc}</p>
               </div>
             ))}
-            {mbtiT.map((tip, i) => (
+            {mbtiTips.map((tip, i) => (
               <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
                   <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{tip.for}</span>
@@ -364,7 +467,7 @@ export default function ComparePage({ user }) {
             <span style={{ fontWeight: 500 }}>{p.label}</span>
             {(p.ennType || p.mbti) && (
               <span style={{ ...S.mono, fontSize: 11, color: G.gold }}>
-                {p.ennType ? `${p.ennType}w${p.ennWing || '?'}` : ''}{p.ennType && p.mbti ? ' · ' : ''}{p.mbti || ''}
+                {p.ennType ? `${p.ennType}w${p.ennWing || '?'}` : ''}{p.instinctStack ? ` ${p.instinctStack.map(i => i.toUpperCase()).join('/')}` : ''}{p.ennType && p.mbti ? ' · ' : ''}{p.mbti || ''}
               </span>
             )}
           </button>
@@ -372,11 +475,18 @@ export default function ComparePage({ user }) {
         {persons.length < 6 && editing === null && (
           <button onClick={addPerson} style={{ width: 32, height: 32, borderRadius: '50%', border: `1px solid ${G.border}`, background: G.bg3, color: G.textDim, fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>+</button>
         )}
+        {editing === null && readyCount >= 1 && (
+          <button onClick={handleShare} style={{ ...S.btnOutline, padding: '6px 14px', fontSize: 12, borderRadius: 20, marginLeft: 'auto' }}>
+            ⟷ Share
+          </button>
+        )}
       </div>
+      {shareMsg && <p style={{ ...S.body, fontSize: 12, color: G.gold, marginBottom: 8, textAlign: 'center' }}>{shareMsg}</p>}
       {editing !== null && <PersonEditor key={editing} idx={editing} person={persons[editing]} onDone={() => setEditing(null)} />}
       {editing === null && !hasResults && (
         <div style={{ ...S.card, textAlign: 'center', padding: '28px 20px' }}>
           <p style={S.body}>Set at least two people to see analysis. Click a person chip above to get started.</p>
+          <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginTop: 8 }}>To share a comparison, fill in both people then click Share → copy the URL.</p>
         </div>
       )}
       {editing === null && hasResults && (
@@ -410,7 +520,7 @@ export default function ComparePage({ user }) {
                         <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500 }}>
                           {pA.label} × {pB.label}
                           <span style={{ ...S.mono, fontSize: 11, marginLeft: 10, color: expanded ? G.gold : G.textFaint }}>
-                            {pA.ennType ? `${pA.ennType}w${pA.ennWing || '?'}` : ''}{pA.ennType && pA.mbti ? ' ' : ''}{pA.mbti || ''} vs {pB.ennType ? `${pB.ennType}w${pB.ennWing || '?'}` : ''}{pB.ennType && pB.mbti ? ' ' : ''}{pB.mbti || ''}
+                            {pA.ennType ? `${pA.ennType}w${pA.ennWing || '?'}` : ''}{pA.mbti ? ` ${pA.mbti}` : ''} vs {pB.ennType ? `${pB.ennType}w${pB.ennWing || '?'}` : ''}{pB.mbti ? ` ${pB.mbti}` : ''}
                           </span>
                         </span>
                         <span style={{ color: expanded ? G.gold : G.textFaint, fontSize: 16 }}>{expanded ? '−' : '+'}</span>

@@ -1,12 +1,10 @@
 import { G } from '../styles/theme.js';
 
 const NAV_ITEMS = [
-  { id: 'typer', label: 'Typer', icon: '✦' },
+  { id: 'typer',    label: 'Typer',    icon: '✦' },
   { id: 'explorer', label: 'Explorer', icon: '◆' },
-  { id: 'model', label: 'Model', icon: '♦' },
-  { id: 'compare', label: 'Compare', icon: '⟷' },
-  { id: 'lookup', label: 'Lookup', icon: '↗' },
-  { id: 'profile', label: 'Profile', icon: '▸' },
+  { id: 'model',    label: 'Model',    icon: '♦' },
+  { id: 'compare',  label: 'Compare',  icon: '⟷' },
 ];
 
 export default function BottomNav({ view, setView }) {
