@@ -50,7 +50,7 @@ describe('GuidedTyper — choose screen', () => {
 
   it('shows all three quiz cards with unique subtitle text', () => {
     render(<GuidedTyper />);
-    expect(screen.getByText('Core Type + Wing + Instinct Stack')).toBeInTheDocument();
+    expect(screen.getByText('Core Type + Wing')).toBeInTheDocument();
     expect(screen.getByText('Cognitive Function Stack')).toBeInTheDocument();
     expect(screen.getByText('SP · SX · SO Drive Ordering')).toBeInTheDocument();
   });
@@ -119,7 +119,7 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
 
   it('starts quiz and shows first of 27 questions with Likert scale', () => {
     render(<GuidedTyper />);
-    fireEvent.click(screen.getByText('Core Type + Wing + Instinct Stack').closest('[style]'));
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
     expect(screen.getByText(/question 1 of 27/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '-3' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '0' })).toBeInTheDocument();
@@ -128,7 +128,7 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
 
   it('advances to question 2 after answering question 1', async () => {
     render(<GuidedTyper />);
-    fireEvent.click(screen.getByText('Core Type + Wing + Instinct Stack').closest('[style]'));
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
     expect(screen.getByText(/question 1 of 27/i)).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('button', { name: '+1' }));
@@ -139,7 +139,7 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
 
   it('shows Previous button from question 2 onward but not on question 1', async () => {
     render(<GuidedTyper />);
-    fireEvent.click(screen.getByText('Core Type + Wing + Instinct Stack').closest('[style]'));
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
 
     expect(screen.queryByRole('button', { name: /← previous/i })).not.toBeInTheDocument();
 
@@ -149,16 +149,15 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
     expect(screen.getByRole('button', { name: /← previous/i })).toBeInTheDocument();
   });
 
-  it('proceeds to instinct phase (12 questions) after all 27 enneagram questions with no close tie', async () => {
+  it('proceeds directly to enneagram result after all 27 questions with no close tie', async () => {
     // All-zero answers → scores all 0, sorted[0]='1', sorted[1]='2', pairKey='1-2'
-    // '1-2' is not in ENN_DISAMBIG → falls through to enn-inst phase
+    // '1-2' is not in ENN_DISAMBIG → falls through directly to enn-result
     render(<GuidedTyper />);
-    fireEvent.click(screen.getByText('Core Type + Wing + Instinct Stack').closest('[style]'));
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
 
     await answerLikertQuestions(27);
 
-    expect(screen.getByText(/instinctual drive stack/i)).toBeInTheDocument();
-    expect(screen.getByText(/question 1 of 12/i)).toBeInTheDocument();
+    expect(screen.getByText(/your enneagram result/i)).toBeInTheDocument();
   });
 
   it('shows disambiguation clarifying questions when top-2 types are within 3 points', async () => {
@@ -166,7 +165,7 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
     // +3 for those indices, 0 for all others → type4=9, type5=9, others=0.
     // gap=0 ≤ 3, pairKey='4-5' → ENN_DISAMBIG['4-5'] exists → disambiguation shown.
     render(<GuidedTyper />);
-    fireEvent.click(screen.getByText('Core Type + Wing + Instinct Stack').closest('[style]'));
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
 
     for (let qi = 0; qi < 27; qi++) {
       const val = (qi >= 9 && qi <= 14) ? '+3' : '0';
@@ -179,9 +178,9 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
     expect(screen.getByRole('button', { name: /skip/i })).toBeInTheDocument();
   });
 
-  it('can skip disambiguation and proceed directly to instinct questions', async () => {
+  it('can skip disambiguation and proceed directly to enneagram result', async () => {
     render(<GuidedTyper />);
-    fireEvent.click(screen.getByText('Core Type + Wing + Instinct Stack').closest('[style]'));
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
 
     for (let qi = 0; qi < 27; qi++) {
       fireEvent.click(screen.getByRole('button', { name: (qi >= 9 && qi <= 14) ? '+3' : '0' }));
@@ -190,19 +189,17 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
 
     expect(screen.getByText(/clarifying questions/i)).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /skip/i }));
-    expect(screen.getByText(/instinctual drive stack/i)).toBeInTheDocument();
+    expect(screen.getByText(/your enneagram result/i)).toBeInTheDocument();
   });
 
-  it('shows enneagram result after completing all 27 enneagram + 12 instinct questions', async () => {
+  it('shows enneagram result after completing all 27 questions', async () => {
     render(<GuidedTyper />);
-    fireEvent.click(screen.getByText('Core Type + Wing + Instinct Stack').closest('[style]'));
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
 
     await answerLikertQuestions(27); // enn phase (no disambig with all-zero)
-    await answerLikertQuestions(12); // enn-inst phase
 
     expect(screen.getByText(/your enneagram result/i)).toBeInTheDocument();
     expect(screen.getByText(/type scores/i)).toBeInTheDocument();
-    expect(screen.getByText(/instinctual drive stack/i)).toBeInTheDocument();
   });
 
   it('does not start quiz if enneagram is already completed', () => {
@@ -211,7 +208,7 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
       display: '5w4 SP/SX/SO', scores: {}, wingStrengthDelta: 'balanced',
     }));
     render(<GuidedTyper />);
-    fireEvent.click(screen.getByText('Core Type + Wing + Instinct Stack').closest('[style]'));
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
     expect(screen.queryByText(/question 1 of/i)).not.toBeInTheDocument();
   });
 
