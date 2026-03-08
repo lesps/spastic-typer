@@ -183,6 +183,12 @@ export default function GuidedTyper() {
     setExportData({ markdown: md, backup });
   };
 
+  const handleExportAll = () => {
+    const md = generateExportMarkdown(saved.enn, saved.mbti);
+    const backup = { type: 'full-profile', exportedAt: new Date().toISOString(), enneagram: saved.enn, mbti: saved.mbti, instinct: saved.inst };
+    setExportData({ markdown: md, backup });
+  };
+
   // --- Share URL ---
   const handleShare = () => {
     const enn = saved.enn;
@@ -208,11 +214,19 @@ export default function GuidedTyper() {
   if (phase === 'choose') {
     const doneCount = [saved.enn, saved.mbti, saved.inst].filter(Boolean).length;
     const hasAny = doneCount > 0;
+    const allDone = doneCount === 3;
     return (
       <div style={S.page}><div style={S.container}>
-        <div style={{ textAlign: 'center', marginBottom: 24, marginTop: 20 }}>
+        <div style={{ textAlign: 'center', marginBottom: 16, marginTop: 20 }}>
           <h1 style={{ ...S.h1, fontSize: 32, marginBottom: 4 }}>Guided Typer</h1>
           <p style={S.body}>Discover your personality type through structured assessment</p>
+        </div>
+
+        {/* Intro */}
+        <div style={{ ...S.card, marginBottom: 20, padding: '14px 16px' }}>
+          <p style={{ ...S.body, fontSize: 13, lineHeight: 1.7 }}>
+            Take all three assessments to build your full personality profile. Complete all three to unlock your <strong style={{ color: G.text }}>Share Link</strong> (use it to load your profile in the Compare tab) and the <strong style={{ color: G.text }}>Export</strong> button. Individual quiz results can be exported from their own result screens at any time.
+          </p>
         </div>
 
         {/* Completeness indicator */}
@@ -225,26 +239,34 @@ export default function GuidedTyper() {
           ))}
         </div>
 
-        {/* Share profile card */}
+        {/* Share / export profile card */}
         {hasAny && (
           <div style={{ ...S.cardGold, marginBottom: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
-              <div>
+              <div style={{ flex: 1 }}>
                 <h3 style={{ ...S.h3, marginBottom: 4 }}>Your Profile</h3>
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 6 }}>
                   {saved.enn && <span style={S.tag}>{saved.enn.display}</span>}
                   {saved.mbti && <span style={S.tag}>{saved.mbti.result}</span>}
                   {saved.inst && !saved.enn && <span style={S.tag}>{saved.inst.instinctStack?.map(i => i.toUpperCase()).join('/')}</span>}
                 </div>
-                <p style={{ fontSize: 11, color: G.textFaint, marginTop: 6 }}>
-                  {doneCount}/3 assessments complete · Share a link to load your profile in Compare
-                </p>
+                {!allDone && (
+                  <p style={{ fontSize: 11, color: G.textFaint, marginTop: 6 }}>
+                    {doneCount}/3 complete — finish all three to unlock Share Link and Export
+                  </p>
+                )}
               </div>
-              <button onClick={handleShare} style={{ ...S.btn, whiteSpace: 'nowrap', flexShrink: 0 }}>Share Profile</button>
+              {allDone && (
+                <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+                  <button onClick={handleExportAll} style={{ ...S.btnOutline, whiteSpace: 'nowrap', padding: '8px 14px', fontSize: 13 }}>Export</button>
+                  <button onClick={handleShare} style={{ ...S.btn, whiteSpace: 'nowrap' }}>Share Profile</button>
+                </div>
+              )}
             </div>
             {shareMsg && <p style={{ fontSize: 12, color: G.gold, marginTop: 8 }}>{shareMsg}</p>}
           </div>
         )}
+        {exportData && <ExportModal markdown={exportData.markdown} backup={exportData.backup} onClose={() => setExportData(null)} />}
 
         {/* Quiz cards */}
         <div style={{ ...S.cardGold, cursor: saved.enn ? 'default' : 'pointer' }} onClick={saved.enn ? undefined : () => { setPhase('enn'); setQi(0); setAnswers({}); setInstAnswers({}); setBranchAnswers({}); setDisambigPair(null); }}>
