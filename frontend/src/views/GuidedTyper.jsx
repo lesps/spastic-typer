@@ -41,7 +41,7 @@ export default function GuidedTyper() {
   }));
 
   // --- Scoring ---
-  const scoreEnneagram = (finalInstAnswers, finalBranchAnswers, finalDisambigPair) => {
+  const scoreEnneagram = (finalBranchAnswers, finalDisambigPair) => {
     const scores = {};
     for (let t = 1; t <= 9; t++) scores[t] = 0;
     ENN_QUESTIONS.forEach((q, i) => { if (answers[i] !== undefined) scores[q.type] += answers[i] * q.pole; });
@@ -52,14 +52,10 @@ export default function GuidedTyper() {
     }
     const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
     const core = parseInt(sorted[0][0]);
-    const instScores = { sp: 0, sx: 0, so: 0 };
-    INSTINCT_QS.forEach((q, i) => { if (finalInstAnswers[i] !== undefined) instScores[q.inst] += finalInstAnswers[i]; });
-    const instinctStack = Object.entries(instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k);
     const w1 = core === 1 ? 9 : core - 1, w2 = core === 9 ? 1 : core + 1;
     const wing = (scores[w1] || 0) >= (scores[w2] || 0) ? w1 : w2;
     const delta = computeWingStrengthDelta(core, wing, scores);
-    const stackStr = instinctStack.map(i => i.toUpperCase()).join('/');
-    return { coreType: core, wing, instinctStack, scores, instScores, wingStrengthDelta: delta, display: `${core}w${wing} ${stackStr}` };
+    return { coreType: core, wing, scores, wingStrengthDelta: delta, display: `${core}w${wing}` };
   };
 
   const scoreMBTI = () => {
@@ -104,8 +100,12 @@ export default function GuidedTyper() {
             return;
           }
         }
-        setPhase('enn-inst');
-        setQi(0);
+        const r = scoreEnneagram(branchAnswers, disambigPair);
+        const backup = { ...r, exportedAt: new Date().toISOString() };
+        writeLS(LS.enn, backup);
+        setSaved(s => ({ ...s, enn: backup }));
+        setResult(r);
+        setPhase('enn-result');
       }
     }, 150);
   };
@@ -116,17 +116,8 @@ export default function GuidedTyper() {
     const total = ENN_DISAMBIG[disambigPair].length;
     setTimeout(() => {
       if (qi < total - 1) setQi(qi + 1);
-      else { setPhase('enn-inst'); setQi(0); }
-    }, 150);
-  };
-
-  const handleInstAnswer = (v) => {
-    const ni = { ...instAnswers, [qi]: v };
-    setInstAnswers(ni);
-    setTimeout(() => {
-      if (qi < INSTINCT_QS.length - 1) setQi(qi + 1);
       else {
-        const r = scoreEnneagram(ni, branchAnswers, disambigPair);
+        const r = scoreEnneagram(nb, disambigPair);
         const backup = { ...r, exportedAt: new Date().toISOString() };
         writeLS(LS.enn, backup);
         setSaved(s => ({ ...s, enn: backup }));
@@ -174,15 +165,6 @@ export default function GuidedTyper() {
   const retakeMBTI = () => { clearLS(LS.mbti); setSaved(s => ({ ...s, mbti: null })); setPhase('mbti'); setQi(0); setMbtiAnswers({}); };
   const retakeInst = () => { clearLS(LS.inst); setSaved(s => ({ ...s, inst: null })); setPhase('instinct'); setQi(0); setInstAnswers({}); };
 
-  const handleExport = (type) => {
-    const isEnn = type === 'enneagram';
-    const md = generateExportMarkdown(isEnn ? result : null, isEnn ? null : result);
-    const backup = isEnn
-      ? { type: 'enneagram', result: result.display, resultData: result, exportedAt: new Date().toISOString() }
-      : { type: 'mbti', result: result.result, resultData: result, exportedAt: new Date().toISOString() };
-    setExportData({ markdown: md, backup });
-  };
-
   const handleExportAll = () => {
     const md = generateExportMarkdown(saved.enn, saved.mbti);
     const backup = { type: 'full-profile', exportedAt: new Date().toISOString(), enneagram: saved.enn, mbti: saved.mbti, instinct: saved.inst };
@@ -225,7 +207,7 @@ export default function GuidedTyper() {
         {/* Intro */}
         <div style={{ ...S.card, marginBottom: 20, padding: '14px 16px' }}>
           <p style={{ ...S.body, fontSize: 13, lineHeight: 1.7 }}>
-            Take all three assessments to build your full personality profile. Complete all three to unlock your <strong style={{ color: G.text }}>Share Link</strong> (use it to load your profile in the Compare tab) and the <strong style={{ color: G.text }}>Export</strong> button. Individual quiz results can be exported from their own result screens at any time.
+            Take all three assessments to build your full personality profile. Complete all three to unlock your <strong style={{ color: G.text }}>Share Link</strong> (use it to load your profile in the Compare tab) and the <strong style={{ color: G.text }}>Export</strong> button.
           </p>
         </div>
 
@@ -273,7 +255,7 @@ export default function GuidedTyper() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ flex: 1 }}>
               <h3 style={S.h3}>Enneagram</h3>
-              <h2 style={S.h2}>Core Type + Wing + Instinct Stack</h2>
+              <h2 style={S.h2}>Core Type + Wing</h2>
               {saved.enn ? (
                 <div style={{ marginTop: 8 }}>
                   <span style={{ ...S.tag, marginRight: 6 }}>{saved.enn.display}</span>
@@ -281,8 +263,8 @@ export default function GuidedTyper() {
                 </div>
               ) : (
                 <>
-                  <p style={{ ...S.body, marginTop: 8 }}>{ENN_QUESTIONS.length} type questions + {INSTINCT_QS.length} instinct questions. Adaptive follow-up may be shown if your top types are close.</p>
-                  <div style={{ marginTop: 12 }}><span style={S.tag}>~7 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>{ENN_QUESTIONS.length + INSTINCT_QS.length}+ questions</span></div>
+                  <p style={{ ...S.body, marginTop: 8 }}>{ENN_QUESTIONS.length} questions. Adaptive follow-up may be shown if your top types are close.</p>
+                  <div style={{ marginTop: 12 }}><span style={S.tag}>~5 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>{ENN_QUESTIONS.length}+ questions</span></div>
                 </>
               )}
             </div>
@@ -385,31 +367,7 @@ export default function GuidedTyper() {
           </div>
         </div>
         {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
-        <button onClick={() => { setPhase('enn-inst'); setQi(0); }} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Skip →</button>
-      </div></div>
-    );
-  }
-
-  // --- Instinct questions (as part of enneagram quiz) ---
-  if (phase === 'enn-inst') {
-    const q = INSTINCT_QS[qi];
-    return (
-      <div style={S.page}><div style={S.container}>
-        <ProgressBar current={qi + 1} total={INSTINCT_QS.length} />
-        <div style={{ textAlign: 'center', marginBottom: 16 }}>
-          <h3 style={S.h3}>Instinctual Drive Stack</h3>
-          <p style={{ ...S.body, fontSize: 13 }}>{INSTINCT_QS.length} questions to determine the ordering of your three instinctual drives</p>
-        </div>
-        <div style={S.card}>
-          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1} of {INSTINCT_QS.length}</p>
-          <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
-          <LikertScale value={instAnswers[qi]} onChange={handleInstAnswer} />
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
-          </div>
-        </div>
-        {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
+        <button onClick={() => { const r = scoreEnneagram(branchAnswers, disambigPair); const backup = { ...r, exportedAt: new Date().toISOString() }; writeLS(LS.enn, backup); setSaved(s => ({ ...s, enn: backup })); setResult(r); setPhase('enn-result'); }} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Skip →</button>
       </div></div>
     );
   }
@@ -418,7 +376,6 @@ export default function GuidedTyper() {
   if (phase === 'enn-result' && result) {
     const t = ENN_TYPES[result.coreType];
     const wKey = `${result.coreType}w${result.wing}`;
-    const stack = result.instinctStack || [];
     return (
       <div style={S.page}><div style={S.container}>
         <div style={{ textAlign: 'center', marginTop: 20, marginBottom: 24 }}>
@@ -433,23 +390,6 @@ export default function GuidedTyper() {
           <h3 style={S.h3}>Core Desire</h3><p style={S.body}>{t.desire}</p>
           <div style={S.divider} />
           <h3 style={S.h3}>Wing</h3><p style={S.body}>{WING_DESC[wKey]}</p>
-          <div style={S.divider} />
-          <h3 style={S.h3}>Instinctual Drive Stack</h3>
-          <div style={{ display: 'flex', gap: 8, marginTop: 8, marginBottom: 12 }}>
-            {stack.map((inst, i) => (
-              <div key={inst} style={{ flex: 1, padding: '10px 8px', borderRadius: 10, background: i === 0 ? G.goldDim : G.bg3, border: `1px solid ${i === 0 ? G.goldBorder : G.border}`, textAlign: 'center' }}>
-                <div style={{ ...S.mono, fontSize: 13, color: i === 0 ? G.gold : G.textDim, marginBottom: 4 }}>{inst.toUpperCase()}</div>
-                <div style={{ fontSize: 10, color: G.textFaint }}>{['Dominant', 'Secondary', 'Repressed'][i]}</div>
-              </div>
-            ))}
-          </div>
-          {stack.map((inst, i) => (
-            <p key={inst} style={{ ...S.body, fontSize: 13, marginBottom: 6 }}>
-              <span style={{ color: i === 0 ? G.gold : G.textDim, fontFamily: "'DM Mono',monospace" }}>{inst.toUpperCase()} — </span>
-              <span style={{ color: i === 2 ? G.textFaint : G.textDim }}>{INSTINCT_LABELS[inst]}: </span>
-              {INSTINCT_DESC[inst]}
-            </p>
-          ))}
         </div>
         <div style={S.card}>
           <h3 style={S.h3}>Type Scores</h3>
@@ -462,11 +402,7 @@ export default function GuidedTyper() {
             ))}
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button style={{ ...S.btn, flex: 1 }} onClick={() => handleExport('enneagram')}>Export</button>
-        </div>
         <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={reset}>← Back to Assessments</button>
-        {exportData && <ExportModal markdown={exportData.markdown} backup={exportData.backup} onClose={() => setExportData(null)} />}
       </div></div>
     );
   }
@@ -607,11 +543,7 @@ export default function GuidedTyper() {
             </div>
           </div>
         )}
-        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button style={{ ...S.btn, flex: 1 }} onClick={() => handleExport('mbti')}>Export</button>
-        </div>
         <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={reset}>← Back to Assessments</button>
-        {exportData && <ExportModal markdown={exportData.markdown} backup={exportData.backup} onClose={() => setExportData(null)} />}
       </div></div>
     );
   }
