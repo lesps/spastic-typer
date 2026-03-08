@@ -43,11 +43,69 @@ export const ENN_QUESTIONS = [
 export const INSTINCT_QS = [
   { text: 'Physical comfort, health, and financial security are constant concerns for me.', inst: 'sp' },
   { text: 'I carefully manage my resources and energy to ensure personal well-being.', inst: 'sp' },
+  { text: 'I tend to be cautious about my health, finances, and physical environment.', inst: 'sp' },
+  { text: 'When stressed, I focus on self-care, routines, and personal stability first.', inst: 'sp' },
   { text: 'I prefer one-on-one intensity over group dynamics.', inst: 'sx' },
   { text: 'I\'m drawn to experiences that feel electric, transformative, or deeply intimate.', inst: 'sx' },
+  { text: 'I often become fixated on specific people or experiences that feel magnetically compelling.', inst: 'sx' },
+  { text: 'Deep one-on-one connection energizes me far more than being part of a group.', inst: 'sx' },
   { text: 'I\'m highly aware of social dynamics, group roles, and where I stand with others.', inst: 'so' },
   { text: 'Being part of a community or group and contributing to something larger matters deeply to me.', inst: 'so' },
+  { text: 'I feel most alive when I have a recognized role or purpose within a group.', inst: 'so' },
+  { text: 'I pay close attention to how I\'m perceived by others in social contexts.', inst: 'so' },
 ];
+
+export const ENN_DISAMBIG = {
+  '1-6': [
+    { text: 'My inner sense of right and wrong guides me more than external rules or authority figures.', favors: 1 },
+    { text: 'I feel a deep personal responsibility to correct errors and uphold standards — independent of others\' approval.', favors: 1 },
+    { text: 'I often look to trusted people or systems to validate my decisions before acting.', favors: 6 },
+    { text: 'Doubt and second-guessing myself is one of my most consistent ongoing challenges.', favors: 6 },
+    { text: 'Once I determine something is right, I commit fully without needing external confirmation.', favors: 1 },
+  ],
+  '2-9': [
+    { text: 'I help others because I genuinely believe they need me specifically — and I feel proud of that role.', favors: 2 },
+    { text: 'I tend to merge with others\' preferences so completely that I lose track of my own wants.', favors: 9 },
+    { text: 'I know what I need emotionally, even if I rarely ask for it directly.', favors: 2 },
+    { text: 'Conflict genuinely disturbs my equilibrium — I\'d rather go along than create friction.', favors: 9 },
+    { text: 'I feel a quiet pride in being the one others turn to for support and connection.', favors: 2 },
+  ],
+  '3-7': [
+    { text: 'I care deeply about how competent and successful I appear to others.', favors: 3 },
+    { text: 'I often chase new experiences or projects to avoid boredom or discomfort.', favors: 7 },
+    { text: 'I strategically adapt my presentation to succeed in whatever context I\'m in.', favors: 3 },
+    { text: 'I strongly prefer keeping my options open rather than committing to a single path.', favors: 7 },
+    { text: 'Completing and delivering measurable results matters more to me than the experience of the journey.', favors: 3 },
+  ],
+  '4-5': [
+    { text: 'My emotional experience is rich and complex, and it shapes much of my sense of identity.', favors: 4 },
+    { text: 'My primary focus is understanding and making sense of the world through intellectual analysis.', favors: 5 },
+    { text: 'I long to be truly understood and feel that very few people can actually see me clearly.', favors: 4 },
+    { text: 'I withdraw into thought and analysis when overwhelmed, preferring to observe before engaging.', favors: 5 },
+    { text: 'I strongly identify with my emotional depth and sense of being fundamentally different from others.', favors: 4 },
+  ],
+  '6-9': [
+    { text: 'Active anxiety and worst-case thinking are regular features of my mental life.', favors: 6 },
+    { text: 'I tend to minimize problems and prefer not to dwell on what could go wrong.', favors: 9 },
+    { text: 'I regularly question whether people I trust are truly reliable and on my side.', favors: 6 },
+    { text: 'I find it genuinely hard to mobilize myself and get started on things I care about.', favors: 9 },
+    { text: 'I mentally rehearse problems and prepare counterarguments or escape routes before they arise.', favors: 6 },
+  ],
+  '8-3': [
+    { text: 'I need to feel in direct control of situations — being seen as successful is secondary.', favors: 8 },
+    { text: 'What others think of my image, status, and reputation matters significantly to how I operate.', favors: 3 },
+    { text: 'I push back immediately and forcefully when I feel disrespected, challenged, or controlled.', favors: 8 },
+    { text: 'I carefully calibrate my presentation and persona to win people over and advance my goals.', favors: 3 },
+    { text: 'I would rather be respected for my power and authenticity than liked for my image.', favors: 8 },
+  ],
+  '1-4': [
+    { text: 'My primary drive is to improve and correct things that fall short of how they should be.', favors: 1 },
+    { text: 'My primary drive is to express my authentic inner experience and be understood for who I am.', favors: 4 },
+    { text: 'I have a persistent inner critic that evaluates whether I\'ve met my own standards.', favors: 1 },
+    { text: 'I have a persistent sense of longing for something I can\'t quite name or find.', favors: 4 },
+    { text: 'I feel most grounded when I\'ve acted with integrity and done things the right way.', favors: 1 },
+  ],
+};
 
 export const WING_DESC = {
   '1w9': 'The Idealist — principled with a calm, withdrawn quality. More detached and philosophical than the 1w2, with perfectionism expressed quietly through reflection and high personal standards.',

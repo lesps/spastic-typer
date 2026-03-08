@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, WING_DESC } from '../data/enneagram.js';
+
 import { MBTI_TYPES } from '../data/mbti.js';
 import { ENN_DYNAMICS, ENN_TIPS, MBTI_INSIGHTS, MBTI_TIPS, INSTINCT_STACK_DYNAMICS } from '../data/pairLookup.js';
 import FnBadge from '../components/FnBadge.jsx';
@@ -114,6 +115,7 @@ export default function ComparePage() {
     const [urlInput, setUrlInput] = useState('');
     const [urlError, setUrlError] = useState('');
     const [instOrder, setInstOrder] = useState(person.instinctStack || ['sp', 'sx', 'so']);
+    const [instEnabled, setInstEnabled] = useState(true);
 
     const adj1 = person.ennType ? (person.ennType === 1 ? 9 : person.ennType - 1) : null;
     const adj2 = person.ennType ? (person.ennType === 9 ? 1 : person.ennType + 1) : null;
@@ -167,7 +169,7 @@ export default function ComparePage() {
       updatePerson(idx, p => ({
         ...p,
         label,
-        instinctStack: p.ennType ? instOrder : p.instinctStack,
+        instinctStack: instEnabled ? instOrder : null,
       }));
       onDone();
     };
@@ -238,7 +240,7 @@ export default function ComparePage() {
         {mode === 'manual' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div>
-              <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Enneagram Type</label>
+              <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Enneagram Type <span style={{ color: G.textFaint, fontWeight: 400 }}>(optional)</span></label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(9,1fr)', gap: 4 }}>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(t => (
                   <button key={t} onClick={() => updatePerson(idx, p => ({ ...p, ennType: t, ennWing: null, ennWingStrength: null }))} style={{ padding: '8px 4px', borderRadius: 8, border: `1px solid ${person.ennType === t ? G.gold : G.border}`, background: person.ennType === t ? G.goldDim : G.bg3, color: person.ennType === t ? G.gold : G.textDim, fontSize: 13, fontFamily: "'DM Mono',monospace" }}>
@@ -246,22 +248,35 @@ export default function ComparePage() {
                   </button>
                 ))}
               </div>
+              {person.ennType ? (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 6 }}>
+                  <p style={{ fontSize: 12, color: G.textDim, margin: 0 }}>
+                    Type {person.ennType} — <span style={{ color: G.text }}>{ENN_TYPES[person.ennType].name}</span>
+                    <span style={{ color: G.textFaint, marginLeft: 6 }}>{ENN_TYPES[person.ennType].fear}</span>
+                  </p>
+                  <button onClick={() => updatePerson(idx, p => ({ ...p, ennType: null, ennWing: null, ennWingStrength: null }))} style={{ background: 'none', border: 'none', cursor: 'pointer', color: G.textFaint, fontSize: 13, padding: '0 4px' }}>× clear</button>
+                </div>
+              ) : (
+                <p style={{ fontSize: 11, color: G.textFaint, marginTop: 5 }}>Don't know your type? Take the Enneagram quiz in the Typer tab.</p>
+              )}
             </div>
             {person.ennType && (
               <div>
-                <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Wing</label>
+                <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Wing <span style={{ color: G.textFaint, fontWeight: 400 }}>(optional)</span></label>
                 <div style={{ display: 'flex', gap: 6 }}>
                   {[adj1, adj2].map(w => (
                     <button key={w} onClick={() => updatePerson(idx, p => ({ ...p, ennWing: w, ennWingStrength: null }))} style={{ flex: 1, padding: '8px', borderRadius: 8, border: `1px solid ${person.ennWing === w ? G.gold : G.border}`, background: person.ennWing === w ? G.goldDim : G.bg3, color: person.ennWing === w ? G.gold : G.textDim, fontSize: 13 }}>
                       {person.ennType}w{w}
                     </button>
                   ))}
+                  {person.ennWing && <button onClick={() => updatePerson(idx, p => ({ ...p, ennWing: null, ennWingStrength: null }))} style={{ padding: '8px 10px', borderRadius: 8, border: `1px solid ${G.border}`, background: 'transparent', color: G.textFaint, fontSize: 12 }}>×</button>}
                 </div>
+                {person.ennWing && <p style={{ fontSize: 11, color: G.textFaint, marginTop: 4 }}>{WING_DESC[`${person.ennType}w${person.ennWing}`]?.split('—')[0].trim()}</p>}
               </div>
             )}
             {person.ennWing && (
               <div>
-                <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Wing Strength</label>
+                <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Wing Strength <span style={{ color: G.textFaint, fontWeight: 400 }}>(optional)</span></label>
                 <div style={{ display: 'flex', gap: 6 }}>
                   {[{ id: 'balanced', label: 'Balanced' }, { id: 'moderate', label: 'Moderate' }, { id: 'strong', label: 'Strong' }].map(s => (
                     <button key={s.id} onClick={() => updatePerson(idx, p => ({ ...p, ennWingStrength: s.id }))} style={{ flex: 1, padding: '8px', borderRadius: 8, border: `1px solid ${person.ennWingStrength === s.id ? G.gold : G.border}`, background: person.ennWingStrength === s.id ? G.goldDim : G.bg3, color: person.ennWingStrength === s.id ? G.gold : G.textDim, fontSize: 12 }}>
@@ -272,9 +287,15 @@ export default function ComparePage() {
                 {person.ennWingStrength && <p style={{ fontSize: 11, color: G.textFaint, marginTop: 4 }}>{wingStrengthDesc(person.ennWingStrength)}</p>}
               </div>
             )}
-            {person.ennType && (
-              <div>
-                <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Instinct Stack — drag to reorder (top = dominant)</label>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+                <label style={{ fontSize: 12, color: G.textDim }}>Instinct Stack <span style={{ color: G.textFaint, fontWeight: 400 }}>(optional)</span></label>
+                <label style={{ display: 'flex', alignItems: 'center', gap: 5, cursor: 'pointer', fontSize: 11, color: G.textFaint }}>
+                  <input type="checkbox" checked={instEnabled} onChange={e => setInstEnabled(e.target.checked)} style={{ accentColor: G.gold }} />
+                  Include
+                </label>
+              </div>
+              <div style={{ opacity: instEnabled ? 1 : 0.35, pointerEvents: instEnabled ? 'auto' : 'none' }}>
                 {instOrder.map((inst, i) => (
                   <div key={inst} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, padding: '8px 12px', background: i === 0 ? G.goldDim : G.bg3, border: `1px solid ${i === 0 ? G.goldBorder : G.border}`, borderRadius: 8 }}>
                     <span style={{ ...S.mono, fontSize: 13, color: i === 0 ? G.gold : G.textDim, minWidth: 28 }}>{inst.toUpperCase()}</span>
@@ -286,9 +307,10 @@ export default function ComparePage() {
                   </div>
                 ))}
               </div>
-            )}
+              {!instEnabled && <p style={{ fontSize: 11, color: G.textFaint, marginTop: 4 }}>Instinct stack will not be included in this profile.</p>}
+            </div>
             <div>
-              <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>MBTI Type</label>
+              <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>MBTI Type <span style={{ color: G.textFaint, fontWeight: 400 }}>(optional)</span></label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 4 }}>
                 {Object.keys(MBTI_TYPES).map(t => (
                   <button key={t} onClick={() => updatePerson(idx, p => ({ ...p, mbti: t }))} style={{ padding: '7px 4px', borderRadius: 8, border: `1px solid ${person.mbti === t ? G.gold : G.border}`, background: person.mbti === t ? G.goldDim : G.bg3, color: person.mbti === t ? G.gold : G.textDim, fontSize: 11, fontFamily: "'DM Mono',monospace" }}>
@@ -296,6 +318,16 @@ export default function ComparePage() {
                   </button>
                 ))}
               </div>
+              {person.mbti ? (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 6 }}>
+                  <p style={{ fontSize: 12, color: G.textDim, margin: 0 }}>
+                    {person.mbti} — <span style={{ color: G.text }}>{MBTI_TYPES[person.mbti]?.name}</span>
+                  </p>
+                  <button onClick={() => updatePerson(idx, p => ({ ...p, mbti: null }))} style={{ background: 'none', border: 'none', cursor: 'pointer', color: G.textFaint, fontSize: 13, padding: '0 4px' }}>× clear</button>
+                </div>
+              ) : (
+                <p style={{ fontSize: 11, color: G.textFaint, marginTop: 5 }}>Don't know your type? Take the MBTI quiz in the Typer tab.</p>
+              )}
             </div>
           </div>
         )}
