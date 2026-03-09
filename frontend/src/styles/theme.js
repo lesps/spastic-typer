@@ -38,7 +38,4 @@ input,textarea{-webkit-appearance:none;appearance:none}
   .qcard{padding:20px 22px!important}
 }
 .qt-progress-bar{display:block}
-@media(max-width:600px){.qt-progress-bar{display:none}}
-.qt-progress-wheel{display:none}
-@media(max-width:600px){.qt-progress-wheel{display:flex;align-items:center;justify-content:center}}
 `;

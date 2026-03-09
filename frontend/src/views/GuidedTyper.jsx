@@ -20,10 +20,13 @@ const INSTINCT_DESC = {
 };
 
 // --- localStorage helpers ---
-const LS = { enn: 'typer_enn', mbti: 'typer_mbti', inst: 'typer_inst' };
+const LS = { enn: 'typer_enn', mbti: 'typer_mbti', inst: 'typer_inst', session: 'typer_session' };
 function readLS(key) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; } }
 function writeLS(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch {} }
 function clearLS(key) { try { localStorage.removeItem(key); } catch {} }
+
+// Phases where a quiz is actively in progress (session should be saved/restored)
+const ACTIVE_PHASES = ['enn', 'mbti', 'instinct', 'enn-disambig'];
 
 // --- Adaptive question selection ---
 /** Fisher-Yates in-place shuffle. Returns the array. */
@@ -192,13 +195,35 @@ export function scoreInstinct(answers, sequence) {
 
 export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setQuizProgress = () => {} }) {
   const goToExplorer = (tab) => { setExplorerTab(tab); setView('explorer'); };
-  const [phase, setPhase] = useState('choose');
-  const [qi, setQi] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const [instAnswers, setInstAnswers] = useState({});
-  const [mbtiAnswers, setMbtiAnswers] = useState({});
-  const [branchAnswers, setBranchAnswers] = useState({});
-  const [disambigPair, setDisambigPair] = useState(null);
+  // Restore in-progress quiz session from localStorage if available
+  const [phase, setPhase] = useState(() => {
+    const s = readLS(LS.session);
+    return (s && ACTIVE_PHASES.includes(s.phase)) ? s.phase : 'choose';
+  });
+  const [qi, setQi] = useState(() => {
+    const s = readLS(LS.session);
+    return (s && ACTIVE_PHASES.includes(s.phase)) ? (s.qi ?? 0) : 0;
+  });
+  const [answers, setAnswers] = useState(() => {
+    const s = readLS(LS.session);
+    return (s && ACTIVE_PHASES.includes(s.phase)) ? (s.answers ?? {}) : {};
+  });
+  const [instAnswers, setInstAnswers] = useState(() => {
+    const s = readLS(LS.session);
+    return (s && ACTIVE_PHASES.includes(s.phase)) ? (s.instAnswers ?? {}) : {};
+  });
+  const [mbtiAnswers, setMbtiAnswers] = useState(() => {
+    const s = readLS(LS.session);
+    return (s && ACTIVE_PHASES.includes(s.phase)) ? (s.mbtiAnswers ?? {}) : {};
+  });
+  const [branchAnswers, setBranchAnswers] = useState(() => {
+    const s = readLS(LS.session);
+    return (s && ACTIVE_PHASES.includes(s.phase)) ? (s.branchAnswers ?? {}) : {};
+  });
+  const [disambigPair, setDisambigPair] = useState(() => {
+    const s = readLS(LS.session);
+    return (s && ACTIVE_PHASES.includes(s.phase)) ? (s.disambigPair ?? null) : null;
+  });
   const [result, setResult] = useState(null);
   const [exportData, setExportData] = useState(null);
   const [profileCode, setProfileCode] = useState('');
@@ -206,10 +231,19 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   const [loadCode, setLoadCode] = useState('');
   const [loadError, setLoadError] = useState('');
   const [loadSuccess, setLoadSuccess] = useState('');
-  // Adaptive question sequences (generated fresh per test session)
-  const [mbtiSeq, setMbtiSeq] = useState([]);
-  const [ennSeq, setEnnSeq] = useState([]);
-  const [instSeq, setInstSeq] = useState([]);
+  // Adaptive question sequences — restored from session or generated fresh
+  const [mbtiSeq, setMbtiSeq] = useState(() => {
+    const s = readLS(LS.session);
+    return (s?.mbtiSeqIds?.length) ? s.mbtiSeqIds.map(i => MBTI_BANK[i]) : [];
+  });
+  const [ennSeq, setEnnSeq] = useState(() => {
+    const s = readLS(LS.session);
+    return (s?.ennSeqIds?.length) ? s.ennSeqIds.map(i => ENN_BANK[i]) : [];
+  });
+  const [instSeq, setInstSeq] = useState(() => {
+    const s = readLS(LS.session);
+    return (s?.instSeqIds?.length) ? s.instSeqIds.map(i => INSTINCT_BANK[i]) : [];
+  });
   const [saved, setSaved] = useState(() => ({
     enn: readLS(LS.enn),
     mbti: readLS(LS.mbti),
@@ -232,6 +266,20 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
       setQuizProgress(null);
     }
   }, [phase, qi, ennSeq.length, instSeq.length, mbtiSeq.length, disambigPair]);
+
+  // --- Session persistence — save/restore mid-quiz state across tab switches ---
+  useEffect(() => {
+    if (!ACTIVE_PHASES.includes(phase)) {
+      clearLS(LS.session);
+      return;
+    }
+    writeLS(LS.session, {
+      phase, qi, answers, mbtiAnswers, instAnswers, branchAnswers, disambigPair,
+      ennSeqIds: ennSeq.map(q => ENN_BANK.indexOf(q)),
+      mbtiSeqIds: mbtiSeq.map(q => MBTI_BANK.indexOf(q)),
+      instSeqIds: instSeq.map(q => INSTINCT_BANK.indexOf(q)),
+    });
+  }, [phase, qi, answers, mbtiAnswers, instAnswers, branchAnswers, disambigPair, ennSeq, mbtiSeq, instSeq]);
 
   // --- Next incomplete quiz helper ---
   function nextIncompleteQuiz(sv, justCompleted) {
@@ -350,31 +398,32 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
 
   // --- Retake / reset ---
   const reset = () => {
+    clearLS(LS.session);
     setPhase('choose'); setQi(0); setAnswers({}); setInstAnswers({}); setMbtiAnswers({});
     setBranchAnswers({}); setDisambigPair(null); setResult(null); setExportData(null);
     setMbtiSeq([]); setEnnSeq([]); setInstSeq([]); setConfirmCancel(false);
   };
   const retakeEnn = () => {
-    clearLS(LS.enn); setSaved(s => ({ ...s, enn: null }));
+    clearLS(LS.enn); clearLS(LS.session); setSaved(s => ({ ...s, enn: null }));
     const seq = buildFairSequence(ENN_BANK, q => q.type);
     setEnnSeq(seq);
     setPhase('enn'); setQi(0); setAnswers({}); setBranchAnswers({}); setDisambigPair(null);
   };
   const retakeMBTI = () => {
-    clearLS(LS.mbti); setSaved(s => ({ ...s, mbti: null }));
+    clearLS(LS.mbti); clearLS(LS.session); setSaved(s => ({ ...s, mbti: null }));
     const seq = buildFairSequence(MBTI_BANK, q => q.dim);
     setMbtiSeq(seq);
     setPhase('mbti'); setQi(0); setMbtiAnswers({});
   };
   const retakeInst = () => {
-    clearLS(LS.inst); setSaved(s => ({ ...s, inst: null }));
+    clearLS(LS.inst); clearLS(LS.session); setSaved(s => ({ ...s, inst: null }));
     const seq = buildFairSequence(INSTINCT_BANK, q => q.inst);
     setInstSeq(seq);
     setPhase('instinct'); setQi(0); setInstAnswers({});
   };
 
   const handleClearAll = () => {
-    clearLS(LS.enn); clearLS(LS.mbti); clearLS(LS.inst);
+    clearLS(LS.enn); clearLS(LS.mbti); clearLS(LS.inst); clearLS(LS.session);
     setSaved({ enn: null, mbti: null, inst: null });
     setConfirmClear(false);
   };
