@@ -8,32 +8,37 @@ const NAV_ITEMS = [
 ];
 
 // SVG circular progress wheel for mobile, shown between Explorer and Model buttons.
-function ProgressWheel({ current, total }) {
+function ProgressWheel({ current, total, onClick }) {
   const r = 11;
   const circ = 2 * Math.PI * r;
   const pct = total > 0 ? current / total : 0;
   const dash = circ * pct;
   return (
-    <svg
-      className="qt-progress-wheel"
-      width={28} height={28}
-      style={{ flexShrink: 0 }}
-      viewBox="0 0 28 28"
+    <button
+      onClick={onClick}
+      aria-label="Return to active quiz"
+      style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0, display: 'flex' }}
     >
-      {/* Track */}
-      <circle cx={14} cy={14} r={r} fill="none" stroke={G.border} strokeWidth={3} />
-      {/* Arc — starts from top (rotated -90deg) */}
-      <circle
-        cx={14} cy={14} r={r}
-        fill="none"
-        stroke={G.gold}
-        strokeWidth={3}
-        strokeDasharray={`${dash} ${circ}`}
-        strokeLinecap="round"
-        transform="rotate(-90 14 14)"
-        style={{ transition: 'stroke-dasharray 0.3s' }}
-      />
-    </svg>
+      <svg
+        className="qt-progress-wheel"
+        width={28} height={28}
+        viewBox="0 0 28 28"
+      >
+        {/* Track */}
+        <circle cx={14} cy={14} r={r} fill="none" stroke={G.border} strokeWidth={3} />
+        {/* Arc — starts from top (rotated -90deg) */}
+        <circle
+          cx={14} cy={14} r={r}
+          fill="none"
+          stroke={G.gold}
+          strokeWidth={3}
+          strokeDasharray={`${dash} ${circ}`}
+          strokeLinecap="round"
+          transform="rotate(-90 14 14)"
+          style={{ transition: 'stroke-dasharray 0.3s' }}
+        />
+      </svg>
+    </button>
   );
 }
 
@@ -48,15 +53,17 @@ export default function BottomNav({ view, setView, quizProgress }) {
     }}>
       {/* Desktop progress bar — hidden on mobile via .qt-progress-bar CSS class */}
       {quizProgress && (
-        <div
+        <button
           className="qt-progress-bar"
-          style={{ height: 3, background: G.border, borderRadius: 2 }}
+          onClick={() => setView('typer')}
+          aria-label="Return to active quiz"
+          style={{ height: 3, background: G.border, borderRadius: 2, border: 'none', padding: 0, cursor: 'pointer', display: 'block', width: '100%' }}
         >
           <div style={{
             height: '100%', background: G.gold, borderRadius: 2,
             width: `${pct}%`, transition: 'width 0.3s',
           }} />
-        </div>
+        </button>
       )}
 
       {/* Nav buttons row */}
@@ -87,7 +94,7 @@ export default function BottomNav({ view, setView, quizProgress }) {
             </button>
             {/* Mobile progress wheel — inserted between Explorer (idx 1) and Model (idx 2) */}
             {idx === 1 && quizProgress && (
-              <ProgressWheel current={quizProgress.current} total={quizProgress.total} />
+              <ProgressWheel current={quizProgress.current} total={quizProgress.total} onClick={() => setView('typer')} />
             )}
           </>
         ))}
