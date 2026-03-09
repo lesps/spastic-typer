@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, ENN_BANK, INSTINCT_BANK, WING_DESC, ENN_DISAMBIG } from '../data/enneagram.js';
 import { MBTI_BANK, MBTI_TYPES } from '../data/mbti.js';
 import LikertScale from '../components/LikertScale.jsx';
-import ProgressBar from '../components/ProgressBar.jsx';
 import FnBadge from '../components/FnBadge.jsx';
 import ExportModal from '../components/ExportModal.jsx';
 import { generateExportMarkdown } from '../utils/export.js';
 import { computeWingStrengthDelta, wingStrengthLabel, wingStrengthDesc } from '../utils/enneagram.js';
 import { computeArchetypeName } from '../utils/archetype.js';
+import { encodeProfileCode, decodeProfileCode } from '../utils/share.js';
 
 const INSTINCT_LABELS = { sp: 'Self-Preservation', sx: 'Sexual (One-to-One)', so: 'Social' };
 const INSTINCT_DESC = {
@@ -189,7 +189,7 @@ export function scoreInstinct(answers, sequence) {
   return { instinctStack, instScores };
 }
 
-export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {} }) {
+export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setQuizProgress = () => {} }) {
   const goToExplorer = (tab) => { setExplorerTab(tab); setView('explorer'); };
   const [phase, setPhase] = useState('choose');
   const [qi, setQi] = useState(0);
@@ -200,7 +200,11 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   const [disambigPair, setDisambigPair] = useState(null);
   const [result, setResult] = useState(null);
   const [exportData, setExportData] = useState(null);
-  const [shareMsg, setShareMsg] = useState('');
+  const [profileCode, setProfileCode] = useState('');
+  const [codeMsg, setCodeMsg] = useState('');
+  const [loadCode, setLoadCode] = useState('');
+  const [loadError, setLoadError] = useState('');
+  const [loadSuccess, setLoadSuccess] = useState('');
   // Adaptive question sequences (generated fresh per test session)
   const [mbtiSeq, setMbtiSeq] = useState([]);
   const [ennSeq, setEnnSeq] = useState([]);
@@ -211,6 +215,41 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     inst: readLS(LS.inst),
   }));
   const [confirmClear, setConfirmClear] = useState(false);
+
+  // --- Quiz progress tracking ---
+  useEffect(() => {
+    if (phase === 'enn' && ennSeq.length > 0) {
+      setQuizProgress({ current: qi + 1, total: ennSeq.length });
+    } else if (phase === 'enn-disambig' && disambigPair && ENN_DISAMBIG[disambigPair]) {
+      setQuizProgress({ current: qi + 1, total: ENN_DISAMBIG[disambigPair].length });
+    } else if (phase === 'instinct' && instSeq.length > 0) {
+      setQuizProgress({ current: qi + 1, total: instSeq.length });
+    } else if (phase === 'mbti' && mbtiSeq.length > 0) {
+      setQuizProgress({ current: qi + 1, total: mbtiSeq.length });
+    } else {
+      setQuizProgress(null);
+    }
+  }, [phase, qi, ennSeq.length, instSeq.length, mbtiSeq.length, disambigPair]);
+
+  // --- Next incomplete quiz helper ---
+  function nextIncompleteQuiz(sv, justCompleted) {
+    return ['enn', 'mbti', 'inst'].find(k => k !== justCompleted && !sv[k]) || null;
+  }
+
+  const QUIZ_LABEL = { enn: 'Enneagram', mbti: 'MBTI', inst: 'Instinct Stack' };
+
+  const startQuiz = (quiz) => {
+    if (quiz === 'enn') {
+      const seq = buildFairSequence(ENN_BANK, q => q.type);
+      setEnnSeq(seq); setPhase('enn'); setQi(0); setAnswers({}); setBranchAnswers({}); setDisambigPair(null);
+    } else if (quiz === 'mbti') {
+      const seq = buildFairSequence(MBTI_BANK, q => q.dim);
+      setMbtiSeq(seq); setPhase('mbti'); setQi(0); setMbtiAnswers({});
+    } else if (quiz === 'inst') {
+      const seq = buildFairSequence(INSTINCT_BANK, q => q.inst);
+      setInstSeq(seq); setPhase('instinct'); setQi(0); setInstAnswers({});
+    }
+  };
 
   // --- Answer handlers ---
   const handleEnnAnswer = (v) => {
@@ -344,23 +383,38 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     setExportData({ markdown: md, backup });
   };
 
-  // --- Share URL ---
-  const handleShare = () => {
-    const enn = saved.enn, mbti = saved.mbti, inst = saved.inst;
-    const ennPart = enn ? `${enn.coreType}w${enn.wing}` : '';
-    const strength = enn ? (wingStrengthLabel(enn.wingStrengthDelta) || '') : '';
-    const stack = inst ? inst.instinctStack : (enn ? enn.instinctStack : null);
-    const stackPart = stack ? stack.join('/') : '';
-    const mbtiPart = mbti ? mbti.result : '';
-    const encoded = encodeURIComponent([ennPart, strength, stackPart, mbtiPart].join(':'));
-    const url = `${window.location.origin}${window.location.pathname}#p1=${encoded}`;
-    navigator.clipboard.writeText(url).then(() => {
-      setShareMsg('Profile link copied!');
-      setTimeout(() => setShareMsg(''), 3000);
+  // --- Profile code ---
+  const handleGenerateCode = () => {
+    const code = encodeProfileCode(saved.enn, saved.mbti, saved.inst);
+    if (!code) return;
+    setProfileCode(code);
+    navigator.clipboard?.writeText(code).then(() => {
+      setCodeMsg('Copied!');
+      setTimeout(() => setCodeMsg(''), 3000);
     }).catch(() => {
-      setShareMsg('Copy this URL: ' + url);
-      setTimeout(() => setShareMsg(''), 8000);
+      setCodeMsg('');
     });
+  };
+
+  const handleLoadCode = () => {
+    setLoadError('');
+    setLoadSuccess('');
+    const decoded = decodeProfileCode(loadCode);
+    if (!decoded) {
+      setLoadError('Invalid code — check for typos and try again.');
+      return;
+    }
+    const ts = new Date().toISOString();
+    const newEnn = { ...decoded.enn, exportedAt: ts };
+    const newMbti = { ...decoded.mbti, exportedAt: ts };
+    const newInst = { ...decoded.inst, exportedAt: ts };
+    writeLS(LS.enn, newEnn);
+    writeLS(LS.mbti, newMbti);
+    writeLS(LS.inst, newInst);
+    setSaved({ enn: newEnn, mbti: newMbti, inst: newInst });
+    setLoadCode('');
+    setLoadSuccess('Profile loaded!');
+    setTimeout(() => setLoadSuccess(''), 3000);
   };
 
   // --- Choose screen ---
@@ -378,7 +432,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
 
         <div style={{ ...S.card, marginBottom: 20, padding: '14px 16px' }}>
           <p style={{ ...S.body, fontSize: 13, lineHeight: 1.7 }}>
-            Take all three assessments to build your full personality profile. Complete all three to unlock your <strong style={{ color: G.text }}>Share Link</strong> (use it to load your profile in the Compare tab) and the <strong style={{ color: G.text }}>Export</strong> button.
+            Take all three assessments to build your full personality profile. Complete all three to unlock your <strong style={{ color: G.text }}>Profile Code</strong> (share it with others or load it in the Compare tab) and the <strong style={{ color: G.text }}>Export</strong> button.
           </p>
         </div>
 
@@ -404,19 +458,35 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 </div>
                 {!allDone && (
                   <p style={{ fontSize: 11, color: G.textFaint, marginTop: 6 }}>
-                    {doneCount}/3 complete — finish all three to unlock Share Link and Export
+                    {doneCount}/3 complete — finish all three to unlock Profile Code and Export
                   </p>
                 )}
               </div>
               <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'flex-start' }}>
                 {allDone && (<>
                   <button onClick={handleExportAll} style={{ ...S.btnOutline, whiteSpace: 'nowrap', padding: '8px 14px', fontSize: 13 }}>Export</button>
-                  <button onClick={handleShare} style={{ ...S.btn, whiteSpace: 'nowrap' }}>Share Profile</button>
+                  <button onClick={handleGenerateCode} style={{ ...S.btn, whiteSpace: 'nowrap' }}>Get Code</button>
                 </>)}
                 <button onClick={() => setConfirmClear(true)} style={{ ...S.btnDanger, whiteSpace: 'nowrap', padding: '8px 14px', fontSize: 13 }}>Clear</button>
               </div>
             </div>
-            {shareMsg && <p style={{ fontSize: 12, color: G.gold, marginTop: 8 }}>{shareMsg}</p>}
+            {profileCode && (
+              <div style={{ marginTop: 10 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <code
+                    onClick={handleGenerateCode}
+                    style={{
+                      fontFamily: "'DM Mono',monospace", fontSize: 18, letterSpacing: 2,
+                      color: G.gold, background: G.bg3, border: `1px solid ${G.goldBorder}`,
+                      borderRadius: 8, padding: '8px 14px', cursor: 'pointer',
+                      userSelect: 'all',
+                    }}
+                  >{profileCode}</code>
+                  {codeMsg && <span style={{ fontSize: 12, color: G.gold }}>{codeMsg}</span>}
+                </div>
+                <p style={{ fontSize: 11, color: G.textFaint, marginTop: 4 }}>Click to copy · paste this code to load your profile in Compare or share it with others</p>
+              </div>
+            )}
             {confirmClear && (
               <div style={{ marginTop: 12, padding: '10px 12px', background: G.bg3, borderRadius: 8, border: `1px solid ${G.border}` }}>
                 <p style={{ fontSize: 13, color: G.text, marginBottom: 8 }}>Clear all saved results? This cannot be undone.</p>
@@ -509,6 +579,29 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           </div>
         </div>
 
+        {/* Load Profile */}
+        <div style={{ ...S.card, marginTop: 8, padding: '14px 16px' }}>
+          <h3 style={{ ...S.h3, marginBottom: 8 }}>Load a shared profile</h3>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <input
+              value={loadCode}
+              onChange={e => { setLoadCode(e.target.value); setLoadError(''); }}
+              onKeyDown={e => e.key === 'Enter' && handleLoadCode()}
+              placeholder="e.g. 453xpo-INFP"
+              maxLength={11}
+              style={{
+                flex: 1, fontFamily: "'DM Mono',monospace", fontSize: 14,
+                background: G.bg3, color: G.text, border: `1px solid ${G.border}`,
+                borderRadius: 8, padding: '8px 12px', outline: 'none',
+                letterSpacing: 1,
+              }}
+            />
+            <button onClick={handleLoadCode} style={{ ...S.btn, whiteSpace: 'nowrap', padding: '8px 16px' }}>Load</button>
+          </div>
+          {loadError && <p style={{ fontSize: 12, color: '#e87050', marginTop: 6 }}>{loadError}</p>}
+          {loadSuccess && <p style={{ fontSize: 12, color: G.gold, marginTop: 6 }}>{loadSuccess}</p>}
+        </div>
+
       </div></div>
     );
   }
@@ -518,9 +611,6 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const q = ennSeq[qi];
     return (
       <div style={S.page} className="qpage">
-        <div style={S.container}>
-          <ProgressBar current={qi + 1} total={ennSeq.length} />
-        </div>
         <div className="qbody">
           <div style={S.container}>
             <div style={S.card} className="qcard">
@@ -549,9 +639,6 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const [t1, t2] = disambigPair.split('-').map(Number);
     return (
       <div style={S.page} className="qpage">
-        <div style={S.container}>
-          <ProgressBar current={qi + 1} total={questions.length} />
-        </div>
         <div className="qbody">
           <div style={S.container}>
             <div style={{ textAlign: 'center', marginBottom: 16 }}>
@@ -616,7 +703,14 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             ))}
           </div>
         </div>
-        <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={reset}>← Back to Assessments</button>
+        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+          <button style={{ ...S.btnOutline, flex: 1 }} onClick={reset}>← Back to Assessments</button>
+          {nextIncompleteQuiz(saved, 'enn') && (
+            <button style={{ ...S.btn, flex: 1 }} onClick={() => { reset(); startQuiz(nextIncompleteQuiz(saved, 'enn')); }}>
+              Start {QUIZ_LABEL[nextIncompleteQuiz(saved, 'enn')]} →
+            </button>
+          )}
+        </div>
         <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={() => goToExplorer('enneagram')}>Learn more on the Explorer tab →</button>
       </div></div>
     );
@@ -627,9 +721,6 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const q = instSeq[qi];
     return (
       <div style={S.page} className="qpage">
-        <div style={S.container}>
-          <ProgressBar current={qi + 1} total={instSeq.length} />
-        </div>
         <div className="qbody">
           <div style={S.container}>
             <div style={{ textAlign: 'center', marginBottom: 16 }}>
@@ -690,7 +781,14 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             </div>
           ))}
         </div>
-        <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={reset}>← Back to Assessments</button>
+        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+          <button style={{ ...S.btnOutline, flex: 1 }} onClick={reset}>← Back to Assessments</button>
+          {nextIncompleteQuiz(saved, 'inst') && (
+            <button style={{ ...S.btn, flex: 1 }} onClick={() => { reset(); startQuiz(nextIncompleteQuiz(saved, 'inst')); }}>
+              Start {QUIZ_LABEL[nextIncompleteQuiz(saved, 'inst')]} →
+            </button>
+          )}
+        </div>
         <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={() => goToExplorer('instinct')}>Learn more on the Explorer tab →</button>
       </div></div>
     );
@@ -701,9 +799,6 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const q = mbtiSeq[qi];
     return (
       <div style={S.page} className="qpage">
-        <div style={S.container}>
-          <ProgressBar current={qi + 1} total={mbtiSeq.length} />
-        </div>
         <div className="qbody">
           <div style={S.container}>
             <div style={S.card} className="qcard">
@@ -775,7 +870,14 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             </div>
           </div>
         )}
-        <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={reset}>← Back to Assessments</button>
+        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+          <button style={{ ...S.btnOutline, flex: 1 }} onClick={reset}>← Back to Assessments</button>
+          {nextIncompleteQuiz(saved, 'mbti') && (
+            <button style={{ ...S.btn, flex: 1 }} onClick={() => { reset(); startQuiz(nextIncompleteQuiz(saved, 'mbti')); }}>
+              Start {QUIZ_LABEL[nextIncompleteQuiz(saved, 'mbti')]} →
+            </button>
+          )}
+        </div>
         <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={() => goToExplorer('mbti')}>Learn more on the Explorer tab →</button>
       </div></div>
     );

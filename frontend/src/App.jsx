@@ -9,15 +9,16 @@ import ComparePage from './views/ComparePage.jsx';
 export default function App() {
   const [view, setView] = useState('typer');
   const [explorerTab, setExplorerTab] = useState('enneagram');
+  const [quizProgress, setQuizProgress] = useState(null);
 
   return (
     <>
       <style>{baseCSS}</style>
-      {view === 'typer'    && <GuidedTyper setView={setView} setExplorerTab={setExplorerTab} />}
+      {view === 'typer'    && <GuidedTyper setView={setView} setExplorerTab={setExplorerTab} setQuizProgress={setQuizProgress} />}
       {view === 'explorer' && <Explorer initialTab={explorerTab} />}
       {view === 'model'    && <MentalModel setView={setView} />}
       {view === 'compare'  && <ComparePage />}
-      <BottomNav view={view} setView={setView} />
+      <BottomNav view={view} setView={setView} quizProgress={quizProgress} />
     </>
   );
 }
