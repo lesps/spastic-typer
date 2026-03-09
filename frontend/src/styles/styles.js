@@ -1,7 +1,7 @@
 import { G } from './theme.js';
 
 export const S = {
-  page: { minHeight: '100vh', background: G.bg, paddingBottom: 80, paddingTop: 16 },
+  page: { minHeight: '100vh', background: G.bg, paddingBottom: 'calc(80px + env(safe-area-inset-bottom))', paddingTop: 'max(16px, env(safe-area-inset-top))' },
   container: { maxWidth: 680, margin: '0 auto', padding: '0 16px' },
   card: { background: G.bg2, border: `1px solid ${G.border}`, borderRadius: 12, padding: '16px 18px', marginBottom: 14 },
   cardGold: { background: G.bg2, border: `1px solid ${G.goldBorder}`, borderRadius: 12, padding: '16px 18px', marginBottom: 14 },

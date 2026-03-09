@@ -8,7 +8,7 @@ export default function LikertScale({ value, onChange }) {
           key={v}
           onClick={() => onChange(v)}
           style={{
-            width: 36, height: 36, borderRadius: '50%', border: `1px solid ${value === v ? G.gold : G.border}`,
+            width: 40, height: 40, borderRadius: '50%', border: `1px solid ${value === v ? G.gold : G.border}`,
             background: value === v ? G.gold : G.bg3,
             color: value === v ? G.bg : G.textDim,
             fontSize: 12, fontFamily: "'DM Mono',monospace",
