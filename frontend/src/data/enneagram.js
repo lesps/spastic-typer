@@ -10,49 +10,97 @@ export const ENN_TYPES = {
   9: { name: 'The Peacemaker', fear: 'Loss and separation, of fragmentation', desire: 'To have inner stability and peace of mind', desc: 'Receptive, reassuring, agreeable, and complacent. Nines are accepting, trusting, and stable. They are usually creative, optimistic, and supportive, but can also be too willing to go along with others to keep the peace. They want everything to go smoothly and be without conflict, but they can also tend to be complacent and minimize anything upsetting.' },
 };
 
-export const ENN_QUESTIONS = [
+// ENN_BANK: 5 questions per type (45 total).
+// pole is always 1; high agreement favors that type.
+// Used by the adaptive quiz: questions are shuffled and drawn fairly across types.
+export const ENN_BANK = [
+  // Type 1 — The Reformer
   { type: 1, text: 'I hold myself to very high standards and feel frustrated when things aren\'t done correctly.', pole: 1 },
   { type: 1, text: 'I often notice errors or inefficiencies that others seem to overlook.', pole: 1 },
   { type: 1, text: 'I have a strong inner critic that constantly evaluates my actions and decisions.', pole: 1 },
+  { type: 1, text: 'I feel a persistent pressure to do the right thing, even in small everyday situations.', pole: 1 },
+  { type: 1, text: 'I find it difficult to fully relax when I know something is imperfect or unfinished.', pole: 1 },
+
+  // Type 2 — The Helper
   { type: 2, text: 'I naturally tune into what other people need, often before they ask.', pole: 1 },
   { type: 2, text: 'I feel most fulfilled when I know I\'ve made a real difference in someone\'s life.', pole: 1 },
   { type: 2, text: 'I sometimes struggle to identify my own needs because I\'m so focused on others.', pole: 1 },
+  { type: 2, text: 'I have a strong desire to be appreciated and valued by the people I care about.', pole: 1 },
+  { type: 2, text: 'I often go out of my way to help, even when it costs me personally.', pole: 1 },
+
+  // Type 3 — The Achiever
   { type: 3, text: 'I am highly motivated by goals and feel restless when I\'m not making progress.', pole: 1 },
   { type: 3, text: 'I naturally adapt my presentation to fit different social situations.', pole: 1 },
   { type: 3, text: 'Being seen as successful and competent matters deeply to me.', pole: 1 },
+  { type: 3, text: 'I am very aware of how I come across to others and manage my image carefully.', pole: 1 },
+  { type: 3, text: 'I push myself hard to achieve tangible results that others can recognize.', pole: 1 },
+
+  // Type 4 — The Individualist
   { type: 4, text: 'I often feel fundamentally different from the people around me.', pole: 1 },
   { type: 4, text: 'I\'m drawn to deep emotional experiences, even painful ones, because they feel authentic.', pole: 1 },
   { type: 4, text: 'I have a rich inner world and spend a lot of time reflecting on my feelings and identity.', pole: 1 },
+  { type: 4, text: 'I long to be truly understood and recognized for who I uniquely am.', pole: 1 },
+  { type: 4, text: 'I sometimes feel an ache for something I can\'t quite name or find.', pole: 1 },
+
+  // Type 5 — The Investigator
   { type: 5, text: 'I need significant time alone to recharge and process my thoughts.', pole: 1 },
   { type: 5, text: 'I tend to observe and analyze situations thoroughly before participating.', pole: 1 },
   { type: 5, text: 'I often feel drained by social demands and prefer to minimize obligations.', pole: 1 },
+  { type: 5, text: 'I feel most alive when I\'m learning something deeply or mastering a complex subject.', pole: 1 },
+  { type: 5, text: 'I guard my time, energy, and private space carefully against intrusion.', pole: 1 },
+
+  // Type 6 — The Loyalist
   { type: 6, text: 'I frequently anticipate what could go wrong and plan for worst-case scenarios.', pole: 1 },
   { type: 6, text: 'Trust is extremely important to me and I test whether people are reliable.', pole: 1 },
   { type: 6, text: 'I often seek reassurance or second opinions before making major decisions.', pole: 1 },
+  { type: 6, text: 'I am highly attuned to potential threats, inconsistencies, or hidden agendas.', pole: 1 },
+  { type: 6, text: 'I value loyalty above most other qualities in relationships and commitments.', pole: 1 },
+
+  // Type 7 — The Enthusiast
   { type: 7, text: 'I love exploring new ideas, plans, and possibilities — the more the better.', pole: 1 },
   { type: 7, text: 'I tend to reframe negatives into positives and avoid dwelling on painful feelings.', pole: 1 },
   { type: 7, text: 'I feel anxious or trapped when my options are limited or routines become monotonous.', pole: 1 },
+  { type: 7, text: 'I jump from one exciting thing to the next and resist being pinned down.', pole: 1 },
+  { type: 7, text: 'I keep my schedule full because I hate the feeling of missing out on something good.', pole: 1 },
+
+  // Type 8 — The Challenger
   { type: 8, text: 'I instinctively take charge in situations and dislike feeling controlled by others.', pole: 1 },
   { type: 8, text: 'I value directness and honesty, even when it makes people uncomfortable.', pole: 1 },
   { type: 8, text: 'I have a strong protective instinct toward people I consider vulnerable.', pole: 1 },
+  { type: 8, text: 'I push back immediately when I feel disrespected, challenged, or controlled.', pole: 1 },
+  { type: 8, text: 'I prefer to be in control of my environment and resist being told what to do.', pole: 1 },
+
+  // Type 9 — The Peacemaker
   { type: 9, text: 'I tend to go along with others\' preferences to maintain harmony.', pole: 1 },
   { type: 9, text: 'I often struggle with inertia — starting things is harder than maintaining them.', pole: 1 },
   { type: 9, text: 'I find it difficult to identify what I truly want, separate from others\' expectations.', pole: 1 },
+  { type: 9, text: 'I avoid conflict so strongly that I sometimes shut down or go numb when tension arises.', pole: 1 },
+  { type: 9, text: 'I can lose myself in routines or distractions to avoid facing difficult feelings.', pole: 1 },
 ];
 
-export const INSTINCT_QS = [
+// INSTINCT_BANK: 5 questions per instinct (15 total).
+// Used by the adaptive instinct quiz.
+export const INSTINCT_BANK = [
+  // SP — Self-Preservation
   { text: 'Physical comfort, health, and financial security are constant concerns for me.', inst: 'sp' },
   { text: 'I carefully manage my resources and energy to ensure personal well-being.', inst: 'sp' },
   { text: 'I tend to be cautious about my health, finances, and physical environment.', inst: 'sp' },
   { text: 'When stressed, I focus on self-care, routines, and personal stability first.', inst: 'sp' },
+  { text: 'I regularly think about things like having enough money, food, warmth, and security.', inst: 'sp' },
+
+  // SX — Sexual / One-to-One
   { text: 'I prefer one-on-one intensity over group dynamics.', inst: 'sx' },
   { text: 'I\'m drawn to experiences that feel electric, transformative, or deeply intimate.', inst: 'sx' },
   { text: 'I often become fixated on specific people or experiences that feel magnetically compelling.', inst: 'sx' },
   { text: 'Deep one-on-one connection energizes me far more than being part of a group.', inst: 'sx' },
+  { text: 'I want every important relationship in my life to have real depth and intensity.', inst: 'sx' },
+
+  // SO — Social
   { text: 'I\'m highly aware of social dynamics, group roles, and where I stand with others.', inst: 'so' },
   { text: 'Being part of a community or group and contributing to something larger matters deeply to me.', inst: 'so' },
   { text: 'I feel most alive when I have a recognized role or purpose within a group.', inst: 'so' },
   { text: 'I pay close attention to how I\'m perceived by others in social contexts.', inst: 'so' },
+  { text: 'I feel a strong pull toward belonging and participating in a meaningful community.', inst: 'so' },
 ];
 
 export const ENN_DISAMBIG = {

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
-import { ENN_TYPES, ENN_QUESTIONS, INSTINCT_QS, WING_DESC, ENN_DISAMBIG } from '../data/enneagram.js';
-import { MBTI_QUESTIONS, MBTI_DISAMBIG, MBTI_TYPES } from '../data/mbti.js';
+import { ENN_TYPES, ENN_BANK, INSTINCT_BANK, WING_DESC, ENN_DISAMBIG } from '../data/enneagram.js';
+import { MBTI_BANK, MBTI_TYPES } from '../data/mbti.js';
 import LikertScale from '../components/LikertScale.jsx';
 import ProgressBar from '../components/ProgressBar.jsx';
 import FnBadge from '../components/FnBadge.jsx';
@@ -24,6 +24,171 @@ function readLS(key) { try { const v = localStorage.getItem(key); return v ? JSO
 function writeLS(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch {} }
 function clearLS(key) { try { localStorage.removeItem(key); } catch {} }
 
+// --- Adaptive question selection ---
+/** Fisher-Yates in-place shuffle. Returns the array. */
+export function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/**
+ * Build a fair interleaved question sequence from a bank.
+ * Each category gets one question per round before any category gets a second.
+ * Questions within each category are independently shuffled first.
+ * Questions within each round are shuffled to prevent pattern detection.
+ *
+ * @param {Array} bank - Array of question objects
+ * @param {Function} getCategory - Extracts the category key from a question
+ * @returns {Array} Ordered sequence of questions for the session
+ */
+export function buildFairSequence(bank, getCategory) {
+  const byCategory = {};
+  bank.forEach(q => {
+    const cat = getCategory(q);
+    if (!byCategory[cat]) byCategory[cat] = [];
+    byCategory[cat].push(q);
+  });
+  // Shuffle each category's pool independently
+  Object.values(byCategory).forEach(pool => shuffleArray(pool));
+  // Round-robin interleaving: one from each category per round
+  const categories = Object.values(byCategory);
+  const maxRounds = Math.max(...categories.map(p => p.length));
+  const seq = [];
+  for (let r = 0; r < maxRounds; r++) {
+    const roundItems = categories
+      .filter(pool => pool[r] !== undefined)
+      .map(pool => pool[r]);
+    shuffleArray(roundItems); // randomize within each round
+    seq.push(...roundItems);
+  }
+  return seq;
+}
+
+// --- Confidence thresholds ---
+const MBTI_MIN_PER_DIM = 2;       // minimum questions before a dim can be settled
+const MBTI_CONFIDENCE_RATIO = 1.5; // |rawSum| / count must exceed this
+
+const ENN_MIN_PER_TYPE = 2;        // minimum questions per type before confidence check
+const ENN_GAP_THRESHOLD = 4;       // top type must lead 2nd type by this many points
+
+const INST_MIN_PER_INST = 2;       // minimum questions per instinct before confidence check
+const INST_GAP_THRESHOLD = 3;      // each adjacent pair in the ranking must differ by this much
+
+/** Returns true if a given MBTI dimension is settled given the current answers and sequence. */
+export function isMBTIDimConfident(dim, answers, sequence, upToIndex) {
+  let rawSum = 0, count = 0;
+  for (let i = 0; i <= upToIndex; i++) {
+    if (sequence[i]?.dim === dim && answers[i] !== undefined) {
+      rawSum += answers[i];
+      count++;
+    }
+  }
+  if (count < MBTI_MIN_PER_DIM) return false;
+  return Math.abs(rawSum) / count >= MBTI_CONFIDENCE_RATIO;
+}
+
+/** Returns true when all four MBTI dimensions are settled. */
+export function allMBTIDimsConfident(answers, sequence, upToIndex) {
+  return ['EI', 'SN', 'TF', 'JP'].every(dim => isMBTIDimConfident(dim, answers, sequence, upToIndex));
+}
+
+/** Returns true when the Enneagram top type leads the 2nd by enough points. */
+export function isEnnConfident(answers, sequence, upToIndex) {
+  const scores = {};
+  const counts = {};
+  for (let t = 1; t <= 9; t++) { scores[t] = 0; counts[t] = 0; }
+  for (let i = 0; i <= upToIndex; i++) {
+    const q = sequence[i];
+    if (q && answers[i] !== undefined) {
+      scores[q.type] += answers[i] * q.pole;
+      counts[q.type]++;
+    }
+  }
+  if (Object.values(counts).some(c => c < ENN_MIN_PER_TYPE)) return false;
+  const sorted = Object.values(scores).sort((a, b) => b - a);
+  return sorted[0] - sorted[1] >= ENN_GAP_THRESHOLD;
+}
+
+/** Returns true when the instinct ordering is clear enough to stop. */
+export function isInstConfident(answers, sequence, upToIndex) {
+  const scores = { sp: 0, sx: 0, so: 0 };
+  const counts = { sp: 0, sx: 0, so: 0 };
+  for (let i = 0; i <= upToIndex; i++) {
+    const q = sequence[i];
+    if (q && answers[i] !== undefined) {
+      scores[q.inst] += answers[i];
+      counts[q.inst]++;
+    }
+  }
+  if (Object.values(counts).some(c => c < INST_MIN_PER_INST)) return false;
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  return (sorted[0][1] - sorted[1][1] >= INST_GAP_THRESHOLD) &&
+         (sorted[1][1] - sorted[2][1] >= INST_GAP_THRESHOLD);
+}
+
+// --- Scoring ---
+/**
+ * Score MBTI dimensions from a sequence + answers.
+ * BUG FIX: raw sum is shifted by count*3 so that neutral (0) answers produce a tie,
+ * and positive answers correctly produce the pole letter.
+ */
+export function scoreMBTI(answers, sequence) {
+  const scFinal = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+  const DIMS = { EI: ['E', 'I'], SN: ['S', 'N'], TF: ['T', 'F'], JP: ['J', 'P'] };
+  ['EI', 'SN', 'TF', 'JP'].forEach(dim => {
+    const [pos, neg] = DIMS[dim];
+    let rawSum = 0, count = 0;
+    sequence.forEach((q, i) => {
+      if (q.dim === dim && answers[i] !== undefined) {
+        rawSum += answers[i];
+        count++;
+      }
+    });
+    if (count === 0) { scFinal[pos] = 0; scFinal[neg] = 0; return; }
+    // Shift so that rawSum=0 (neutral) produces equal scores,
+    // rawSum>0 (agree with pole) produces higher pos score.
+    const shifted = rawSum + count * 3;
+    scFinal[pos] = shifted;
+    scFinal[neg] = count * 6 - shifted;
+  });
+  const r = (scFinal.E >= scFinal.I ? 'E' : 'I') +
+            (scFinal.S >= scFinal.N ? 'S' : 'N') +
+            (scFinal.T >= scFinal.F ? 'T' : 'F') +
+            (scFinal.J >= scFinal.P ? 'J' : 'P');
+  return { result: r, scores: scFinal };
+}
+
+export function scoreEnneagram(answers, sequence, branchAnswers, disambigPair) {
+  const scores = {};
+  for (let t = 1; t <= 9; t++) scores[t] = 0;
+  sequence.forEach((q, i) => {
+    if (answers[i] !== undefined) scores[q.type] += answers[i] * q.pole;
+  });
+  if (branchAnswers && disambigPair && ENN_DISAMBIG[disambigPair]) {
+    ENN_DISAMBIG[disambigPair].forEach((q, i) => {
+      if (branchAnswers[i] !== undefined) scores[q.favors] = (scores[q.favors] || 0) + branchAnswers[i];
+    });
+  }
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const core = parseInt(sorted[0][0]);
+  const w1 = core === 1 ? 9 : core - 1, w2 = core === 9 ? 1 : core + 1;
+  const wing = (scores[w1] || 0) >= (scores[w2] || 0) ? w1 : w2;
+  const delta = computeWingStrengthDelta(core, wing, scores);
+  return { coreType: core, wing, scores, wingStrengthDelta: delta, display: `${core}w${wing}` };
+}
+
+export function scoreInstinct(answers, sequence) {
+  const instScores = { sp: 0, sx: 0, so: 0 };
+  sequence.forEach((q, i) => {
+    if (answers[i] !== undefined) instScores[q.inst] += answers[i];
+  });
+  const instinctStack = Object.entries(instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k);
+  return { instinctStack, instScores };
+}
+
 export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {} }) {
   const goToExplorer = (tab) => { setExplorerTab(tab); setView('explorer'); };
   const [phase, setPhase] = useState('choose');
@@ -33,80 +198,34 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   const [mbtiAnswers, setMbtiAnswers] = useState({});
   const [branchAnswers, setBranchAnswers] = useState({});
   const [disambigPair, setDisambigPair] = useState(null);
-  const [mbtiDisambigDims, setMbtiDisambigDims] = useState([]);
-  const [mbtiDisambigIdx, setMbtiDisambigIdx] = useState(0);
-  const [mbtiDisambigAnswers, setMbtiDisambigAnswers] = useState({});
   const [result, setResult] = useState(null);
   const [exportData, setExportData] = useState(null);
   const [shareMsg, setShareMsg] = useState('');
+  // Adaptive question sequences (generated fresh per test session)
+  const [mbtiSeq, setMbtiSeq] = useState([]);
+  const [ennSeq, setEnnSeq] = useState([]);
+  const [instSeq, setInstSeq] = useState([]);
   const [saved, setSaved] = useState(() => ({
     enn: readLS(LS.enn),
     mbti: readLS(LS.mbti),
     inst: readLS(LS.inst),
   }));
 
-  // --- Scoring ---
-  const scoreEnneagram = (finalBranchAnswers, finalDisambigPair) => {
-    const scores = {};
-    for (let t = 1; t <= 9; t++) scores[t] = 0;
-    ENN_QUESTIONS.forEach((q, i) => { if (answers[i] !== undefined) scores[q.type] += answers[i] * q.pole; });
-    if (finalBranchAnswers && finalDisambigPair && ENN_DISAMBIG[finalDisambigPair]) {
-      ENN_DISAMBIG[finalDisambigPair].forEach((q, i) => {
-        if (finalBranchAnswers[i] !== undefined) scores[q.favors] = (scores[q.favors] || 0) + finalBranchAnswers[i];
-      });
-    }
-    const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-    const core = parseInt(sorted[0][0]);
-    const w1 = core === 1 ? 9 : core - 1, w2 = core === 9 ? 1 : core + 1;
-    const wing = (scores[w1] || 0) >= (scores[w2] || 0) ? w1 : w2;
-    const delta = computeWingStrengthDelta(core, wing, scores);
-    return { coreType: core, wing, scores, wingStrengthDelta: delta, display: `${core}w${wing}` };
-  };
-
-  const MBTI_DIMS = { EI: ['E','I'], SN: ['S','N'], TF: ['T','F'], JP: ['J','P'] };
-
-  const scoreMBTI = (disambigAnswers = {}) => {
-    const scFinal = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
-    ['EI','SN','TF','JP'].forEach(dim => {
-      const [pos, neg] = MBTI_DIMS[dim];
-      const baseQs = MBTI_QUESTIONS.filter(q => q.dim === dim);
-      let posTotal = 0, count = 0;
-      baseQs.forEach(q => {
-        const idx = MBTI_QUESTIONS.indexOf(q);
-        if (mbtiAnswers[idx] !== undefined) { posTotal += mbtiAnswers[idx]; count++; }
-      });
-      if (disambigAnswers[dim]) {
-        (MBTI_DISAMBIG[dim] || []).forEach((_, i) => {
-          if (disambigAnswers[dim][i] !== undefined) { posTotal += disambigAnswers[dim][i]; count++; }
-        });
-      }
-      scFinal[pos] = posTotal;
-      scFinal[neg] = count * 6 - posTotal;
-    });
-    const r = (scFinal.E >= scFinal.I ? 'E' : 'I') + (scFinal.S >= scFinal.N ? 'S' : 'N') +
-              (scFinal.T >= scFinal.F ? 'T' : 'F') + (scFinal.J >= scFinal.P ? 'J' : 'P');
-    return { result: r, scores: scFinal };
-  };
-
-  const scoreInstinct = (finalInstAnswers) => {
-    const instScores = { sp: 0, sx: 0, so: 0 };
-    INSTINCT_QS.forEach((q, i) => { if (finalInstAnswers[i] !== undefined) instScores[q.inst] += finalInstAnswers[i]; });
-    const instinctStack = Object.entries(instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k);
-    return { instinctStack, instScores };
-  };
-
   // --- Answer handlers ---
   const handleEnnAnswer = (v) => {
     const na = { ...answers, [qi]: v };
     setAnswers(na);
     setTimeout(() => {
-      if (qi < ENN_QUESTIONS.length - 1) {
-        setQi(qi + 1);
+      const nextQi = qi + 1;
+      const confident = isEnnConfident(na, ennSeq, qi);
+      const exhausted = nextQi >= ennSeq.length;
+      if (!confident && !exhausted) {
+        setQi(nextQi);
       } else {
-        // Check if branching is needed
+        // Check if disambiguation needed (top-2 too close after bank)
         const baseScores = {};
         for (let t = 1; t <= 9; t++) baseScores[t] = 0;
-        ENN_QUESTIONS.forEach((q, i) => { if (na[i] !== undefined) baseScores[q.type] += na[i] * q.pole; });
+        ennSeq.forEach((q, i) => { if (na[i] !== undefined) baseScores[q.type] += na[i] * q.pole; });
         const sorted = Object.entries(baseScores).sort((a, b) => b[1] - a[1]);
         const gap = sorted[0][1] - sorted[1][1];
         if (gap <= 3) {
@@ -120,7 +239,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             return;
           }
         }
-        const r = scoreEnneagram(branchAnswers, disambigPair);
+        const r = scoreEnneagram(na, ennSeq, branchAnswers, disambigPair);
         const backup = { ...r, exportedAt: new Date().toISOString() };
         writeLS(LS.enn, backup);
         setSaved(s => ({ ...s, enn: backup }));
@@ -137,7 +256,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     setTimeout(() => {
       if (qi < total - 1) setQi(qi + 1);
       else {
-        const r = scoreEnneagram(nb, disambigPair);
+        const r = scoreEnneagram(answers, ennSeq, nb, disambigPair);
         const backup = { ...r, exportedAt: new Date().toISOString() };
         writeLS(LS.enn, backup);
         setSaved(s => ({ ...s, enn: backup }));
@@ -151,9 +270,13 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const ni = { ...instAnswers, [qi]: v };
     setInstAnswers(ni);
     setTimeout(() => {
-      if (qi < INSTINCT_QS.length - 1) setQi(qi + 1);
-      else {
-        const r = scoreInstinct(ni);
+      const nextQi = qi + 1;
+      const confident = isInstConfident(ni, instSeq, qi);
+      const exhausted = nextQi >= instSeq.length;
+      if (!confident && !exhausted) {
+        setQi(nextQi);
+      } else {
+        const r = scoreInstinct(ni, instSeq);
         const backup = { ...r, exportedAt: new Date().toISOString() };
         writeLS(LS.inst, backup);
         setSaved(s => ({ ...s, inst: backup }));
@@ -167,52 +290,13 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const nm = { ...mbtiAnswers, [qi]: v };
     setMbtiAnswers(nm);
     setTimeout(() => {
-      if (qi < MBTI_QUESTIONS.length - 1) {
-        setQi(qi + 1);
+      const nextQi = qi + 1;
+      const confident = allMBTIDimsConfident(nm, mbtiSeq, qi);
+      const exhausted = nextQi >= mbtiSeq.length;
+      if (!confident && !exhausted) {
+        setQi(nextQi);
       } else {
-        // Check for close dimensions and trigger disambiguation if needed
-        const closeDims = ['EI','SN','TF','JP'].filter(dim => {
-          const baseQs = MBTI_QUESTIONS.filter(q => q.dim === dim);
-          let posTotal = 0, count = 0;
-          baseQs.forEach(q => {
-            const idx = MBTI_QUESTIONS.indexOf(q);
-            if (nm[idx] !== undefined) { posTotal += nm[idx]; count++; }
-          });
-          const negTotal = count * 6 - posTotal;
-          return Math.abs(posTotal - negTotal) <= 6;
-        });
-        if (closeDims.length > 0) {
-          setMbtiDisambigDims(closeDims);
-          setMbtiDisambigIdx(0);
-          setMbtiDisambigAnswers({});
-          setQi(0);
-          setPhase('mbti-disambig');
-        } else {
-          const r = scoreMBTI({});
-          const backup = { ...r, exportedAt: new Date().toISOString() };
-          writeLS(LS.mbti, backup);
-          setSaved(s => ({ ...s, mbti: backup }));
-          setResult(r);
-          setPhase('mbti-result');
-        }
-      }
-    }, 150);
-  };
-
-  const handleMBTIDisambigAnswer = (v) => {
-    const currentDim = mbtiDisambigDims[mbtiDisambigIdx];
-    const dimAnswers = { ...(mbtiDisambigAnswers[currentDim] || {}), [qi]: v };
-    const nb = { ...mbtiDisambigAnswers, [currentDim]: dimAnswers };
-    setMbtiDisambigAnswers(nb);
-    const totalQs = MBTI_DISAMBIG[currentDim].length;
-    setTimeout(() => {
-      if (qi < totalQs - 1) {
-        setQi(qi + 1);
-      } else if (mbtiDisambigIdx < mbtiDisambigDims.length - 1) {
-        setMbtiDisambigIdx(mbtiDisambigIdx + 1);
-        setQi(0);
-      } else {
-        const r = scoreMBTI(nb);
+        const r = scoreMBTI(nm, mbtiSeq);
         const backup = { ...r, exportedAt: new Date().toISOString() };
         writeLS(LS.mbti, backup);
         setSaved(s => ({ ...s, mbti: backup }));
@@ -223,10 +307,29 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   };
 
   // --- Retake / reset ---
-  const reset = () => { setPhase('choose'); setQi(0); setAnswers({}); setInstAnswers({}); setMbtiAnswers({}); setBranchAnswers({}); setDisambigPair(null); setResult(null); setExportData(null); };
-  const retakeEnn = () => { clearLS(LS.enn); setSaved(s => ({ ...s, enn: null })); setPhase('enn'); setQi(0); setAnswers({}); setInstAnswers({}); setBranchAnswers({}); setDisambigPair(null); };
-  const retakeMBTI = () => { clearLS(LS.mbti); setSaved(s => ({ ...s, mbti: null })); setPhase('mbti'); setQi(0); setMbtiAnswers({}); setMbtiDisambigDims([]); setMbtiDisambigIdx(0); setMbtiDisambigAnswers({}); };
-  const retakeInst = () => { clearLS(LS.inst); setSaved(s => ({ ...s, inst: null })); setPhase('instinct'); setQi(0); setInstAnswers({}); };
+  const reset = () => {
+    setPhase('choose'); setQi(0); setAnswers({}); setInstAnswers({}); setMbtiAnswers({});
+    setBranchAnswers({}); setDisambigPair(null); setResult(null); setExportData(null);
+    setMbtiSeq([]); setEnnSeq([]); setInstSeq([]);
+  };
+  const retakeEnn = () => {
+    clearLS(LS.enn); setSaved(s => ({ ...s, enn: null }));
+    const seq = buildFairSequence(ENN_BANK, q => q.type);
+    setEnnSeq(seq);
+    setPhase('enn'); setQi(0); setAnswers({}); setBranchAnswers({}); setDisambigPair(null);
+  };
+  const retakeMBTI = () => {
+    clearLS(LS.mbti); setSaved(s => ({ ...s, mbti: null }));
+    const seq = buildFairSequence(MBTI_BANK, q => q.dim);
+    setMbtiSeq(seq);
+    setPhase('mbti'); setQi(0); setMbtiAnswers({});
+  };
+  const retakeInst = () => {
+    clearLS(LS.inst); setSaved(s => ({ ...s, inst: null }));
+    const seq = buildFairSequence(INSTINCT_BANK, q => q.inst);
+    setInstSeq(seq);
+    setPhase('instinct'); setQi(0); setInstAnswers({});
+  };
 
   const handleExportAll = () => {
     const md = generateExportMarkdown(saved.enn, saved.mbti);
@@ -236,9 +339,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
 
   // --- Share URL ---
   const handleShare = () => {
-    const enn = saved.enn;
-    const mbti = saved.mbti;
-    const inst = saved.inst;
+    const enn = saved.enn, mbti = saved.mbti, inst = saved.inst;
     const ennPart = enn ? `${enn.coreType}w${enn.wing}` : '';
     const strength = enn ? (enn.wingStrengthDelta || '') : '';
     const stack = inst ? inst.instinctStack : (enn ? enn.instinctStack : null);
@@ -268,14 +369,12 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           <p style={S.body}>Discover your personality type through structured assessment</p>
         </div>
 
-        {/* Intro */}
         <div style={{ ...S.card, marginBottom: 20, padding: '14px 16px' }}>
           <p style={{ ...S.body, fontSize: 13, lineHeight: 1.7 }}>
             Take all three assessments to build your full personality profile. Complete all three to unlock your <strong style={{ color: G.text }}>Share Link</strong> (use it to load your profile in the Compare tab) and the <strong style={{ color: G.text }}>Export</strong> button.
           </p>
         </div>
 
-        {/* Completeness indicator */}
         <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginBottom: 20, flexWrap: 'wrap' }}>
           {[{ key: 'enn', label: 'Enneagram', val: saved.enn?.display }, { key: 'mbti', label: 'MBTI', val: saved.mbti?.result }, { key: 'inst', label: 'Instinct Stack', val: saved.inst ? saved.inst.instinctStack?.map(i => i.toUpperCase()).join('/') : null }].map(({ key, label, val }) => (
             <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '5px 12px', borderRadius: 20, background: val ? G.goldDim : G.bg3, border: `1px solid ${val ? G.goldBorder : G.border}` }}>
@@ -285,7 +384,6 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           ))}
         </div>
 
-        {/* Share / export profile card */}
         {hasAny && (
           <div style={{ ...S.cardGold, marginBottom: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
@@ -316,7 +414,10 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
         {exportData && <ExportModal markdown={exportData.markdown} backup={exportData.backup} onClose={() => setExportData(null)} />}
 
         {/* Quiz cards */}
-        <div style={{ ...S.cardGold, cursor: saved.enn ? 'default' : 'pointer' }} onClick={saved.enn ? undefined : () => { setPhase('enn'); setQi(0); setAnswers({}); setInstAnswers({}); setBranchAnswers({}); setDisambigPair(null); }}>
+        <div style={{ ...S.cardGold, cursor: saved.enn ? 'default' : 'pointer' }} onClick={saved.enn ? undefined : () => {
+          const seq = buildFairSequence(ENN_BANK, q => q.type);
+          setEnnSeq(seq); setPhase('enn'); setQi(0); setAnswers({}); setBranchAnswers({}); setDisambigPair(null);
+        }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ flex: 1 }}>
               <h3 style={S.h3}>Enneagram</h3>
@@ -328,8 +429,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 </div>
               ) : (
                 <>
-                  <p style={{ ...S.body, marginTop: 8 }}>{ENN_QUESTIONS.length} questions. Adaptive follow-up may be shown if your top types are close.</p>
-                  <div style={{ marginTop: 12 }}><span style={S.tag}>~5 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>{ENN_QUESTIONS.length}+ questions</span></div>
+                  <p style={{ ...S.body, marginTop: 8 }}>Adaptive assessment — questions continue until your type is clear. Typically 15–30 questions.</p>
+                  <div style={{ marginTop: 12 }}><span style={S.tag}>~5 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>adaptive</span></div>
                 </>
               )}
             </div>
@@ -339,7 +440,10 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           </div>
         </div>
 
-        <div style={{ ...S.cardGold, cursor: saved.mbti ? 'default' : 'pointer' }} onClick={saved.mbti ? undefined : () => { setPhase('mbti'); setQi(0); setMbtiAnswers({}); }}>
+        <div style={{ ...S.cardGold, cursor: saved.mbti ? 'default' : 'pointer' }} onClick={saved.mbti ? undefined : () => {
+          const seq = buildFairSequence(MBTI_BANK, q => q.dim);
+          setMbtiSeq(seq); setPhase('mbti'); setQi(0); setMbtiAnswers({});
+        }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ flex: 1 }}>
               <h3 style={S.h3}>MBTI</h3>
@@ -351,8 +455,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 </div>
               ) : (
                 <>
-                  <p style={{ ...S.body, marginTop: 8 }}>20 Likert-scale questions across four dimensions. Adaptive follow-up shown when dimensions are close. Results include full cognitive stack analysis.</p>
-                  <div style={{ marginTop: 12 }}><span style={S.tag}>~4 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>20+ questions</span></div>
+                  <p style={{ ...S.body, marginTop: 8 }}>Adaptive assessment across four dimensions — ends early when each dimension is clear. Typically 8–20 questions.</p>
+                  <div style={{ marginTop: 12 }}><span style={S.tag}>~4 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>adaptive</span></div>
                 </>
               )}
             </div>
@@ -362,7 +466,10 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           </div>
         </div>
 
-        <div style={{ ...S.cardGold, cursor: saved.inst ? 'default' : 'pointer' }} onClick={saved.inst ? undefined : () => { setPhase('instinct'); setQi(0); setInstAnswers({}); }}>
+        <div style={{ ...S.cardGold, cursor: saved.inst ? 'default' : 'pointer' }} onClick={saved.inst ? undefined : () => {
+          const seq = buildFairSequence(INSTINCT_BANK, q => q.inst);
+          setInstSeq(seq); setPhase('instinct'); setQi(0); setInstAnswers({});
+        }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ flex: 1 }}>
               <h3 style={S.h3}>Instinct Stack</h3>
@@ -374,8 +481,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 </div>
               ) : (
                 <>
-                  <p style={{ ...S.body, marginTop: 8 }}>{INSTINCT_QS.length} focused questions on your three instinctual drives — independent of your core type. Useful on its own or alongside Enneagram.</p>
-                  <div style={{ marginTop: 12 }}><span style={S.tag}>~2 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>{INSTINCT_QS.length} questions</span></div>
+                  <p style={{ ...S.body, marginTop: 8 }}>Adaptive assessment of your three instinctual drives — ends when their ordering is clear. Typically 6–15 questions.</p>
+                  <div style={{ marginTop: 12 }}><span style={S.tag}>~2 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>adaptive</span></div>
                 </>
               )}
             </div>
@@ -390,13 +497,13 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   }
 
   // --- Enneagram questions ---
-  if (phase === 'enn') {
-    const q = ENN_QUESTIONS[qi];
+  if (phase === 'enn' && ennSeq.length > 0) {
+    const q = ennSeq[qi];
     return (
       <div style={S.page}><div style={S.container}>
-        <ProgressBar current={qi + 1} total={ENN_QUESTIONS.length} />
+        <ProgressBar current={qi + 1} total={ennSeq.length} />
         <div style={{ ...S.card, marginTop: 20 }}>
-          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1} of {ENN_QUESTIONS.length}</p>
+          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
           <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
           <LikertScale value={answers[qi]} onChange={handleEnnAnswer} />
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
@@ -432,7 +539,11 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           </div>
         </div>
         {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
-        <button onClick={() => { const r = scoreEnneagram(branchAnswers, disambigPair); const backup = { ...r, exportedAt: new Date().toISOString() }; writeLS(LS.enn, backup); setSaved(s => ({ ...s, enn: backup })); setResult(r); setPhase('enn-result'); }} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Skip →</button>
+        <button onClick={() => {
+          const r = scoreEnneagram(answers, ennSeq, branchAnswers, disambigPair);
+          const backup = { ...r, exportedAt: new Date().toISOString() };
+          writeLS(LS.enn, backup); setSaved(s => ({ ...s, enn: backup })); setResult(r); setPhase('enn-result');
+        }} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Skip →</button>
       </div></div>
     );
   }
@@ -474,17 +585,17 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   }
 
   // --- Standalone instinct questions ---
-  if (phase === 'instinct') {
-    const q = INSTINCT_QS[qi];
+  if (phase === 'instinct' && instSeq.length > 0) {
+    const q = instSeq[qi];
     return (
       <div style={S.page}><div style={S.container}>
-        <ProgressBar current={qi + 1} total={INSTINCT_QS.length} />
+        <ProgressBar current={qi + 1} total={instSeq.length} />
         <div style={{ textAlign: 'center', marginBottom: 16 }}>
           <h3 style={S.h3}>Instinct Stack Assessment</h3>
-          <p style={{ ...S.body, fontSize: 13 }}>{INSTINCT_QS.length} questions to determine the ordering of your SP, SX, and SO drives</p>
+          <p style={{ ...S.body, fontSize: 13 }}>Rate each statement — the assessment ends when your drive ordering becomes clear.</p>
         </div>
         <div style={S.card}>
-          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1} of {INSTINCT_QS.length}</p>
+          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
           <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
           <LikertScale value={instAnswers[qi]} onChange={handleInstAloneAnswer} />
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
@@ -540,14 +651,28 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   }
 
   // --- MBTI questions ---
-  if (phase === 'mbti') {
-    const q = MBTI_QUESTIONS[qi];
-    const dimLabels = { EI: 'E vs I', SN: 'S vs N', TF: 'T vs F', JP: 'J vs P' };
+  if (phase === 'mbti' && mbtiSeq.length > 0) {
+    const q = mbtiSeq[qi];
+    // Compute settled dimensions for progress display
+    const settledDims = ['EI', 'SN', 'TF', 'JP'].filter(dim =>
+      isMBTIDimConfident(dim, mbtiAnswers, mbtiSeq, qi - 1)
+    );
     return (
       <div style={S.page}><div style={S.container}>
-        <ProgressBar current={qi + 1} total={MBTI_QUESTIONS.length} />
-        <div style={{ ...S.card, marginTop: 20 }}>
-          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1} of {MBTI_QUESTIONS.length} · {dimLabels[q.dim]}</p>
+        <ProgressBar current={qi + 1} total={mbtiSeq.length} />
+        {/* Settled dimensions indicator */}
+        <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginTop: 8, marginBottom: 4 }}>
+          {['EI', 'SN', 'TF', 'JP'].map(dim => {
+            const settled = settledDims.includes(dim);
+            return (
+              <div key={dim} style={{ padding: '3px 10px', borderRadius: 12, fontSize: 11, fontFamily: "'DM Mono',monospace", background: settled ? G.goldDim : G.bg3, border: `1px solid ${settled ? G.goldBorder : G.border}`, color: settled ? G.gold : G.textFaint }}>
+                {settled ? `${dim} ✓` : dim}
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ ...S.card, marginTop: 12 }}>
+          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
           <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
           <LikertScale value={mbtiAnswers[qi]} onChange={handleMBTIAnswer} />
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
@@ -557,37 +682,6 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
         </div>
         {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
         <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Cancel</button>
-      </div></div>
-    );
-  }
-
-  // --- MBTI disambiguation (branching) questions ---
-  if (phase === 'mbti-disambig' && mbtiDisambigDims.length > 0) {
-    const currentDim = mbtiDisambigDims[mbtiDisambigIdx];
-    const questions = MBTI_DISAMBIG[currentDim];
-    const q = questions[qi];
-    const dimFull = { EI: 'E vs I', SN: 'S vs N', TF: 'T vs F', JP: 'J vs P' };
-    const prevAnswers = mbtiDisambigAnswers[currentDim] || {};
-    const overallQ = mbtiDisambigDims.slice(0, mbtiDisambigIdx).reduce((s, d) => s + MBTI_DISAMBIG[d].length, 0) + qi + 1;
-    const overallTotal = mbtiDisambigDims.reduce((s, d) => s + MBTI_DISAMBIG[d].length, 0);
-    return (
-      <div style={S.page}><div style={S.container}>
-        <ProgressBar current={overallQ} total={overallTotal} />
-        <div style={{ textAlign: 'center', marginBottom: 16 }}>
-          <h3 style={S.h3}>Clarifying Questions</h3>
-          <p style={{ ...S.body, fontSize: 13 }}>Your {dimFull[currentDim]} result was too close to call. These questions help distinguish the dimension.</p>
-        </div>
-        <div style={S.card}>
-          <p style={{ ...S.mono, marginBottom: 6 }}>Question {overallQ} of {overallTotal} · {dimFull[currentDim]}</p>
-          <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
-          <LikertScale value={prevAnswers[qi]} onChange={handleMBTIDisambigAnswer} />
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
-          </div>
-        </div>
-        {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
-        <button onClick={() => { const r = scoreMBTI(mbtiDisambigAnswers); const backup = { ...r, exportedAt: new Date().toISOString() }; writeLS(LS.mbti, backup); setSaved(s => ({ ...s, mbti: backup })); setResult(r); setPhase('mbti-result'); }} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Skip →</button>
       </div></div>
     );
   }
