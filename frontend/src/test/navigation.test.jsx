@@ -18,7 +18,7 @@ describe('Navigation', () => {
     render(<App />);
     // Explorer button shows icon '◆' when not active
     await user.click(screen.getByText('◆'));
-    expect(screen.getByText('Function Explorer')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Explorer' })).toBeInTheDocument();
   });
 
   it('switches to Compare view when clicking Compare nav button', async () => {
