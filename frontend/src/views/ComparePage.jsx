@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, WING_DESC } from '../data/enneagram.js';
@@ -11,6 +11,7 @@ import { computeArchetypeName } from '../utils/archetype.js';
 import { analyzeGroup } from '../utils/group.js';
 
 const INSTINCT_LABELS = { sp: 'SP', sx: 'SX', so: 'SO' };
+const LS_COMPARE = 'compare_persons';
 
 const emptyPerson = (n) => ({ label: `Person ${n}`, ennType: null, ennWing: null, ennWingStrength: null, instinctStack: null, mbti: null, ennScores: null });
 
@@ -283,11 +284,20 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
 export default function ComparePage() {
   const [persons, setPersons] = useState(() => {
     const decoded = decodePersons(window.location.hash);
-    return decoded && decoded.length >= 2 ? decoded : [emptyPerson(1), emptyPerson(2)];
+    if (decoded && decoded.length >= 2) return decoded;
+    try {
+      const stored = localStorage.getItem(LS_COMPARE);
+      if (stored) return JSON.parse(stored);
+    } catch {}
+    return [emptyPerson(1), emptyPerson(2)];
   });
   const [editing, setEditing] = useState(null);
   const [expandedPairs, setExpandedPairs] = useState(new Set(['0-1']));
   const [shareMsg, setShareMsg] = useState('');
+
+  useEffect(() => {
+    try { localStorage.setItem(LS_COMPARE, JSON.stringify(persons)); } catch {}
+  }, [persons]);
 
   const addPerson = () => {
     if (persons.length >= 6) return;

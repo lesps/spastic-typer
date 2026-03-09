@@ -1,7 +1,7 @@
-import { ENN_TYPES, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC } from '../data/enneagram.js';
+import { ENN_TYPES, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC, WING_DESC } from '../data/enneagram.js';
 import { MBTI_TYPES } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
-import { WING_DESC } from '../data/enneagram.js';
+import { wingStrengthLabel, wingStrengthDesc } from '../utils/enneagram.js';
 
 export function generateExportMarkdown(ennResult, mbtiResult) {
   const now = new Date().toISOString().split('T')[0];
@@ -21,6 +21,9 @@ export function generateExportMarkdown(ennResult, mbtiResult) {
     md += `- **Growth Arrow:** → Type ${arrows.growth} (${ENN_TYPES[arrows.growth].name})\n`;
     md += `- **Stress Arrow:** → Type ${arrows.stress} (${ENN_TYPES[arrows.stress].name})\n\n`;
     md += `### Wing: ${wKey}\n\n${WING_DESC[wKey] || ''}\n\n`;
+    if (ennResult.wingStrengthDelta !== null && ennResult.wingStrengthDelta !== undefined) {
+      md += `**Wing Strength:** ${wingStrengthLabel(ennResult.wingStrengthDelta)} — ${wingStrengthDesc(ennResult.wingStrengthDelta)}\n\n`;
+    }
     const instStack = ennResult.instinctStack || (ennResult.instScores ? Object.entries(ennResult.instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k) : null);
     const instLabels = { sp: 'Self-Preservation', sx: 'Sexual (One-to-One)', so: 'Social' };
     const instDescs = { sp: 'Primary focus on physical security, health, comfort, and resource management.', sx: 'Primary focus on intensity, chemistry, and transformative one-on-one connection.', so: 'Primary focus on group belonging, social roles, and contribution.' };

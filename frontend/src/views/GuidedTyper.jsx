@@ -8,7 +8,7 @@ import ProgressBar from '../components/ProgressBar.jsx';
 import FnBadge from '../components/FnBadge.jsx';
 import ExportModal from '../components/ExportModal.jsx';
 import { generateExportMarkdown } from '../utils/export.js';
-import { computeWingStrengthDelta } from '../utils/enneagram.js';
+import { computeWingStrengthDelta, wingStrengthLabel, wingStrengthDesc } from '../utils/enneagram.js';
 import { computeArchetypeName } from '../utils/archetype.js';
 
 const INSTINCT_LABELS = { sp: 'Self-Preservation', sx: 'Sexual (One-to-One)', so: 'Social' };
@@ -210,6 +210,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     mbti: readLS(LS.mbti),
     inst: readLS(LS.inst),
   }));
+  const [confirmClear, setConfirmClear] = useState(false);
 
   // --- Answer handlers ---
   const handleEnnAnswer = (v) => {
@@ -331,6 +332,12 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     setPhase('instinct'); setQi(0); setInstAnswers({});
   };
 
+  const handleClearAll = () => {
+    clearLS(LS.enn); clearLS(LS.mbti); clearLS(LS.inst);
+    setSaved({ enn: null, mbti: null, inst: null });
+    setConfirmClear(false);
+  };
+
   const handleExportAll = () => {
     const md = generateExportMarkdown(saved.enn, saved.mbti);
     const backup = { type: 'full-profile', exportedAt: new Date().toISOString(), enneagram: saved.enn, mbti: saved.mbti, instinct: saved.inst };
@@ -341,7 +348,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   const handleShare = () => {
     const enn = saved.enn, mbti = saved.mbti, inst = saved.inst;
     const ennPart = enn ? `${enn.coreType}w${enn.wing}` : '';
-    const strength = enn ? (enn.wingStrengthDelta || '') : '';
+    const strength = enn ? (wingStrengthLabel(enn.wingStrengthDelta) || '') : '';
     const stack = inst ? inst.instinctStack : (enn ? enn.instinctStack : null);
     const stackPart = stack ? stack.join('/') : '';
     const mbtiPart = mbti ? mbti.result : '';
@@ -401,14 +408,24 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                   </p>
                 )}
               </div>
-              {allDone && (
-                <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+              <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'flex-start' }}>
+                {allDone && (<>
                   <button onClick={handleExportAll} style={{ ...S.btnOutline, whiteSpace: 'nowrap', padding: '8px 14px', fontSize: 13 }}>Export</button>
                   <button onClick={handleShare} style={{ ...S.btn, whiteSpace: 'nowrap' }}>Share Profile</button>
-                </div>
-              )}
+                </>)}
+                <button onClick={() => setConfirmClear(true)} style={{ ...S.btnDanger, whiteSpace: 'nowrap', padding: '8px 14px', fontSize: 13 }}>Clear</button>
+              </div>
             </div>
             {shareMsg && <p style={{ fontSize: 12, color: G.gold, marginTop: 8 }}>{shareMsg}</p>}
+            {confirmClear && (
+              <div style={{ marginTop: 12, padding: '10px 12px', background: G.bg3, borderRadius: 8, border: `1px solid ${G.border}` }}>
+                <p style={{ fontSize: 13, color: G.text, marginBottom: 8 }}>Clear all saved results? This cannot be undone.</p>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button onClick={handleClearAll} style={{ ...S.btnDanger, padding: '6px 14px', fontSize: 12 }}>Yes, clear all</button>
+                  <button onClick={() => setConfirmClear(false)} style={{ ...S.btnOutline, padding: '6px 14px', fontSize: 12 }}>Cancel</button>
+                </div>
+              </div>
+            )}
           </div>
         )}
         {exportData && <ExportModal markdown={exportData.markdown} backup={exportData.backup} onClose={() => setExportData(null)} />}
@@ -566,6 +583,11 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           <h3 style={S.h3}>Core Desire</h3><p style={S.body}>{t.desire}</p>
           <div style={S.divider} />
           <h3 style={S.h3}>Wing</h3><p style={S.body}>{WING_DESC[wKey]}</p>
+          {result.wingStrengthDelta !== null && result.wingStrengthDelta !== undefined && (<>
+            <div style={S.divider} />
+            <h3 style={S.h3}>Wing Strength</h3>
+            <p style={S.body}>{wingStrengthDesc(result.wingStrengthDelta)}</p>
+          </>)}
         </div>
         <div style={S.card}>
           <h3 style={S.h3}>Type Scores</h3>
@@ -653,24 +675,9 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   // --- MBTI questions ---
   if (phase === 'mbti' && mbtiSeq.length > 0) {
     const q = mbtiSeq[qi];
-    // Compute settled dimensions for progress display
-    const settledDims = ['EI', 'SN', 'TF', 'JP'].filter(dim =>
-      isMBTIDimConfident(dim, mbtiAnswers, mbtiSeq, qi - 1)
-    );
     return (
       <div style={S.page}><div style={S.container}>
         <ProgressBar current={qi + 1} total={mbtiSeq.length} />
-        {/* Settled dimensions indicator */}
-        <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginTop: 8, marginBottom: 4 }}>
-          {['EI', 'SN', 'TF', 'JP'].map(dim => {
-            const settled = settledDims.includes(dim);
-            return (
-              <div key={dim} style={{ padding: '3px 10px', borderRadius: 12, fontSize: 11, fontFamily: "'DM Mono',monospace", background: settled ? G.goldDim : G.bg3, border: `1px solid ${settled ? G.goldBorder : G.border}`, color: settled ? G.gold : G.textFaint }}>
-                {settled ? `${dim} ✓` : dim}
-              </div>
-            );
-          })}
-        </div>
         <div style={{ ...S.card, marginTop: 12 }}>
           <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
           <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
