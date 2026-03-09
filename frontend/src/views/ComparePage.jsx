@@ -66,6 +66,7 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
   const [urlInput, setUrlInput] = useState('');
   const [urlError, setUrlError] = useState('');
   const [instOrder, setInstOrder] = useState(person.instinctStack || ['sp', 'sx', 'so']);
+  const [includeInstinct, setIncludeInstinct] = useState(true);
 
   const adj1 = person.ennType ? (person.ennType === 1 ? 9 : person.ennType - 1) : null;
   const adj2 = person.ennType ? (person.ennType === 9 ? 1 : person.ennType + 1) : null;
@@ -115,10 +116,10 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
     } catch { setUrlError('Invalid URL or format.'); }
   };
 
-  const isComplete = mode !== 'manual' || !!(person.ennType && person.mbti && instOrder.length === 3);
+  const isComplete = mode !== 'manual' || !!(person.ennType && person.mbti && (includeInstinct ? instOrder.length === 3 : true));
 
   const handleDone = () => {
-    updatePerson(idx, p => ({ ...p, label, instinctStack: instOrder }));
+    updatePerson(idx, p => ({ ...p, label, instinctStack: includeInstinct ? instOrder : null }));
     onDone();
   };
 
@@ -236,8 +237,15 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
             </div>
           )}
           <div>
-            <label style={{ fontSize: 12, color: G.textDim, display: 'block', marginBottom: 6 }}>Instinct Stack</label>
-            {instOrder.map((inst, i) => (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+              <label style={{ fontSize: 12, color: G.textDim }}>Instinct Stack</label>
+              <label style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11, color: G.textFaint, cursor: 'pointer' }}>
+                <input type="checkbox" checked={includeInstinct} onChange={e => setIncludeInstinct(e.target.checked)} />
+                Include
+              </label>
+            </div>
+            {!includeInstinct && <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 6 }}>Instinct stack will not be included in the comparison.</p>}
+            {includeInstinct && instOrder.map((inst, i) => (
               <div key={inst} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, padding: '8px 12px', background: i === 0 ? G.goldDim : G.bg3, border: `1px solid ${i === 0 ? G.goldBorder : G.border}`, borderRadius: 8 }}>
                 <span style={{ ...S.mono, fontSize: 13, color: i === 0 ? G.gold : G.textDim, minWidth: 28 }}>{inst.toUpperCase()}</span>
                 <span style={{ fontSize: 11, color: G.textFaint, flex: 1 }}>{['Dominant', 'Secondary', 'Repressed'][i]}</span>
