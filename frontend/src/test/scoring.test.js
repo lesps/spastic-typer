@@ -16,6 +16,7 @@ import {
   isEnnConfident,
   isInstConfident,
 } from '../views/GuidedTyper.jsx';
+import { encodeProfileCode, decodeProfileCode } from '../utils/share.js';
 import { MBTI_BANK } from '../data/mbti.js';
 import { ENN_BANK, INSTINCT_BANK } from '../data/enneagram.js';
 
@@ -632,5 +633,101 @@ describe('INSTINCT_BANK data integrity', () => {
   it('no two questions have the same text', () => {
     const texts = INSTINCT_BANK.map(q => q.text);
     expect(new Set(texts).size).toBe(texts.length);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// encodeProfileCode / decodeProfileCode — Share code round-trip
+// ---------------------------------------------------------------------------
+
+describe('encodeProfileCode / decodeProfileCode — round-trip', () => {
+  const makeEnn = (type, wing, delta, stack) => ({
+    coreType: type, wing, wingStrengthDelta: delta,
+    instinctStack: stack, display: `${type}w${wing}`, scores: {},
+  });
+  const makeMbti = (result) => ({ result, scores: {} });
+  const makeInst = (stack) => ({ instinctStack: stack, instScores: {} });
+
+  it('encodes a complete profile to an 11-character code', () => {
+    const code = encodeProfileCode(
+      makeEnn(4, 5, 5, ['sx', 'sp', 'so']),
+      makeMbti('INFP'),
+      makeInst(['sx', 'sp', 'so'])
+    );
+    expect(typeof code).toBe('string');
+    expect(code.length).toBe(11);
+    expect(code[6]).toBe('-');
+  });
+
+  it('round-trips: decode(encode(...)) restores coreType, wing, MBTI, and instinct stack', () => {
+    const enn = makeEnn(4, 5, 5, ['sx', 'sp', 'so']);
+    const mbti = makeMbti('INFP');
+    const inst = makeInst(['sx', 'sp', 'so']);
+    const code = encodeProfileCode(enn, mbti, inst);
+    const decoded = decodeProfileCode(code);
+    expect(decoded).not.toBeNull();
+    expect(decoded.enn.coreType).toBe(4);
+    expect(decoded.enn.wing).toBe(5);
+    expect(decoded.mbti.result).toBe('INFP');
+    expect(decoded.inst.instinctStack).toEqual(['sx', 'sp', 'so']);
+  });
+
+  it('handles all 6 instinct stack permutations', () => {
+    const perms = [
+      ['sp','sx','so'], ['sp','so','sx'],
+      ['sx','sp','so'], ['sx','so','sp'],
+      ['so','sp','sx'], ['so','sx','sp'],
+    ];
+    perms.forEach(stack => {
+      const code = encodeProfileCode(
+        makeEnn(1, 2, null, stack),
+        makeMbti('INTJ'),
+        makeInst(stack)
+      );
+      expect(code).not.toBeNull();
+      const decoded = decodeProfileCode(code);
+      expect(decoded).not.toBeNull();
+      expect(decoded.inst.instinctStack).toEqual(stack);
+    });
+  });
+
+  it('handles all 4 wing strength values', () => {
+    const strengths = [null, 1, 3, 5]; // null, balanced, moderate, strong
+    strengths.forEach(delta => {
+      const code = encodeProfileCode(
+        makeEnn(5, 4, delta, ['sp', 'sx', 'so']),
+        makeMbti('INTP'),
+        makeInst(['sp', 'sx', 'so'])
+      );
+      expect(code).not.toBeNull();
+      const decoded = decodeProfileCode(code);
+      expect(decoded).not.toBeNull();
+      if (delta === null) {
+        expect(decoded.enn.wingStrengthDelta).toBeNull();
+      } else {
+        expect(decoded.enn.wingStrengthDelta).not.toBeNull();
+      }
+    });
+  });
+
+  it('returns null when encoding an incomplete profile', () => {
+    expect(encodeProfileCode(null, makeMbti('INFP'), makeInst(['sp','sx','so']))).toBeNull();
+    expect(encodeProfileCode(makeEnn(4,5,3,['sx','sp','so']), null, makeInst(['sp','sx','so']))).toBeNull();
+    expect(encodeProfileCode(makeEnn(4,5,3,['sx','sp','so']), makeMbti('INFP'), null)).toBeNull();
+  });
+
+  it('returns null for malformed codes', () => {
+    expect(decodeProfileCode('BADCODE')).toBeNull();
+    expect(decodeProfileCode('453xpo-XXXX')).toBeNull(); // invalid MBTI
+    expect(decodeProfileCode('453xxx-INFP')).toBeNull(); // repeated instinct char
+    expect(decodeProfileCode('053xpo-INFP')).toBeNull(); // type 0 invalid
+    expect(decodeProfileCode('')).toBeNull();
+    expect(decodeProfileCode(null)).toBeNull();
+  });
+
+  it('is case-insensitive for the instinct characters', () => {
+    const decoded = decodeProfileCode('453XPO-INFP');
+    expect(decoded).not.toBeNull();
+    expect(decoded.inst.instinctStack).toEqual(['sx', 'sp', 'so']);
   });
 });

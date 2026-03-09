@@ -36,7 +36,7 @@ describe('GuidedTyper — choose screen', () => {
   it('shows intro text explaining all three assessments must be completed', () => {
     render(<GuidedTyper />);
     expect(screen.getByText(/complete all three to unlock/i)).toBeInTheDocument();
-    expect(screen.getByText(/share link/i)).toBeInTheDocument();
+    expect(screen.getByText(/profile code/i)).toBeInTheDocument();
   });
 
   it('shows all three quiz cards with unique subtitle text', () => {
@@ -46,23 +46,23 @@ describe('GuidedTyper — choose screen', () => {
     expect(screen.getByText('SP · SX · SO Drive Ordering')).toBeInTheDocument();
   });
 
-  it('does not show Share Profile or Export buttons before any assessment is complete', () => {
+  it('does not show Get Code or Export buttons before any assessment is complete', () => {
     render(<GuidedTyper />);
-    expect(screen.queryByRole('button', { name: /share profile/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /get code/i })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /^export$/i })).not.toBeInTheDocument();
   });
 
-  it('does not show Share Profile button when only 1 of 3 assessments is complete', () => {
+  it('does not show Get Code button when only 1 of 3 assessments is complete', () => {
     localStorage.setItem('typer_enn', JSON.stringify({
       coreType: 4, wing: 5, instinctStack: ['sx', 'sp', 'so'],
       display: '4w5 SX/SP/SO', scores: {}, wingStrengthDelta: 'moderate',
     }));
     render(<GuidedTyper />);
-    expect(screen.queryByRole('button', { name: /share profile/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /get code/i })).not.toBeInTheDocument();
     expect(screen.getByText(/1\/3 complete/i)).toBeInTheDocument();
   });
 
-  it('does not show Share Profile button when 2 of 3 assessments are complete', () => {
+  it('does not show Get Code button when 2 of 3 assessments are complete', () => {
     localStorage.setItem('typer_enn', JSON.stringify({
       coreType: 4, wing: 5, instinctStack: ['sx', 'sp', 'so'],
       display: '4w5 SX/SP/SO', scores: {}, wingStrengthDelta: 'moderate',
@@ -71,11 +71,11 @@ describe('GuidedTyper — choose screen', () => {
       result: 'INFP', scores: { E: 3, I: 7, S: 4, N: 6, T: 5, F: 5, J: 4, P: 6 },
     }));
     render(<GuidedTyper />);
-    expect(screen.queryByRole('button', { name: /share profile/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /get code/i })).not.toBeInTheDocument();
     expect(screen.getByText(/2\/3 complete/i)).toBeInTheDocument();
   });
 
-  it('shows Share Profile and Export buttons only when all 3 assessments are complete', () => {
+  it('shows Get Code and Export buttons only when all 3 assessments are complete', () => {
     localStorage.setItem('typer_enn', JSON.stringify({
       coreType: 4, wing: 5, instinctStack: ['sx', 'sp', 'so'],
       display: '4w5 SX/SP/SO', scores: {}, wingStrengthDelta: 'moderate',
@@ -87,7 +87,7 @@ describe('GuidedTyper — choose screen', () => {
       instinctStack: ['sx', 'sp', 'so'], instScores: { sx: 5, sp: 3, so: 1 },
     }));
     render(<GuidedTyper />);
-    expect(screen.getByRole('button', { name: /share profile/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /get code/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /^export$/i })).toBeInTheDocument();
   });
 
@@ -403,4 +403,136 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     render(<GuidedTyper />);
     expect(screen.getByRole('button', { name: /retake/i })).toBeInTheDocument();
   });
+});
+
+// ---------------------------------------------------------------------------
+// Profile code — Load Profile
+// ---------------------------------------------------------------------------
+
+describe('GuidedTyper — profile code (load)', () => {
+  it('shows Load Profile section on the choose screen', () => {
+    render(<GuidedTyper />);
+    expect(screen.getByText(/load a shared profile/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^load$/i })).toBeInTheDocument();
+  });
+
+  it('loads a valid profile code and shows all three results', () => {
+    render(<GuidedTyper />);
+    const input = screen.getByPlaceholderText(/453xpo-INFP/i);
+    fireEvent.change(input, { target: { value: '453xpo-INFP' } });
+    fireEvent.click(screen.getByRole('button', { name: /^load$/i }));
+    // Profile should now show on the choose screen
+    expect(screen.getAllByText('4w5').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('INFP').length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('shows error for an invalid code', () => {
+    render(<GuidedTyper />);
+    const input = screen.getByPlaceholderText(/453xpo-INFP/i);
+    fireEvent.change(input, { target: { value: 'BADCODE' } });
+    fireEvent.click(screen.getByRole('button', { name: /^load$/i }));
+    expect(screen.getByText(/invalid code/i)).toBeInTheDocument();
+  });
+
+  it('shows error for a code with invalid MBTI type', () => {
+    render(<GuidedTyper />);
+    const input = screen.getByPlaceholderText(/453xpo-INFP/i);
+    fireEvent.change(input, { target: { value: '453xpo-XXXX' } });
+    fireEvent.click(screen.getByRole('button', { name: /^load$/i }));
+    expect(screen.getByText(/invalid code/i)).toBeInTheDocument();
+  });
+
+  it('clears error when input changes after a failed attempt', () => {
+    render(<GuidedTyper />);
+    const input = screen.getByPlaceholderText(/453xpo-INFP/i);
+    fireEvent.change(input, { target: { value: 'BAD' } });
+    fireEvent.click(screen.getByRole('button', { name: /^load$/i }));
+    expect(screen.getByText(/invalid code/i)).toBeInTheDocument();
+    fireEvent.change(input, { target: { value: '453xpo-INFP' } });
+    expect(screen.queryByText(/invalid code/i)).not.toBeInTheDocument();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Profile code — Get Code
+// ---------------------------------------------------------------------------
+
+describe('GuidedTyper — profile code (generate)', () => {
+  it('shows Get Code button only when all 3 assessments are complete', () => {
+    localStorage.setItem('typer_enn', JSON.stringify({
+      coreType: 4, wing: 5, instinctStack: ['sx', 'sp', 'so'],
+      display: '4w5', scores: {}, wingStrengthDelta: 3,
+    }));
+    localStorage.setItem('typer_mbti', JSON.stringify({
+      result: 'INFP', scores: { E: 3, I: 7, S: 4, N: 6, T: 5, F: 5, J: 4, P: 6 },
+    }));
+    // Only 2 done — button absent
+    render(<GuidedTyper />);
+    expect(screen.queryByRole('button', { name: /get code/i })).not.toBeInTheDocument();
+  });
+
+  it('displays an 11-character code after clicking Get Code', () => {
+    localStorage.setItem('typer_enn', JSON.stringify({
+      coreType: 4, wing: 5, instinctStack: ['sx', 'sp', 'so'],
+      display: '4w5', scores: {}, wingStrengthDelta: 3,
+    }));
+    localStorage.setItem('typer_mbti', JSON.stringify({
+      result: 'INFP', scores: { E: 3, I: 7, S: 4, N: 6, T: 5, F: 5, J: 4, P: 6 },
+    }));
+    localStorage.setItem('typer_inst', JSON.stringify({
+      instinctStack: ['sx', 'sp', 'so'], instScores: { sx: 5, sp: 3, so: 1 },
+    }));
+    render(<GuidedTyper />);
+    fireEvent.click(screen.getByRole('button', { name: /get code/i }));
+    // The generated code should appear as a <code> element with 11 chars
+    const codeEl = document.querySelector('code');
+    expect(codeEl).toBeTruthy();
+    expect(codeEl.textContent.length).toBe(11);
+    expect(codeEl.textContent).toMatch(/^\d{2}[0-3][pxo]{3}-[A-Z]{4}$/);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Next incomplete quiz button on result screens
+// ---------------------------------------------------------------------------
+
+describe('GuidedTyper — next incomplete quiz button', () => {
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
+
+  it('shows Start MBTI button after completing Enneagram when MBTI is not done', async () => {
+    render(<GuidedTyper />);
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
+    await answerUpTo(45, '+3');
+
+    // Skip disambiguation if it appeared
+    const skipBtn = screen.queryByRole('button', { name: /skip/i });
+    if (skipBtn) fireEvent.click(skipBtn);
+
+    expect(screen.getByText(/your enneagram result/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /start mbti/i })).toBeInTheDocument();
+  }, 15000);
+
+  it('omits next quiz button on Enneagram result when all 3 are done', async () => {
+    // Pre-populate all 3 so all Retake buttons are visible
+    localStorage.setItem('typer_enn', JSON.stringify({
+      coreType: 4, wing: 5, instinctStack: ['sx', 'sp', 'so'],
+      display: '4w5', scores: {}, wingStrengthDelta: 3,
+    }));
+    localStorage.setItem('typer_mbti', JSON.stringify({
+      result: 'INFP', scores: { E: 3, I: 7, S: 4, N: 6, T: 5, F: 5, J: 4, P: 6 },
+    }));
+    localStorage.setItem('typer_inst', JSON.stringify({
+      instinctStack: ['sx', 'sp', 'so'], instScores: { sx: 5, sp: 3, so: 1 },
+    }));
+    render(<GuidedTyper />);
+    // Three retake buttons in DOM order: Enneagram, MBTI, Instinct Stack — click Enneagram's
+    fireEvent.click(screen.getAllByRole('button', { name: /retake/i })[0]);
+    await answerUpTo(45, '+3');
+    const skipBtn = screen.queryByRole('button', { name: /skip/i });
+    if (skipBtn) fireEvent.click(skipBtn);
+
+    expect(screen.getByText(/your enneagram result/i)).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /^start /i })).not.toBeInTheDocument();
+  }, 15000);
 });
