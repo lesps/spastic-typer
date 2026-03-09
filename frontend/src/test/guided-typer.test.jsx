@@ -536,3 +536,77 @@ describe('GuidedTyper — next incomplete quiz button', () => {
     expect(screen.queryByRole('button', { name: /^start /i })).not.toBeInTheDocument();
   }, 15000);
 });
+
+// ---------------------------------------------------------------------------
+// Session persistence — mid-quiz navigation recovery
+// ---------------------------------------------------------------------------
+
+describe('session persistence — mid-quiz navigation recovery', () => {
+  it('restores enneagram quiz in progress from typer_session', () => {
+    const ennSeqIds = Array.from({ length: 45 }, (_, i) => i);
+    localStorage.setItem('typer_session', JSON.stringify({
+      phase: 'enn', qi: 2,
+      answers: { 0: 2, 1: -1 }, mbtiAnswers: {}, instAnswers: {}, branchAnswers: {},
+      disambigPair: null,
+      ennSeqIds, mbtiSeqIds: [], instSeqIds: [],
+    }));
+    render(<GuidedTyper />);
+    // Quiz UI is active — Cancel button present, choose screen title absent
+    expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
+    expect(screen.queryByText('Guided Typer')).not.toBeInTheDocument();
+  });
+
+  it('restores MBTI quiz in progress from typer_session', () => {
+    const mbtiSeqIds = Array.from({ length: 32 }, (_, i) => i);
+    localStorage.setItem('typer_session', JSON.stringify({
+      phase: 'mbti', qi: 3,
+      answers: {}, mbtiAnswers: { 0: 1, 1: -2, 2: 3 }, instAnswers: {}, branchAnswers: {},
+      disambigPair: null,
+      ennSeqIds: [], mbtiSeqIds, instSeqIds: [],
+    }));
+    render(<GuidedTyper />);
+    expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
+    expect(screen.queryByText('Guided Typer')).not.toBeInTheDocument();
+  });
+
+  it('restores instinct quiz in progress from typer_session', () => {
+    const instSeqIds = Array.from({ length: 15 }, (_, i) => i);
+    localStorage.setItem('typer_session', JSON.stringify({
+      phase: 'instinct', qi: 1,
+      answers: {}, mbtiAnswers: {}, instAnswers: { 0: 2 }, branchAnswers: {},
+      disambigPair: null,
+      ennSeqIds: [], mbtiSeqIds: [], instSeqIds,
+    }));
+    render(<GuidedTyper />);
+    expect(screen.getByRole('button', { name: /^cancel$/i })).toBeInTheDocument();
+    expect(screen.queryByText('Guided Typer')).not.toBeInTheDocument();
+  });
+
+  it('clears typer_session when user cancels back to choose screen', () => {
+    const ennSeqIds = Array.from({ length: 45 }, (_, i) => i);
+    localStorage.setItem('typer_session', JSON.stringify({
+      phase: 'enn', qi: 2,
+      answers: { 0: 2, 1: -1 }, mbtiAnswers: {}, instAnswers: {}, branchAnswers: {},
+      disambigPair: null,
+      ennSeqIds, mbtiSeqIds: [], instSeqIds: [],
+    }));
+    render(<GuidedTyper />);
+    // Click Cancel → Yes, cancel to trigger reset()
+    fireEvent.click(screen.getByRole('button', { name: /^cancel$/i }));
+    fireEvent.click(screen.getByRole('button', { name: /yes, cancel/i }));
+    expect(localStorage.getItem('typer_session')).toBeNull();
+  });
+
+  it('does not restore session when phase is a result or choose phase', () => {
+    localStorage.setItem('typer_session', JSON.stringify({
+      phase: 'enn-result', qi: 0,
+      answers: {}, mbtiAnswers: {}, instAnswers: {}, branchAnswers: {},
+      disambigPair: null,
+      ennSeqIds: [], mbtiSeqIds: [], instSeqIds: [],
+    }));
+    render(<GuidedTyper />);
+    // Result/choose phases are not active — should fall back to choose screen
+    expect(screen.getByText('Guided Typer')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /^cancel$/i })).not.toBeInTheDocument();
+  });
+});
