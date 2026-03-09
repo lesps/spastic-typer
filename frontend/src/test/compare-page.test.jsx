@@ -31,7 +31,7 @@ describe('ComparePage — basic rendering', () => {
     const user = userEvent.setup();
     render(<ComparePage />);
     await user.click(screen.getByText('Person 1'));
-    expect(screen.getByRole('button', { name: 'By URL' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'By Code' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Upload Backup' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Manual Entry' })).toBeInTheDocument();
   });
