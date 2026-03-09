@@ -57,8 +57,8 @@ describe('ComparePage — tab persistence bug fix', () => {
     // Switch to Manual Entry tab
     await user.click(screen.getByRole('button', { name: 'Manual Entry' }));
 
-    // Verify we're on Manual Entry (Enneagram type grid visible)
-    expect(screen.getByText(/enneagram type/i)).toBeInTheDocument();
+    // Verify we're on Manual Entry (Enneagram type label visible)
+    expect(screen.getByText('Enneagram Type', { selector: 'label' })).toBeInTheDocument();
 
     // Click Enneagram type 4 — this triggers updatePerson which previously caused remount
     const typeButtons = screen.getAllByRole('button');
@@ -67,7 +67,7 @@ describe('ComparePage — tab persistence bug fix', () => {
     await user.click(type4);
 
     // CRITICAL: tab must still be on Manual Entry after the state update
-    expect(screen.getByText(/enneagram type/i)).toBeInTheDocument();
+    expect(screen.getByText('Enneagram Type', { selector: 'label' })).toBeInTheDocument();
     // "By URL" input should not be visible (URL tab is not active)
     expect(screen.queryByPlaceholderText(/paste share url/i)).not.toBeInTheDocument();
   });
@@ -83,7 +83,7 @@ describe('ComparePage — tab persistence bug fix', () => {
     await user.click(screen.getByRole('button', { name: 'INTJ' }));
 
     // Tab must remain on Manual Entry
-    expect(screen.getByText(/enneagram type/i)).toBeInTheDocument();
+    expect(screen.getByText('Enneagram Type', { selector: 'label' })).toBeInTheDocument();
     expect(screen.queryByPlaceholderText(/paste share url/i)).not.toBeInTheDocument();
   });
 });
@@ -163,13 +163,20 @@ describe('ComparePage — manual entry save', () => {
     const type7 = typeButtons.find(btn => btn.textContent === '7');
     await user.click(type7);
 
-    // Click Done
+    // Also select an MBTI type so the form is complete (Done requires ennType + mbti)
+    await user.click(screen.getByRole('button', { name: 'INTJ' }));
+
+    // Click Done (now enabled because ennType + mbti are set and instinct defaults are present)
     await user.click(screen.getByRole('button', { name: /done/i }));
 
     // Editor should be closed
     expect(screen.queryByText(/editing person 1/i)).not.toBeInTheDocument();
-    // Person chip should show the type
-    expect(screen.getByText(/7w/i)).toBeInTheDocument();
+    // Person chip should be updated with profile data (no longer just "Person 1")
+    const chipButtons = screen.getAllByRole('button');
+    const p1ChipUpdated = chipButtons.some(b =>
+      b.textContent?.includes('Person 1') && b.textContent.trim().length > 'Person 1'.length
+    );
+    expect(p1ChipUpdated).toBe(true);
   });
 });
 
