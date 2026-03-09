@@ -39,6 +39,8 @@ spastic-typer/
 │   └── generatePairs.mjs   # One-off script — regenerates pairLookup.js
 ├── .github/workflows/
 │   └── deploy.yml          # GitHub Pages CI/CD
+├── CHANGELOG.md            # Versioned release history
+├── README.md               # Public-facing project documentation
 └── CLAUDE.md               # This file
 ```
 
@@ -348,3 +350,46 @@ Entry method (URL hash | file upload | manual form)
 4. If you touched a question bank, verify data integrity tests still pass.
 5. If you added a new exported function from `GuidedTyper.jsx`, add a corresponding unit test in `scoring.test.js`.
 6. Commit with a clear message describing the change.
+7. **Update `CHANGELOG.md`** with the change under the current `[X.Y]` section.
+8. **If the change affects the public interface, architecture, or conventions**, update `README.md` and/or `CLAUDE.md` accordingly.
+
+---
+
+## Documentation Maintenance
+
+Three files must be kept in sync with the codebase at all times:
+
+| File | Purpose |
+|------|---------|
+| `README.md` | Public-facing project documentation for developers and users |
+| `CHANGELOG.md` | Versioned release history with progressive compression |
+| `CLAUDE.md` | AI assistant guide and authoritative codebase reference (this file) |
+
+### When to update `README.md`
+
+- A new feature, view, or component is added or removed
+- The tech stack, deployment target, or live URL changes
+- The project structure changes (new directories, renamed files, etc.)
+- Development commands change
+
+### When to update `CHANGELOG.md`
+
+Every merged PR that changes user-facing behavior or developer-facing APIs must add an entry. Follow the **progressive compression** rules:
+
+- **Same Y (patch releases):** add a bullet under the current `[X.Y]` block listing the change
+- **Y increments (new minor release):** compress the previous `[X.Y]` patch list into a single summary line, then open a new `[X.Y+1]` section
+- **X increments (new major release):** compress all prior `[X.Y]` summaries into a `[X.x]` block, then open `[X+1.0]`
+
+Version numbering guidance:
+- **Patch (Z):** bug fixes, test additions, copy/style tweaks that don't add or remove behavior
+- **Minor (Y):** new features, new views/components, significant refactors, new tooling
+- **Major (X):** breaking changes, major architectural overhauls, stack replacements
+
+### When to update `CLAUDE.md`
+
+- A new exported function is added to `GuidedTyper.jsx` — update the Exported Test Helpers table
+- A new data file, util, component, or view is added — update the relevant Key Files table
+- A new `localStorage` key is introduced — update the localStorage Keys table
+- A new convention is established — add to Core Conventions
+- A new common pitfall is discovered — add to Common Pitfalls
+- The TDD checklist or test file list changes
