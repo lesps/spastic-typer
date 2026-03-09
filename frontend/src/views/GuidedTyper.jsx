@@ -517,20 +517,28 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   if (phase === 'enn' && ennSeq.length > 0) {
     const q = ennSeq[qi];
     return (
-      <div style={S.page}><div style={S.container}>
-        <ProgressBar current={qi + 1} total={ennSeq.length} />
-        <div style={{ ...S.card, marginTop: 20 }}>
-          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
-          <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
-          <LikertScale value={answers[qi]} onChange={handleEnnAnswer} />
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+      <div style={S.page} className="qpage">
+        <div style={S.container}>
+          <ProgressBar current={qi + 1} total={ennSeq.length} />
+        </div>
+        <div className="qbody">
+          <div style={S.container}>
+            <div style={S.card} className="qcard">
+              <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
+              <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
+              <LikertScale value={answers[qi]} onChange={handleEnnAnswer} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
+              <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+            </div>
           </div>
         </div>
-        {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
-        <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Cancel</button>
-      </div></div>
+      </div>
     );
   }
 
@@ -540,28 +548,36 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const q = questions[qi];
     const [t1, t2] = disambigPair.split('-').map(Number);
     return (
-      <div style={S.page}><div style={S.container}>
-        <ProgressBar current={qi + 1} total={questions.length} />
-        <div style={{ textAlign: 'center', marginBottom: 16 }}>
-          <h3 style={S.h3}>Clarifying Questions</h3>
-          <p style={{ ...S.body, fontSize: 13 }}>Your top results for Type {t1} and Type {t2} are very close. These questions help distinguish them.</p>
+      <div style={S.page} className="qpage">
+        <div style={S.container}>
+          <ProgressBar current={qi + 1} total={questions.length} />
         </div>
-        <div style={S.card}>
-          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1} of {questions.length}</p>
-          <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
-          <LikertScale value={branchAnswers[qi]} onChange={handleDisambigAnswer} />
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+        <div className="qbody">
+          <div style={S.container}>
+            <div style={{ textAlign: 'center', marginBottom: 16 }}>
+              <h3 style={S.h3}>Clarifying Questions</h3>
+              <p style={{ ...S.body, fontSize: 13 }}>Your top results for Type {t1} and Type {t2} are very close. These questions help distinguish them.</p>
+            </div>
+            <div style={S.card} className="qcard">
+              <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1} of {questions.length}</p>
+              <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
+              <LikertScale value={branchAnswers[qi]} onChange={handleDisambigAnswer} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
+              <button onClick={() => {
+                const r = scoreEnneagram(answers, ennSeq, branchAnswers, disambigPair);
+                const backup = { ...r, exportedAt: new Date().toISOString() };
+                writeLS(LS.enn, backup); setSaved(s => ({ ...s, enn: backup })); setResult(r); setPhase('enn-result');
+              }} style={{ ...S.btnOutline, marginTop: 8 }}>Skip →</button>
+            </div>
           </div>
         </div>
-        {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
-        <button onClick={() => {
-          const r = scoreEnneagram(answers, ennSeq, branchAnswers, disambigPair);
-          const backup = { ...r, exportedAt: new Date().toISOString() };
-          writeLS(LS.enn, backup); setSaved(s => ({ ...s, enn: backup })); setResult(r); setPhase('enn-result');
-        }} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Skip →</button>
-      </div></div>
+      </div>
     );
   }
 
@@ -610,24 +626,32 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   if (phase === 'instinct' && instSeq.length > 0) {
     const q = instSeq[qi];
     return (
-      <div style={S.page}><div style={S.container}>
-        <ProgressBar current={qi + 1} total={instSeq.length} />
-        <div style={{ textAlign: 'center', marginBottom: 16 }}>
-          <h3 style={S.h3}>Instinct Stack Assessment</h3>
-          <p style={{ ...S.body, fontSize: 13 }}>Rate each statement — the assessment ends when your drive ordering becomes clear.</p>
+      <div style={S.page} className="qpage">
+        <div style={S.container}>
+          <ProgressBar current={qi + 1} total={instSeq.length} />
         </div>
-        <div style={S.card}>
-          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
-          <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
-          <LikertScale value={instAnswers[qi]} onChange={handleInstAloneAnswer} />
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+        <div className="qbody">
+          <div style={S.container}>
+            <div style={{ textAlign: 'center', marginBottom: 16 }}>
+              <h3 style={S.h3}>Instinct Stack Assessment</h3>
+              <p style={{ ...S.body, fontSize: 13 }}>Rate each statement — the assessment ends when your drive ordering becomes clear.</p>
+            </div>
+            <div style={S.card} className="qcard">
+              <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
+              <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
+              <LikertScale value={instAnswers[qi]} onChange={handleInstAloneAnswer} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
+              <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+            </div>
           </div>
         </div>
-        {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
-        <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Cancel</button>
-      </div></div>
+      </div>
     );
   }
 
@@ -676,20 +700,28 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   if (phase === 'mbti' && mbtiSeq.length > 0) {
     const q = mbtiSeq[qi];
     return (
-      <div style={S.page}><div style={S.container}>
-        <ProgressBar current={qi + 1} total={mbtiSeq.length} />
-        <div style={{ ...S.card, marginTop: 12 }}>
-          <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
-          <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
-          <LikertScale value={mbtiAnswers[qi]} onChange={handleMBTIAnswer} />
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
-            <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+      <div style={S.page} className="qpage">
+        <div style={S.container}>
+          <ProgressBar current={qi + 1} total={mbtiSeq.length} />
+        </div>
+        <div className="qbody">
+          <div style={S.container}>
+            <div style={S.card} className="qcard">
+              <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
+              <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
+              <LikertScale value={mbtiAnswers[qi]} onChange={handleMBTIAnswer} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
+              <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+            </div>
           </div>
         </div>
-        {qi > 0 && <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>}
-        <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, float: 'right' }}>Cancel</button>
-      </div></div>
+      </div>
     );
   }
 
