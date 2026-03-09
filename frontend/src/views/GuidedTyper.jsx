@@ -4,6 +4,7 @@ import { S } from '../styles/styles.js';
 import { ENN_TYPES, ENN_BANK, INSTINCT_BANK, WING_DESC, ENN_DISAMBIG } from '../data/enneagram.js';
 import { MBTI_BANK, MBTI_TYPES } from '../data/mbti.js';
 import LikertScale from '../components/LikertScale.jsx';
+import ProgressBar from '../components/ProgressBar.jsx';
 import FnBadge from '../components/FnBadge.jsx';
 import ExportModal from '../components/ExportModal.jsx';
 import { generateExportMarkdown } from '../utils/export.js';
@@ -215,6 +216,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     inst: readLS(LS.inst),
   }));
   const [confirmClear, setConfirmClear] = useState(false);
+  const [confirmCancel, setConfirmCancel] = useState(false);
 
   // --- Quiz progress tracking ---
   useEffect(() => {
@@ -350,7 +352,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   const reset = () => {
     setPhase('choose'); setQi(0); setAnswers({}); setInstAnswers({}); setMbtiAnswers({});
     setBranchAnswers({}); setDisambigPair(null); setResult(null); setExportData(null);
-    setMbtiSeq([]); setEnnSeq([]); setInstSeq([]);
+    setMbtiSeq([]); setEnnSeq([]); setInstSeq([]); setConfirmCancel(false);
   };
   const retakeEnn = () => {
     clearLS(LS.enn); setSaved(s => ({ ...s, enn: null }));
@@ -622,9 +624,16 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
               </div>
             </div>
+            <ProgressBar current={qi + 1} total={ennSeq.length} />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
-              <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+              {!confirmCancel
+                ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+                : <div style={{ display: 'flex', gap: 8 }}>
+                    <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                  </div>
+              }
             </div>
           </div>
         </div>
@@ -654,6 +663,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
               </div>
             </div>
+            <ProgressBar current={qi + 1} total={questions.length} />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
               <button onClick={() => {
@@ -736,9 +746,16 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
               </div>
             </div>
+            <ProgressBar current={qi + 1} total={instSeq.length} />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
-              <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+              {!confirmCancel
+                ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+                : <div style={{ display: 'flex', gap: 8 }}>
+                    <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                  </div>
+              }
             </div>
           </div>
         </div>
@@ -810,9 +827,16 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
               </div>
             </div>
+            <ProgressBar current={qi + 1} total={mbtiSeq.length} />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
-              <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+              {!confirmCancel
+                ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+                : <div style={{ display: 'flex', gap: 8 }}>
+                    <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                  </div>
+              }
             </div>
           </div>
         </div>
