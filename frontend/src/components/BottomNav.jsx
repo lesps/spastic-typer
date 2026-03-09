@@ -10,7 +10,7 @@ const NAV_ITEMS = [
 export default function BottomNav({ view, setView }) {
   return (
     <div style={{
-      position: 'fixed', bottom: 12, left: '50%', transform: 'translateX(-50%)',
+      position: 'fixed', bottom: 'calc(12px + env(safe-area-inset-bottom))', left: '50%', transform: 'translateX(-50%)',
       display: 'flex', gap: 4, background: G.bg2,
       border: `1px solid ${G.border}`, borderRadius: 20,
       padding: '6px 8px', maxWidth: 'calc(100vw - 24px)',
