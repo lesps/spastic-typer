@@ -1,58 +1,48 @@
-// Each question is a statement rated 1 (Very unlike me) → 5 (Very much like me).
-// pole: the MBTI letter favored by high agreement (5 = strongly that pole).
-// All 5 questions per dimension use the same pole (E, S, T, J) for symmetric scoring.
-export const MBTI_QUESTIONS = [
-  // EI — pole: 'E' (high = Extrovert)
+// MBTI_BANK: 8 questions per dimension (32 total).
+// All questions per dimension share the same pole (E, S, T, J).
+// High agreement (+3) favors the pole letter; low agreement (-3) favors the opposite.
+// Used by the adaptive quiz: questions are shuffled and drawn fairly across dimensions.
+export const MBTI_BANK = [
+  // --- EI: pole 'E' (agree = Extrovert) ---
   { text: 'I feel naturally energized after spending time in social settings or groups.', dim: 'EI', pole: 'E' },
   { text: 'I prefer to talk through my ideas out loud before I fully form them internally.', dim: 'EI', pole: 'E' },
   { text: 'I tend to have a wide circle of friends and enjoy getting to know many people.', dim: 'EI', pole: 'E' },
   { text: 'I am comfortable being the center of attention and generally do not mind it.', dim: 'EI', pole: 'E' },
   { text: 'I process my experiences most effectively by discussing them with others.', dim: 'EI', pole: 'E' },
-  // SN — pole: 'S' (high = Sensor)
+  { text: 'When I have a completely free afternoon with no obligations, my first impulse is to spend it with people or go somewhere social.', dim: 'EI', pole: 'E' },
+  { text: 'After a long social event, I feel recharged and ready for more — not drained or in need of alone time.', dim: 'EI', pole: 'E' },
+  { text: 'I figure out what I think and feel primarily through talking and interacting with others, not by reflecting privately.', dim: 'EI', pole: 'E' },
+
+  // --- SN: pole 'S' (agree = Sensor) ---
   { text: 'I focus best on concrete facts and what is actually happening in the present moment.', dim: 'SN', pole: 'S' },
   { text: 'I trust direct experience and proven methods more than theoretical possibilities.', dim: 'SN', pole: 'S' },
   { text: 'I prefer clear, step-by-step instructions over high-level conceptual frameworks.', dim: 'SN', pole: 'S' },
   { text: 'I tend to describe things literally and in concrete, specific terms.', dim: 'SN', pole: 'S' },
   { text: 'I am more interested in what is real and practical than in speculation or hypotheticals.', dim: 'SN', pole: 'S' },
-  // TF — pole: 'T' (high = Thinker)
+  { text: 'When starting a new task, I prefer detailed, concrete instructions over a high-level conceptual overview.', dim: 'SN', pole: 'S' },
+  { text: 'I trust observable facts and direct hands-on experience far more than intuitive hunches or abstract impressions.', dim: 'SN', pole: 'S' },
+  { text: 'I would rather refine and perfect an existing, proven approach than experiment with an untested creative one.', dim: 'SN', pole: 'S' },
+
+  // --- TF: pole 'T' (agree = Thinker) ---
   { text: 'I make decisions primarily based on logic and objective analysis.', dim: 'TF', pole: 'T' },
   { text: 'I believe honesty and accuracy matter more than softening the truth to spare feelings.', dim: 'TF', pole: 'T' },
   { text: 'I am most energized by analytical or technical problem-solving.', dim: 'TF', pole: 'T' },
   { text: 'I tend to notice logical inconsistencies before I notice interpersonal tension.', dim: 'TF', pole: 'T' },
   { text: 'I believe fairness means applying consistent principles equally to everyone.', dim: 'TF', pole: 'T' },
-  // JP — pole: 'J' (high = Judger)
+  { text: 'When someone asks for my input on a problem, my first instinct is to give clear logical analysis rather than emotional support.', dim: 'TF', pole: 'T' },
+  { text: 'I find it relatively easy to give honest critical feedback, even knowing the person worked hard on what I am critiquing.', dim: 'TF', pole: 'T' },
+  { text: 'If a decision is logically correct, I am comfortable with it even if it causes discomfort to some people involved.', dim: 'TF', pole: 'T' },
+
+  // --- JP: pole 'J' (agree = Judger) ---
   { text: 'I prefer to have plans settled in advance and feel uncomfortable when things are unresolved.', dim: 'JP', pole: 'J' },
   { text: 'I feel more comfortable and productive with structure, schedules, and clear expectations.', dim: 'JP', pole: 'J' },
   { text: 'I prefer to complete one project fully before starting another.', dim: 'JP', pole: 'J' },
   { text: 'I feel stressed when things are left open-ended or up in the air.', dim: 'JP', pole: 'J' },
   { text: 'I prefer to make decisions quickly and move to action rather than gather more information.', dim: 'JP', pole: 'J' },
+  { text: 'I feel most comfortable when I know the plan for the day or week in advance and can rely on it not changing.', dim: 'JP', pole: 'J' },
+  { text: 'I feel relief — not disappointment — when a decision gets made and the uncertainty is behind me.', dim: 'JP', pole: 'J' },
+  { text: 'When working on a project, I feel most satisfied making steady, linear progress toward a clearly defined finish line.', dim: 'JP', pole: 'J' },
 ];
-
-// Targeted disambiguation questions triggered when a dimension result is too close to call.
-// Threshold: |posScore - negScore| <= 6 (within ~1-2 questions of neutral on a 5-point Likert scale).
-// Same format as MBTI_QUESTIONS. All questions favor the same pole as the base questions.
-export const MBTI_DISAMBIG = {
-  EI: [
-    { text: 'When I have a completely free afternoon with no obligations, my first impulse is to spend it with people or go somewhere social.', dim: 'EI', pole: 'E' },
-    { text: 'After a long social event, I feel recharged and ready for more — not drained or in need of alone time.', dim: 'EI', pole: 'E' },
-    { text: 'I figure out what I think and feel primarily through talking and interacting with others, not by reflecting privately.', dim: 'EI', pole: 'E' },
-  ],
-  SN: [
-    { text: 'When starting a new task, I prefer detailed, concrete instructions over a high-level conceptual overview.', dim: 'SN', pole: 'S' },
-    { text: 'I trust observable facts and direct hands-on experience far more than intuitive hunches or abstract impressions.', dim: 'SN', pole: 'S' },
-    { text: 'I would rather refine and perfect an existing, proven approach than experiment with an untested creative one.', dim: 'SN', pole: 'S' },
-  ],
-  TF: [
-    { text: 'When someone asks for my input on a problem, my first instinct is to give clear logical analysis rather than emotional support.', dim: 'TF', pole: 'T' },
-    { text: 'I find it relatively easy to give honest critical feedback, even knowing the person worked hard on what I am critiquing.', dim: 'TF', pole: 'T' },
-    { text: 'If a decision is logically correct, I am comfortable with it even if it causes discomfort to some people involved.', dim: 'TF', pole: 'T' },
-  ],
-  JP: [
-    { text: 'I feel most comfortable when I know the plan for the day or week in advance and can rely on it not changing.', dim: 'JP', pole: 'J' },
-    { text: 'I feel relief — not disappointment — when a decision gets made and the uncertainty is behind me.', dim: 'JP', pole: 'J' },
-    { text: 'When working on a project, I feel most satisfied making steady, linear progress toward a clearly defined finish line.', dim: 'JP', pole: 'J' },
-  ],
-};
 
 export const MBTI_TYPES = {
   INTJ: { name: 'The Architect', stack: ['Ni', 'Te', 'Fi', 'Se'], desc: 'Strategic, independent, and determined. INTJs are driven by their vision of the future and have a natural talent for turning insights into long-range plans. They are blunt, knowledgeable, and competent — private individuals who apply logic and reason to their drive for self-improvement.', ennCorr: '1, 5, 3' },
