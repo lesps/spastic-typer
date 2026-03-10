@@ -58,6 +58,8 @@ function ennKey(c1, c2) {
 function mbtiKey(t1, t2) { return [t1, t2].sort().join('-'); }
 function stackKey(sA, sB) { return [sA.join('/'), sB.join('/')].sort().join('|'); }
 
+function readLS(key) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; } }
+
 // --- PersonEditor: defined at module scope to prevent remount on parent re-render ---
 function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, onDone }) {
   const [mode, setMode] = useState('code');
@@ -68,6 +70,25 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
   const [codeError, setCodeError] = useState('');
   const [instOrder, setInstOrder] = useState(person.instinctStack || ['sp', 'sx', 'so']);
   const [includeInstinct, setIncludeInstinct] = useState(true);
+
+  // Own profile from localStorage (for "Add My Profile" shortcut)
+  const myEnn = readLS('typer_enn');
+  const myMbti = readLS('typer_mbti');
+  const myInst = readLS('typer_inst');
+  const hasOwnProfile = !!(myEnn?.coreType && myMbti?.result && myInst?.instinctStack);
+
+  const handleAddMyProfile = () => {
+    setInstOrder(myInst.instinctStack);
+    updatePerson(idx, p => ({
+      ...p, label,
+      ennType: myEnn.coreType,
+      ennWing: myEnn.wing,
+      ennWingStrength: myEnn.wingStrengthDelta,
+      instinctStack: myInst.instinctStack,
+      mbti: myMbti.result,
+      ennScores: null,
+    }));
+  };
 
   const adj1 = person.ennType ? (person.ennType === 1 ? 9 : person.ennType - 1) : null;
   const adj2 = person.ennType ? (person.ennType === 9 ? 1 : person.ennType + 1) : null;
@@ -102,6 +123,8 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
     setCodeError('');
     const decoded = decodeProfileCode(codeInput.trim());
     if (!decoded) { setCodeError('Invalid code — check for typos.'); return; }
+    setInstOrder(decoded.enn.instinctStack);
+    setCodeInput('');
     updatePerson(idx, p => ({
       ...p, label,
       ennType: decoded.enn.coreType,
@@ -148,6 +171,14 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
       {mode === 'code' && (
         <div>
           <p style={{ ...S.body, fontSize: 13, marginBottom: 10 }}>Enter an 11-character profile code (e.g. 453xpo-INFP) shared from someone's Typer tab.</p>
+          {hasOwnProfile && (
+            <button
+              onClick={handleAddMyProfile}
+              style={{ ...S.btnOutline, width: '100%', marginBottom: 10, fontSize: 13, padding: '10px 16px' }}
+            >
+              + Add My Profile
+            </button>
+          )}
           <div style={{ display: 'flex', gap: 8 }}>
             <input style={{ ...S.input, fontSize: 13, flex: 1 }} value={codeInput} onChange={e => setCodeInput(e.target.value)} placeholder="e.g. 453xpo-INFP" maxLength={11} onKeyDown={e => e.key === 'Enter' && handleLoadByCode()} />
             <button onClick={handleLoadByCode} style={{ ...S.btn, padding: '10px 16px', fontSize: 13 }}>Load</button>
@@ -305,7 +336,7 @@ export default function ComparePage() {
   }, [persons]);
 
   const addPerson = () => {
-    if (persons.length >= 6) return;
+    if (persons.length >= 12) return;
     setPersons(prev => [...prev, emptyPerson(prev.length + 1)]);
   };
 
@@ -503,7 +534,7 @@ export default function ComparePage() {
     <div style={S.page}><div style={S.container}>
       <div style={{ textAlign: 'center', marginTop: 20, marginBottom: 20 }}>
         <h1 style={S.h1}>Compare</h1>
-        <p style={S.body}>Pairwise and group dynamics for 2–6 people</p>
+        <p style={S.body}>Pairwise and group dynamics for 2–12 people</p>
       </div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16, alignItems: 'center' }}>
         {persons.map((p, i) => {
@@ -521,7 +552,7 @@ export default function ComparePage() {
             </button>
           );
         })}
-        {persons.length < 6 && editing === null && (
+        {persons.length < 12 && editing === null && (
           <button onClick={addPerson} style={{ width: 32, height: 32, borderRadius: '50%', border: `1px solid ${G.border}`, background: G.bg3, color: G.textDim, fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>+</button>
         )}
         {editing === null && readyCount >= 1 && (
