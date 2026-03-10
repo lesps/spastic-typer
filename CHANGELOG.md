@@ -18,6 +18,16 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ## [1.1]
 
+### 1.1.1 — 2026-03-10
+
+- Fixed: code loading on Compare page corrupted the instinct stack — `handleLoadByCode` now syncs local `instOrder` state so clicking Done no longer overwrites the decoded instinct stack with the default
+- Fixed: `handleLoadCode` in GuidedTyper now trims whitespace before passing to `decodeProfileCode`, preventing false "Invalid code" errors on copy-paste with trailing space
+- Added: "Add My Profile" quick button in Compare page PersonEditor — appears in By Code mode when own profile exists in localStorage, loads all fields without needing to type a code
+- Added: person limit on Compare page raised from 6 to 12 (up to 66 pairs, fully collapsible)
+- Added: Explorer deep-link from profile card — type tags in the choose-screen profile card are now clickable buttons that navigate to the specific type detail page in Explorer; "Learn more on the Explorer tab →" buttons on quiz result screens now jump directly to the relevant type entry
+- Added: rich profile card synthesis section — when all three assessments are complete, the profile card expands to show Strengths, Challenges, System Interactions (center/function harmony, instinct/MBTI note, conflict style), and Growth Edge, all derived from the combined Enneagram + MBTI + Instinct data
+- Added: `localStorage.clear()` to compare-page test beforeEach to prevent state leakage between tests; added 16 new tests covering all five changes
+
 ### 1.1.0 — 2026-03-09
 
 - Added: comprehensive README documenting all features, architecture, data flow, and development process

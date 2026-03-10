@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import GuidedTyper from '../views/GuidedTyper.jsx';
 
@@ -608,5 +609,106 @@ describe('session persistence — mid-quiz navigation recovery', () => {
     // Result/choose phases are not active — should fall back to choose screen
     expect(screen.getByText('Guided Typer')).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /^cancel$/i })).not.toBeInTheDocument();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Rich profile card
+// ---------------------------------------------------------------------------
+
+const ALL_THREE_LS = () => {
+  localStorage.setItem('typer_enn', JSON.stringify({
+    coreType: 4, wing: 5, wingStrengthDelta: 3, instinctStack: ['sx', 'sp', 'so'],
+    display: '4w5', scores: { 1: 0, 2: 0, 3: 0, 4: 10, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 },
+  }));
+  localStorage.setItem('typer_mbti', JSON.stringify({
+    result: 'INFP', scores: { E: 2, I: 8, S: 3, N: 7, T: 4, F: 6, J: 3, P: 7 },
+  }));
+  localStorage.setItem('typer_inst', JSON.stringify({
+    instinctStack: ['sx', 'sp', 'so'], instScores: { sx: 5, sp: 3, so: 1 },
+  }));
+};
+
+describe('GuidedTyper — rich profile card', () => {
+  it('shows Strengths section when all 3 assessments are complete', () => {
+    ALL_THREE_LS();
+    render(<GuidedTyper />);
+    expect(screen.getByText(/^Strengths$/i)).toBeInTheDocument();
+  });
+
+  it('shows Challenges section when all 3 assessments are complete', () => {
+    ALL_THREE_LS();
+    render(<GuidedTyper />);
+    expect(screen.getByText(/^Challenges$/i)).toBeInTheDocument();
+  });
+
+  it('shows System Interactions section when all 3 assessments are complete', () => {
+    ALL_THREE_LS();
+    render(<GuidedTyper />);
+    expect(screen.getByText(/system interactions/i)).toBeInTheDocument();
+  });
+
+  it('shows Growth Edge section when all 3 assessments are complete', () => {
+    ALL_THREE_LS();
+    render(<GuidedTyper />);
+    expect(screen.getByText(/growth edge/i)).toBeInTheDocument();
+  });
+
+  it('does not show synthesis sections when fewer than 3 assessments are complete', () => {
+    localStorage.setItem('typer_enn', JSON.stringify({
+      coreType: 4, wing: 5, wingStrengthDelta: 3, instinctStack: ['sx', 'sp', 'so'],
+      display: '4w5', scores: {},
+    }));
+    localStorage.setItem('typer_mbti', JSON.stringify({ result: 'INFP', scores: {} }));
+    // Missing typer_inst
+    render(<GuidedTyper />);
+    expect(screen.queryByText(/^Strengths$/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/^Challenges$/i)).not.toBeInTheDocument();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Explorer deep-link
+// ---------------------------------------------------------------------------
+
+describe('GuidedTyper — explorer deep-link from profile card', () => {
+  it('deep-links to the enneagram type when Explore Enneagram link is clicked', async () => {
+    ALL_THREE_LS();
+    const mockSetView = vi.fn();
+    const mockSetExplorerTab = vi.fn();
+    const mockSetExplorerSel = vi.fn();
+    const user = userEvent.setup();
+
+    render(<GuidedTyper
+      setView={mockSetView}
+      setExplorerTab={mockSetExplorerTab}
+      setExplorerSel={mockSetExplorerSel}
+    />);
+
+    await user.click(screen.getByRole('button', { name: /explore.*enneagram/i }));
+
+    expect(mockSetExplorerTab).toHaveBeenCalledWith('enneagram');
+    expect(mockSetExplorerSel).toHaveBeenCalledWith(4);
+    expect(mockSetView).toHaveBeenCalledWith('explorer');
+  });
+
+  it('deep-links to the MBTI type when Explore MBTI link is clicked', async () => {
+    ALL_THREE_LS();
+    const mockSetView = vi.fn();
+    const mockSetExplorerTab = vi.fn();
+    const mockSetExplorerSel = vi.fn();
+    const user = userEvent.setup();
+
+    render(<GuidedTyper
+      setView={mockSetView}
+      setExplorerTab={mockSetExplorerTab}
+      setExplorerSel={mockSetExplorerSel}
+    />);
+
+    await user.click(screen.getByRole('button', { name: /explore.*mbti/i }));
+
+    expect(mockSetExplorerTab).toHaveBeenCalledWith('mbti');
+    expect(mockSetExplorerSel).toHaveBeenCalledWith('INFP');
+    expect(mockSetView).toHaveBeenCalledWith('explorer');
   });
 });

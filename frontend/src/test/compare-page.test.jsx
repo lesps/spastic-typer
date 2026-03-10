@@ -4,6 +4,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import ComparePage from '../views/ComparePage.jsx';
 
 beforeEach(() => {
+  localStorage.clear();
   // Reset URL hash so ComparePage initializes with empty persons
   window.location.hash = '';
 });
@@ -196,5 +197,104 @@ describe('ComparePage — add and remove persons', () => {
     await user.click(screen.getByRole('button', { name: '+' }));
     await user.click(screen.getByText('Person 3'));
     expect(screen.getByRole('button', { name: /remove/i })).toBeInTheDocument();
+  });
+});
+
+describe('ComparePage — person limit raised to 12', () => {
+  it('allows adding a 7th person (limit was previously 6)', async () => {
+    const user = userEvent.setup();
+    render(<ComparePage />);
+
+    for (let i = 0; i < 5; i++) {
+      await user.click(screen.getByRole('button', { name: '+' }));
+    }
+    expect(screen.getByText('Person 7')).toBeInTheDocument();
+  });
+
+  it('hides + button after reaching 12 people', async () => {
+    const user = userEvent.setup();
+    render(<ComparePage />);
+
+    for (let i = 0; i < 10; i++) {
+      await user.click(screen.getByRole('button', { name: '+' }));
+    }
+    expect(screen.getByText('Person 12')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '+' })).not.toBeInTheDocument();
+  });
+});
+
+describe('ComparePage — code loading instinct stack fix', () => {
+  it('preserves decoded instinct stack after clicking Done', async () => {
+    const user = userEvent.setup();
+    render(<ComparePage />);
+
+    await user.click(screen.getByText('Person 1'));
+    const input = screen.getByPlaceholderText('e.g. 453xpo-INFP');
+    await user.type(input, '453xpo-INFP'); // decodes to SX/SP/SO
+    await user.click(screen.getByRole('button', { name: 'Load' }));
+
+    // Loaded preview should show SX/SP/SO
+    expect(screen.getByText(/SX\/SP\/SO/)).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: /done/i }));
+
+    // Re-open editor — the loaded section should still reflect SX/SP/SO
+    const chipButton = screen.getAllByRole('button').find(b =>
+      b.textContent.includes('Person 1')
+    );
+    await user.click(chipButton);
+
+    // In code mode, Loaded: section should preserve SX/SP/SO (not default SP/SX/SO)
+    expect(screen.getByText(/SX\/SP\/SO/)).toBeInTheDocument();
+  });
+});
+
+describe('ComparePage — Add My Profile button', () => {
+  it('shows Add My Profile button in code mode when own profile is in localStorage', async () => {
+    localStorage.setItem('typer_enn', JSON.stringify({
+      coreType: 4, wing: 5, wingStrengthDelta: 3, instinctStack: ['sx', 'sp', 'so'],
+      display: '4w5', scores: {},
+    }));
+    localStorage.setItem('typer_mbti', JSON.stringify({ result: 'INFP', scores: {} }));
+    localStorage.setItem('typer_inst', JSON.stringify({ instinctStack: ['sx', 'sp', 'so'], instScores: {} }));
+
+    const user = userEvent.setup();
+    render(<ComparePage />);
+
+    await user.click(screen.getByText('Person 1'));
+    expect(screen.getByRole('button', { name: /add my profile/i })).toBeInTheDocument();
+  });
+
+  it('does not show Add My Profile button when own profile is incomplete', async () => {
+    localStorage.setItem('typer_enn', JSON.stringify({
+      coreType: 4, wing: 5, wingStrengthDelta: 3, instinctStack: ['sx', 'sp', 'so'],
+      display: '4w5', scores: {},
+    }));
+    // Missing typer_mbti and typer_inst
+
+    const user = userEvent.setup();
+    render(<ComparePage />);
+
+    await user.click(screen.getByText('Person 1'));
+    expect(screen.queryByRole('button', { name: /add my profile/i })).not.toBeInTheDocument();
+  });
+
+  it('loads own profile and preserves instinct stack when Add My Profile is clicked', async () => {
+    localStorage.setItem('typer_enn', JSON.stringify({
+      coreType: 4, wing: 5, wingStrengthDelta: 3, instinctStack: ['sx', 'sp', 'so'],
+      display: '4w5', scores: {},
+    }));
+    localStorage.setItem('typer_mbti', JSON.stringify({ result: 'INFP', scores: {} }));
+    localStorage.setItem('typer_inst', JSON.stringify({ instinctStack: ['sx', 'sp', 'so'], instScores: {} }));
+
+    const user = userEvent.setup();
+    render(<ComparePage />);
+
+    await user.click(screen.getByText('Person 1'));
+    await user.click(screen.getByRole('button', { name: /add my profile/i }));
+
+    // Loaded preview should show 4w5 and SX/SP/SO
+    expect(screen.getByText(/4w5.*SX\/SP\/SO/)).toBeInTheDocument();
+    expect(screen.getByText('INFP')).toBeInTheDocument();
   });
 });

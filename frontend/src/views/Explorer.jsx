@@ -21,9 +21,9 @@ const TABS = [
   { key: 'integration', label: 'Integration' },
 ];
 
-export default function Explorer({ initialTab = 'enneagram' }) {
+export default function Explorer({ initialTab = 'enneagram', initialSel = null }) {
   const [tab, setTab] = useState(initialTab);
-  const [sel, setSel] = useState(null);
+  const [sel, setSel] = useState(initialSel);
 
   // ── Enneagram detail ──────────────────────────────────────────────────────
   if (sel && tab === 'enneagram') {
