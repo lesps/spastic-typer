@@ -368,7 +368,8 @@ export default function ComparePage() {
   const hasResults = readyCount >= 2;
   // Group overview is only meaningful for 3+ people — pairwise analysis covers the 2-person case fully.
   const completedPersons = persons.filter(isPersonComplete);
-  const groupInsights = readyCount >= 3 ? analyzeGroup(completedPersons) : [];
+  const { ennInsights = [], mbtiInsights = [], instinctInsights = [] } = readyCount >= 3 ? analyzeGroup(completedPersons) : {};
+  const hasGroupInsights = ennInsights.length > 0 || mbtiInsights.length > 0 || instinctInsights.length > 0;
   const teamArchetype = readyCount >= 3 ? getTeamArchetype(completedPersons) : null;
   const centerDist = readyCount >= 3 ? getCenterDistribution(completedPersons) : null;
   const harmonicDist = readyCount >= 3 ? getHarmonicDistribution(completedPersons) : null;
@@ -735,7 +736,7 @@ export default function ComparePage() {
       )}
       {editing === null && hasResults && (
         <>
-          {groupInsights.length > 0 && (
+          {hasGroupInsights && (
             <>
               <h2 style={{ ...S.h2, marginBottom: 12 }}>Group Overview</h2>
 
@@ -750,16 +751,49 @@ export default function ComparePage() {
                 </div>
               )}
 
-              {/* Pattern insights from analyzeGroup */}
-              {groupInsights.map((ins, i) => (
-                <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: ins.color || G.gold, borderLeftStyle: 'solid' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                    <span style={{ fontSize: 16, color: ins.color || G.gold }}>{ins.icon}</span>
-                    <h3 style={{ ...S.h3, marginBottom: 0 }}>{ins.label}</h3>
-                  </div>
-                  <p style={S.body}>{ins.desc}</p>
-                </div>
-              ))}
+              {/* Pattern insights from analyzeGroup — split by system */}
+              {ennInsights.length > 0 && (
+                <>
+                  <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, letterSpacing: 1, marginBottom: 8, marginTop: 4 }}>ENNEAGRAM</p>
+                  {ennInsights.map((ins, i) => (
+                    <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: ins.color || G.gold, borderLeftStyle: 'solid' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                        <span style={{ fontSize: 16, color: ins.color || G.gold }}>{ins.icon}</span>
+                        <h3 style={{ ...S.h3, marginBottom: 0 }}>{ins.label}</h3>
+                      </div>
+                      <p style={S.body}>{ins.desc}</p>
+                    </div>
+                  ))}
+                </>
+              )}
+              {instinctInsights.length > 0 && (
+                <>
+                  <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, letterSpacing: 1, marginBottom: 8, marginTop: ennInsights.length > 0 ? 16 : 4 }}>INSTINCT STACK</p>
+                  {instinctInsights.map((ins, i) => (
+                    <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: ins.color || G.gold, borderLeftStyle: 'solid' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                        <span style={{ fontSize: 16, color: ins.color || G.gold }}>{ins.icon}</span>
+                        <h3 style={{ ...S.h3, marginBottom: 0 }}>{ins.label}</h3>
+                      </div>
+                      <p style={S.body}>{ins.desc}</p>
+                    </div>
+                  ))}
+                </>
+              )}
+              {mbtiInsights.length > 0 && (
+                <>
+                  <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, letterSpacing: 1, marginBottom: 8, marginTop: (ennInsights.length > 0 || instinctInsights.length > 0) ? 16 : 4 }}>MBTI</p>
+                  {mbtiInsights.map((ins, i) => (
+                    <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: ins.color || G.gold, borderLeftStyle: 'solid' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                        <span style={{ fontSize: 16, color: ins.color || G.gold }}>{ins.icon}</span>
+                        <h3 style={{ ...S.h3, marginBottom: 0 }}>{ins.label}</h3>
+                      </div>
+                      <p style={S.body}>{ins.desc}</p>
+                    </div>
+                  ))}
+                </>
+              )}
 
               {/* Enneagram Center Distribution */}
               {centerDist && (

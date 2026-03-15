@@ -18,6 +18,10 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ## [1.2]
 
+### 1.2.1 — 2026-03-15
+
+- Fixed: Group Overview pattern insights now split into three labeled subsections (ENNEAGRAM / INSTINCT STACK / MBTI) instead of a flat mixed list, eliminating confusion from shared "thinking/feeling" vocabulary across systems; instinct stack insight moved from the Enneagram block into its own section; `analyzeGroup` now returns `{ ennInsights, mbtiInsights, instinctInsights }` instead of a flat array; updated `group.test.js` to assert correct return shape and per-system routing
+
 ### 1.2.0 — 2026-03-15
 
 **Content Expansion: Compare Page Analytics, Explorer Deep-Dive Content, and 1,728 Combination Profiles**
