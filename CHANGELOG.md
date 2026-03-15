@@ -16,6 +16,27 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ---
 
+## [1.2]
+
+### 1.2.0 — 2026-03-15
+
+**Content Expansion: Compare Page Analytics, Explorer Deep-Dive Content, and 1,728 Combination Profiles**
+
+- Added: 10 new static data files — `subtypes.js` (27 Enneagram instinct subtypes), `levels.js` (9-type levels of development), `instinctStackProfiles.js` (6 full stack ordering profiles), `instinctPairDynamics.js` (21 stack pairwise dynamics), `groupArchetypes.js` (team archetype matching), `typeInteractionGrid.js` (36 type-pair interactions), `mbtiDevelopment.js` (16-type developmental trajectories), `mbtiStressFlow.js` (16-type stress and flow profiles), `ennMbtiCorrelation.js` (9-type MBTI correlation data)
+- Added: `src/utils/compare.js` — four pairwise analytics functions: `getCommunicationMatrix`, `getGrowthStressInteraction`, `getCognitiveHarmony` (scored 0–100 with complementary function detection), `getInstinctDepthAnalysisSync`
+- Added: 7 new group analytics exports in `src/utils/group.js` — center, harmonic, Hornevian, and temperament distributions; cognitive function coverage; instinct chemistry with cohesion score; team archetype matching
+- Added: `ENN_HORNEVIAN` to `enneagram.js`; `MBTI_TEMPERAMENT` to `mbti.js`
+- Enhanced: Compare page pairwise results now include Communication Style, Growth & Stress Interaction, Cognitive Harmony Score, and Instinct Depth Analysis sections
+- Enhanced: Compare page group analysis now shows Team Archetype, Center/Harmonic/Hornevian/Temperament distribution bars, Cognitive Function Coverage, and Instinct Group Chemistry
+- Enhanced: Explorer Enneagram detail view now shows Instinct Subtypes, Levels of Development, and Type Interaction Quick Reference for every type
+- Enhanced: Explorer MBTI detail view now shows Development Trajectory (5 life stages) and Stress & Flow Profile
+- Enhanced: Explorer Instinct detail view now shows full stack profiles and pairwise dynamics for the dominant instinct
+- Enhanced: Explorer Integration tab now shows Enneagram × MBTI Correlation Matrix for all 9 types
+- Added: 1,728-combination profile system — `ennBase.js`, `mbtiModifiers.js`, `instModifiers.js`, `crossRules.js` composable layers; `scripts/generateCombinations.mjs` generator; lazy-loaded split into 18 wing-specific chunks via `src/data/combinations/`; Three-System Profile section in GuidedTyper choose screen
+- Added: 4 new test files — `subtypes.test.js`, `group-analysis.test.js`, `cognitive-harmony.test.js`, `combinations.test.js` (381 tests total)
+
+---
+
 ## [1.1]
 
 ### 1.1.1 — 2026-03-10

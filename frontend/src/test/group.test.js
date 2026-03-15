@@ -1,9 +1,18 @@
 /**
  * group.test.js
- * Unit tests for analyzeGroup — pure function, no React rendering required.
+ * Unit tests for analyzeGroup and new group analysis exports.
  */
 import { describe, it, expect } from 'vitest';
-import { analyzeGroup } from '../utils/group.js';
+import {
+  analyzeGroup,
+  getCenterDistribution,
+  getHarmonicDistribution,
+  getHornevianDistribution,
+  getTemperamentDistribution,
+  getCognitiveCoverage,
+  getInstinctGroupChemistry,
+  getTeamArchetype,
+} from '../utils/group.js';
 
 // Helpers — minimal person objects that satisfy analyzeGroup's filter predicates
 
@@ -100,5 +109,52 @@ describe('analyzeGroup — instinct group insight', () => {
     ]);
     const instInsight = result.find(r => /All (SP|SX|SO) Instinct/i.test(r.label ?? ''));
     expect(instInsight).toBeUndefined();
+  });
+});
+
+describe('new group exports — smoke tests', () => {
+  const team = [
+    makePerson(1, 'INTJ', ['sp', 'sx', 'so'], 'A'),
+    makePerson(2, 'ENFJ', ['sx', 'sp', 'so'], 'B'),
+    makePerson(5, 'INTP', ['sp', 'so', 'sx'], 'C'),
+  ];
+
+  it('getCenterDistribution exports and runs without error', () => {
+    const result = getCenterDistribution(team);
+    expect(result).toHaveProperty('dist');
+    expect(result).toHaveProperty('total');
+    expect(result.total).toBe(3);
+  });
+
+  it('getHarmonicDistribution exports and runs without error', () => {
+    const result = getHarmonicDistribution(team);
+    expect(result).toHaveProperty('dist');
+  });
+
+  it('getHornevianDistribution exports and runs without error', () => {
+    const result = getHornevianDistribution(team);
+    expect(result).toHaveProperty('dist');
+  });
+
+  it('getTemperamentDistribution exports and runs without error', () => {
+    const result = getTemperamentDistribution(team);
+    expect(result).toHaveProperty('dist');
+  });
+
+  it('getCognitiveCoverage exports and runs without error', () => {
+    const result = getCognitiveCoverage(team);
+    expect(result).toHaveProperty('wellCovered');
+    expect(result).toHaveProperty('underrepresented');
+  });
+
+  it('getInstinctGroupChemistry exports and runs without error', () => {
+    const result = getInstinctGroupChemistry(team);
+    expect(result).toHaveProperty('cohesionScore');
+  });
+
+  it('getTeamArchetype exports and runs without error', () => {
+    const result = getTeamArchetype(team);
+    expect(result).toHaveProperty('name');
+    expect(result).toHaveProperty('description');
   });
 });

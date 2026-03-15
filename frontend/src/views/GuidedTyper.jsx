@@ -252,6 +252,17 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   }));
   const [confirmClear, setConfirmClear] = useState(false);
   const [confirmCancel, setConfirmCancel] = useState(false);
+  const [combinationProfile, setCombinationProfile] = useState(null);
+
+  // --- Load combination profile when all 3 assessments complete ---
+  useEffect(() => {
+    const { enn, mbti, inst } = saved;
+    if (!enn || !mbti || !inst) { setCombinationProfile(null); return; }
+    import('../data/combinations/index.js').then(({ getCombinationProfile: load }) => {
+      const instStackStr = (inst.instinctStack || []).map(s => s.toUpperCase()).join('/');
+      load(enn.coreType, enn.wing, mbti.result, instStackStr).then(p => setCombinationProfile(p));
+    }).catch(() => setCombinationProfile(null));
+  }, [saved.enn?.display, saved.mbti?.result, saved.inst?.instinctStack?.join()]);
 
   // --- Quiz progress tracking ---
   useEffect(() => {
@@ -651,6 +662,14 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                     {auxFnKey && <p style={itemStyle}>· Developing your {auxFnKey} ({COG_FUNCTIONS[auxFnKey]?.name}) supports this direction</p>}
                     {stress && <p style={{ ...itemStyle, color: G.textFaint }}>· Under stress, Type {stress} ({ENN_TYPES[stress]?.name}) patterns emerge — notice and return to center</p>}
                   </div>
+                  {combinationProfile && combinationProfile.inRelationships && (
+                    <div style={sectionStyle}>
+                      <p style={labelStyle}>Three-System Profile</p>
+                      {combinationProfile.inRelationships && <p style={{ ...itemStyle, marginBottom: 8 }}><strong style={{ color: G.text, fontSize: 12 }}>In relationships:</strong> {combinationProfile.inRelationships}</p>}
+                      {combinationProfile.atWork && <p style={{ ...itemStyle, marginBottom: 8 }}><strong style={{ color: G.text, fontSize: 12 }}>At work:</strong> {combinationProfile.atWork}</p>}
+                      {combinationProfile.stressBehavior && <p style={{ ...itemStyle, color: G.textFaint }}><strong style={{ color: G.textDim, fontSize: 12 }}>Under stress:</strong> {combinationProfile.stressBehavior}</p>}
+                    </div>
+                  )}
                 </div>
               );
             })()}

@@ -5,6 +5,16 @@ import { MBTI_TYPES } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
 import { ENN_TYPES, ENN_CENTER, ENN_ARROWS, WING_DESC, INSTINCT_COMPAT } from '../data/enneagram.js';
 import FnBadge from '../components/FnBadge.jsx';
+import { SUBTYPES } from '../data/subtypes.js';
+import { LEVELS } from '../data/levels.js';
+import { TYPE_INTERACTION_GRID } from '../data/typeInteractionGrid.js';
+import { MBTI_DEVELOPMENT } from '../data/mbtiDevelopment.js';
+import { MBTI_STRESS_FLOW } from '../data/mbtiStressFlow.js';
+import { MBTI_FUNCTION_DETAILS } from '../data/mbtiDetails.js';
+import { INSTINCT_STACK_PROFILES } from '../data/instinctStackProfiles.js';
+import { INSTINCT_PAIR_DYNAMICS, instinctPairKey } from '../data/instinctPairDynamics.js';
+import { ENN_MBTI_CORRELATION } from '../data/ennMbtiCorrelation.js';
+import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
 
 const INSTINCT_META = {
   sp: { label: 'Self-Preservation', desc: 'Focused on physical security, health, comfort, and resource management.' },
@@ -19,6 +29,7 @@ const TABS = [
   { key: 'mbti', label: 'MBTI' },
   { key: 'instinct', label: 'Instinct' },
   { key: 'integration', label: 'Integration' },
+  { key: 'profiles', label: 'Profiles' },
 ];
 
 export default function Explorer({ initialTab = 'enneagram', initialSel = null }) {
@@ -77,6 +88,94 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             </div>
           ))}
         </div>
+
+        {/* Subtypes */}
+        {['SP', 'SX', 'SO'].some(i => SUBTYPES[`${n}_${i}`]) && (
+          <div style={S.card}>
+            <h3 style={{ ...S.h3, marginBottom: 12 }}>Instinct Subtypes</h3>
+            <p style={{ ...S.body, fontSize: 13, marginBottom: 14, color: G.textFaint }}>Every Enneagram type expresses differently depending on the dominant instinctual drive. These subtypes often look like different types entirely.</p>
+            {['SP', 'SX', 'SO'].map(inst => {
+              const sub = SUBTYPES[`${n}_${inst}`];
+              if (!sub) return null;
+              return (
+                <div key={inst} style={{ marginBottom: 16, paddingBottom: 16, borderBottom: `1px solid ${G.border}` }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                    <span style={{ ...S.tag, background: G.goldDim, color: G.gold }}>{inst}</span>
+                    <span style={{ fontSize: 13, fontWeight: 500, color: G.text }}>{sub.name}</span>
+                    {sub.nickname && <span style={{ fontSize: 11, color: G.textFaint, fontStyle: 'italic' }}>{sub.nickname}</span>}
+                  </div>
+                  <p style={{ ...S.body, fontSize: 13, marginBottom: 8 }}>{sub.description}</p>
+                  {sub.keyTraits && (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 6 }}>
+                      {sub.keyTraits.map((t, i) => <span key={i} style={{ fontSize: 11, color: G.textDim, background: G.bg3, border: `1px solid ${G.border}`, borderRadius: 6, padding: '2px 8px' }}>{t}</span>)}
+                    </div>
+                  )}
+                  {sub.blindSpot && <p style={{ ...S.body, fontSize: 12, color: '#e88050', marginBottom: 4 }}>Blind spot: {sub.blindSpot}</p>}
+                  {sub.growthPath && <p style={{ ...S.body, fontSize: 12, color: '#50c878' }}>Growth: {sub.growthPath}</p>}
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Levels of Development */}
+        {LEVELS[n] && (
+          <div style={S.card}>
+            <h3 style={{ ...S.h3, marginBottom: 12 }}>Levels of Development</h3>
+            {[
+              { key: 'healthy', color: '#50c878', label: 'Healthy (Levels 1–3)' },
+              { key: 'average', color: G.gold, label: 'Average (Levels 4–6)' },
+              { key: 'unhealthy', color: '#e88050', label: 'Unhealthy (Levels 7–9)' },
+            ].map(({ key, color, label }) => {
+              const level = LEVELS[n][key];
+              if (!level) return null;
+              return (
+                <div key={key} style={{ marginBottom: 16, paddingBottom: 16, borderBottom: `1px solid ${G.border}` }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: color, flexShrink: 0 }} />
+                    <span style={{ fontSize: 12, color, fontFamily: "'DM Mono',monospace" }}>{label}</span>
+                    {level.title && <span style={{ fontSize: 13, fontWeight: 500, color: G.text }}>— {level.title}</span>}
+                  </div>
+                  <p style={{ ...S.body, fontSize: 13, marginBottom: 6, paddingLeft: 16 }}>{level.description}</p>
+                  {level.behaviors && (
+                    <div style={{ paddingLeft: 16 }}>
+                      {level.behaviors.map((b, i) => (
+                        <div key={i} style={{ display: 'flex', gap: 6, marginBottom: 2 }}>
+                          <span style={{ color, fontSize: 11, flexShrink: 0, marginTop: 3 }}>·</span>
+                          <p style={{ ...S.body, fontSize: 12 }}>{b}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Type Interaction Quick Reference */}
+        <div style={S.card}>
+          <h3 style={{ ...S.h3, marginBottom: 12 }}>Type {n} With Every Other Type</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {[1,2,3,4,5,6,7,8,9].filter(x => x !== n).map(other => {
+              const key = [n, other].sort().join('_');
+              const entry = TYPE_INTERACTION_GRID[key];
+              if (!entry) return null;
+              return (
+                <div key={other} style={{ display: 'flex', gap: 10, padding: '8px 10px', background: G.bg3, borderRadius: 8 }}>
+                  <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{entry.emoji || '◆'}</span>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
+                      <span style={{ ...S.mono, fontSize: 12 }}>Type {n} × {other}</span>
+                      <span style={{ fontSize: 12, color: G.gold }}>{entry.label}</span>
+                    </div>
+                    <p style={{ ...S.body, fontSize: 12 }}>{entry.quickTake}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div></div>
     );
   }
@@ -93,7 +192,76 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
           <h2 style={{ ...S.h2, marginTop: 4 }}>{meta.label}</h2>
         </div>
         <div style={S.cardGold}><p style={S.body}>{meta.desc}</p></div>
-        <h3 style={{ ...S.h3, marginTop: 24, marginBottom: 12 }}>Pairing Dynamics</h3>
+
+        {/* Stack Profiles for this dominant instinct */}
+        {(() => {
+          const domKey = sel.toUpperCase();
+          const dominantStacks = Object.keys(INSTINCT_STACK_PROFILES).filter(k => k.startsWith(domKey + '/'));
+          if (!dominantStacks.length) return null;
+          return (
+            <div style={S.card}>
+              <h3 style={{ ...S.h3, marginBottom: 12 }}>{domKey}-Dominant Stack Profiles</h3>
+              <p style={{ ...S.body, fontSize: 13, marginBottom: 14, color: G.textFaint }}>
+                The dominant drive appears in two stack orderings, depending on which secondary drive follows. Each creates a distinct expression of the same core energy.
+              </p>
+              {dominantStacks.map(stackKey => {
+                const profile = INSTINCT_STACK_PROFILES[stackKey];
+                if (!profile) return null;
+                return (
+                  <div key={stackKey} style={{ marginBottom: 18, paddingBottom: 18, borderBottom: `1px solid ${G.border}` }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                      <span style={{ ...S.mono, fontSize: 14, color: G.gold }}>{stackKey}</span>
+                      {profile.name && <span style={{ fontSize: 12, color: G.textDim, fontStyle: 'italic' }}>{profile.name}</span>}
+                    </div>
+                    {profile.coreMotivation && <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}><strong style={{ color: G.text }}>Motivation:</strong> {profile.coreMotivation}</p>}
+                    {profile.worldview && <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}><strong style={{ color: G.text }}>Worldview:</strong> {profile.worldview}</p>}
+                    {profile.inRelationships && <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}><strong style={{ color: G.text }}>In relationships:</strong> {profile.inRelationships}</p>}
+                    {profile.atWork && <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}><strong style={{ color: G.text }}>At work:</strong> {profile.atWork}</p>}
+                    {profile.blindSpot && <p style={{ ...S.body, fontSize: 12, color: '#e88050', marginBottom: 4 }}>Blind spot: {profile.blindSpot}</p>}
+                    {profile.growth && <p style={{ ...S.body, fontSize: 12, color: '#50c878' }}>Growth: {profile.growth}</p>}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })()}
+
+        {/* Pairwise Dynamics (from INSTINCT_PAIR_DYNAMICS) */}
+        {(() => {
+          const domKey = sel.toUpperCase();
+          const refStack = Object.keys(INSTINCT_STACK_PROFILES).find(k => k.startsWith(domKey + '/'));
+          if (!refStack) return null;
+          const allStacks = Object.keys(INSTINCT_STACK_PROFILES);
+          const pairEntries = allStacks.filter(s => s !== refStack).map(otherStack => {
+            const key = instinctPairKey(refStack, otherStack);
+            return { otherStack, entry: INSTINCT_PAIR_DYNAMICS[key] };
+          }).filter(x => x.entry);
+          if (!pairEntries.length) return null;
+          const chemColor = { high: '#50c878', medium: G.gold, variable: '#5090d0', low: '#e88050' };
+          return (
+            <div style={S.card}>
+              <h3 style={{ ...S.h3, marginBottom: 4 }}>Stack Pairing Dynamics</h3>
+              <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 14 }}>From the {refStack} perspective, dynamics with each other stack ordering.</p>
+              {pairEntries.map(({ otherStack, entry }) => (
+                <div key={otherStack} style={{ marginBottom: 14, paddingBottom: 14, borderBottom: `1px solid ${G.border}` }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                    <span style={{ ...S.mono, fontSize: 12 }}>{refStack} × {otherStack}</span>
+                    {entry.label && <span style={{ fontSize: 11, color: G.gold }}>{entry.label}</span>}
+                    {entry.compatibility && (
+                      <span style={{ fontSize: 10, color: chemColor[entry.compatibility] || G.textDim, background: G.bg3, borderRadius: 4, padding: '1px 6px', marginLeft: 'auto' }}>{entry.compatibility}</span>
+                    )}
+                  </div>
+                  {entry.dynamic && <p style={{ ...S.body, fontSize: 12, marginBottom: 4 }}>{entry.dynamic}</p>}
+                  {entry.strength && <p style={{ fontSize: 12, color: '#50c878', marginBottom: 2 }}>+ {entry.strength}</p>}
+                  {entry.challenge && <p style={{ fontSize: 12, color: '#e88050', marginBottom: 4 }}>- {entry.challenge}</p>}
+                  {entry.tip && <p style={{ fontSize: 11, color: G.textFaint, fontStyle: 'italic' }}>{entry.tip}</p>}
+                </div>
+              ))}
+            </div>
+          );
+        })()}
+
+        <h3 style={{ ...S.h3, marginTop: 24, marginBottom: 12 }}>Drive Compatibility (Basic)</h3>
         {pairs.map(([key, val]) => {
           const [a, b] = key.split('-').map(s => s.toUpperCase());
           return (
@@ -182,6 +350,133 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             <p style={{ ...S.body, marginTop: 4 }}>
               Commonly correlated types: {t.ennCorr.split(', ').map(e => <span key={e} style={{ ...S.tag, marginRight: 4 }}>Type {e}</span>)}
             </p>
+          </div>
+        )}
+
+        {/* Cognitive Function Deep Dive */}
+        {MBTI_FUNCTION_DETAILS[sel] && (() => {
+          const d = MBTI_FUNCTION_DETAILS[sel];
+          const t2 = MBTI_TYPES[sel];
+          const positions = [
+            { key: 'dominant', label: 'DOM', color: G.gold },
+            { key: 'auxiliary', label: 'AUX', color: '#5090d0' },
+            { key: 'tertiary', label: 'TER', color: '#30a888' },
+            { key: 'inferior', label: 'INF', color: '#e88050' },
+          ];
+          const shadows = [
+            { key: 'shadow5', label: 'SH5' },
+            { key: 'shadow6', label: 'SH6' },
+            { key: 'shadow7', label: 'SH7' },
+            { key: 'shadow8', label: 'SH8' },
+          ];
+          return (
+            <div style={S.card}>
+              <h3 style={{ ...S.h3, marginBottom: 4 }}>Function Deep Dive</h3>
+              <p style={{ ...S.body, fontSize: 13, color: G.textFaint, marginBottom: 16 }}>How each cognitive function manifests specifically in the {sel}.</p>
+              {positions.map(({ key, label, color }) => {
+                const fn = d[key];
+                if (!fn) return null;
+                return (
+                  <div key={key} style={{ marginBottom: 16, paddingBottom: 16, borderBottom: `1px solid ${G.border}` }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                      <span style={{ fontSize: 10, color, fontFamily: "'DM Mono',monospace", width: 28 }}>{label}</span>
+                      <FnBadge fn={fn.function} size="md" />
+                      <span style={{ fontSize: 12, color: G.textDim }}>{fn.title}</span>
+                    </div>
+                    <p style={{ ...S.body, fontSize: 13, marginBottom: 8, paddingLeft: 36 }}>{fn.inThisType}</p>
+                    <div style={{ paddingLeft: 36, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                      <div style={{ flex: 1, minWidth: 140, padding: '8px 10px', borderRadius: 6, background: 'rgba(80,200,120,0.06)', border: '1px solid rgba(80,200,120,0.15)' }}>
+                        <p style={{ fontSize: 10, color: '#50c878', marginBottom: 4 }}>Healthy</p>
+                        <p style={{ ...S.body, fontSize: 12 }}>{fn.healthyExpression}</p>
+                      </div>
+                      <div style={{ flex: 1, minWidth: 140, padding: '8px 10px', borderRadius: 6, background: 'rgba(232,128,80,0.06)', border: '1px solid rgba(232,128,80,0.15)' }}>
+                        <p style={{ fontSize: 10, color: '#e88050', marginBottom: 4 }}>Unhealthy</p>
+                        <p style={{ ...S.body, fontSize: 12 }}>{fn.unhealthyExpression}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+              <div>
+                <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 8, fontFamily: "'DM Mono',monospace" }}>SHADOW FUNCTIONS (5–8)</p>
+                {shadows.map(({ key, label }) => {
+                  const sh = d[key];
+                  if (!sh) return null;
+                  return (
+                    <div key={key} style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'flex-start' }}>
+                      <span style={{ fontSize: 10, color: G.textFaint, fontFamily: "'DM Mono',monospace", width: 28, flexShrink: 0, marginTop: 2 }}>{label}</span>
+                      <FnBadge fn={sh.function} />
+                      <p style={{ ...S.body, fontSize: 12, color: G.textFaint }}>{sh.brief}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Development Trajectory */}
+        {MBTI_DEVELOPMENT[sel] && (
+          <div style={S.card}>
+            <h3 style={{ ...S.h3, marginBottom: 12 }}>Development Trajectory</h3>
+            <p style={{ ...S.body, fontSize: 13, marginBottom: 14, color: G.textFaint }}>How this type tends to develop across the lifespan as the function stack matures.</p>
+            {[
+              { key: 'childhood', label: 'Childhood', color: '#5090d0' },
+              { key: 'adolescence', label: 'Adolescence', color: '#7070c0' },
+              { key: 'youngAdult', label: 'Young Adult', color: G.gold },
+              { key: 'midlife', label: 'Midlife', color: '#50c878' },
+              { key: 'maturity', label: 'Maturity', color: '#30a888' },
+            ].map(({ key, label, color }) => {
+              const stage = MBTI_DEVELOPMENT[sel][key];
+              if (!stage) return null;
+              return (
+                <div key={key} style={{ marginBottom: 14, paddingBottom: 14, borderBottom: `1px solid ${G.border}` }}>
+                  <span style={{ fontSize: 11, color, fontFamily: "'DM Mono',monospace", display: 'block', marginBottom: 4 }}>{label}</span>
+                  <p style={{ ...S.body, fontSize: 13 }}>{stage}</p>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Stress & Flow Profile */}
+        {MBTI_STRESS_FLOW[sel] && (
+          <div style={S.card}>
+            <h3 style={{ ...S.h3, marginBottom: 12 }}>Stress & Flow Profile</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 10 }}>
+              {MBTI_STRESS_FLOW[sel].inFlow && (
+                <div style={{ background: 'rgba(80,200,120,0.06)', border: '1px solid rgba(80,200,120,0.2)', borderRadius: 8, padding: '12px 10px' }}>
+                  <p style={{ fontSize: 12, color: '#50c878', marginBottom: 6, fontWeight: 500 }}>In Flow</p>
+                  <p style={{ ...S.body, fontSize: 12, marginBottom: 8 }}>{MBTI_STRESS_FLOW[sel].inFlow.description}</p>
+                  {MBTI_STRESS_FLOW[sel].inFlow.triggers && (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
+                      {MBTI_STRESS_FLOW[sel].inFlow.triggers.map((trigger, i) => (
+                        <span key={i} style={{ fontSize: 10, color: '#50c878', background: 'rgba(80,200,120,0.1)', borderRadius: 4, padding: '2px 6px' }}>{trigger}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+              {MBTI_STRESS_FLOW[sel].underStress && (
+                <div style={{ background: 'rgba(232,128,80,0.06)', border: '1px solid rgba(232,128,80,0.2)', borderRadius: 8, padding: '12px 10px' }}>
+                  <p style={{ fontSize: 12, color: '#e88050', marginBottom: 6, fontWeight: 500 }}>Under Stress</p>
+                  <p style={{ ...S.body, fontSize: 12, marginBottom: 8 }}>{MBTI_STRESS_FLOW[sel].underStress.description}</p>
+                  {MBTI_STRESS_FLOW[sel].underStress.triggers && (
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
+                      {MBTI_STRESS_FLOW[sel].underStress.triggers.map((trigger, i) => (
+                        <span key={i} style={{ fontSize: 10, color: '#e88050', background: 'rgba(232,128,80,0.08)', borderRadius: 4, padding: '2px 6px' }}>{trigger}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+            {MBTI_STRESS_FLOW[sel].underStress?.recoveryPath && (
+              <div style={{ padding: '8px 12px', background: G.bg3, borderRadius: 8 }}>
+                <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 4 }}>Recovery path</p>
+                <p style={{ ...S.body, fontSize: 12 }}>{MBTI_STRESS_FLOW[sel].underStress.recoveryPath}</p>
+              </div>
+            )}
           </div>
         )}
       </div></div>
@@ -371,12 +666,184 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             </p>
           </div>
 
+          {/* Enneagram × MBTI Correlation Matrix */}
+          <div style={S.card}>
+            <h3 style={{ ...S.h3, marginBottom: 4 }}>Enneagram × MBTI Correlation</h3>
+            <p style={{ ...S.body, fontSize: 13, color: G.textFaint, marginBottom: 16 }}>
+              Research-based correlations between Enneagram types and common MBTI types. These reflect population tendencies, not fixed rules — any combination is possible.
+            </p>
+            {Object.entries(ENN_MBTI_CORRELATION).map(([ennType, corr]) => (
+              <div key={ennType} style={{ marginBottom: 16, paddingBottom: 16, borderBottom: `1px solid ${G.border}` }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+                  <div style={{ flexShrink: 0, width: 32, height: 32, borderRadius: '50%', background: G.goldDim, border: `1px solid ${G.goldBorder}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: 13, color: G.gold, fontFamily: "'DM Mono',monospace", fontWeight: 600 }}>{ennType}</span>
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    {corr.common && corr.common.length > 0 && (
+                      <div style={{ marginBottom: 6 }}>
+                        <span style={{ fontSize: 11, color: '#50c878', marginRight: 8 }}>Common</span>
+                        <span style={{ display: 'inline-flex', flexWrap: 'wrap', gap: 3 }}>
+                          {corr.common.map(m => <span key={m} style={{ ...S.tag, fontSize: 10, background: 'rgba(80,200,120,0.08)', color: '#50c878', border: '1px solid rgba(80,200,120,0.25)' }}>{m}</span>)}
+                        </span>
+                      </div>
+                    )}
+                    {corr.uncommon && corr.uncommon.length > 0 && (
+                      <div style={{ marginBottom: 6 }}>
+                        <span style={{ fontSize: 11, color: G.textFaint, marginRight: 8 }}>Uncommon</span>
+                        <span style={{ display: 'inline-flex', flexWrap: 'wrap', gap: 3 }}>
+                          {corr.uncommon.map(m => <span key={m} style={{ ...S.tag, fontSize: 10, background: G.bg3, color: G.textDim }}>{m}</span>)}
+                        </span>
+                      </div>
+                    )}
+                    {corr.note && <p style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic' }}>{corr.note}</p>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Integration Narratives */}
+          <div style={S.card}>
+            <h3 style={{ ...S.h3, marginBottom: 4 }}>Deep Integration Profiles</h3>
+            <p style={{ ...S.body, fontSize: 13, color: G.textFaint, marginBottom: 16 }}>
+              How specific Enneagram × MBTI pairings create qualitatively distinct personalities — and how the instinct stack further differentiates them.
+            </p>
+            {Object.entries(INTEGRATION_NARRATIVES).map(([key, narr]) => (
+              <div key={key} style={{ marginBottom: 20, paddingBottom: 20, borderBottom: `1px solid ${G.border}` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                  <span style={{ ...S.mono, fontSize: 12, color: G.gold, background: G.goldDim, border: `1px solid ${G.goldBorder}`, padding: '2px 8px', borderRadius: 6 }}>{key.replace('_', ' / ')}</span>
+                  <h4 style={{ fontSize: 14, color: G.text, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, margin: 0 }}>{narr.title}</h4>
+                </div>
+                <p style={{ ...S.body, fontSize: 13, marginBottom: 12, lineHeight: 1.75 }}>{narr.narrative}</p>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
+                  {[['SP', narr.withSP], ['SX', narr.withSX], ['SO', narr.withSO]].map(([inst, text]) => text && (
+                    <div key={inst} style={{ flex: 1, minWidth: 160, padding: '8px 10px', borderRadius: 6, background: G.bg3, border: `1px solid ${G.border}` }}>
+                      <p style={{ fontSize: 10, color: '#30a888', marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>{inst}-DOMINANT</p>
+                      <p style={{ ...S.body, fontSize: 12 }}>{text}</p>
+                    </div>
+                  ))}
+                </div>
+                {narr.typingNotes && (
+                  <p style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic' }}>Typing notes: {narr.typingNotes}</p>
+                )}
+              </div>
+            ))}
+          </div>
+
           <p style={{ fontSize: 11, color: G.textFaint, textAlign: 'center', marginTop: 24, marginBottom: 8, lineHeight: 1.7 }}>
             The framework for integrating these three systems draws on ideas developed by Saleh Vallander in{' '}
             <em>The Enneagram, the Myers-Briggs, and the Brain</em>.
           </p>
         </>
       )}
+
+      {/* ── Profiles tab ── */}
+      {tab === 'profiles' && <ProfilesTab />}
     </div></div>
+  );
+}
+
+// Generate full list of all 1,728 combination keys upfront (no data loading needed)
+const WINGS = ['1w9','1w2','2w1','2w3','3w2','3w4','4w3','4w5','5w4','5w6','6w5','6w7','7w6','7w8','8w7','8w9','9w8','9w1'];
+const ALL_MBTI = ['INTJ','INTP','INFJ','INFP','ISTJ','ISTP','ISFJ','ISFP','ENTJ','ENTP','ENFJ','ENFP','ESTJ','ESTP','ESFJ','ESFP'];
+const ALL_STACKS = ['SXSPSO','SXSOPS','SPSXSO','SPSOXS','SOSXSP','SOSPSX'];
+const ALL_KEYS = [];
+WINGS.forEach(w => ALL_MBTI.forEach(m => ALL_STACKS.forEach(s => ALL_KEYS.push(`${w}_${m}_${s}`))));
+
+function ProfilesTab() {
+  const [search, setSearch] = useState('');
+  const [ennFilter, setEnnFilter] = useState('');
+  const [mbtiFilter, setMbtiFilter] = useState('');
+  const [instFilter, setInstFilter] = useState('');
+  const [selected, setSelected] = useState(null);
+  const [loadingProfile, setLoadingProfile] = useState(false);
+
+  const openProfile = (key) => {
+    setLoadingProfile(true);
+    const parts = key.split('_');
+    const wingKey = parts[0];
+    const mbtiType = parts[1];
+    const instStack = parts[2];
+    const ennType = parseInt(wingKey[0]);
+    const wing = parseInt(wingKey[2]);
+    const stackStr = instStack.toLowerCase();
+    const instStackFormatted = [stackStr.slice(0,2), stackStr.slice(2,4), stackStr.slice(4,6)].join('/').toUpperCase();
+    import('../data/combinations/index.js').then(mod =>
+      mod.getCombinationProfile(ennType, wing, mbtiType, instStackFormatted)
+    ).then(profile => {
+      setSelected(profile ? { key, ...profile } : { key, code: key });
+      setLoadingProfile(false);
+    }).catch(() => {
+      setSelected({ key, code: key });
+      setLoadingProfile(false);
+    });
+  };
+
+  const fieldStyle = { fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: G.text, margin: 0, lineHeight: 1.6 };
+
+  if (selected) {
+    return (
+      <div>
+        <button onClick={() => setSelected(null)} style={{ padding: '8px 14px', borderRadius: 8, border: `1px solid ${G.border}`, background: 'transparent', color: G.textDim, fontSize: 13, marginBottom: 16, cursor: 'pointer' }}>← Back to Profiles</button>
+        <div style={{ padding: '14px 16px', borderRadius: 10, background: G.goldDim, border: `1px solid ${G.goldBorder}`, marginBottom: 16 }}>
+          <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 12, color: G.gold }}>{selected.code || selected.key}</span>
+          {selected.archetypeName && <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, fontWeight: 600, color: G.text, margin: '6px 0 2px' }}>{selected.archetypeName}</h3>}
+          {selected.tagline && <p style={{ ...fieldStyle, fontSize: 13, color: G.textDim, fontStyle: 'italic' }}>{selected.tagline}</p>}
+        </div>
+        {selected.portrait && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={fieldStyle}>{selected.portrait}</p></div>}
+        {selected.uniqueSignature && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: G.textFaint, marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>UNIQUE SIGNATURE</p><p style={fieldStyle}>{selected.uniqueSignature}</p></div>}
+        {selected.strengths?.length > 0 && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: '#50c878', marginBottom: 8, fontFamily: "'DM Mono',monospace" }}>STRENGTHS</p>{selected.strengths.map((s, i) => <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#50c878', fontSize: 12, flexShrink: 0 }}>+</span><p style={{ ...fieldStyle, fontSize: 13 }}>{s}</p></div>)}</div>}
+        {selected.growthEdges?.length > 0 && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: '#e88050', marginBottom: 8, fontFamily: "'DM Mono',monospace" }}>GROWTH EDGES</p>{selected.growthEdges.map((e, i) => <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#e88050', fontSize: 12, flexShrink: 0 }}>→</span><p style={{ ...fieldStyle, fontSize: 13 }}>{e}</p></div>)}</div>}
+        {selected.inRelationships && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: G.textFaint, marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>IN RELATIONSHIPS</p><p style={fieldStyle}>{selected.inRelationships}</p></div>}
+        {selected.atWork && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: G.textFaint, marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>AT WORK</p><p style={fieldStyle}>{selected.atWork}</p></div>}
+        {selected.underStress && <div style={{ padding: '14px 16px', borderRadius: 10, background: 'rgba(232,128,80,0.06)', border: `1px solid rgba(232,128,80,0.2)`, marginBottom: 12 }}><p style={{ fontSize: 11, color: '#e88050', marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>UNDER STRESS</p><p style={fieldStyle}>{selected.underStress}</p></div>}
+        {selected.growthPath && <div style={{ padding: '14px 16px', borderRadius: 10, background: 'rgba(80,200,120,0.06)', border: `1px solid rgba(80,200,120,0.2)`, marginBottom: 12 }}><p style={{ fontSize: 11, color: '#50c878', marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>GROWTH PATH</p><p style={fieldStyle}>{selected.growthPath}</p></div>}
+        {selected.communicationTips?.length > 0 && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: G.textFaint, marginBottom: 8, fontFamily: "'DM Mono',monospace" }}>COMMUNICATION TIPS</p>{selected.communicationTips.map((t, i) => <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: G.gold, fontSize: 12, flexShrink: 0 }}>·</span><p style={{ ...fieldStyle, fontSize: 13 }}>{t}</p></div>)}</div>}
+        {!selected.portrait && <div style={{ padding: '16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, textAlign: 'center' }}><p style={{ ...fieldStyle, fontSize: 13, color: G.textFaint }}>Detailed profile not available for this combination.</p></div>}
+      </div>
+    );
+  }
+
+  const q = search.toLowerCase();
+  const filtered = ALL_KEYS.filter(k => {
+    if (ennFilter && !k.startsWith(ennFilter + 'w')) return false;
+    if (mbtiFilter && !k.includes('_' + mbtiFilter + '_')) return false;
+    if (instFilter && !k.toLowerCase().includes(instFilter)) return false;
+    if (q && !k.toLowerCase().includes(q)) return false;
+    return true;
+  }).slice(0, 60);
+
+  return (
+    <div>
+      <div style={{ padding: '12px 14px', borderRadius: 10, background: G.goldDim, border: `1px solid ${G.goldBorder}`, marginBottom: 16 }}>
+        <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, fontWeight: 600, color: G.text, marginBottom: 4 }}>1,728 Combination Profiles</h3>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: G.textDim, margin: 0 }}>Every Enneagram type × wing × MBTI type × instinct stack combination. Profiles load on demand.</p>
+      </div>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search code (e.g. 4w5_INFP)…" style={{ flex: 2, minWidth: 160, padding: '8px 12px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13, outline: 'none' }} />
+        <select value={ennFilter} onChange={e => setEnnFilter(e.target.value)} style={{ flex: 1, minWidth: 90, padding: '8px 10px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13 }}>
+          <option value="">All Enn</option>
+          {[1,2,3,4,5,6,7,8,9].map(n => <option key={n} value={String(n)}>Type {n}</option>)}
+        </select>
+        <select value={mbtiFilter} onChange={e => setMbtiFilter(e.target.value)} style={{ flex: 1, minWidth: 90, padding: '8px 10px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13 }}>
+          <option value="">All MBTI</option>
+          {ALL_MBTI.map(m => <option key={m} value={m}>{m}</option>)}
+        </select>
+        <select value={instFilter} onChange={e => setInstFilter(e.target.value)} style={{ flex: 1, minWidth: 90, padding: '8px 10px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13 }}>
+          <option value="">All Inst</option>
+          {['sp','sx','so'].map(i => <option key={i} value={i}>{i.toUpperCase()}-dom</option>)}
+        </select>
+      </div>
+      {loadingProfile && <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: G.textFaint, textAlign: 'center', padding: '24px 0' }}>Loading profile…</p>}
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: G.textFaint, marginBottom: 10 }}>Showing {filtered.length} of {ALL_KEYS.length} combinations{filtered.length === 60 ? ' (first 60 — refine filters to narrow)' : ''}</p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        {filtered.map(k => (
+          <button key={k} onClick={() => openProfile(k)} style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: G.gold, flexShrink: 0 }}>{k}</span>
+            <span style={{ marginLeft: 'auto', fontSize: 12, color: G.textFaint }}>→</span>
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }

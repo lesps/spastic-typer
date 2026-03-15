@@ -62,3 +62,11 @@ export const MBTI_TYPES = {
   ESTP: { name: 'The Entrepreneur', stack: ['Se', 'Ti', 'Fe', 'Ni'], desc: 'Energetic, perceptive, and boldly pragmatic. ESTPs thrive on action and immediate experience. They are excellent at reading situations and people in real time, moving quickly and confidently. They prefer learning through doing and can seem blunt, but their energy is infectious.', ennCorr: '7, 8, 3' },
   ESFP: { name: 'The Entertainer', stack: ['Se', 'Fi', 'Te', 'Ni'], desc: 'Spontaneous, vibrant, and wholeheartedly present. ESFPs love life and bring others along for the ride. They are perceptive, generous, and quick to express affection. Bold and warm, they live in the moment and create joy wherever they go — though long-term planning can take a back seat.', ennCorr: '7, 2, 9' },
 };
+
+// Keirsey Temperament groups: NT (Rationals), NF (Idealists), SJ (Guardians), SP (Artisans)
+export const MBTI_TEMPERAMENT = {
+  INTJ: 'NT', INTP: 'NT', ENTJ: 'NT', ENTP: 'NT',
+  INFJ: 'NF', INFP: 'NF', ENFJ: 'NF', ENFP: 'NF',
+  ISTJ: 'SJ', ISFJ: 'SJ', ESTJ: 'SJ', ESFJ: 'SJ',
+  ISTP: 'SP', ISFP: 'SP', ESTP: 'SP', ESFP: 'SP',
+};
