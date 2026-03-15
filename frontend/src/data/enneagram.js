@@ -193,3 +193,6 @@ export const INSTINCT_COMPAT = {
   'sx-so': { bond: 'SX brings passionate depth; SO brings breadth and social awareness — a vivid complementary pair.', tension: 'SX may feel SO is too diffuse or shallow; SO may feel SX\'s intensity is overwhelming or demanding.' },
   'so-so': { bond: 'Shared investment in community and social contribution creates a natural sense of partnership and purpose.', tension: 'Can compete for social influence or recognition; may neglect the intimacy and depth of the relationship itself.' },
 };
+
+// Hornevian groups: assertive (3,7,8), compliant (1,2,6), withdrawn (4,5,9)
+export const ENN_HORNEVIAN = { 1: 'compliant', 2: 'compliant', 3: 'assertive', 4: 'withdrawn', 5: 'withdrawn', 6: 'compliant', 7: 'assertive', 8: 'assertive', 9: 'withdrawn' };
