@@ -20,9 +20,13 @@ export function analyzeGroup(persons) {
     } else if (activeCenters.length === 3) {
       insights.push({ icon: '◆', label: 'Balanced Center Spread', desc: 'Gut, heart, and head centers are all represented. The group has access to the full range of instinctual perspectives: action and autonomy, identity and connection, and analysis and planning. The challenge is translation — each center speaks a different emotional language.', color: '#50c878' });
     } else {
-      const dom = activeCenters.sort((a, b) => b[1] - a[1])[0];
-      const others = activeCenters.filter(c => c[0] !== dom[0]).map(c => c[0]).join(' and ');
-      insights.push({ icon: '◆', label: `${dom[0].charAt(0).toUpperCase() + dom[0].slice(1)}-Dominant Group`, desc: `The ${dom[0]} center is overrepresented, with ${others} less present. The group's emotional vocabulary skews toward ${dom[0] === 'gut' ? 'action and autonomy' : dom[0] === 'heart' ? 'identity and connection' : 'analysis and planning'}.`, color: G.gold });
+      const sorted = activeCenters.sort((a, b) => b[1] - a[1]);
+      const dom = sorted[0];
+      // Only flag dominance when one center is clearly ahead — not on a tie
+      if (dom[1] > sorted[1][1]) {
+        const others = sorted.slice(1).map(c => c[0]).join(' and ');
+        insights.push({ icon: '◆', label: `${dom[0].charAt(0).toUpperCase() + dom[0].slice(1)}-Dominant Group`, desc: `The ${dom[0]} center is overrepresented, with ${others} less present. The group's emotional vocabulary skews toward ${dom[0] === 'gut' ? 'action and autonomy' : dom[0] === 'heart' ? 'identity and connection' : 'analysis and planning'}.`, color: G.gold });
+      }
     }
 
     const hc = { competency: 0, reactive: 0, positive: 0 };
@@ -46,9 +50,9 @@ export function analyzeGroup(persons) {
 
     if (ep.every(p => p.ennType === ep[0].ennType)) insights.push({ icon: '✦', label: `All Type ${ep[0].ennType} — Mirror Group`, desc: `Every member shares the same core type. Instant mutual legibility — but collective blind spots and defense mechanisms are amplified with no internal counterbalance.`, color: G.gold });
 
-    if (ep.every(p => p.ennInstinct)) {
+    if (ep.every(p => p.instinctStack?.length > 0)) {
       const ic = { sp: 0, sx: 0, so: 0 };
-      ep.forEach(p => ic[p.ennInstinct]++);
+      ep.forEach(p => { const dom = p.instinctStack[0]; if (dom) ic[dom] = (ic[dom] || 0) + 1; });
       const activeI = Object.entries(ic).filter(([, v]) => v > 0);
       if (activeI.length === 1) {
         const [inst] = activeI[0];

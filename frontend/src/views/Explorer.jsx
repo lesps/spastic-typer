@@ -51,16 +51,20 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
         </div>
         <div style={S.card}>
           <h3 style={S.h3}>Movement Lines</h3>
-          <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
-            <div style={{ flex: 1, background: G.bg3, borderRadius: 8, padding: '10px 14px' }}>
-              <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 4 }}>Growth →</p>
-              <p style={{ ...S.mono, fontSize: 16 }}>Type {arrows.growth}</p>
-              <p style={{ fontSize: 12, color: G.textDim, marginTop: 2 }}>{ENN_TYPES[arrows.growth].name}</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
+            <div style={{ background: 'rgba(80,200,120,0.06)', border: `1px solid rgba(80,200,120,0.2)`, borderRadius: 8, padding: '12px 14px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                <span style={{ fontSize: 13, color: '#50c878' }}>↗</span>
+                <p style={{ fontSize: 11, color: '#50c878' }}>Growth → Type {arrows.growth} · {ENN_TYPES[arrows.growth].name}</p>
+              </div>
+              <p style={{ ...S.body, fontSize: 13 }}>At their best, Type {n} moves toward Type {arrows.growth}'s qualities — oriented toward: {ENN_TYPES[arrows.growth].desire.toLowerCase()}.</p>
             </div>
-            <div style={{ flex: 1, background: G.bg3, borderRadius: 8, padding: '10px 14px' }}>
-              <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 4 }}>Stress →</p>
-              <p style={{ ...S.mono, fontSize: 16 }}>Type {arrows.stress}</p>
-              <p style={{ fontSize: 12, color: G.textDim, marginTop: 2 }}>{ENN_TYPES[arrows.stress].name}</p>
+            <div style={{ background: 'rgba(232,128,80,0.06)', border: `1px solid rgba(232,128,80,0.2)`, borderRadius: 8, padding: '12px 14px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                <span style={{ fontSize: 13, color: '#e88050' }}>↘</span>
+                <p style={{ fontSize: 11, color: '#e88050' }}>Stress → Type {arrows.stress} · {ENN_TYPES[arrows.stress].name}</p>
+              </div>
+              <p style={{ ...S.body, fontSize: 13 }}>Under stress, Type {n} regresses toward Type {arrows.stress}'s patterns — driven by the fear: {ENN_TYPES[arrows.stress].fear.toLowerCase()}.</p>
             </div>
           </div>
         </div>
@@ -90,13 +94,16 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
         </div>
         <div style={S.cardGold}><p style={S.body}>{meta.desc}</p></div>
         <h3 style={{ ...S.h3, marginTop: 24, marginBottom: 12 }}>Pairing Dynamics</h3>
-        {pairs.map(([key, val]) => (
-          <div key={key} style={{ ...S.card, marginBottom: 12 }}>
-            <p style={{ ...S.mono, fontSize: 14, marginBottom: 8 }}>{key}</p>
-            <p style={{ fontSize: 12, color: '#6abf69', marginBottom: 4 }}>Bond — {val.bond}</p>
-            <p style={{ fontSize: 12, color: '#e07878' }}>Tension — {val.tension}</p>
-          </div>
-        ))}
+        {pairs.map(([key, val]) => {
+          const [a, b] = key.split('-').map(s => s.toUpperCase());
+          return (
+            <div key={key} style={{ ...S.card, marginBottom: 12 }}>
+              <p style={{ ...S.mono, fontSize: 14, marginBottom: 8 }}>{a} × {b}</p>
+              <p style={{ fontSize: 12, color: '#6abf69', marginBottom: 4 }}>Bond — {val.bond}</p>
+              <p style={{ fontSize: 12, color: '#e07878' }}>Tension — {val.tension}</p>
+            </div>
+          );
+        })}
       </div></div>
     );
   }
@@ -116,6 +123,8 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
           <h3 style={S.h3}>Cognitive Function Stack</h3>
           {t.stack.map((fn, i) => {
             const f = COG_FUNCTIONS[fn];
+            const isDom = i === 0;
+            const isInf = i === 3;
             return (
               <div key={fn} style={{ marginTop: i ? 16 : 10 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
@@ -124,9 +133,48 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                   <span style={{ fontSize: 13, color: G.textDim }}>{f.name}</span>
                 </div>
                 <p style={{ ...S.body, fontSize: 13, marginTop: 4, paddingLeft: 36 }}>{f.desc}</p>
+                {isDom && (
+                  <div style={{ marginTop: 6, paddingLeft: 36 }}>
+                    <p style={{ fontSize: 11, color: '#50c878', marginBottom: 4 }}>Strengths</p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                      {f.strengths.split(', ').map((s, si) => (
+                        <span key={si} style={{ fontSize: 11, color: G.textDim, background: G.bg3, border: `1px solid ${G.border}`, borderRadius: 6, padding: '2px 7px' }}>{s.trim()}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {isInf && (
+                  <div style={{ marginTop: 6, paddingLeft: 36 }}>
+                    <p style={{ fontSize: 11, color: '#e88050', marginBottom: 4 }}>Shadow — watch for under stress</p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                      {f.shadow.split(', ').map((s, si) => (
+                        <span key={si} style={{ fontSize: 11, color: G.textDim, background: 'rgba(232,128,80,0.08)', border: `1px solid rgba(232,128,80,0.2)`, borderRadius: 6, padding: '2px 7px' }}>{s.trim()}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
+        </div>
+        <div style={S.card}>
+          <h3 style={{ ...S.h3, marginBottom: 12 }}>Cognitive Axes</h3>
+          <p style={{ ...S.body, fontSize: 13, marginBottom: 12 }}>Each type's four functions form two interlocked axes. The dominant and inferior share a cognitive family (both Perceiving or both Judging); the auxiliary and tertiary form the other pair.</p>
+          {[
+            { label: 'Lead axis', fns: [t.stack[0], t.stack[3]], note: 'dominant ↔ blind spot' },
+            { label: 'Support axis', fns: [t.stack[1], t.stack[2]], note: 'auxiliary ↔ tertiary' },
+          ].map(({ label, fns, note }) => (
+            <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10, padding: '10px 12px', background: G.bg3, borderRadius: 8 }}>
+              <div style={{ flex: 1 }}>
+                <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 6 }}>{label} — {note}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <FnBadge fn={fns[0]} />
+                  <span style={{ fontSize: 12, color: G.textFaint }}>↔</span>
+                  <FnBadge fn={fns[1]} />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
         {t.ennCorr && (
           <div style={S.card}>
