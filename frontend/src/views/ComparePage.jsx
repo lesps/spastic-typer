@@ -8,7 +8,8 @@ import { ENN_DYNAMICS, ENN_TIPS, MBTI_INSIGHTS, MBTI_TIPS, INSTINCT_STACK_DYNAMI
 import FnBadge from '../components/FnBadge.jsx';
 import { getWingDynamics, wingStrengthLabel, wingStrengthDesc, computeWingStrengthDelta } from '../utils/enneagram.js';
 import { computeArchetypeName } from '../utils/archetype.js';
-import { analyzeGroup } from '../utils/group.js';
+import { analyzeGroup, getCenterDistribution, getHarmonicDistribution, getHornevianDistribution, getTemperamentDistribution, getCognitiveCoverage, getInstinctGroupChemistry, getTeamArchetype } from '../utils/group.js';
+import { getCommunicationMatrix, getGrowthStressInteraction, getCognitiveHarmony, getInstinctDepthAnalysisSync } from '../utils/compare.js';
 import { decodeProfileCode } from '../utils/share.js';
 
 const INSTINCT_LABELS = { sp: 'SP', sx: 'SX', so: 'SO' };
@@ -17,7 +18,7 @@ const LS_COMPARE = 'compare_persons';
 const emptyPerson = (n) => ({ label: `Person ${n}`, ennType: null, ennWing: null, ennWingStrength: null, instinctStack: null, mbti: null, ennScores: null });
 
 // --- URL encoding helpers ---
-// Format: #p1=4w5:strong:sx/sp/so:INFP&p2=8w9:moderate:sp/so/sx:ENTJ
+// Profile code format: 453xpo-INFP (11 characters — see utils/share.js)
 function encodePersons(persons) {
   return persons.map((p, i) => {
     const parts = [
@@ -366,7 +367,15 @@ export default function ComparePage() {
   const readyCount = persons.filter(isPersonComplete).length;
   const hasResults = readyCount >= 2;
   // Group overview is only meaningful for 3+ people — pairwise analysis covers the 2-person case fully.
-  const groupInsights = readyCount >= 3 ? analyzeGroup(persons.filter(isPersonComplete)) : [];
+  const completedPersons = persons.filter(isPersonComplete);
+  const groupInsights = readyCount >= 3 ? analyzeGroup(completedPersons) : [];
+  const teamArchetype = readyCount >= 3 ? getTeamArchetype(completedPersons) : null;
+  const centerDist = readyCount >= 3 ? getCenterDistribution(completedPersons) : null;
+  const harmonicDist = readyCount >= 3 ? getHarmonicDistribution(completedPersons) : null;
+  const hornevianDist = readyCount >= 3 ? getHornevianDistribution(completedPersons) : null;
+  const temperamentDist = readyCount >= 3 ? getTemperamentDistribution(completedPersons) : null;
+  const cognitiveCoverage = readyCount >= 3 ? getCognitiveCoverage(completedPersons) : null;
+  const instinctChemistry = readyCount >= 3 ? getInstinctGroupChemistry(completedPersons) : null;
 
   const handleShare = () => {
     const hash = '#' + encodePersons(persons);
@@ -384,6 +393,10 @@ export default function ComparePage() {
   const PairResults = ({ pA, pB }) => {
     const bothEnn = pA.ennType && pB.ennType;
     const bothMBTI = pA.mbti && pB.mbti;
+    const commMatrix = getCommunicationMatrix(pA, pB);
+    const growthStress = bothEnn ? getGrowthStressInteraction(pA, pB) : null;
+    const cogHarmony = bothMBTI ? getCognitiveHarmony(pA.mbti, pB.mbti) : null;
+    const instDepth = getInstinctDepthAnalysisSync(pA.instinctStack, pB.instinctStack);
 
     // Enneagram lookups
     const ennDyn = bothEnn ? (ENN_DYNAMICS[ennKey(pA.ennType, pB.ennType)] || []) : [];
@@ -527,6 +540,141 @@ export default function ComparePage() {
             ))}
           </>
         )}
+        {/* Cognitive Harmony Score */}
+        {cogHarmony && (
+          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#4a88d8', borderLeftStyle: 'solid' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+              <span style={{ fontSize: 14, color: '#4a88d8' }}>◎</span>
+              <h3 style={{ ...S.h3, marginBottom: 0 }}>Cognitive Harmony</h3>
+              <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <div style={{ width: 64, height: 6, borderRadius: 3, background: G.bg3, overflow: 'hidden' }}>
+                  <div style={{ width: `${cogHarmony.score}%`, height: '100%', borderRadius: 3, background: cogHarmony.score >= 75 ? '#50c878' : cogHarmony.score >= 55 ? G.gold : '#e88050' }} />
+                </div>
+                <span style={{ ...S.mono, fontSize: 12, color: cogHarmony.score >= 75 ? '#50c878' : cogHarmony.score >= 55 ? G.gold : '#e88050' }}>{cogHarmony.score}</span>
+              </div>
+            </div>
+            <p style={{ ...S.body, marginBottom: 10 }}>{cogHarmony.narrative}</p>
+            {cogHarmony.strengthsAsTeam.length > 0 && (
+              <div style={{ marginBottom: 8 }}>
+                {cogHarmony.strengthsAsTeam.map((s, i) => (
+                  <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
+                    <span style={{ color: '#50c878', fontSize: 12, flexShrink: 0 }}>+</span>
+                    <p style={{ ...S.body, fontSize: 13 }}>{s}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+            {cogHarmony.blindSpots.length > 0 && (
+              <p style={{ ...S.body, fontSize: 12, color: G.textFaint }}>Functions absent from both top-4 stacks: {cogHarmony.blindSpots.join(', ')}</p>
+            )}
+          </div>
+        )}
+
+        {/* Communication Style Matrix */}
+        {(commMatrix.conflictStyle.dynamic || commMatrix.decisionMaking.dynamic || commMatrix.emotionalExpression.dynamic) && (
+          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#b850c0', borderLeftStyle: 'solid' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+              <span style={{ fontSize: 14, color: '#b850c0' }}>⇄</span>
+              <h3 style={{ ...S.h3, marginBottom: 0 }}>Communication Style</h3>
+            </div>
+            {commMatrix.emotionalExpression.dynamic && (
+              <div style={{ marginBottom: 8, paddingBottom: 8, borderBottom: `1px solid ${G.border}` }}>
+                <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>MODALITY</p>
+                <p style={{ ...S.body, fontSize: 13 }}>{commMatrix.emotionalExpression.dynamic}</p>
+              </div>
+            )}
+            {commMatrix.conflictStyle.dynamic && (
+              <div style={{ marginBottom: 8, paddingBottom: 8, borderBottom: `1px solid ${G.border}` }}>
+                <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>CONFLICT</p>
+                <p style={{ ...S.body, fontSize: 13 }}>{commMatrix.conflictStyle.dynamic}</p>
+              </div>
+            )}
+            {commMatrix.decisionMaking.dynamic && (
+              <div style={{ marginBottom: 8, paddingBottom: 8, borderBottom: `1px solid ${G.border}` }}>
+                <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>DECISIONS</p>
+                <p style={{ ...S.body, fontSize: 13 }}>{commMatrix.decisionMaking.dynamic}</p>
+              </div>
+            )}
+            {commMatrix.energyManagement.dynamic && (
+              <div style={{ marginBottom: commMatrix.tips.length > 0 ? 8 : 0, paddingBottom: commMatrix.tips.length > 0 ? 8 : 0, borderBottom: commMatrix.tips.length > 0 ? `1px solid ${G.border}` : 'none' }}>
+                <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>INSTINCT PRIORITY</p>
+                <p style={{ ...S.body, fontSize: 13 }}>{commMatrix.energyManagement.dynamic}</p>
+              </div>
+            )}
+            {commMatrix.tips.length > 0 && (
+              <div>
+                {commMatrix.tips.map((tip, i) => (
+                  <div key={i} style={{ display: 'flex', gap: 8, marginTop: 6 }}>
+                    <span style={{ color: G.gold, fontSize: 12, flexShrink: 0, marginTop: 1 }}>→</span>
+                    <p style={{ ...S.body, fontSize: 13 }}>{tip}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Growth & Stress Interaction */}
+        {growthStress && (
+          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#e88050', borderLeftStyle: 'solid' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+              <span style={{ fontSize: 14, color: '#e88050' }}>↕</span>
+              <h3 style={{ ...S.h3, marginBottom: 0 }}>Growth & Stress Dynamics</h3>
+            </div>
+            {[
+              { label: `${pA.label} → ${pB.label} (growth)`, text: growthStress.aGrowthImpactOnB, color: '#50c878' },
+              { label: `${pA.label} → ${pB.label} (stress)`, text: growthStress.aStressImpactOnB, color: '#e88050' },
+              { label: `${pB.label} → ${pA.label} (growth)`, text: growthStress.bGrowthImpactOnA, color: '#50c878' },
+              { label: `${pB.label} → ${pA.label} (stress)`, text: growthStress.bStressImpactOnA, color: '#e88050' },
+            ].map((row, i) => (
+              <div key={i} style={{ marginBottom: 10, paddingBottom: 10, borderBottom: i < 3 ? `1px solid ${G.border}` : 'none' }}>
+                <p style={{ fontSize: 11, color: row.color, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>{row.label.toUpperCase()}</p>
+                <p style={{ ...S.body, fontSize: 13 }}>{row.text}</p>
+              </div>
+            ))}
+            {growthStress.sharedGrowthPath && (
+              <div style={{ padding: '8px 10px', borderRadius: 6, background: 'rgba(80,200,120,0.08)', border: `1px solid rgba(80,200,120,0.2)`, marginBottom: 8 }}>
+                <p style={{ ...S.body, fontSize: 13, color: '#50c878' }}>{growthStress.sharedGrowthPath}</p>
+              </div>
+            )}
+            <p style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic' }}>{growthStress.potentialFriction}</p>
+          </div>
+        )}
+
+        {/* Instinct Depth Analysis */}
+        {instDepth && (
+          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#30a888', borderLeftStyle: 'solid' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+              <span style={{ fontSize: 14, color: '#30a888' }}>◈</span>
+              <h3 style={{ ...S.h3, marginBottom: 0 }}>Instinct Depth Analysis</h3>
+              <span style={{ marginLeft: 'auto', ...S.tag, fontSize: 10, background: instDepth.overallChemistry === 'high' ? 'rgba(80,200,120,0.12)' : instDepth.overallChemistry === 'medium' ? 'rgba(228,160,48,0.12)' : 'rgba(232,128,80,0.12)', color: instDepth.overallChemistry === 'high' ? '#50c878' : instDepth.overallChemistry === 'medium' ? G.gold : '#e88050', border: `1px solid ${instDepth.overallChemistry === 'high' ? 'rgba(80,200,120,0.3)' : instDepth.overallChemistry === 'medium' ? G.goldBorder : 'rgba(232,128,80,0.3)'}` }}>{instDepth.overallChemistry} chemistry</span>
+            </div>
+            <p style={{ ...S.body, marginBottom: 10 }}>{instDepth.dominantDynamic.narrative}</p>
+            <div style={{ display: 'flex', gap: 10, marginBottom: 10, flexWrap: 'wrap' }}>
+              <div style={{ flex: 1, minWidth: 120, padding: '8px 10px', borderRadius: 6, background: G.bg3, border: `1px solid ${G.border}` }}>
+                <p style={{ fontSize: 10, color: G.textFaint, marginBottom: 3, fontFamily: "'DM Mono',monospace" }}>ATTRACTION</p>
+                <p style={{ ...S.body, fontSize: 12 }}>{instDepth.dominantDynamic.attraction}</p>
+              </div>
+              <div style={{ flex: 1, minWidth: 120, padding: '8px 10px', borderRadius: 6, background: G.bg3, border: `1px solid ${G.border}` }}>
+                <p style={{ fontSize: 10, color: G.textFaint, marginBottom: 3, fontFamily: "'DM Mono',monospace" }}>FRICTION</p>
+                <p style={{ ...S.body, fontSize: 12 }}>{instDepth.dominantDynamic.friction}</p>
+              </div>
+            </div>
+            <p style={{ ...S.body, fontSize: 13, marginBottom: 8 }}><span style={{ color: G.textDim }}>Secondary bridge: </span>{instDepth.secondaryBridge}</p>
+            {instDepth.blindSpotAnalysis.sharedBlindSpot && (
+              <div style={{ padding: '8px 10px', borderRadius: 6, background: 'rgba(232,128,80,0.08)', border: `1px solid rgba(232,128,80,0.2)`, marginBottom: 8 }}>
+                <p style={{ ...S.body, fontSize: 13, color: '#e88050' }}>{instDepth.blindSpotAnalysis.sharedBlindSpot}</p>
+              </div>
+            )}
+            {instDepth.tips.map((tip, i) => (
+              <div key={i} style={{ display: 'flex', gap: 8, marginTop: 4 }}>
+                <span style={{ color: '#30a888', fontSize: 12, flexShrink: 0 }}>→</span>
+                <p style={{ ...S.body, fontSize: 13 }}>{tip}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
         {!bothEnn && !bothMBTI && (
           <div style={{ ...S.card, padding: '16px', textAlign: 'center' }}>
             <p style={{ ...S.body, fontSize: 13 }}>Enter the same system for both people to see interaction analysis.</p>
@@ -590,6 +738,19 @@ export default function ComparePage() {
           {groupInsights.length > 0 && (
             <>
               <h2 style={{ ...S.h2, marginBottom: 12 }}>Group Overview</h2>
+
+              {/* Team Archetype */}
+              {teamArchetype && (
+                <div style={{ ...S.cardGold, marginBottom: 16 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                    <span style={{ fontSize: 16, color: G.gold }}>⬡</span>
+                    <h3 style={{ ...S.h3, marginBottom: 0, color: G.gold }}>{teamArchetype.name}</h3>
+                  </div>
+                  <p style={{ ...S.body }}>{teamArchetype.description}</p>
+                </div>
+              )}
+
+              {/* Pattern insights from analyzeGroup */}
               {groupInsights.map((ins, i) => (
                 <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: ins.color || G.gold, borderLeftStyle: 'solid' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
@@ -599,6 +760,171 @@ export default function ComparePage() {
                   <p style={S.body}>{ins.desc}</p>
                 </div>
               ))}
+
+              {/* Enneagram Center Distribution */}
+              {centerDist && (
+                <div style={S.card}>
+                  <h3 style={{ ...S.h3, marginBottom: 10 }}>Center Distribution</h3>
+                  <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
+                    {[['gut', '#e88050'], ['heart', '#b850c0'], ['head', '#4a88d8']].map(([c, color]) => (
+                      <div key={c} style={{ flex: 1, minWidth: 80, padding: '8px 10px', borderRadius: 8, background: G.bg3, border: `1px solid ${centerDist.dist[c] > 0 ? color : G.border}`, textAlign: 'center' }}>
+                        <p style={{ ...S.mono, fontSize: 12, color: centerDist.dist[c] > 0 ? color : G.textFaint, marginBottom: 2 }}>{c.toUpperCase()}</p>
+                        <p style={{ fontSize: 18, fontWeight: 600, color: centerDist.dist[c] > 0 ? color : G.textFaint, marginBottom: 0 }}>{centerDist.pct[c]}%</p>
+                        <p style={{ fontSize: 10, color: G.textFaint }}>{centerDist.dist[c]} / {centerDist.total}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p style={{ ...S.body, fontSize: 13 }}>{centerDist.analysis}</p>
+                  {centerDist.blindSpots.length > 0 && (
+                    <p style={{ ...S.body, fontSize: 12, color: '#e88050', marginTop: 6 }}>Blind spots: {centerDist.blindSpots.join('; ')}</p>
+                  )}
+                </div>
+              )}
+
+              {/* Harmonic & Hornevian side by side */}
+              {(harmonicDist || hornevianDist) && (
+                <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                  {harmonicDist && (
+                    <div style={{ ...S.card, flex: 1, minWidth: 180 }}>
+                      <h3 style={{ ...S.h3, marginBottom: 8, fontSize: 13 }}>Harmonic Groups</h3>
+                      {Object.entries(harmonicDist.dist).map(([h, count]) => (
+                        <div key={h} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+                          <span style={{ fontSize: 12, color: count > 0 ? G.text : G.textFaint }}>{h.charAt(0).toUpperCase() + h.slice(1)}</span>
+                          <span style={{ ...S.mono, fontSize: 12, color: count > 0 ? G.gold : G.textFaint }}>{count}</span>
+                        </div>
+                      ))}
+                      <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginTop: 6 }}>{harmonicDist.analysis}</p>
+                    </div>
+                  )}
+                  {hornevianDist && (
+                    <div style={{ ...S.card, flex: 1, minWidth: 180 }}>
+                      <h3 style={{ ...S.h3, marginBottom: 8, fontSize: 13 }}>Hornevian Groups</h3>
+                      {Object.entries(hornevianDist.dist).map(([h, count]) => (
+                        <div key={h} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+                          <span style={{ fontSize: 12, color: count > 0 ? G.text : G.textFaint }}>{h.charAt(0).toUpperCase() + h.slice(1)}</span>
+                          <span style={{ ...S.mono, fontSize: 12, color: count > 0 ? G.gold : G.textFaint }}>{count}</span>
+                        </div>
+                      ))}
+                      <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginTop: 6 }}>{hornevianDist.analysis}</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* MBTI Temperament Distribution */}
+              {temperamentDist && (
+                <div style={S.card}>
+                  <h3 style={{ ...S.h3, marginBottom: 10 }}>Keirsey Temperaments</h3>
+                  <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
+                    {['NT', 'NF', 'SJ', 'SP'].map(t => (
+                      <div key={t} style={{ flex: 1, minWidth: 60, padding: '8px 6px', borderRadius: 8, background: G.bg3, border: `1px solid ${temperamentDist.dist[t] > 0 ? G.gold : G.border}`, textAlign: 'center' }}>
+                        <p style={{ ...S.mono, fontSize: 13, color: temperamentDist.dist[t] > 0 ? G.gold : G.textFaint, marginBottom: 0, fontWeight: 600 }}>{t}</p>
+                        <p style={{ fontSize: 16, fontWeight: 600, color: temperamentDist.dist[t] > 0 ? G.text : G.textFaint, marginBottom: 0 }}>{temperamentDist.dist[t]}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p style={{ ...S.body, fontSize: 13 }}>{temperamentDist.analysis}</p>
+                </div>
+              )}
+
+              {/* Cognitive Function Coverage */}
+              {cognitiveCoverage && (
+                <div style={S.card}>
+                  <h3 style={{ ...S.h3, marginBottom: 8 }}>Cognitive Function Coverage</h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
+                    {['Fi', 'Fe', 'Ti', 'Te', 'Ni', 'Ne', 'Si', 'Se'].map(fn => {
+                      const isCovered = cognitiveCoverage.wellCovered.includes(fn);
+                      const isRep = cognitiveCoverage.represented.includes(fn);
+                      return (
+                        <div key={fn} style={{ padding: '4px 10px', borderRadius: 6, border: `1px solid ${isCovered ? '#50c878' : isRep ? G.goldBorder : G.border}`, background: isCovered ? 'rgba(80,200,120,0.1)' : isRep ? G.goldDim : G.bg3 }}>
+                          <span style={{ ...S.mono, fontSize: 12, color: isCovered ? '#50c878' : isRep ? G.gold : G.textFaint }}>{fn}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div style={{ display: 'flex', gap: 12, marginBottom: 8, flexWrap: 'wrap' }}>
+                    <span style={{ fontSize: 10, color: '#50c878' }}>■ well-covered</span>
+                    <span style={{ fontSize: 10, color: G.gold }}>■ represented</span>
+                    <span style={{ fontSize: 10, color: G.textFaint }}>■ absent</span>
+                  </div>
+                  <p style={{ ...S.body, fontSize: 13 }}>{cognitiveCoverage.analysis}</p>
+                  {cognitiveCoverage.recommendation !== 'No specific gaps to address.' && (
+                    <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginTop: 4 }}>{cognitiveCoverage.recommendation}</p>
+                  )}
+                </div>
+              )}
+
+              {/* Instinct Group Chemistry */}
+              {instinctChemistry && (
+                <div style={S.card}>
+                  <h3 style={{ ...S.h3, marginBottom: 10 }}>Instinct Group Chemistry</h3>
+                  <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+                    {['SP', 'SX', 'SO'].map(inst => (
+                      <div key={inst} style={{ flex: 1, padding: '8px 6px', borderRadius: 8, background: G.bg3, border: `1px solid ${instinctChemistry.dist[inst] > 0 ? '#30a888' : G.border}`, textAlign: 'center' }}>
+                        <p style={{ ...S.mono, fontSize: 13, color: instinctChemistry.dist[inst] > 0 ? '#30a888' : G.textFaint, marginBottom: 0, fontWeight: 600 }}>{inst}</p>
+                        <p style={{ fontSize: 16, fontWeight: 600, color: instinctChemistry.dist[inst] > 0 ? G.text : G.textFaint, marginBottom: 0 }}>{instinctChemistry.pct[inst]}%</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}>{instinctChemistry.groupEnergy}</p>
+                  {instinctChemistry.conflictRisk && (
+                    <p style={{ ...S.body, fontSize: 12, color: '#e88050' }}>{instinctChemistry.conflictRisk}</p>
+                  )}
+                </div>
+              )}
+
+              {/* Compatibility Heatmap for 4+ people */}
+              {readyCount >= 4 && (() => {
+                const cp = completedPersons;
+                const scores = cp.map((pA, i) => cp.map((pB, j) => {
+                  if (i === j) return null;
+                  if (!pA.mbti || !pB.mbti) return null;
+                  return getCognitiveHarmony(pA.mbti, pB.mbti)?.score ?? null;
+                }));
+                const scoreToColor = (s) => {
+                  if (s === null) return G.bg3;
+                  if (s >= 75) return 'rgba(80,200,120,0.25)';
+                  if (s >= 55) return 'rgba(228,160,48,0.25)';
+                  return 'rgba(232,128,80,0.25)';
+                };
+                return (
+                  <div style={S.card}>
+                    <h3 style={{ ...S.h3, marginBottom: 10 }}>Cognitive Compatibility Heatmap</h3>
+                    <div style={{ overflowX: 'auto' }}>
+                      <table style={{ borderCollapse: 'collapse', fontSize: 11, fontFamily: "'DM Mono',monospace", minWidth: '100%' }}>
+                        <thead>
+                          <tr>
+                            <td style={{ width: 60 }} />
+                            {cp.map((p, j) => (
+                              <td key={j} style={{ padding: '4px 6px', textAlign: 'center', color: G.textFaint, maxWidth: 60, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.label}</td>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {cp.map((pA, i) => (
+                            <tr key={i}>
+                              <td style={{ padding: '4px 6px', color: G.textFaint, whiteSpace: 'nowrap', maxWidth: 60, overflow: 'hidden', textOverflow: 'ellipsis' }}>{pA.label}</td>
+                              {cp.map((pB, j) => {
+                                const s = scores[i][j];
+                                return (
+                                  <td key={j} style={{ padding: '4px 6px', textAlign: 'center', borderRadius: 4, background: i === j ? G.bg3 : scoreToColor(s), color: i === j ? G.textFaint : (s !== null ? G.text : G.textFaint), fontWeight: i !== j && s !== null ? 500 : 400 }}>
+                                    {i === j ? '—' : s !== null ? s : '·'}
+                                  </td>
+                                );
+                              })}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div style={{ display: 'flex', gap: 12, marginTop: 8, flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: 10, color: '#50c878' }}>■ ≥75 high</span>
+                      <span style={{ fontSize: 10, color: G.gold }}>■ 55–74 moderate</span>
+                      <span style={{ fontSize: 10, color: '#e88050' }}>■ &lt;55 low</span>
+                    </div>
+                  </div>
+                );
+              })()}
             </>
           )}
           {validPairs.length > 0 && (
