@@ -365,7 +365,8 @@ export default function ComparePage() {
   const isPairExpanded = (i, j) => expandedPairs.has(pairKey(i, j));
   const readyCount = persons.filter(isPersonComplete).length;
   const hasResults = readyCount >= 2;
-  const groupInsights = hasResults ? analyzeGroup(persons.filter(isPersonComplete)) : [];
+  // Group overview is only meaningful for 3+ people — pairwise analysis covers the 2-person case fully.
+  const groupInsights = readyCount >= 3 ? analyzeGroup(persons.filter(isPersonComplete)) : [];
 
   const handleShare = () => {
     const hash = '#' + encodePersons(persons);
@@ -497,7 +498,12 @@ export default function ComparePage() {
                   ))}
                 </div>
               </div>
-              {shared.length > 0 && <p style={{ ...S.body, fontSize: 11, textAlign: 'center', marginTop: 10 }}>Shared: {shared.map(f => <FnBadge key={f} fn={f} />)}</p>}
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginTop: 12, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 10, color: '#50c878', fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>=</span> same function</span>
+                <span style={{ fontSize: 10, color: G.gold, fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>~</span> shared in stack</span>
+                <span style={{ fontSize: 10, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>×</span> not shared</span>
+              </div>
+              {shared.length > 0 && <p style={{ ...S.body, fontSize: 11, textAlign: 'center', marginTop: 8 }}>Shared functions: {shared.map(f => <FnBadge key={f} fn={f} />)}</p>}
             </div>
             {mbtiInsights.map((ins, i) => (
               <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: ins.color || G.gold, borderLeftStyle: 'solid' }}>
