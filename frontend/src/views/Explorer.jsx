@@ -750,6 +750,15 @@ const ALL_STACKS = ['SXSPSO','SXSOPS','SPSXSO','SPSOXS','SOSXSP','SOSPSX'];
 const ALL_KEYS = [];
 WINGS.forEach(w => ALL_MBTI.forEach(m => ALL_STACKS.forEach(s => ALL_KEYS.push(`${w}_${m}_${s}`))));
 
+const INST_CHAR_MAP = { sp: 'p', sx: 'x', so: 'o' };
+function keyToShareCode(key) {
+  const [wingStr, mbti, stackStr] = key.split('_');
+  const type = wingStr[0];
+  const wing = wingStr[2];
+  const s = stackStr.toLowerCase();
+  return `${type}${wing}0${INST_CHAR_MAP[s.slice(0,2)]}${INST_CHAR_MAP[s.slice(2,4)]}${INST_CHAR_MAP[s.slice(4,6)]}-${mbti}`;
+}
+
 function ProfilesTab() {
   const [search, setSearch] = useState('');
   const [ennFilter, setEnnFilter] = useState('');
@@ -786,7 +795,7 @@ function ProfilesTab() {
       <div>
         <button onClick={() => setSelected(null)} style={{ padding: '8px 14px', borderRadius: 8, border: `1px solid ${G.border}`, background: 'transparent', color: G.textDim, fontSize: 13, marginBottom: 16, cursor: 'pointer' }}>← Back to Profiles</button>
         <div style={{ padding: '14px 16px', borderRadius: 10, background: G.goldDim, border: `1px solid ${G.goldBorder}`, marginBottom: 16 }}>
-          <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 12, color: G.gold }}>{selected.code || selected.key}</span>
+          <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 12, color: G.gold }}>{selected.code || keyToShareCode(selected.key)}</span>
           {selected.archetypeName && <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, fontWeight: 600, color: G.text, margin: '6px 0 2px' }}>{selected.archetypeName}</h3>}
           {selected.tagline && <p style={{ ...fieldStyle, fontSize: 13, color: G.textDim, fontStyle: 'italic' }}>{selected.tagline}</p>}
         </div>
@@ -809,7 +818,7 @@ function ProfilesTab() {
     if (ennFilter && !k.startsWith(ennFilter + 'w')) return false;
     if (mbtiFilter && !k.includes('_' + mbtiFilter + '_')) return false;
     if (instFilter && !k.toLowerCase().includes(instFilter)) return false;
-    if (q && !k.toLowerCase().includes(q)) return false;
+    if (q && !k.toLowerCase().includes(q) && !keyToShareCode(k).toLowerCase().includes(q)) return false;
     return true;
   }).slice(0, 60);
 
@@ -820,7 +829,7 @@ function ProfilesTab() {
         <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: G.textDim, margin: 0 }}>Every Enneagram type × wing × MBTI type × instinct stack combination. Profiles load on demand.</p>
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search code (e.g. 4w5_INFP)…" style={{ flex: 2, minWidth: 160, padding: '8px 12px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13, outline: 'none' }} />
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search (e.g. 450xpo-INFP or INFP)…" style={{ flex: 2, minWidth: 160, padding: '8px 12px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13, outline: 'none' }} />
         <select value={ennFilter} onChange={e => setEnnFilter(e.target.value)} style={{ flex: 1, minWidth: 90, padding: '8px 10px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13 }}>
           <option value="">All Enn</option>
           {[1,2,3,4,5,6,7,8,9].map(n => <option key={n} value={String(n)}>Type {n}</option>)}
@@ -839,7 +848,7 @@ function ProfilesTab() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         {filtered.map(k => (
           <button key={k} onClick={() => openProfile(k)} style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: G.gold, flexShrink: 0 }}>{k}</span>
+            <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: G.gold, flexShrink: 0 }}>{keyToShareCode(k)}</span>
             <span style={{ marginLeft: 'auto', fontSize: 12, color: G.textFaint }}>→</span>
           </button>
         ))}
