@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { MBTI_TYPES } from '../data/mbti.js';
-import { ENN_TYPES, ENN_CENTER, ENN_ARROWS, WING_DESC, INSTINCT_COMPAT } from '../data/enneagram.js';
+import { ENN_TYPES, ENN_CENTER, ENN_ARROWS, ENN_HARMONIC, WING_DESC, INSTINCT_COMPAT } from '../data/enneagram.js';
+import { COG_FUNCTIONS } from '../data/cognitive.js';
 import { SOP_STEPS, QUADRANTS } from '../data/sop.js';
 import FnBadge from '../components/FnBadge.jsx';
 import { computeArchetypeName } from '../utils/archetype.js';
@@ -41,8 +42,8 @@ const MODEL_TABS = [
   { key: 'combined', label: 'Combined' },
 ];
 
-export default function MentalModel({ setView = () => {} }) {
-  const [tab, setTab] = useState('mbti');
+export default function MentalModel({ setView = () => {}, initialTab = 'mbti' }) {
+  const [tab, setTab] = useState(initialTab);
   const [selType, setSelType] = useState(null);
   const [selEnn, setSelEnn] = useState(null);
   const [showSOP, setShowSOP] = useState(false);
@@ -341,9 +342,64 @@ function CombinedView({ setView }) {
   const ennType = ENN_TYPES[coreType];
   const instStack = inst.instinctStack;
 
+  // Derived data for rich sections
+  const mbtiStack = mbtiType?.stack || [];
+  const domFnKey = mbtiStack[0];
+  const auxFnKey = mbtiStack[1];
+  const infFnKey = mbtiStack[3];
+  const domFn = COG_FUNCTIONS[domFnKey] || {};
+  const infFn = COG_FUNCTIONS[infFnKey] || {};
+  const center = ENN_CENTER[coreType];
+  const harmonic = ENN_HARMONIC[coreType];
+  const growth = ENN_ARROWS[coreType]?.growth;
+  const stress = ENN_ARROWS[coreType]?.stress;
+  const isE = mbtiResult[0] === 'E';
+  const domChar = domFnKey ? domFnKey[0] : '';
+
   // Check MBTI-Enneagram correlation alignment
   const corrTypes = mbtiType?.ennCorr?.split(', ').map(Number) || [];
   const isAligned = corrTypes.includes(coreType);
+
+  const strengths = [
+    ...(domFn.strengths ? domFn.strengths.split(',').slice(0, 3).map(s => s.trim()) : []),
+    `Motivated by: ${ennType?.desire?.toLowerCase()}`,
+  ];
+
+  const challenges = [
+    ...(infFn.shadow ? infFn.shadow.split(',').slice(0, 2).map(s => s.trim()) : []),
+    `Core anxiety: ${ennType?.fear?.toLowerCase()}`,
+    stress ? `Under stress: drawn toward Type ${stress} (${ENN_TYPES[stress]?.name}) patterns` : null,
+  ].filter(Boolean);
+
+  const centerInteraction = (() => {
+    if (center === 'heart' && domChar === 'F') return 'Heart center + Feeling-dominant processing: emotional intelligence and identity awareness are your superpower — and your most tender vulnerability.';
+    if (center === 'heart' && domChar === 'T') return 'Cross-system tension: Heart center (identity-focused) + Thinking-dominant processing — you may use logic as a buffer for deeper identity concerns, or analyze your way through emotional situations.';
+    if (center === 'heart' && domChar === 'N') return 'Heart center + Intuition-dominant processing: you perceive meaning and identity through pattern and vision — a creatively rich but sometimes destabilizing combination.';
+    if (center === 'head' && domChar === 'N') return 'Head center + Intuition-dominant processing: pattern recognition and strategic foresight are natural strengths, though anxious thought-spirals are an occupational hazard.';
+    if (center === 'head' && domChar === 'T') return 'Head center + Thinking-dominant processing: analytical precision and strategic clarity are your strengths, but anxiety can manifest as hyper-analysis and decision paralysis.';
+    if (center === 'head' && domChar === 'F') return 'Cross-system tension: Head center (fear-oriented) + Feeling-dominant processing — interpersonal warmth and fear-based vigilance create a complex, caring-but-anxious combination.';
+    if (center === 'gut' && domChar === 'S') return 'Gut center + Sensing-dominant processing: grounded, present, and action-oriented — you trust what you can see, touch, and do.';
+    if (center === 'gut' && domChar === 'N') return 'Gut center (instinct and action) + Intuition-dominant processing: you see big-picture patterns and are driven to act on them — the gap between vision and execution can create friction.';
+    if (center === 'gut' && domChar === 'T') return 'Gut center + Thinking-dominant processing: decisive, systematic, and action-ready — you act from instinct and back it with logic.';
+    if (center === 'gut' && domChar === 'F') return 'Gut center (body-based instinct) + Feeling-dominant processing: deep empathy combined with gut-level reactions — a powerful advocate, but prone to reactivity under pressure.';
+    return null;
+  })();
+
+  const harmonicNote = harmonic === 'competency'
+    ? 'You navigate conflict through competence and logic — focusing on what is correct and well-executed rather than what feels right.'
+    : harmonic === 'reactive'
+      ? 'You navigate conflict reactively — expressing your inner state directly and expecting emotional honesty in return, which can feel intense to those with different conflict styles.'
+      : 'You navigate conflict through positive reframing — seeking silver linings or sidestepping tension to preserve harmony and connection.';
+
+  const instMbtiNote = (() => {
+    if (dominantInst === 'so' && isE) return 'Social-dominant drive + Extraverted processing: unusually strong group attunement — you naturally read and shape the room.';
+    if (dominantInst === 'so' && !isE) return 'Social-dominant drive with Introverted processing: you care deeply about group belonging while needing solitude to recharge — a quietly observant social navigator.';
+    if (dominantInst === 'sx' && isE) return 'Sexual/One-to-One dominant + Extraverted energy: magnetic intensity — you bring full presence to connections and light up in meaningful engagement.';
+    if (dominantInst === 'sx' && !isE) return 'Sexual/One-to-One dominant + Introverted processing: deeply selective and intense in close bonds, private by default — few connections, but transformative ones.';
+    if (dominantInst === 'sp' && isE) return 'Self-Preservation dominant + Extraverted energy: you engage the world actively while always keeping one eye on personal stability and resource management.';
+    if (dominantInst === 'sp' && !isE) return 'Self-Preservation dominant + Introverted processing: deeply self-sufficient and resource-conscious — you build a secure inner world before venturing out.';
+    return null;
+  })();
 
   // Instinct coloring prose
   const INST_COLORING = {
@@ -351,6 +407,10 @@ function CombinedView({ setView }) {
     sx: 'an intense, one-on-one lens — bringing passionate depth, magnetic focus, and a hunger for transformative experiences to every expression of this type combination.',
     so: 'a community-aware lens — expressing these traits through social consciousness, group participation, and a desire to contribute to something larger than oneself.',
   };
+
+  const sectionStyle = { marginTop: 16, paddingTop: 16, borderTop: `1px solid ${G.goldBorder}` };
+  const labelStyle = { fontSize: 11, fontWeight: 600, color: G.gold, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 };
+  const itemStyle = { fontSize: 13, color: G.textDim, marginBottom: 4, lineHeight: 1.5 };
 
   return (
     <>
@@ -368,6 +428,39 @@ function CombinedView({ setView }) {
         </div>
       </div>
 
+      {/* Wing */}
+      {WING_DESC[enn.display] && (
+        <div style={S.card}>
+          <h3 style={S.h3}>Wing — {enn.display}</h3>
+          <p style={{ ...S.body, marginTop: 8 }}>{WING_DESC[enn.display]}</p>
+          <div style={{ display: 'flex', gap: 16, marginTop: 12, flexWrap: 'wrap' }}>
+            <div style={{ flex: 1, minWidth: 120 }}>
+              <p style={labelStyle}>Core Fear</p>
+              <p style={itemStyle}>{ennType?.fear}</p>
+            </div>
+            <div style={{ flex: 1, minWidth: 120 }}>
+              <p style={labelStyle}>Core Desire</p>
+              <p style={itemStyle}>{ennType?.desire}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Cognitive Stack */}
+      <div style={S.card}>
+        <h3 style={S.h3}>Cognitive Stack — {mbtiResult}</h3>
+        <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
+          {mbtiStack.map((fn, i) => (
+            <div key={fn} style={{ textAlign: 'center' }}>
+              <span style={{ fontSize: 10, color: G.textFaint, display: 'block', marginBottom: 3, fontFamily: "'DM Mono',monospace" }}>{['DOM', 'AUX', 'TER', 'INF'][i]}</span>
+              <FnBadge fn={fn} size="md" />
+            </div>
+          ))}
+        </div>
+        {domFn.desc && <p style={{ ...S.body, marginTop: 10 }}>{domFn.desc}</p>}
+      </div>
+
+      {/* Enneagram + MBTI correlation */}
       <div style={S.card}>
         <h3 style={S.h3}>Enneagram + MBTI</h3>
         <div style={{ marginTop: 10 }}>
@@ -386,6 +479,7 @@ function CombinedView({ setView }) {
         </div>
       </div>
 
+      {/* Instinct Coloring */}
       <div style={S.card}>
         <h3 style={S.h3}>Instinct Coloring</h3>
         <p style={{ ...S.body, marginTop: 10 }}>
@@ -396,6 +490,38 @@ function CombinedView({ setView }) {
             Your repressed instinct — <strong style={{ color: G.textDim }}>{instStack[2].toUpperCase()} ({INSTINCT_META[instStack[2]]?.label})</strong> — is the area where this profile's blind spots tend to appear. Growth often comes from developing awareness in this domain.
           </p>
         )}
+      </div>
+
+      {/* Strengths & Challenges */}
+      <div style={S.card}>
+        <h3 style={S.h3}>Strengths</h3>
+        <div style={{ marginTop: 8 }}>
+          {strengths.map((s, i) => <p key={i} style={itemStyle}>· {s}</p>)}
+        </div>
+        <div style={sectionStyle}>
+          <p style={labelStyle}>Challenges</p>
+          {challenges.map((c, i) => <p key={i} style={itemStyle}>· {c}</p>)}
+        </div>
+      </div>
+
+      {/* System Interactions */}
+      <div style={S.card}>
+        <h3 style={S.h3}>System Interactions</h3>
+        <div style={{ marginTop: 8 }}>
+          {centerInteraction && <p style={itemStyle}>· {centerInteraction}</p>}
+          {instMbtiNote && <p style={{ ...itemStyle, marginTop: 6 }}>· {instMbtiNote}</p>}
+          <p style={{ ...itemStyle, marginTop: 6 }}>· Conflict style: {harmonicNote}</p>
+        </div>
+      </div>
+
+      {/* Growth Edge */}
+      <div style={S.card}>
+        <h3 style={S.h3}>Growth Edge</h3>
+        <div style={{ marginTop: 8 }}>
+          {growth && <p style={itemStyle}>· Working toward Type {growth} qualities — {ENN_TYPES[growth]?.name}</p>}
+          {auxFnKey && <p style={{ ...itemStyle, marginTop: 6 }}>· Developing your {auxFnKey} ({COG_FUNCTIONS[auxFnKey]?.name}) supports this direction</p>}
+          {stress && <p style={{ ...itemStyle, marginTop: 6, color: G.textFaint }}>· Under stress, Type {stress} ({ENN_TYPES[stress]?.name}) patterns emerge — notice and return to center</p>}
+        </div>
       </div>
 
       <button onClick={() => setView('typer')} style={{ ...S.btnOutline, width: '100%', marginTop: 8 }}>

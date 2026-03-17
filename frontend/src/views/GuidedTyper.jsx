@@ -201,7 +201,7 @@ export function scoreInstinct(answers, sequence, disambigAnswers = {}, disambigS
   return { instinctStack, instScores };
 }
 
-export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setExplorerSel = () => {}, setQuizProgress = () => {} }) {
+export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setExplorerSel = () => {}, setQuizProgress = () => {}, setModelTab = () => {} }) {
   const goToExplorer = (tab, sel = null) => { setExplorerTab(tab); setExplorerSel(sel); setView('explorer'); };
   // Restore in-progress quiz session from localStorage if available
   const [phase, setPhase] = useState(() => {
@@ -632,7 +632,13 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
               <div style={{ flex: 1 }}>
                 <h3 style={{ ...S.h3, marginBottom: 4 }}>Your Profile</h3>
-                {archetypeName && <p style={{ fontSize: 13, color: G.gold, marginBottom: 4, fontStyle: 'italic' }}>{archetypeName}</p>}
+                {archetypeName && (
+                  <button
+                    aria-label="View combined profile in Mental Model"
+                    onClick={() => { setModelTab('combined'); setView('model'); }}
+                    style={{ fontSize: 13, color: G.gold, marginBottom: 4, fontStyle: 'italic', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', textAlign: 'left' }}
+                  >{archetypeName}</button>
+                )}
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 6 }}>
                   {saved.enn && (
                     <button
@@ -696,102 +702,14 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 </div>
               </div>
             )}
-            {allDone && (() => {
-              const coreType = saved.enn.coreType;
-              const mbtiType = saved.mbti.result;
-              const instStack = saved.inst.instinctStack || [];
-              const domInst = instStack[0];
-              const mbtiStack = MBTI_TYPES[mbtiType]?.stack || [];
-              const domFnKey = mbtiStack[0];
-              const auxFnKey = mbtiStack[1];
-              const infFnKey = mbtiStack[3];
-              const domFn = COG_FUNCTIONS[domFnKey] || {};
-              const infFn = COG_FUNCTIONS[infFnKey] || {};
-              const center = ENN_CENTER[coreType];
-              const harmonic = ENN_HARMONIC[coreType];
-              const growth = ENN_ARROWS[coreType]?.growth;
-              const stress = ENN_ARROWS[coreType]?.stress;
-              const isE = mbtiType[0] === 'E';
-              const domChar = domFnKey ? domFnKey[0] : ''; // N/S/T/F
-
-              const strengths = [
-                ...(domFn.strengths ? domFn.strengths.split(',').slice(0, 3).map(s => s.trim()) : []),
-                `Motivated by: ${ENN_TYPES[coreType]?.desire?.toLowerCase()}`,
-              ];
-
-              const challenges = [
-                ...(infFn.shadow ? infFn.shadow.split(',').slice(0, 2).map(s => s.trim()) : []),
-                `Core anxiety: ${ENN_TYPES[coreType]?.fear?.toLowerCase()}`,
-                stress ? `Under stress: drawn toward Type ${stress} (${ENN_TYPES[stress]?.name}) patterns` : null,
-              ].filter(Boolean);
-
-              const centerInteraction = (() => {
-                if (center === 'heart' && (domChar === 'F')) return 'Heart center + Feeling-dominant processing: emotional intelligence and identity awareness are your superpower — and your most tender vulnerability.';
-                if (center === 'heart' && domChar === 'T') return 'Cross-system tension: Heart center (identity-focused) + Thinking-dominant processing — you may use logic as a buffer for deeper identity concerns, or analyze your way through emotional situations.';
-                if (center === 'heart' && domChar === 'N') return 'Heart center + Intuition-dominant processing: you perceive meaning and identity through pattern and vision — a creatively rich but sometimes destabilizing combination.';
-                if (center === 'head' && domChar === 'N') return 'Head center + Intuition-dominant processing: pattern recognition and strategic foresight are natural strengths, though anxious thought-spirals are an occupational hazard.';
-                if (center === 'head' && domChar === 'T') return 'Head center + Thinking-dominant processing: analytical precision and strategic clarity are your strengths, but anxiety can manifest as hyper-analysis and decision paralysis.';
-                if (center === 'head' && domChar === 'F') return 'Cross-system tension: Head center (fear-oriented) + Feeling-dominant processing — interpersonal warmth and fear-based vigilance create a complex, caring-but-anxious combination.';
-                if (center === 'gut' && domChar === 'S') return 'Gut center + Sensing-dominant processing: grounded, present, and action-oriented — you trust what you can see, touch, and do.';
-                if (center === 'gut' && domChar === 'N') return 'Gut center (instinct and action) + Intuition-dominant processing: you see big-picture patterns and are driven to act on them — the gap between vision and execution can create friction.';
-                if (center === 'gut' && domChar === 'T') return 'Gut center + Thinking-dominant processing: decisive, systematic, and action-ready — you act from instinct and back it with logic.';
-                if (center === 'gut' && domChar === 'F') return 'Gut center (body-based instinct) + Feeling-dominant processing: deep empathy combined with gut-level reactions — a powerful advocate, but prone to reactivity under pressure.';
-                return null;
-              })();
-
-              const harmonicNote = harmonic === 'competency'
-                ? 'You navigate conflict through competence and logic — focusing on what is correct and well-executed rather than what feels right.'
-                : harmonic === 'reactive'
-                  ? 'You navigate conflict reactively — expressing your inner state directly and expecting emotional honesty in return, which can feel intense to those with different conflict styles.'
-                  : 'You navigate conflict through positive reframing — seeking silver linings or sidestepping tension to preserve harmony and connection.';
-
-              const instMbtiNote = (() => {
-                if (domInst === 'so' && isE) return 'Social-dominant drive + Extraverted processing: unusually strong group attunement — you naturally read and shape the room.';
-                if (domInst === 'so' && !isE) return 'Social-dominant drive with Introverted processing: you care deeply about group belonging while needing solitude to recharge — a quietly observant social navigator.';
-                if (domInst === 'sx' && isE) return 'Sexual/One-to-One dominant + Extraverted energy: magnetic intensity — you bring full presence to connections and light up in meaningful engagement.';
-                if (domInst === 'sx' && !isE) return 'Sexual/One-to-One dominant + Introverted processing: deeply selective and intense in close bonds, private by default — few connections, but transformative ones.';
-                if (domInst === 'sp' && isE) return 'Self-Preservation dominant + Extraverted energy: you engage the world actively while always keeping one eye on personal stability and resource management.';
-                if (domInst === 'sp' && !isE) return 'Self-Preservation dominant + Introverted processing: deeply self-sufficient and resource-conscious — you build a secure inner world before venturing out.';
-                return null;
-              })();
-
-              const sectionStyle = { marginTop: 14, paddingTop: 14, borderTop: `1px solid ${G.goldBorder}` };
-              const labelStyle = { fontSize: 11, fontWeight: 600, color: G.gold, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 };
-              const itemStyle = { fontSize: 13, color: G.textDim, marginBottom: 4, lineHeight: 1.5 };
-
-              return (
-                <div>
-                  <div style={sectionStyle}>
-                    <p style={labelStyle}>Strengths</p>
-                    {strengths.map((s, i) => <p key={i} style={itemStyle}>· {s}</p>)}
-                  </div>
-                  <div style={sectionStyle}>
-                    <p style={labelStyle}>Challenges</p>
-                    {challenges.map((c, i) => <p key={i} style={itemStyle}>· {c}</p>)}
-                  </div>
-                  <div style={sectionStyle}>
-                    <p style={labelStyle}>System Interactions</p>
-                    {centerInteraction && <p style={itemStyle}>· {centerInteraction}</p>}
-                    {instMbtiNote && <p style={itemStyle}>· {instMbtiNote}</p>}
-                    <p style={itemStyle}>· Conflict style: {harmonicNote}</p>
-                  </div>
-                  <div style={sectionStyle}>
-                    <p style={labelStyle}>Growth Edge</p>
-                    {growth && <p style={itemStyle}>· Working toward Type {growth} qualities — {ENN_TYPES[growth]?.name}</p>}
-                    {auxFnKey && <p style={itemStyle}>· Developing your {auxFnKey} ({COG_FUNCTIONS[auxFnKey]?.name}) supports this direction</p>}
-                    {stress && <p style={{ ...itemStyle, color: G.textFaint }}>· Under stress, Type {stress} ({ENN_TYPES[stress]?.name}) patterns emerge — notice and return to center</p>}
-                  </div>
-                  {combinationProfile && combinationProfile.inRelationships && (
-                    <div style={sectionStyle}>
-                      <p style={labelStyle}>Three-System Profile</p>
-                      {combinationProfile.inRelationships && <p style={{ ...itemStyle, marginBottom: 8 }}><strong style={{ color: G.text, fontSize: 12 }}>In relationships:</strong> {combinationProfile.inRelationships}</p>}
-                      {combinationProfile.atWork && <p style={{ ...itemStyle, marginBottom: 8 }}><strong style={{ color: G.text, fontSize: 12 }}>At work:</strong> {combinationProfile.atWork}</p>}
-                      {combinationProfile.stressBehavior && <p style={{ ...itemStyle, color: G.textFaint }}><strong style={{ color: G.textDim, fontSize: 12 }}>Under stress:</strong> {combinationProfile.stressBehavior}</p>}
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
+            {allDone && (
+              <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${G.goldBorder}` }}>
+                <button
+                  onClick={() => { setModelTab('combined'); setView('model'); }}
+                  style={{ ...S.btnOutline, width: '100%', fontSize: 13 }}
+                >View full combined profile in Mental Model →</button>
+              </div>
+            )}
           </div>
         )}
         {exportData && <ExportModal markdown={exportData.markdown} backup={exportData.backup} onClose={() => setExportData(null)} />}
