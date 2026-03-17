@@ -248,8 +248,8 @@ describe('GuidedTyper — Instinct Stack quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('SP · SX · SO Drive Ordering').closest('[style]'));
 
-    // Answer up to 15 questions; stops when result appears
-    await answerUpTo(15, '+1');
+    // Answer up to 20 questions (15 main + up to 5 disambig); stops when result appears
+    await answerUpTo(20, '+1');
 
     expect(screen.getByText(/your instinct stack result/i)).toBeInTheDocument();
     expect(screen.getByText('Dominant')).toBeInTheDocument();
@@ -261,10 +261,22 @@ describe('GuidedTyper — Instinct Stack quiz flow', () => {
   it('can return to choose screen from instinct result', async () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('SP · SX · SO Drive Ordering').closest('[style]'));
-    await answerUpTo(15);
+    // Cover main bank + up to one disambig round (15 + 5)
+    await answerUpTo(20);
 
     fireEvent.click(screen.getByRole('button', { name: /← back to assessments/i }));
     expect(screen.getByText('Guided Typer')).toBeInTheDocument();
+  }, 10000);
+
+  it('enters inst-disambig phase when bank exhausts with tied scores (regression)', async () => {
+    render(<GuidedTyper />);
+    fireEvent.click(screen.getByText('SP · SX · SO Drive Ordering').closest('[style]'));
+
+    // Answer all 15 questions with same value → all instincts tie → disambig triggered
+    await answerUpTo(15, '+1');
+
+    expect(screen.getByText(/instinct stack assessment/i)).toBeInTheDocument();
+    expect(screen.getByText(/a few more targeted questions/i)).toBeInTheDocument();
   }, 10000);
 
   it('does not start quiz if instinct stack is already completed', () => {
@@ -336,8 +348,8 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
 
-    // Answer up to 32 questions at '0' — stops when done
-    await answerUpTo(32);
+    // Answer up to 52 questions (32 main + up to 20 disambig for 4 weak dims)
+    await answerUpTo(52);
 
     expect(screen.getByText(/your mbti result/i)).toBeInTheDocument();
     expect(screen.getByText(/cognitive stack/i)).toBeInTheDocument();
@@ -382,10 +394,21 @@ describe('GuidedTyper — MBTI quiz flow', () => {
   it('can return to choose screen from MBTI result', async () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
-    await answerUpTo(32);
+    // Cover main bank + full disambig for up to 4 weak dims (32 + 20)
+    await answerUpTo(52);
 
     fireEvent.click(screen.getByRole('button', { name: /← back to assessments/i }));
     expect(screen.getByText('Guided Typer')).toBeInTheDocument();
+  }, 10000);
+
+  it('enters mbti-disambig phase when bank exhausts with weak dimensions (regression)', async () => {
+    render(<GuidedTyper />);
+    fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
+
+    // Answer all 32 questions with 0 → no dim confident → disambig triggered
+    await answerUpTo(32);
+
+    expect(screen.getByText(/a few more targeted questions to clarify/i)).toBeInTheDocument();
   }, 10000);
 
   it('does not start quiz if MBTI is already completed', () => {

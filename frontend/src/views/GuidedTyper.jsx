@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
-import { ENN_TYPES, ENN_BANK, INSTINCT_BANK, WING_DESC, ENN_DISAMBIG, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC } from '../data/enneagram.js';
-import { MBTI_BANK, MBTI_TYPES } from '../data/mbti.js';
+import { ENN_TYPES, ENN_BANK, INSTINCT_BANK, INSTINCT_DISAMBIG, WING_DESC, ENN_DISAMBIG, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC } from '../data/enneagram.js';
+import { MBTI_BANK, MBTI_TYPES, MBTI_DISAMBIG } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
 import LikertScale from '../components/LikertScale.jsx';
 import ProgressBar from '../components/ProgressBar.jsx';
@@ -27,7 +27,7 @@ function writeLS(key, val) { try { localStorage.setItem(key, JSON.stringify(val)
 function clearLS(key) { try { localStorage.removeItem(key); } catch {} }
 
 // Phases where a quiz is actively in progress (session should be saved/restored)
-const ACTIVE_PHASES = ['enn', 'mbti', 'instinct', 'enn-disambig'];
+const ACTIVE_PHASES = ['enn', 'mbti', 'instinct', 'enn-disambig', 'inst-disambig', 'mbti-disambig'];
 
 // --- Adaptive question selection ---
 /** Fisher-Yates in-place shuffle. Returns the array. */
@@ -87,7 +87,7 @@ export function isMBTIDimConfident(dim, answers, sequence, upToIndex) {
   let rawSum = 0, count = 0;
   for (let i = 0; i <= upToIndex; i++) {
     if (sequence[i]?.dim === dim && answers[i] !== undefined) {
-      rawSum += answers[i];
+      rawSum += answers[i] * (sequence[i].direction ?? 1);
       count++;
     }
   }
@@ -148,13 +148,13 @@ export function scoreMBTI(answers, sequence) {
     let rawSum = 0, count = 0;
     sequence.forEach((q, i) => {
       if (q.dim === dim && answers[i] !== undefined) {
-        rawSum += answers[i];
+        rawSum += answers[i] * (q.direction ?? 1);
         count++;
       }
     });
     if (count === 0) { scFinal[pos] = 0; scFinal[neg] = 0; return; }
     // Shift so that rawSum=0 (neutral) produces equal scores,
-    // rawSum>0 (agree with pole) produces higher pos score.
+    // rawSum>0 (agree with positive pole) produces higher pos score.
     const shifted = rawSum + count * 3;
     scFinal[pos] = shifted;
     scFinal[neg] = count * 6 - shifted;
@@ -185,10 +185,17 @@ export function scoreEnneagram(answers, sequence, branchAnswers, disambigPair) {
   return { coreType: core, wing, scores, wingStrengthDelta: delta, display: `${core}w${wing}` };
 }
 
-export function scoreInstinct(answers, sequence) {
+export function scoreInstinct(answers, sequence, disambigAnswers = {}, disambigSeq = []) {
   const instScores = { sp: 0, sx: 0, so: 0 };
   sequence.forEach((q, i) => {
     if (answers[i] !== undefined) instScores[q.inst] += answers[i];
+  });
+  disambigSeq.forEach((q, i) => {
+    if (disambigAnswers[i] !== undefined) {
+      const v = disambigAnswers[i];
+      instScores[q.favors] += v;
+      instScores[q.opponent] -= v;
+    }
   });
   const instinctStack = Object.entries(instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k);
   return { instinctStack, instScores };
@@ -225,6 +232,15 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const s = readLS(LS.session);
     return (s && ACTIVE_PHASES.includes(s.phase)) ? (s.disambigPair ?? null) : null;
   });
+  // Instinct disambiguation state
+  const [instDisambigPair, setInstDisambigPair] = useState(null);
+  const [instDisambigSeq, setInstDisambigSeq] = useState([]);
+  const [instDisambigAnswers, setInstDisambigAnswers] = useState({});
+  const [instDisambigQi, setInstDisambigQi] = useState(0);
+  // MBTI disambiguation state
+  const [mbtiDisambigSeq, setMbtiDisambigSeq] = useState([]);
+  const [mbtiDisambigAnswers, setMbtiDisambigAnswers] = useState({});
+  const [mbtiDisambigQi, setMbtiDisambigQi] = useState(0);
   const [result, setResult] = useState(null);
   const [exportData, setExportData] = useState(null);
   const [profileCode, setProfileCode] = useState('');
@@ -272,12 +288,16 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
       setQuizProgress({ current: qi + 1, total: ENN_DISAMBIG[disambigPair].length });
     } else if (phase === 'instinct' && instSeq.length > 0) {
       setQuizProgress({ current: qi + 1, total: instSeq.length });
+    } else if (phase === 'inst-disambig' && instDisambigSeq.length > 0) {
+      setQuizProgress({ current: instDisambigQi + 1, total: instDisambigSeq.length });
     } else if (phase === 'mbti' && mbtiSeq.length > 0) {
       setQuizProgress({ current: qi + 1, total: mbtiSeq.length });
+    } else if (phase === 'mbti-disambig' && mbtiDisambigSeq.length > 0) {
+      setQuizProgress({ current: mbtiDisambigQi + 1, total: mbtiDisambigSeq.length });
     } else {
       setQuizProgress(null);
     }
-  }, [phase, qi, ennSeq.length, instSeq.length, mbtiSeq.length, disambigPair]);
+  }, [phase, qi, ennSeq.length, instSeq.length, mbtiSeq.length, disambigPair, instDisambigSeq.length, instDisambigQi, mbtiDisambigSeq.length, mbtiDisambigQi]);
 
   // --- Session persistence — save/restore mid-quiz state across tab switches ---
   useEffect(() => {
@@ -368,6 +388,15 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     }, 150);
   };
 
+  const finishInstinct = (mainAnswers, dAnswers = {}, dSeq = []) => {
+    const r = scoreInstinct(mainAnswers, instSeq, dAnswers, dSeq);
+    const backup = { ...r, exportedAt: new Date().toISOString() };
+    writeLS(LS.inst, backup);
+    setSaved(s => ({ ...s, inst: backup }));
+    setResult(r);
+    setPhase('inst-result');
+  };
+
   const handleInstAloneAnswer = (v) => {
     const ni = { ...instAnswers, [qi]: v };
     setInstAnswers(ni);
@@ -377,15 +406,72 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
       const exhausted = nextQi >= instSeq.length;
       if (!confident && !exhausted) {
         setQi(nextQi);
+      } else if (confident) {
+        finishInstinct(ni);
       } else {
-        const r = scoreInstinct(ni, instSeq);
-        const backup = { ...r, exportedAt: new Date().toISOString() };
-        writeLS(LS.inst, backup);
-        setSaved(s => ({ ...s, inst: backup }));
-        setResult(r);
-        setPhase('inst-result');
+        // Bank exhausted but not confident — try pair disambiguation
+        const instScores = { sp: 0, sx: 0, so: 0 };
+        instSeq.forEach((q, i) => { if (ni[i] !== undefined) instScores[q.inst] += ni[i]; });
+        const sorted = Object.entries(instScores).sort((a, b) => b[1] - a[1]);
+        const CANONICAL = ['sp', 'so', 'sx'];
+        for (let i = 0; i < sorted.length - 1; i++) {
+          if (sorted[i][1] - sorted[i + 1][1] < INST_GAP_THRESHOLD) {
+            const [a, b2] = [sorted[i][0], sorted[i + 1][0]].sort(
+              (x, y) => CANONICAL.indexOf(x) - CANONICAL.indexOf(y)
+            );
+            const pairKey = `${a}-${b2}`;
+            if (INSTINCT_DISAMBIG[pairKey]) {
+              const raw = INSTINCT_DISAMBIG[pairKey];
+              const seq = shuffleArray(raw.map(q => ({
+                ...q,
+                opponent: q.favors === a ? b2 : a,
+              })));
+              setInstDisambigPair(pairKey);
+              setInstDisambigSeq(seq);
+              setInstDisambigAnswers({});
+              setInstDisambigQi(0);
+              setPhase('inst-disambig');
+              return;
+            }
+            break;
+          }
+        }
+        finishInstinct(ni);
       }
     }, 150);
+  };
+
+  const handleInstDisambigAnswer = (v) => {
+    const ni = { ...instDisambigAnswers, [instDisambigQi]: v };
+    setInstDisambigAnswers(ni);
+    setTimeout(() => {
+      const nextQi = instDisambigQi + 1;
+      const r = scoreInstinct(instAnswers, instSeq, ni, instDisambigSeq);
+      const sorted = Object.entries(r.instScores).sort((a, b) => b[1] - a[1]);
+      const nowConfident =
+        sorted[0][1] - sorted[1][1] >= INST_GAP_THRESHOLD &&
+        sorted[1][1] - sorted[2][1] >= INST_GAP_THRESHOLD;
+      const exhausted = nextQi >= instDisambigSeq.length;
+      if (nowConfident || exhausted) {
+        finishInstinct(instAnswers, ni, instDisambigSeq);
+      } else {
+        setInstDisambigQi(nextQi);
+      }
+    }, 150);
+  };
+
+  const finishMBTI = (mainAnswers, dAnswers = {}, dSeq = []) => {
+    const combinedSeq = [...mbtiSeq, ...dSeq];
+    const combinedAnswers = { ...mainAnswers };
+    Object.entries(dAnswers).forEach(([i, val]) => {
+      combinedAnswers[mbtiSeq.length + parseInt(i)] = val;
+    });
+    const r = scoreMBTI(combinedAnswers, combinedSeq);
+    const backup = { ...r, exportedAt: new Date().toISOString() };
+    writeLS(LS.mbti, backup);
+    setSaved(s => ({ ...s, mbti: backup }));
+    setResult(r);
+    setPhase('mbti-result');
   };
 
   const handleMBTIAnswer = (v) => {
@@ -397,13 +483,42 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
       const exhausted = nextQi >= mbtiSeq.length;
       if (!confident && !exhausted) {
         setQi(nextQi);
+      } else if (confident) {
+        finishMBTI(nm);
       } else {
-        const r = scoreMBTI(nm, mbtiSeq);
-        const backup = { ...r, exportedAt: new Date().toISOString() };
-        writeLS(LS.mbti, backup);
-        setSaved(s => ({ ...s, mbti: backup }));
-        setResult(r);
-        setPhase('mbti-result');
+        // Bank exhausted — check for unconfident dims and disambiguate
+        const DIMS = ['EI', 'SN', 'TF', 'JP'];
+        const weakDims = DIMS.filter(d => !isMBTIDimConfident(d, nm, mbtiSeq, qi));
+        if (weakDims.length > 0) {
+          const rawSeq = weakDims.flatMap(d => (MBTI_DISAMBIG[d] || []).map(q => ({ ...q })));
+          const seq = shuffleArray(rawSeq);
+          setMbtiDisambigSeq(seq);
+          setMbtiDisambigAnswers({});
+          setMbtiDisambigQi(0);
+          setPhase('mbti-disambig');
+          return;
+        }
+        finishMBTI(nm);
+      }
+    }, 150);
+  };
+
+  const handleMBTIDisambigAnswer = (v) => {
+    const ni = { ...mbtiDisambigAnswers, [mbtiDisambigQi]: v };
+    setMbtiDisambigAnswers(ni);
+    setTimeout(() => {
+      const nextQi = mbtiDisambigQi + 1;
+      const combinedSeq = [...mbtiSeq, ...mbtiDisambigSeq];
+      const combinedAnswers = { ...mbtiAnswers };
+      Object.entries(ni).forEach(([i, val]) => {
+        combinedAnswers[mbtiSeq.length + parseInt(i)] = val;
+      });
+      const nowConfident = allMBTIDimsConfident(combinedAnswers, combinedSeq, combinedSeq.length - 1);
+      const exhausted = nextQi >= mbtiDisambigSeq.length;
+      if (nowConfident || exhausted) {
+        finishMBTI(mbtiAnswers, ni, mbtiDisambigSeq);
+      } else {
+        setMbtiDisambigQi(nextQi);
       }
     }, 150);
   };
@@ -414,6 +529,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     setPhase('choose'); setQi(0); setAnswers({}); setInstAnswers({}); setMbtiAnswers({});
     setBranchAnswers({}); setDisambigPair(null); setResult(null); setExportData(null);
     setMbtiSeq([]); setEnnSeq([]); setInstSeq([]); setConfirmCancel(false);
+    setInstDisambigPair(null); setInstDisambigSeq([]); setInstDisambigAnswers({}); setInstDisambigQi(0);
+    setMbtiDisambigSeq([]); setMbtiDisambigAnswers({}); setMbtiDisambigQi(0);
   };
   const retakeEnn = () => {
     clearLS(LS.enn); clearLS(LS.session); setSaved(s => ({ ...s, enn: null }));
@@ -426,12 +543,14 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const seq = buildFairSequence(MBTI_BANK, q => q.dim);
     setMbtiSeq(seq);
     setPhase('mbti'); setQi(0); setMbtiAnswers({});
+    setMbtiDisambigSeq([]); setMbtiDisambigAnswers({}); setMbtiDisambigQi(0);
   };
   const retakeInst = () => {
     clearLS(LS.inst); clearLS(LS.session); setSaved(s => ({ ...s, inst: null }));
     const seq = buildFairSequence(INSTINCT_BANK, q => q.inst);
     setInstSeq(seq);
     setPhase('instinct'); setQi(0); setInstAnswers({});
+    setInstDisambigPair(null); setInstDisambigSeq([]); setInstDisambigAnswers({}); setInstDisambigQi(0);
   };
 
   const handleClearAll = () => {
@@ -938,6 +1057,45 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     );
   }
 
+  // --- Instinct disambiguation questions ---
+  if (phase === 'inst-disambig' && instDisambigSeq.length > 0) {
+    const q = instDisambigSeq[instDisambigQi];
+    return (
+      <div style={S.page} className="qpage">
+        <div className="qbody">
+          <div style={S.container}>
+            <div style={{ textAlign: 'center', marginBottom: 16 }}>
+              <h3 style={S.h3}>Instinct Stack Assessment</h3>
+              <p style={{ ...S.body, fontSize: 13 }}>A few more targeted questions to clarify your drive ordering.</p>
+            </div>
+            <div style={S.card} className="qcard">
+              <p style={{ ...S.mono, marginBottom: 6 }}>Question {instDisambigQi + 1}</p>
+              <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
+              <LikertScale value={instDisambigAnswers[instDisambigQi]} onChange={handleInstDisambigAnswer} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+              </div>
+            </div>
+            <ProgressBar current={instDisambigQi + 1} total={instDisambigSeq.length} />
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {instDisambigQi > 0
+                ? <button onClick={() => setInstDisambigQi(instDisambigQi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>
+                : <span />}
+              {!confirmCancel
+                ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+                : <div style={{ display: 'flex', gap: 8 }}>
+                    <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                  </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // --- Standalone instinct result ---
   if (phase === 'inst-result' && result) {
     const stack = result.instinctStack || [];
@@ -1005,6 +1163,42 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             <ProgressBar current={qi + 1} total={mbtiSeq.length} />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
+              {!confirmCancel
+                ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
+                : <div style={{ display: 'flex', gap: 8 }}>
+                    <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                  </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // --- MBTI disambiguation questions ---
+  if (phase === 'mbti-disambig' && mbtiDisambigSeq.length > 0) {
+    const q = mbtiDisambigSeq[mbtiDisambigQi];
+    return (
+      <div style={S.page} className="qpage">
+        <div className="qbody">
+          <div style={S.container}>
+            <div style={S.card} className="qcard">
+              <p style={{ ...S.mono, marginBottom: 6 }}>Question {mbtiDisambigQi + 1}</p>
+              <p style={{ ...S.body, fontSize: 13, color: G.textFaint, marginBottom: 8 }}>A few more targeted questions to clarify your type.</p>
+              <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
+              <LikertScale value={mbtiDisambigAnswers[mbtiDisambigQi]} onChange={handleMBTIDisambigAnswer} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Disagree</span>
+                <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
+              </div>
+            </div>
+            <ProgressBar current={mbtiDisambigQi + 1} total={mbtiDisambigSeq.length} />
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {mbtiDisambigQi > 0
+                ? <button onClick={() => setMbtiDisambigQi(mbtiDisambigQi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button>
+                : <span />}
               {!confirmCancel
                 ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
                 : <div style={{ display: 'flex', gap: 8 }}>

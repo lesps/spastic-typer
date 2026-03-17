@@ -18,6 +18,11 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ## [1.2]
 
+### 1.2.4 — 2026-03-17
+
+- Fix: Instinct Stack quiz now asks targeted pair-specific clarifying questions when the main 15-question bank is exhausted and two instincts are still tied, preventing arbitrary ordering in the result. `INSTINCT_DISAMBIG` data added to `enneagram.js`; `scoreInstinct` updated to accept optional `disambigAnswers` and `disambigSeq` parameters; new `inst-disambig` phase added to `GuidedTyper`.
+- Fix: MBTI quiz now asks targeted dimension-specific clarifying questions when the main 32-question bank is exhausted and any dimension is insufficiently differentiated, preventing the silent E/S/T/J tie-breaker from producing misleading results. `MBTI_DISAMBIG` data added to `mbti.js`; `scoreMBTI` and `isMBTIDimConfident` updated to support `direction: -1` on opposite-pole questions; new `mbti-disambig` phase added to `GuidedTyper`.
+
 ### 1.2.3 — 2026-03-17
 
 - Improved: Enneagram wing strength now uses an arrow-augmented absolute endorsement score instead of a raw difference between the two adjacent type scores. `computeWingStrengthDelta` returns `effectiveWingScore(wing, scores) = scores[wing] + 0.2*(scores[growth] + scores[stress])`, preventing false "strong" labels when both wing candidates score negatively and incorporating integration/stress arrow type evidence. `wingStrengthLabel` thresholds recalibrated accordingly (strong > 6, moderate > 1, balanced ≤ 1). Wing *selection* in `scoreEnneagram` also updated to use effective scores so arrow evidence can influence which adjacent type becomes the wing.

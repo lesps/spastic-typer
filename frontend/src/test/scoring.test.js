@@ -182,6 +182,49 @@ describe('scoreMBTI — all four dimensions', () => {
 });
 
 // ---------------------------------------------------------------------------
+// scoreMBTI — Disambiguation Scoring (bug regression)
+// ---------------------------------------------------------------------------
+
+describe('scoreMBTI — disambiguation via extended sequence (bug regression)', () => {
+  it('all-0 EI answers + E-pole disambig question → E wins the dim', () => {
+    const seq = mbtiSeqFromBank();
+    const baseAnswers = mbtiAnswersAll(seq, 0);
+    const disambigSeq = [{ text: 'Disambig E', dim: 'EI', pole: 'E' }];
+    const combined = [...seq, ...disambigSeq];
+    const combinedAnswers = { ...baseAnswers, [seq.length]: 3 };
+    const { result } = scoreMBTI(combinedAnswers, combined);
+    expect(result[0]).toBe('E');
+  });
+
+  it('all-0 EI answers + I-pole disambig question → I wins the dim', () => {
+    const seq = mbtiSeqFromBank();
+    const baseAnswers = mbtiAnswersAll(seq, 0);
+    const disambigSeq = [{ text: 'Disambig I', dim: 'EI', pole: 'I', direction: -1 }];
+    const combined = [...seq, ...disambigSeq];
+    const combinedAnswers = { ...baseAnswers, [seq.length]: 3 };
+    const { result } = scoreMBTI(combinedAnswers, combined);
+    expect(result[0]).toBe('I');
+  });
+
+  it('disambig question for EI does not affect SN result', () => {
+    const seq = mbtiSeqFromBank();
+    const baseAnswers = { ...mbtiAnswersAll(seq, 0), ...mbtiAnswersForDim(seq, 'SN', 3) };
+    const disambigSeq = [{ text: 'Disambig E', dim: 'EI', pole: 'E' }];
+    const combined = [...seq, ...disambigSeq];
+    const combinedAnswers = { ...baseAnswers, [seq.length]: 3 };
+    const { result } = scoreMBTI(combinedAnswers, combined);
+    expect(result[1]).toBe('S'); // SN unaffected
+  });
+
+  it('scoreMBTI with no extra args still works (backwards compat)', () => {
+    const seq = mbtiSeqFromBank();
+    const answers = mbtiAnswersAll(seq, 2);
+    const { result } = scoreMBTI(answers, seq);
+    expect(result).toBe('ESTJ');
+  });
+});
+
+// ---------------------------------------------------------------------------
 // MBTI Confidence Thresholds
 // ---------------------------------------------------------------------------
 
@@ -427,6 +470,62 @@ describe('scoreInstinct', () => {
     expect(instinctStack).toContain('sp');
     expect(instinctStack).toContain('sx');
     expect(instinctStack).toContain('so');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// scoreInstinct — Disambiguation Scoring (bug regression)
+// ---------------------------------------------------------------------------
+
+describe('scoreInstinct — disambiguation scoring (bug regression)', () => {
+  it('without disambig params, behaves identically to original', () => {
+    const seq = instSeqFromBank();
+    const answers = instAnswersOrdered(seq, 3, 1, -2);
+    const { instinctStack } = scoreInstinct(answers, seq);
+    expect(instinctStack).toEqual(['sp', 'sx', 'so']);
+  });
+
+  it('disambig favoring sp over so raises sp score and lowers so score', () => {
+    const seq = instSeqFromBank();
+    const answers = instAnswersOrdered(seq, 3, -5, 3); // sp=so tied
+    const disambigSeq = [{ favors: 'sp', opponent: 'so' }];
+    const disambigAnswers = { 0: 3 };
+    const { instScores } = scoreInstinct(answers, seq, disambigAnswers, disambigSeq);
+    expect(instScores.sp).toBeGreaterThan(instScores.so);
+  });
+
+  it('negative disambig answer reverses the bias toward the opponent', () => {
+    const seq = instSeqFromBank();
+    const answers = instAnswersOrdered(seq, 3, -5, 3); // sp=so tied
+    const disambigSeq = [{ favors: 'sp', opponent: 'so' }];
+    const disambigAnswers = { 0: -3 }; // user leans away from sp → so should win
+    const { instScores } = scoreInstinct(answers, seq, disambigAnswers, disambigSeq);
+    expect(instScores.so).toBeGreaterThan(instScores.sp);
+  });
+
+  it('disambig answers do not affect an unrelated instinct', () => {
+    const seq = instSeqFromBank();
+    const answers = instAnswersOrdered(seq, 3, -5, 3); // sx clearly last
+    const disambigSeq = [{ favors: 'sp', opponent: 'so' }];
+    const disambigAnswers = { 0: 3 };
+    const { instScores: before } = scoreInstinct(answers, seq);
+    const { instScores: after } = scoreInstinct(answers, seq, disambigAnswers, disambigSeq);
+    expect(after.sx).toBe(before.sx); // sx untouched
+  });
+
+  it('multiple disambig answers accumulate correctly', () => {
+    const seq = instSeqFromBank();
+    const answers = instAnswersOrdered(seq, 3, -5, 3); // sp=so tied
+    const disambigSeq = [
+      { favors: 'sp', opponent: 'so' },
+      { favors: 'sp', opponent: 'so' },
+    ];
+    const disambigAnswers = { 0: 2, 1: 1 };
+    const { instScores } = scoreInstinct(answers, seq, disambigAnswers, disambigSeq);
+    // sp gained +3 total, so lost -3 total
+    const baseSpSoDiff = 0; // they were tied
+    expect(instScores.sp - instScores.so).toBe(6); // 2*2 + 2*1 = ... wait: (2-(-2)) + (1-(-1)) = 4+2=6
+    expect(instScores.sp).toBeGreaterThan(instScores.so);
   });
 });
 

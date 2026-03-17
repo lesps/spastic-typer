@@ -146,9 +146,9 @@ All tests live in `frontend/src/test/`:
 These pure functions are exported specifically for unit testing — keep them exported:
 
 ```js
-scoreMBTI(answers, seq)          // → { result, scores }
+scoreMBTI(answers, seq)          // → { result, scores }  (seq may include MBTI_DISAMBIG questions with direction: -1)
 scoreEnneagram(answers, seq, branchAnswers, branchKey)  // → { coreType, wing, scores, display }
-scoreInstinct(answers, seq)      // → { instinctStack, instScores }
+scoreInstinct(answers, seq, disambigAnswers?, disambigSeq?)  // → { instinctStack, instScores }
 buildFairSequence(bank, keyFn)   // → shuffled question array, one per category per round
 shuffleArray(arr)                // in-place Fisher-Yates, returns same array
 isMBTIDimConfident(dim, answers, seq, currentIdx)
@@ -339,6 +339,8 @@ Entry method (URL hash | file upload | manual form)
 - **Mobile safe areas.** The app targets mobile-first. Use `env(safe-area-inset-*)` in padding/margin for bottom-nav-adjacent elements.
 - **Wing wrap-around.** Type 1's wings are 9 and 2; type 9's wings are 8 and 1. See the wing wrap tests in `scoring.test.js`.
 - **Disambiguation.** When top-2 Enneagram types are within threshold after bank exhaustion, a `branchKey` (e.g. `'4-5'`) triggers additional clarifying questions. This path is covered in tests — preserve it.
+- **Instinct disambig pair key format.** `INSTINCT_DISAMBIG` keys are always in canonical order: `'sp-so'`, `'sp-sx'`, `'so-sx'`. Each disambig question has a `favors` field and an `opponent` field (added at sequence-creation time from the pair key). Do not hand-edit this structure.
+- **MBTI disambig direction field.** `MBTI_DISAMBIG` questions that favor the negative pole (I/N/F/P) carry `direction: -1`. Both `scoreMBTI` and `isMBTIDimConfident` multiply the raw answer by `q.direction ?? 1`. Omitting `direction` on existing bank questions is safe — they default to 1. Do not remove the `direction` field from disambiguation questions.
 
 ---
 
