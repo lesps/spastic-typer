@@ -102,18 +102,30 @@ export function getEnnTips(c1, c2) {
   ];
 }
 
+// Arrow-augmented effective score for a wing candidate.
+// Incorporates 20% of the wing's growth and stress arrow type scores as
+// indirect behavioural evidence (e.g. a high type-9 score supports a 6 wing
+// because 9 is 6's integration direction).
+export function effectiveWingScore(w, scores) {
+  const ARROW_WEIGHT = 0.2;
+  const arrows = ENN_ARROWS[w];
+  return (scores[w] || 0) +
+    ARROW_WEIGHT * ((scores[arrows?.growth] || 0) + (scores[arrows?.stress] || 0));
+}
+
+// Returns the arrow-augmented absolute endorsement score for the chosen wing.
+// Using an absolute score (not a difference) prevents a large "strong" label
+// from emerging solely because both wing candidates score negatively.
+// coreType is retained in the signature for API stability but is no longer used.
 export function computeWingStrengthDelta(coreType, wing, scores) {
   if (!scores || !coreType || !wing) return null;
-  const adj1 = coreType === 1 ? 9 : coreType - 1;
-  const adj2 = coreType === 9 ? 1 : coreType + 1;
-  const otherAdjacent = wing === adj1 ? adj2 : adj1;
-  return (scores[wing] || 0) - (scores[otherAdjacent] || 0);
+  return effectiveWingScore(wing, scores);
 }
 
 export function wingStrengthLabel(strength) {
   if (strength === null || strength === undefined) return null;
   if (typeof strength === 'string') return strength;
-  if (strength > 4) return 'strong';
+  if (strength > 6) return 'strong';
   if (strength > 1) return 'moderate';
   return 'balanced';
 }

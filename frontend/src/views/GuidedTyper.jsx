@@ -9,7 +9,7 @@ import ProgressBar from '../components/ProgressBar.jsx';
 import FnBadge from '../components/FnBadge.jsx';
 import ExportModal from '../components/ExportModal.jsx';
 import { generateExportMarkdown } from '../utils/export.js';
-import { computeWingStrengthDelta, wingStrengthLabel, wingStrengthDesc } from '../utils/enneagram.js';
+import { computeWingStrengthDelta, wingStrengthLabel, wingStrengthDesc, effectiveWingScore } from '../utils/enneagram.js';
 import { computeArchetypeName } from '../utils/archetype.js';
 import { encodeProfileCode, decodeProfileCode } from '../utils/share.js';
 
@@ -180,7 +180,7 @@ export function scoreEnneagram(answers, sequence, branchAnswers, disambigPair) {
   const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
   const core = parseInt(sorted[0][0]);
   const w1 = core === 1 ? 9 : core - 1, w2 = core === 9 ? 1 : core + 1;
-  const wing = (scores[w1] || 0) >= (scores[w2] || 0) ? w1 : w2;
+  const wing = effectiveWingScore(w1, scores) >= effectiveWingScore(w2, scores) ? w1 : w2;
   const delta = computeWingStrengthDelta(core, wing, scores);
   return { coreType: core, wing, scores, wingStrengthDelta: delta, display: `${core}w${wing}` };
 }

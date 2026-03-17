@@ -18,6 +18,10 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ## [1.2]
 
+### 1.2.3 — 2026-03-17
+
+- Improved: Enneagram wing strength now uses an arrow-augmented absolute endorsement score instead of a raw difference between the two adjacent type scores. `computeWingStrengthDelta` returns `effectiveWingScore(wing, scores) = scores[wing] + 0.2*(scores[growth] + scores[stress])`, preventing false "strong" labels when both wing candidates score negatively and incorporating integration/stress arrow type evidence. `wingStrengthLabel` thresholds recalibrated accordingly (strong > 6, moderate > 1, balanced ≤ 1). Wing *selection* in `scoreEnneagram` also updated to use effective scores so arrow evidence can influence which adjacent type becomes the wing.
+
 ### 1.2.2 — 2026-03-17
 
 - Removed: Profiles browse tab from Explorer view; combination profiles now surface exclusively on the GuidedTyper choose screen (after completing all three assessments) or when loading a profile code in the Typer
