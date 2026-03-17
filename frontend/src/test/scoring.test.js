@@ -17,6 +17,7 @@ import {
   isInstConfident,
 } from '../views/GuidedTyper.jsx';
 import { encodeProfileCode, decodeProfileCode } from '../utils/share.js';
+import { computeWingStrengthDelta, wingStrengthLabel } from '../utils/enneagram.js';
 import { MBTI_BANK } from '../data/mbti.js';
 import { ENN_BANK, INSTINCT_BANK } from '../data/enneagram.js';
 
@@ -729,5 +730,99 @@ describe('encodeProfileCode / decodeProfileCode — round-trip', () => {
     const decoded = decodeProfileCode('453XPO-INFP');
     expect(decoded).not.toBeNull();
     expect(decoded.inst.instinctStack).toEqual(['sx', 'sp', 'so']);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// wingStrengthLabel — explicit threshold tests
+// ---------------------------------------------------------------------------
+
+describe('wingStrengthLabel — effective-score thresholds', () => {
+  it('returns null when strength is null or undefined', () => {
+    expect(wingStrengthLabel(null)).toBeNull();
+    expect(wingStrengthLabel(undefined)).toBeNull();
+  });
+
+  it('passes through string values unchanged', () => {
+    expect(wingStrengthLabel('strong')).toBe('strong');
+    expect(wingStrengthLabel('moderate')).toBe('moderate');
+    expect(wingStrengthLabel('balanced')).toBe('balanced');
+  });
+
+  it('> 6 → strong', () => {
+    expect(wingStrengthLabel(7)).toBe('strong');
+    expect(wingStrengthLabel(6.1)).toBe('strong');
+    expect(wingStrengthLabel(15)).toBe('strong');
+  });
+
+  it('> 1 and ≤ 6 → moderate', () => {
+    expect(wingStrengthLabel(6)).toBe('moderate');
+    expect(wingStrengthLabel(3)).toBe('moderate');
+    expect(wingStrengthLabel(1.1)).toBe('moderate');
+  });
+
+  it('≤ 1 → balanced', () => {
+    expect(wingStrengthLabel(1)).toBe('balanced');
+    expect(wingStrengthLabel(0)).toBe('balanced');
+    expect(wingStrengthLabel(-5)).toBe('balanced');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// computeWingStrengthDelta — arrow-augmented absolute score
+// ---------------------------------------------------------------------------
+
+describe('computeWingStrengthDelta — arrow-augmented absolute effective score', () => {
+  it('returns null when inputs are missing', () => {
+    expect(computeWingStrengthDelta(5, 6, null)).toBeNull();
+    expect(computeWingStrengthDelta(0, 6, {})).toBeNull();
+    expect(computeWingStrengthDelta(5, 0, {})).toBeNull();
+  });
+
+  it('equals raw wing score when all arrow-type scores are 0', () => {
+    // ENN_ARROWS[6] = { growth: 9, stress: 3 }; both score 0 here
+    const scores = { 5: 9, 6: 3, 4: 1, 1: 0, 2: 0, 9: 0, 3: 0, 7: 0, 8: 0 };
+    expect(computeWingStrengthDelta(5, 6, scores)).toBeCloseTo(3);
+  });
+
+  it('adds 20% of growth and stress arrow scores to the wing score', () => {
+    // ENN_ARROWS[6] = { growth: 9, stress: 3 }
+    // effective(6) = 2 + 0.2*(8 + -7) = 2 + 0.2 = 2.2
+    const scores = { 5: 9, 6: 2, 4: -3, 9: 8, 3: -7, 1: -3, 2: -3, 7: -7, 8: -5 };
+    expect(computeWingStrengthDelta(5, 6, scores)).toBeCloseTo(2.2);
+  });
+
+  it('screenshot regression — 5w6 with scores (5:+9 9:+8 6:+2 4:-3 …) yields moderate, not strong', () => {
+    const scores = { 5: 9, 9: 8, 6: 2, 4: -3, 1: -3, 2: -3, 8: -5, 3: -7, 7: -7 };
+    const delta = computeWingStrengthDelta(5, 6, scores);
+    expect(delta).toBeCloseTo(2.2);
+    expect(wingStrengthLabel(delta)).toBe('moderate');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// scoreEnneagram — arrow-augmented wing selection
+// ---------------------------------------------------------------------------
+
+describe('scoreEnneagram — arrow evidence can flip wing selection', () => {
+  it('selects wing based on arrow-augmented score, not raw score alone', () => {
+    const seq = ennSeqFromBank();
+    // Core type 5. Raw scores: type 4 = 5, type 6 = 0 → raw would pick wing 4.
+    // ENN_ARROWS[4] = { growth: 1, stress: 2 }; both set to -3 → drags effective(4) down.
+    // ENN_ARROWS[6] = { growth: 9, stress: 3 }; both set to +2 → boosts effective(6).
+    // effective(4) = 5 + 0.2*(-15 + -15) = 5 - 6 = -1
+    // effective(6) = 0 + 0.2*(10 + 10)   = 0 + 4  = +4  → wing 6 wins.
+    const answers = {};
+    seq.forEach((q, i) => {
+      if (q.type === 5) answers[i] = 3;       // clear core type
+      else if (q.type === 4) answers[i] = 1;  // raw-higher wing candidate
+      else if (q.type === 6) answers[i] = 0;  // raw-lower wing candidate
+      else if (q.type === 1 || q.type === 2) answers[i] = -3; // type 4's arrows — negative
+      else if (q.type === 9 || q.type === 3) answers[i] = 2;  // type 6's arrows — positive
+      else answers[i] = -3;
+    });
+    const r = scoreEnneagram(answers, seq, {}, null);
+    expect(r.coreType).toBe(5);
+    expect(r.wing).toBe(6); // arrow evidence overrides raw score advantage of type 4
   });
 });
