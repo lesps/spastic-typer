@@ -652,32 +652,23 @@ const ALL_THREE_LS = () => {
   }));
 };
 
-describe('GuidedTyper — rich profile card', () => {
-  it('shows Strengths section when all 3 assessments are complete', () => {
+describe('GuidedTyper — profile card teaser', () => {
+  it('shows "View full combined profile" link when all 3 assessments are complete', () => {
     ALL_THREE_LS();
     render(<GuidedTyper />);
-    expect(screen.getByText(/^Strengths$/i)).toBeInTheDocument();
+    expect(screen.getByText(/view full combined profile/i)).toBeInTheDocument();
   });
 
-  it('shows Challenges section when all 3 assessments are complete', () => {
+  it('does not show synthesis sections in the typer (they moved to Combined tab)', () => {
     ALL_THREE_LS();
     render(<GuidedTyper />);
-    expect(screen.getByText(/^Challenges$/i)).toBeInTheDocument();
+    expect(screen.queryByText(/^Strengths$/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/^Challenges$/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/system interactions/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/growth edge/i)).not.toBeInTheDocument();
   });
 
-  it('shows System Interactions section when all 3 assessments are complete', () => {
-    ALL_THREE_LS();
-    render(<GuidedTyper />);
-    expect(screen.getByText(/system interactions/i)).toBeInTheDocument();
-  });
-
-  it('shows Growth Edge section when all 3 assessments are complete', () => {
-    ALL_THREE_LS();
-    render(<GuidedTyper />);
-    expect(screen.getByText(/growth edge/i)).toBeInTheDocument();
-  });
-
-  it('does not show synthesis sections when fewer than 3 assessments are complete', () => {
+  it('does not show teaser link when fewer than 3 assessments are complete', () => {
     localStorage.setItem('typer_enn', JSON.stringify({
       coreType: 4, wing: 5, wingStrengthDelta: 3, instinctStack: ['sx', 'sp', 'so'],
       display: '4w5', scores: {},
@@ -685,8 +676,7 @@ describe('GuidedTyper — rich profile card', () => {
     localStorage.setItem('typer_mbti', JSON.stringify({ result: 'INFP', scores: {} }));
     // Missing typer_inst
     render(<GuidedTyper />);
-    expect(screen.queryByText(/^Strengths$/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/^Challenges$/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/view full combined profile/i)).not.toBeInTheDocument();
   });
 });
 
