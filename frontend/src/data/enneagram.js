@@ -103,6 +103,30 @@ export const INSTINCT_BANK = [
   { text: 'I feel a strong pull toward belonging and participating in a meaningful community.', inst: 'so' },
 ];
 
+export const INSTINCT_DISAMBIG = {
+  'sp-so': [
+    { text: 'When depleted, I focus on rest, food, and physical comfort before reconnecting socially.', favors: 'sp' },
+    { text: 'I would rather have a secure, stable life than a widely recognized role in my community.', favors: 'sp' },
+    { text: 'I think more often about my savings, health, and safety than about my standing in social groups.', favors: 'sp' },
+    { text: 'I am more motivated by finding my place in a community than by ensuring my personal resources are solid.', favors: 'so' },
+    { text: 'Being respected and included by a group matters more to me than having all my material needs perfectly covered.', favors: 'so' },
+  ],
+  'sp-sx': [
+    { text: 'I prefer a reliable routine and physical comfort over intense experiences that might disrupt my stability.', favors: 'sp' },
+    { text: 'When I meet someone new, I focus more on whether they are safe and trustworthy than on the chemistry between us.', favors: 'sp' },
+    { text: 'I generally avoid situations that feel risky or destabilizing, even if they might be exciting.', favors: 'sp' },
+    { text: 'I am drawn to experiences that feel electric or transformative, even at some cost to my security.', favors: 'sx' },
+    { text: 'I would rather have one all-consuming connection than a perfectly stable, comfortable life.', favors: 'sx' },
+  ],
+  'so-sx': [
+    { text: 'I care more about my role in a group or community than about having one deeply intense relationship.', favors: 'so' },
+    { text: 'Group dynamics and where I stand socially interest me more than finding intense personal chemistry.', favors: 'so' },
+    { text: 'I am more concerned with contributing to a community than with finding someone who truly gets me on a deep level.', favors: 'so' },
+    { text: 'I feel most alive in a powerful one-on-one connection, not when I am part of a group.', favors: 'sx' },
+    { text: 'I would rather have a profound bond with one person than be widely liked and respected in a community.', favors: 'sx' },
+  ],
+};
+
 export const ENN_DISAMBIG = {
   '1-6': [
     { text: 'My inner sense of right and wrong guides me more than external rules or authority figures.', favors: 1 },

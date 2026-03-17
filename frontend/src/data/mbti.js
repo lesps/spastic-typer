@@ -63,6 +63,42 @@ export const MBTI_TYPES = {
   ESFP: { name: 'The Entertainer', stack: ['Se', 'Fi', 'Te', 'Ni'], desc: 'Spontaneous, vibrant, and wholeheartedly present. ESFPs love life and bring others along for the ride. They are perceptive, generous, and quick to express affection. Bold and warm, they live in the moment and create joy wherever they go — though long-term planning can take a back seat.', ennCorr: '7, 2, 9' },
 };
 
+// MBTI_DISAMBIG: targeted clarifying questions for each dimension.
+// Used only when the main 32-question bank is exhausted without a confident result.
+// Questions have the same shape as MBTI_BANK (dim + pole) and are scored identically.
+// direction: 1 (default) = positive answer favors the positive pole (E/S/T/J)
+// direction: -1 = positive answer favors the negative pole (I/N/F/P)
+export const MBTI_DISAMBIG = {
+  EI: [
+    { text: 'I feel energized after spending time with a group, not drained.', dim: 'EI', pole: 'E' },
+    { text: 'I need solitary time to recharge after social interaction, no matter how enjoyable it was.', dim: 'EI', pole: 'I', direction: -1 },
+    { text: 'I prefer to think out loud and process ideas by talking them through with others.', dim: 'EI', pole: 'E' },
+    { text: 'I fully work through my thoughts internally before sharing them with others.', dim: 'EI', pole: 'I', direction: -1 },
+    { text: 'When I am feeling low, I seek out social interaction rather than retreating to solitude.', dim: 'EI', pole: 'E' },
+  ],
+  SN: [
+    { text: 'I prefer concrete, step-by-step information over big-picture theories.', dim: 'SN', pole: 'S' },
+    { text: 'I am more interested in what could be than in what currently is.', dim: 'SN', pole: 'N', direction: -1 },
+    { text: 'I trust direct experience and observable facts more than intuitions or hunches.', dim: 'SN', pole: 'S' },
+    { text: 'I naturally notice underlying patterns and connections that are not immediately visible.', dim: 'SN', pole: 'N', direction: -1 },
+    { text: 'I value proven methods and practical skills over novel ideas and open-ended possibilities.', dim: 'SN', pole: 'S' },
+  ],
+  TF: [
+    { text: 'I make decisions based on logic and objective criteria, even when it may hurt someone\'s feelings.', dim: 'TF', pole: 'T' },
+    { text: 'I find it difficult to advocate for a position I believe is correct if doing so would deeply hurt someone.', dim: 'TF', pole: 'F', direction: -1 },
+    { text: 'I respect demonstrated competence over interpersonal warmth when evaluating someone\'s work.', dim: 'TF', pole: 'T' },
+    { text: 'Maintaining harmony in my relationships often matters more to me than being objectively right.', dim: 'TF', pole: 'F', direction: -1 },
+    { text: 'I prefer criticism that is accurate and direct over feedback that is gentle but vague.', dim: 'TF', pole: 'T' },
+  ],
+  JP: [
+    { text: 'I feel much more comfortable when I have a clear plan than when things are left open-ended.', dim: 'JP', pole: 'J' },
+    { text: 'I prefer to keep my options open rather than committing to a fixed plan ahead of time.', dim: 'JP', pole: 'P', direction: -1 },
+    { text: 'I make decisions promptly to avoid the discomfort of unresolved open-ended situations.', dim: 'JP', pole: 'J' },
+    { text: 'Strict schedules feel constraining to me — I prefer adapting as I go.', dim: 'JP', pole: 'P', direction: -1 },
+    { text: 'I tend to finish tasks well before deadlines rather than doing my best work at the last minute.', dim: 'JP', pole: 'J' },
+  ],
+};
+
 // Keirsey Temperament groups: NT (Rationals), NF (Idealists), SJ (Guardians), SP (Artisans)
 export const MBTI_TEMPERAMENT = {
   INTJ: 'NT', INTP: 'NT', ENTJ: 'NT', ENTP: 'NT',
