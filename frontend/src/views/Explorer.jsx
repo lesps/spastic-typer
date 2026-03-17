@@ -29,7 +29,6 @@ const TABS = [
   { key: 'mbti', label: 'MBTI' },
   { key: 'instinct', label: 'Instinct' },
   { key: 'integration', label: 'Integration' },
-  { key: 'profiles', label: 'Profiles' },
 ];
 
 export default function Explorer({ initialTab = 'enneagram', initialSel = null }) {
@@ -737,122 +736,6 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
         </>
       )}
 
-      {/* ── Profiles tab ── */}
-      {tab === 'profiles' && <ProfilesTab />}
     </div></div>
-  );
-}
-
-// Generate full list of all 1,728 combination keys upfront (no data loading needed)
-const WINGS = ['1w9','1w2','2w1','2w3','3w2','3w4','4w3','4w5','5w4','5w6','6w5','6w7','7w6','7w8','8w7','8w9','9w8','9w1'];
-const ALL_MBTI = ['INTJ','INTP','INFJ','INFP','ISTJ','ISTP','ISFJ','ISFP','ENTJ','ENTP','ENFJ','ENFP','ESTJ','ESTP','ESFJ','ESFP'];
-const ALL_STACKS = ['SXSPSO','SXSOPS','SPSXSO','SPSOXS','SOSXSP','SOSPSX'];
-const ALL_KEYS = [];
-WINGS.forEach(w => ALL_MBTI.forEach(m => ALL_STACKS.forEach(s => ALL_KEYS.push(`${w}_${m}_${s}`))));
-
-const INST_CHAR_MAP = { sp: 'p', sx: 'x', so: 'o' };
-function keyToShareCode(key) {
-  const [wingStr, mbti, stackStr] = key.split('_');
-  const type = wingStr[0];
-  const wing = wingStr[2];
-  const s = stackStr.toLowerCase();
-  return `${type}${wing}0${INST_CHAR_MAP[s.slice(0,2)]}${INST_CHAR_MAP[s.slice(2,4)]}${INST_CHAR_MAP[s.slice(4,6)]}-${mbti}`;
-}
-
-function ProfilesTab() {
-  const [search, setSearch] = useState('');
-  const [ennFilter, setEnnFilter] = useState('');
-  const [mbtiFilter, setMbtiFilter] = useState('');
-  const [instFilter, setInstFilter] = useState('');
-  const [selected, setSelected] = useState(null);
-  const [loadingProfile, setLoadingProfile] = useState(false);
-
-  const openProfile = (key) => {
-    setLoadingProfile(true);
-    const parts = key.split('_');
-    const wingKey = parts[0];
-    const mbtiType = parts[1];
-    const instStack = parts[2];
-    const ennType = parseInt(wingKey[0]);
-    const wing = parseInt(wingKey[2]);
-    const stackStr = instStack.toLowerCase();
-    const instStackFormatted = [stackStr.slice(0,2), stackStr.slice(2,4), stackStr.slice(4,6)].join('/').toUpperCase();
-    import('../data/combinations/index.js').then(mod =>
-      mod.getCombinationProfile(ennType, wing, mbtiType, instStackFormatted)
-    ).then(profile => {
-      setSelected(profile ? { key, ...profile } : { key, code: key });
-      setLoadingProfile(false);
-    }).catch(() => {
-      setSelected({ key, code: key });
-      setLoadingProfile(false);
-    });
-  };
-
-  const fieldStyle = { fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: G.text, margin: 0, lineHeight: 1.6 };
-
-  if (selected) {
-    return (
-      <div>
-        <button onClick={() => setSelected(null)} style={{ padding: '8px 14px', borderRadius: 8, border: `1px solid ${G.border}`, background: 'transparent', color: G.textDim, fontSize: 13, marginBottom: 16, cursor: 'pointer' }}>← Back to Profiles</button>
-        <div style={{ padding: '14px 16px', borderRadius: 10, background: G.goldDim, border: `1px solid ${G.goldBorder}`, marginBottom: 16 }}>
-          <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 12, color: G.gold }}>{selected.code || keyToShareCode(selected.key)}</span>
-          {selected.archetypeName && <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, fontWeight: 600, color: G.text, margin: '6px 0 2px' }}>{selected.archetypeName}</h3>}
-          {selected.tagline && <p style={{ ...fieldStyle, fontSize: 13, color: G.textDim, fontStyle: 'italic' }}>{selected.tagline}</p>}
-        </div>
-        {selected.portrait && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={fieldStyle}>{selected.portrait}</p></div>}
-        {selected.uniqueSignature && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: G.textFaint, marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>UNIQUE SIGNATURE</p><p style={fieldStyle}>{selected.uniqueSignature}</p></div>}
-        {selected.strengths?.length > 0 && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: '#50c878', marginBottom: 8, fontFamily: "'DM Mono',monospace" }}>STRENGTHS</p>{selected.strengths.map((s, i) => <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#50c878', fontSize: 12, flexShrink: 0 }}>+</span><p style={{ ...fieldStyle, fontSize: 13 }}>{s}</p></div>)}</div>}
-        {selected.growthEdges?.length > 0 && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: '#e88050', marginBottom: 8, fontFamily: "'DM Mono',monospace" }}>GROWTH EDGES</p>{selected.growthEdges.map((e, i) => <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#e88050', fontSize: 12, flexShrink: 0 }}>→</span><p style={{ ...fieldStyle, fontSize: 13 }}>{e}</p></div>)}</div>}
-        {selected.inRelationships && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: G.textFaint, marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>IN RELATIONSHIPS</p><p style={fieldStyle}>{selected.inRelationships}</p></div>}
-        {selected.atWork && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: G.textFaint, marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>AT WORK</p><p style={fieldStyle}>{selected.atWork}</p></div>}
-        {selected.underStress && <div style={{ padding: '14px 16px', borderRadius: 10, background: 'rgba(232,128,80,0.06)', border: `1px solid rgba(232,128,80,0.2)`, marginBottom: 12 }}><p style={{ fontSize: 11, color: '#e88050', marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>UNDER STRESS</p><p style={fieldStyle}>{selected.underStress}</p></div>}
-        {selected.growthPath && <div style={{ padding: '14px 16px', borderRadius: 10, background: 'rgba(80,200,120,0.06)', border: `1px solid rgba(80,200,120,0.2)`, marginBottom: 12 }}><p style={{ fontSize: 11, color: '#50c878', marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>GROWTH PATH</p><p style={fieldStyle}>{selected.growthPath}</p></div>}
-        {selected.communicationTips?.length > 0 && <div style={{ padding: '14px 16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}><p style={{ fontSize: 11, color: G.textFaint, marginBottom: 8, fontFamily: "'DM Mono',monospace" }}>COMMUNICATION TIPS</p>{selected.communicationTips.map((t, i) => <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: G.gold, fontSize: 12, flexShrink: 0 }}>·</span><p style={{ ...fieldStyle, fontSize: 13 }}>{t}</p></div>)}</div>}
-        {!selected.portrait && <div style={{ padding: '16px', borderRadius: 10, background: G.bg3, border: `1px solid ${G.border}`, textAlign: 'center' }}><p style={{ ...fieldStyle, fontSize: 13, color: G.textFaint }}>Detailed profile not available for this combination.</p></div>}
-      </div>
-    );
-  }
-
-  const q = search.toLowerCase();
-  const filtered = ALL_KEYS.filter(k => {
-    if (ennFilter && !k.startsWith(ennFilter + 'w')) return false;
-    if (mbtiFilter && !k.includes('_' + mbtiFilter + '_')) return false;
-    if (instFilter && !k.toLowerCase().includes(instFilter)) return false;
-    if (q && !k.toLowerCase().includes(q) && !keyToShareCode(k).toLowerCase().includes(q)) return false;
-    return true;
-  }).slice(0, 60);
-
-  return (
-    <div>
-      <div style={{ padding: '12px 14px', borderRadius: 10, background: G.goldDim, border: `1px solid ${G.goldBorder}`, marginBottom: 16 }}>
-        <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, fontWeight: 600, color: G.text, marginBottom: 4 }}>1,728 Combination Profiles</h3>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: G.textDim, margin: 0 }}>Every Enneagram type × wing × MBTI type × instinct stack combination. Profiles load on demand.</p>
-      </div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search (e.g. 450xpo-INFP or INFP)…" style={{ flex: 2, minWidth: 160, padding: '8px 12px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13, outline: 'none' }} />
-        <select value={ennFilter} onChange={e => setEnnFilter(e.target.value)} style={{ flex: 1, minWidth: 90, padding: '8px 10px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13 }}>
-          <option value="">All Enn</option>
-          {[1,2,3,4,5,6,7,8,9].map(n => <option key={n} value={String(n)}>Type {n}</option>)}
-        </select>
-        <select value={mbtiFilter} onChange={e => setMbtiFilter(e.target.value)} style={{ flex: 1, minWidth: 90, padding: '8px 10px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13 }}>
-          <option value="">All MBTI</option>
-          {ALL_MBTI.map(m => <option key={m} value={m}>{m}</option>)}
-        </select>
-        <select value={instFilter} onChange={e => setInstFilter(e.target.value)} style={{ flex: 1, minWidth: 90, padding: '8px 10px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, fontSize: 13 }}>
-          <option value="">All Inst</option>
-          {['sp','sx','so'].map(i => <option key={i} value={i}>{i.toUpperCase()}-dom</option>)}
-        </select>
-      </div>
-      {loadingProfile && <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: G.textFaint, textAlign: 'center', padding: '24px 0' }}>Loading profile…</p>}
-      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: G.textFaint, marginBottom: 10 }}>Showing {filtered.length} of {ALL_KEYS.length} combinations{filtered.length === 60 ? ' (first 60 — refine filters to narrow)' : ''}</p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        {filtered.map(k => (
-          <button key={k} onClick={() => openProfile(k)} style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: `1px solid ${G.border}`, background: G.bg3, color: G.text, textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, color: G.gold, flexShrink: 0 }}>{keyToShareCode(k)}</span>
-            <span style={{ marginLeft: 'auto', fontSize: 12, color: G.textFaint }}>→</span>
-          </button>
-        ))}
-      </div>
-    </div>
   );
 }
