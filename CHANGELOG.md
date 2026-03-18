@@ -18,6 +18,10 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ## [1.2]
 
+### 1.2.5 — 2026-03-18
+
+- Added: **Export for AI** button on the Compare page — generates a structured multi-person Markdown profile (summary table + per-person Enneagram/MBTI/Instinct detail) and opens it in the existing `ExportModal` for one-click copy into any AI assistant. `generateCompareMarkdown` added to `utils/export.js`; `ExportModal` updated to make the `backup` prop optional (single-column layout when omitted).
+
 ### 1.2.4 — 2026-03-17
 
 - Fix: Instinct Stack quiz now asks targeted pair-specific clarifying questions when the main 15-question bank is exhausted and two instincts are still tied, preventing arbitrary ordering in the result. `INSTINCT_DISAMBIG` data added to `enneagram.js`; `scoreInstinct` updated to accept optional `disambigAnswers` and `disambigSeq` parameters; new `inst-disambig` phase added to `GuidedTyper`.

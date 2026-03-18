@@ -11,6 +11,8 @@ import { computeArchetypeName } from '../utils/archetype.js';
 import { analyzeGroup, getCenterDistribution, getHarmonicDistribution, getHornevianDistribution, getTemperamentDistribution, getCognitiveCoverage, getInstinctGroupChemistry, getTeamArchetype } from '../utils/group.js';
 import { getCommunicationMatrix, getGrowthStressInteraction, getCognitiveHarmony, getInstinctDepthAnalysisSync } from '../utils/compare.js';
 import { decodeProfileCode } from '../utils/share.js';
+import ExportModal from '../components/ExportModal.jsx';
+import { generateCompareMarkdown } from '../utils/export.js';
 
 const INSTINCT_LABELS = { sp: 'SP', sx: 'SX', so: 'SO' };
 const LS_COMPARE = 'compare_persons';
@@ -331,6 +333,7 @@ export default function ComparePage() {
   const [editing, setEditing] = useState(null);
   const [expandedPairs, setExpandedPairs] = useState(new Set(['0-1']));
   const [shareMsg, setShareMsg] = useState('');
+  const [compareExportMd, setCompareExportMd] = useState(null);
 
   useEffect(() => {
     try { localStorage.setItem(LS_COMPARE, JSON.stringify(persons)); } catch {}
@@ -377,6 +380,10 @@ export default function ComparePage() {
   const temperamentDist = readyCount >= 3 ? getTemperamentDistribution(completedPersons) : null;
   const cognitiveCoverage = readyCount >= 3 ? getCognitiveCoverage(completedPersons) : null;
   const instinctChemistry = readyCount >= 3 ? getInstinctGroupChemistry(completedPersons) : null;
+
+  const handleExportAI = () => {
+    setCompareExportMd(generateCompareMarkdown(completedPersons));
+  };
 
   const handleShare = () => {
     const hash = '#' + encodePersons(persons);
@@ -711,9 +718,16 @@ export default function ComparePage() {
           <button onClick={addPerson} style={{ width: 32, height: 32, borderRadius: '50%', border: `1px solid ${G.border}`, background: G.bg3, color: G.textDim, fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>+</button>
         )}
         {editing === null && readyCount >= 1 && (
-          <button onClick={handleShare} style={{ ...S.btnOutline, padding: '6px 14px', fontSize: 12, borderRadius: 20, marginLeft: 'auto' }}>
-            ⟷ Share
-          </button>
+          <div style={{ display: 'flex', gap: 8, marginLeft: 'auto' }}>
+            {hasResults && (
+              <button onClick={handleExportAI} style={{ ...S.btnOutline, padding: '6px 14px', fontSize: 12, borderRadius: 20 }}>
+                ⬡ Export for AI
+              </button>
+            )}
+            <button onClick={handleShare} style={{ ...S.btnOutline, padding: '6px 14px', fontSize: 12, borderRadius: 20 }}>
+              ⟷ Share
+            </button>
+          </div>
         )}
       </div>
       {shareMsg && <p style={{ ...S.body, fontSize: 12, color: G.gold, marginBottom: 8, textAlign: 'center' }}>{shareMsg}</p>}
@@ -995,6 +1009,9 @@ export default function ComparePage() {
             </>
           )}
         </>
+      )}
+      {compareExportMd && (
+        <ExportModal markdown={compareExportMd} onClose={() => setCompareExportMd(null)} />
       )}
     </div></div>
   );

@@ -249,6 +249,22 @@ describe('ComparePage — code loading instinct stack fix', () => {
   });
 });
 
+describe('ComparePage — Export for AI button', () => {
+  it('shows Export for AI button when 2+ persons are complete', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Alice', ennType: 4, ennWing: 5, ennWingStrength: 3, instinctStack: ['sx', 'sp', 'so'], mbti: 'INFP', ennScores: null },
+      { label: 'Bob',   ennType: 8, ennWing: 9, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'ENTJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    expect(screen.getByRole('button', { name: /export for ai/i })).toBeInTheDocument();
+  });
+
+  it('does not show Export for AI button when fewer than 2 persons are complete', () => {
+    render(<ComparePage />);
+    expect(screen.queryByRole('button', { name: /export for ai/i })).not.toBeInTheDocument();
+  });
+});
+
 describe('ComparePage — Add My Profile button', () => {
   it('shows Add My Profile button in code mode when own profile is in localStorage', async () => {
     localStorage.setItem('typer_enn', JSON.stringify({
