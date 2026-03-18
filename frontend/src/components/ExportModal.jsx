@@ -35,7 +35,7 @@ export default function ExportModal({ markdown, backup, onClose }) {
             <h2 style={{ ...S.h2, marginBottom: 0, fontSize: 18 }}>Export</h2>
             <button onClick={onClose} style={{ ...S.btnOutline, padding: '6px 12px', fontSize: 12 }}>Close</button>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: backup ? '1fr 1fr' : '1fr', gap: 10 }}>
             <div style={{ ...S.card, marginBottom: 0, padding: '12px 14px' }}>
               <h3 style={{ ...S.h3, marginBottom: 4 }}>AI Report</h3>
               <p style={{ ...S.body, fontSize: 12, marginBottom: 10 }}>Markdown context for any AI assistant.</p>
@@ -46,11 +46,13 @@ export default function ExportModal({ markdown, backup, onClose }) {
                 {copied ? '✓ Copied' : 'Copy Markdown'}
               </button>
             </div>
-            <div style={{ ...S.card, marginBottom: 0, padding: '12px 14px' }}>
-              <h3 style={{ ...S.h3, marginBottom: 4 }}>Backup</h3>
-              <p style={{ ...S.body, fontSize: 12, marginBottom: 10 }}>JSON file — import into Compare.</p>
-              <button onClick={handleDownload} style={{ ...S.btnOutline, width: '100%', padding: '8px', fontSize: 13 }}>Download .json</button>
-            </div>
+            {backup && (
+              <div style={{ ...S.card, marginBottom: 0, padding: '12px 14px' }}>
+                <h3 style={{ ...S.h3, marginBottom: 4 }}>Backup</h3>
+                <p style={{ ...S.body, fontSize: 12, marginBottom: 10 }}>JSON file — import into Compare.</p>
+                <button onClick={handleDownload} style={{ ...S.btnOutline, width: '100%', padding: '8px', fontSize: 13 }}>Download .json</button>
+              </div>
+            )}
           </div>
         </div>
         <div style={{ flex: 1, overflow: 'auto' }}>
