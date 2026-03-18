@@ -1,266 +1,132 @@
-import { ENN_TYPES, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC, WING_DESC } from '../data/enneagram.js';
+import { ENN_TYPES, ENN_ARROWS, ENN_CENTER } from '../data/enneagram.js';
 import { MBTI_TYPES } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
-import { wingStrengthLabel, wingStrengthDesc } from '../utils/enneagram.js';
-import { COMBINATION_PROFILES } from '../data/combinationProfiles.js';
-import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
-import { MBTI_STRESS_FLOW } from '../data/mbtiStressFlow.js';
-import { SUBTYPES } from '../data/subtypes.js';
 
-export function generateExportMarkdown(ennResult, mbtiResult) {
-  const now = new Date().toISOString().split('T')[0];
-  let md = `# Personality Profile\n\n`;
-  md += `> **Context for AI assistants:** Structured personality typing data. Use to calibrate communication style and anticipate reasoning patterns.\n`;
-  md += `> Exported: ${now}\n\n---\n\n`;
+// ─── Shared directive builder ──────────────────────────────────────────────
 
-  if (ennResult) {
-    const core = ennResult.coreType, t = ENN_TYPES[core];
-    const wKey = `${core}w${ennResult.wing}`;
-    const arrows = ENN_ARROWS[core], center = ENN_CENTER[core], harmonic = ENN_HARMONIC[core];
-    md += `## Enneagram\n\n**Result:** ${ennResult.display}\n\n`;
-    md += `### Core Type: ${core} — ${t.name}\n\n${t.desc}\n\n`;
-    md += `- **Core Fear:** ${t.fear}\n- **Core Desire:** ${t.desire}\n`;
-    md += `- **Center:** ${center.charAt(0).toUpperCase() + center.slice(1)} — ${center === 'gut' ? 'instinct, anger, autonomy' : center === 'heart' ? 'emotion, image, identity' : 'thinking, fear, security'}\n`;
-    md += `- **Harmonic Group:** ${harmonic.charAt(0).toUpperCase() + harmonic.slice(1)}\n`;
-    md += `- **Growth Arrow:** → Type ${arrows.growth} (${ENN_TYPES[arrows.growth].name})\n`;
-    md += `- **Stress Arrow:** → Type ${arrows.stress} (${ENN_TYPES[arrows.stress].name})\n\n`;
-    md += `### Wing: ${wKey}\n\n${WING_DESC[wKey] || ''}\n\n`;
-    if (ennResult.wingStrengthDelta !== null && ennResult.wingStrengthDelta !== undefined) {
-      md += `**Wing Strength:** ${wingStrengthLabel(ennResult.wingStrengthDelta)} — ${wingStrengthDesc(ennResult.wingStrengthDelta)}\n\n`;
-    }
-    const instStack = ennResult.instinctStack || (ennResult.instScores ? Object.entries(ennResult.instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k) : null);
-    const instLabels = { sp: 'Self-Preservation', sx: 'Sexual (One-to-One)', so: 'Social' };
-    const instDescs = { sp: 'Primary focus on physical security, health, comfort, and resource management.', sx: 'Primary focus on intensity, chemistry, and transformative one-on-one connection.', so: 'Primary focus on group belonging, social roles, and contribution.' };
-    if (instStack) {
-      md += `### Instinctual Drive Stack: ${instStack.map(i => i.toUpperCase()).join('/')}\n\n`;
-      instStack.forEach((inst, i) => {
-        md += `${['**Dominant**', '**Secondary**', '**Repressed**'][i]} — **${inst.toUpperCase()} · ${instLabels[inst]}:** ${instDescs[inst]}\n\n`;
-      });
+const INST_LABELS = { sp: 'Self-Preservation', sx: 'Sexual (One-to-One)', so: 'Social' };
+const INST_DIRECTIVES = {
+  sp: 'Frame advice in terms of stability, health, and resource management. They think in terms of security first.',
+  sx: 'Depth and intensity matter. Superficiality disengages them — go one-on-one, be direct, be real.',
+  so: 'Social context is salient. Reference group impact, belonging, and shared meaning.',
+};
 
-      // Enneagram subtype (dominant instinct)
-      const dominantInst = instStack[0];
-      const subtypeKey = `${core}_${dominantInst.toUpperCase()}`;
-      const subtype = SUBTYPES[subtypeKey];
-      if (subtype) {
-        md += `### Enneagram Subtype: ${subtype.nickname}\n\n`;
-        md += `*${subtype.name}* — ${subtype.description}\n\n`;
-        md += `**Key traits:**\n`;
-        subtype.keyTraits.forEach(trait => { md += `- ${trait}\n`; });
-        md += `\n**Blind spot:** ${subtype.blindSpot}\n\n`;
-        md += `**Growth path:** ${subtype.growthPath}\n\n`;
-      }
-    }
-    if (ennResult.scores) {
-      const sorted = Object.entries(ennResult.scores).sort((a, b) => b[1] - a[1]);
-      md += `### Assessment Scores\n\n| Type | Score | Name |\n|------|-------|------|\n`;
-      sorted.forEach(([tp, sc]) => { md += `| ${parseInt(tp) === ennResult.coreType ? '**' : ''}${tp}${parseInt(tp) === ennResult.coreType ? '**' : ''} | ${sc > 0 ? '+' : ''}${sc} | ${ENN_TYPES[parseInt(tp)]?.name} |\n`; });
-      md += `\n*Scores: agreement with type-specific statements on -3 to +3 scale.*\n\n`;
-    }
-    md += `---\n\n`;
-  }
+function buildPersonDirectives(ennType, wing, mbtiCode, instStack) {
+  let out = '';
+  const ennT = ennType != null ? ENN_TYPES[ennType] : null;
+  const mbtiT = mbtiCode ? MBTI_TYPES[mbtiCode] : null;
+  const arrows = ennType != null ? ENN_ARROWS[ennType] : null;
+  const center = ennType != null ? ENN_CENTER[ennType] : null;
 
-  if (mbtiResult) {
-    const code = mbtiResult.result, t = MBTI_TYPES[code], scores = mbtiResult.scores;
-    md += `## MBTI / Cognitive Functions\n\n**Result:** ${code}\n\n`;
-    if (t) {
-      md += `### ${code} — ${t.name}\n\n${t.desc}\n\n`;
-      md += `### Cognitive Function Stack\n\n`;
-      t.stack.forEach((fn, i) => {
-        const f = COG_FUNCTIONS[fn];
-        const pos = ['**Dominant (Hero)**', '**Auxiliary (Parent)**', '**Tertiary (Child)**', '**Inferior (Aspiration)**'][i];
-        md += `${i + 1}. ${pos} — **${fn}** (${f.name})\n   ${f.desc}\n\n`;
-      });
-
-      // Dominant function strengths and inferior shadow
-      const domFn = COG_FUNCTIONS[t.stack[0]];
-      const infFn = COG_FUNCTIONS[t.stack[3]];
-      if (domFn?.strengths) {
-        md += `**Dominant ${t.stack[0]} strengths:** ${domFn.strengths}\n\n`;
-      }
-      if (infFn?.shadow) {
-        md += `**Inferior ${t.stack[3]} shadow (stress point):** ${infFn.shadow}\n\n`;
-      }
-
-      md += `### Practical Implications\n\n`;
-      md += `- **Dominant ${t.stack[0]}** is this person's natural mode.\n`;
-      md += `- **Auxiliary ${t.stack[1]}** is their supporting function.\n`;
-      md += `- **Inferior ${t.stack[3]}** (${COG_FUNCTIONS[t.stack[3]].name}) is their growth edge and stress point.\n`;
-      if (t.ennCorr) md += `- **Common Enneagram correlations:** Types ${t.ennCorr}\n`;
-      md += '\n';
-
-      // Flow & grip stress
-      const sf = MBTI_STRESS_FLOW[code];
-      if (sf) {
-        md += `### Flow & Grip Stress\n\n`;
-        md += `**In flow:** ${sf.inFlow.description}\n`;
-        if (sf.inFlow.triggers?.length) {
-          md += `Flow triggers: ${sf.inFlow.triggers.join(', ')}\n`;
-        }
-        md += `\n**Under grip stress:** ${sf.underStress.description}\n`;
-        if (sf.underStress.observable) {
-          md += `Observable: ${sf.underStress.observable}\n`;
-        }
-        if (sf.underStress.recoveryPath) {
-          md += `Recovery: ${sf.underStress.recoveryPath}\n`;
-        }
-        md += '\n';
-      }
-    }
-    if (scores) {
-      md += `### Dimension Scores\n\n| Dimension | A | B | Preference |\n|-----------|---|---|------------|\n`;
-      [['E', 'I'], ['S', 'N'], ['T', 'F'], ['J', 'P']].forEach(([a, b]) => {
-        const sa = scores[a] || 0, sb = scores[b] || 0, pref = sa >= sb ? a : b;
-        const clarity = sa + sb > 0 ? Math.round(Math.abs(sa - sb) / (sa + sb) * 100) : 0;
-        md += `| ${a}/${b} | ${sa} | ${sb} | **${pref}** (${clarity}% clarity)\n`;
-      });
-      md += `\n*Low clarity (< 30%) suggests a near-even split on that dimension.*\n\n`;
-    }
-    md += `---\n\n`;
-  }
-
-  // Combined Profile Portrait (three-system)
-  if (ennResult && mbtiResult) {
-    const core = ennResult.coreType;
-    const mbtiCode = mbtiResult.result;
-    const instStack = ennResult.instinctStack || (ennResult.instScores ? Object.entries(ennResult.instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k) : null);
-
-    if (instStack) {
-      const instKey = instStack.map(i => i.toUpperCase()).join('');
-      const combKey = `${core}w${ennResult.wing}_${mbtiCode}_${instKey}`;
-      const combo = COMBINATION_PROFILES[combKey] ?? null;
-
-      if (combo) {
-        const instDisplay = instStack.map(i => i.toUpperCase()).join('/');
-        md += `## Combined Profile Portrait\n\n`;
-        md += `> Type ${core}w${ennResult.wing} · ${mbtiCode} · ${instDisplay}\n\n`;
-        md += `${combo.portrait}\n\n`;
-
-        if (combo.strengths?.length) {
-          md += `### Strengths\n\n`;
-          combo.strengths.forEach(s => { md += `- ${s}\n`; });
-          md += '\n';
-        }
-
-        if (combo.growthEdges?.length) {
-          md += `### Growth Edges\n\n`;
-          combo.growthEdges.forEach(g => { md += `- ${g}\n`; });
-          md += '\n';
-        }
-
-        if (combo.inRelationships) {
-          md += `### In Relationships\n\n${combo.inRelationships}\n\n`;
-        }
-
-        if (combo.atWork) {
-          md += `### At Work\n\n${combo.atWork}\n\n`;
-        }
-
-        if (combo.stressBehavior) {
-          md += `### Under Stress\n\n${combo.stressBehavior}\n\n`;
-        }
-
-        if (combo.growthPath) {
-          md += `### Growth Path\n\n${combo.growthPath}\n\n`;
-        }
-
-        if (combo.notes?.length) {
-          combo.notes.forEach(n => { md += `*${n}*\n\n`; });
-        }
-
-        md += `---\n\n`;
-      }
+  // § Cognitive Style
+  if (mbtiT) {
+    const [dom, aux, , inf] = mbtiT.stack.map(fn => ({ fn, ...COG_FUNCTIONS[fn] }));
+    const isExtroverted = dom.fn[1] === 'e';
+    out += `### Cognitive Style\n\n`;
+    out += `Dominant function is **${dom.fn}** (${dom.name}): ${dom.desc} `;
+    out += `Auxiliary is **${aux.fn}** (${aux.name}): ${aux.desc}\n\n`;
+    out += isExtroverted
+      ? `Lead with external engagement — they process by doing and talking. Match their pace.\n\n`
+      : `Give them room to process internally before expecting a response. Don't rush.\n\n`;
+    if (inf?.shadow) {
+      out += `Inferior **${inf.fn}** (${inf.name}) is their stress point. ${inf.shadow} Avoid patterns that activate this.\n\n`;
     }
   }
 
-  if (ennResult && mbtiResult) {
-    const ennCore = ennResult.coreType, mbtiCode = mbtiResult.result;
-    const t = MBTI_TYPES[mbtiCode], ennT = ENN_TYPES[ennCore];
-    const center = ENN_CENTER[ennCore], instStack2 = ennResult.instinctStack, inst = instStack2?.[0] || ennResult.instinct;
-    const isE = mbtiCode[0] === 'E', isN = mbtiCode[1] === 'N', isT = mbtiCode[2] === 'T', isJ = mbtiCode[3] === 'J';
-    const instDisplay = instStack2 ? instStack2.map(i => i.toUpperCase()).join('/') : (ennResult.instinct?.toUpperCase() || '');
-    md += `## Cross-System Synthesis\n\n**Combined Profile:** ${ennResult.coreType}w${ennResult.wing} ${instDisplay} + ${mbtiCode}\n\n`;
-    md += `The Enneagram ${ennCore} (${ennT.name}) describes *why* this person is motivated. The ${mbtiCode} (${t?.name}) describes *how* they process and act.\n\n`;
-
-    // Integration narrative
-    const narrative = INTEGRATION_NARRATIVES[`${ennCore}_${mbtiCode}`] ?? null;
-    if (narrative) {
-      md += `### ${narrative.title}\n\n${narrative.narrative}\n\n`;
-      if (narrative.typingNotes) {
-        md += `*Typing notes: ${narrative.typingNotes}*\n\n`;
-      }
-    }
-
-    md += `### Communication Preferences\n\n`;
-    md += `- **Pace:** ${isE ? 'Thinks out loud; rapid back-and-forth.' : 'Needs time to process; don\'t rush responses.'}\n`;
-    md += `- **Abstraction:** ${isN ? 'Comfortable with metaphor and big-picture framing.' : 'Prefers concrete examples and practical specifics.'}\n`;
-    md += `- **Decision lens:** ${isT ? 'Responds to logic and objective evidence.' : 'Responds to values-based framing and human impact.'}\n`;
-    md += `- **Structure:** ${isJ ? 'Appreciates closure and clear agendas.' : 'Appreciates flexibility and iterative exploration.'}\n`;
-    md += `- **Emotional register:** ${center === 'heart' ? 'Acknowledge feelings before solutions.' : center === 'gut' ? 'Respect agency and directness.' : 'Allow space for analysis before decisions.'}\n`;
-    md += `- **Instinctual focus:** ${inst === 'sp' ? 'Frame advice in terms of security and practicality.' : inst === 'sx' ? 'Depth matters — superficiality will disengage them.' : 'Social context and group impact are salient.'}\n\n`;
-    md += `### Tips for AI\n\n`;
-    md += `1. Lead with ${t?.stack[0][1] === 'e' ? 'external structure and action' : 'internal depth and conceptual precision'}.\n`;
-    md += `2. Respect their drive to ${ennT.desire.toLowerCase()}.\n`;
-    md += `3. Avoid implying ${ennT.fear.toLowerCase()}.\n`;
-    md += `4. Under stress: watch for Type ${ENN_ARROWS[ennCore].stress} (${ENN_TYPES[ENN_ARROWS[ennCore].stress].name}) patterns.\n`;
-    md += `5. Growth edge: Type ${ENN_ARROWS[ennCore].growth} (${ENN_TYPES[ENN_ARROWS[ennCore].growth].name}) qualities.\n\n`;
+  // § Motivation & Core Drive
+  if (ennT) {
+    const centerNote = center === 'heart'
+      ? 'Heart-center type — identity and image are core. Acknowledge who they are, not just what they do.'
+      : center === 'gut'
+      ? 'Gut-center type — autonomy and instinct are core. Respect their agency; don\'t over-explain or over-manage.'
+      : 'Head-center type — security and certainty are core. Reduce ambiguity; give them frameworks to reason with.';
+    out += `### Motivation & Core Drive\n\n`;
+    out += `**Type ${ennType}${wing ? `w${wing}` : ''} — ${ennT.name}.** Core motivation: ${ennT.desire}. Core fear: ${ennT.fear}.\n\n`;
+    out += `${centerNote}\n\n`;
+    out += `Frame feedback as insight, not judgment. Never imply ${ennT.fear.toLowerCase()} — this activates their defensive pattern.\n\n`;
   }
 
-  md += `*Generated by Personality Suite.*`;
-  return md;
+  // § Communication Preferences
+  if (mbtiCode) {
+    const isE = mbtiCode[0] === 'E', isN = mbtiCode[1] === 'N';
+    const isT = mbtiCode[2] === 'T', isJ = mbtiCode[3] === 'J';
+    out += `### Communication Preferences\n\n`;
+    out += `- **Pace:** ${isE ? 'Think out loud with them — rapid back-and-forth is energizing.' : 'Don\'t rush. They need time to process; silence is reflection, not disengagement.'}\n`;
+    out += `- **Abstraction:** ${isN ? 'Comfortable with metaphor, pattern, and big-picture framing. Don\'t over-concretize.' : 'Anchor everything in concrete examples and practical specifics. Avoid vague abstractions.'}\n`;
+    out += `- **Decision lens:** ${isT ? 'Lead with logic and objective evidence. Values-based appeals feel manipulative to them.' : 'Lead with human impact and values. Cold logic without context feels tone-deaf.'}\n`;
+    out += `- **Structure:** ${isJ ? 'Provide clear structure, agendas, and closure. Open loops create friction.' : 'Allow iterative exploration. Premature closure feels constraining — keep options open.'}\n`;
+    if (center) {
+      out += `- **Emotional register:** ${center === 'heart' ? 'Acknowledge feelings and identity before jumping to solutions.' : center === 'gut' ? 'Be direct and respect their autonomy. Skip emotional preamble.' : 'Allow space for analysis before pressing for decisions.'}\n`;
+    }
+    out += '\n';
+  }
+
+  // § Under Stress
+  if (arrows && ennT) {
+    const stressT = ENN_TYPES[arrows.stress];
+    out += `### Under Stress\n\n`;
+    out += `Stress arrow moves toward **Type ${arrows.stress} (${stressT.name})** patterns. Watch for: ${stressT.fear.toLowerCase()}-driven behavior, signs of ${stressT.name.toLowerCase()} disintegration.\n\n`;
+    const stressResponse = center === 'heart'
+      ? 'Respond by affirming their value and effort — not their output.'
+      : center === 'gut'
+      ? 'Respond by giving them control over something concrete, even small.'
+      : 'Respond by reducing uncertainty — give clear next steps, not open questions.';
+    out += `${stressResponse}\n\n`;
+  }
+
+  // § Growth Edge
+  if (arrows && ennT) {
+    const growthT = ENN_TYPES[arrows.growth];
+    out += `### Growth Edge\n\n`;
+    out += `Growth arrow moves toward **Type ${arrows.growth} (${growthT.name})** qualities: ${growthT.desire.toLowerCase()}.\n\n`;
+    out += `Gently encourage ${growthT.name} strengths when appropriate — don't force it, but create openings for it.\n\n`;
+  }
+
+  // § Instinctual Priorities
+  if (instStack?.length) {
+    out += `### Instinctual Priorities\n\n`;
+    out += `Drive stack: **${instStack.map(i => i.toUpperCase()).join('/')}**\n\n`;
+    out += `- **Primary (${instStack[0].toUpperCase()} — ${INST_LABELS[instStack[0]]}):** ${INST_DIRECTIVES[instStack[0]]}\n`;
+    if (instStack[1]) out += `- **Secondary (${instStack[1].toUpperCase()} — ${INST_LABELS[instStack[1]]}):** Present but not dominant.\n`;
+    if (instStack[2]) out += `- **Repressed (${instStack[2].toUpperCase()} — ${INST_LABELS[instStack[2]]}):** Don't lead with this domain — it's where they have least bandwidth.\n`;
+    out += '\n';
+  }
+
+  return out;
 }
 
-export function generateCompareMarkdown(persons) {
-  const now = new Date().toISOString().split('T')[0];
-  let md = `# Group Personality Profile\n\n`;
-  md += `> **Context for AI assistants:** Multiple individuals typed across Enneagram, MBTI, and Instinct Stack. Use to calibrate communication styles and anticipate group dynamics.\n`;
-  md += `> Exported: ${now} · ${persons.length} ${persons.length === 1 ? 'person' : 'people'}\n\n---\n\n`;
+// ─── Individual system prompt ───────────────────────────────────────────────
 
-  // Quick-reference table
-  md += `## Summary Table\n\n`;
-  md += `| Name | Enneagram | Instinct Stack | MBTI |\n|------|-----------|----------------|------|\n`;
-  persons.forEach(p => {
-    const wing = p.ennWing ? `w${p.ennWing}` : '';
-    const ws = (p.ennWingStrength !== null && p.ennWingStrength !== undefined) ? ` (${wingStrengthLabel(p.ennWingStrength)})` : '';
-    const inst = p.instinctStack ? p.instinctStack.map(i => i.toUpperCase()).join('/') : '—';
-    md += `| ${p.label} | ${p.ennType}${wing}${ws} | ${inst} | ${p.mbti || '—'} |\n`;
-  });
-  md += '\n---\n\n';
+export function generateSystemPrompt(ennResult, mbtiResult) {
+  let out = `You are assisting this person. Use the following profile to calibrate your responses.\n\n`;
 
-  // Detailed per-person sections
-  md += `## Individual Profiles\n\n`;
-  persons.forEach(p => {
-    const ennT = ENN_TYPES[p.ennType];
-    const mbtiT = MBTI_TYPES[p.mbti];
-    const center = ENN_CENTER[p.ennType];
-    const arrows = ENN_ARROWS[p.ennType];
-    const wing = p.ennWing ? `w${p.ennWing}` : '';
-    const ws = (p.ennWingStrength !== null && p.ennWingStrength !== undefined) ? ` (${wingStrengthLabel(p.ennWingStrength)})` : '';
-    const inst = p.instinctStack ? p.instinctStack.map(i => i.toUpperCase()).join('/') : '—';
+  const instStack = ennResult?.instinctStack
+    || (ennResult?.instScores ? Object.entries(ennResult.instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k) : null);
 
-    md += `### ${p.label}\n\n`;
-    md += `**Enneagram:** ${p.ennType}${wing}${ws} · **Instinct:** ${inst} · **MBTI:** ${p.mbti || '—'}\n\n`;
+  out += buildPersonDirectives(
+    ennResult?.coreType ?? null,
+    ennResult?.wing ?? null,
+    mbtiResult?.result ?? null,
+    instStack,
+  );
 
-    if (ennT) {
-      md += `**${ennT.name}:** ${ennT.desc}\n\n`;
-      md += `- Core Fear: ${ennT.fear}\n- Core Desire: ${ennT.desire}\n`;
-      md += `- Center: ${center.charAt(0).toUpperCase() + center.slice(1)}\n`;
-      if (arrows) {
-        md += `- Growth → Type ${arrows.growth} (${ENN_TYPES[arrows.growth]?.name}) · Stress → Type ${arrows.stress} (${ENN_TYPES[arrows.stress]?.name})\n`;
-      }
-      md += '\n';
-    }
-
-    if (mbtiT) {
-      md += `**${p.mbti} — ${mbtiT.name}:** ${mbtiT.desc}\n\n`;
-      md += `- Cognitive Stack: ${mbtiT.stack.join(' → ')}\n\n`;
-    }
-
-    md += `---\n\n`;
-  });
-
-  md += `*Generated by Personality Suite.*`;
-  return md;
+  return out.trimEnd();
 }
+
+// ─── Group / compare system prompt ─────────────────────────────────────────
+
+export function generateCompareSystemPrompt(persons) {
+  let out = `You are assisting a group of ${persons.length} ${persons.length === 1 ? 'person' : 'people'}. Use the profiles below to calibrate how you respond to each person.\n\n`;
+
+  persons.forEach(p => {
+    out += `---\n\n## ${p.label}\n\n`;
+    out += buildPersonDirectives(p.ennType, p.ennWing, p.mbti, p.instinctStack);
+  });
+
+  return out.trimEnd();
+}
+
+// ─── Utility ────────────────────────────────────────────────────────────────
 
 export function downloadJSON(data, filename) {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });

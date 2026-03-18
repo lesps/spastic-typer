@@ -8,7 +8,7 @@ import LikertScale from '../components/LikertScale.jsx';
 import ProgressBar from '../components/ProgressBar.jsx';
 import FnBadge from '../components/FnBadge.jsx';
 import ExportModal from '../components/ExportModal.jsx';
-import { generateExportMarkdown } from '../utils/export.js';
+import { generateSystemPrompt } from '../utils/export.js';
 import { computeWingStrengthDelta, wingStrengthLabel, wingStrengthDesc, effectiveWingScore } from '../utils/enneagram.js';
 import { computeArchetypeName } from '../utils/archetype.js';
 import { encodeProfileCode, decodeProfileCode } from '../utils/share.js';
@@ -560,7 +560,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   };
 
   const handleExportAll = () => {
-    const md = generateExportMarkdown(saved.enn, saved.mbti);
+    const md = generateSystemPrompt(saved.enn, saved.mbti);
     const backup = { type: 'full-profile', exportedAt: new Date().toISOString(), enneagram: saved.enn, mbti: saved.mbti, instinct: saved.inst };
     setExportData({ markdown: md, backup });
   };
