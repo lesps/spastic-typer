@@ -7,6 +7,8 @@ import { COG_FUNCTIONS } from '../data/cognitive.js';
 import { SOP_STEPS, QUADRANTS } from '../data/sop.js';
 import FnBadge from '../components/FnBadge.jsx';
 import { computeArchetypeName } from '../utils/archetype.js';
+import { COMBINATION_PROFILES } from '../data/combinationProfiles.js';
+import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
 
 function readLS(key) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; } }
 
@@ -342,6 +344,12 @@ function CombinedView({ setView }) {
   const ennType = ENN_TYPES[coreType];
   const instStack = inst.instinctStack;
 
+  // COMBINATION_PROFILES lookup
+  const instKey = instStack.map(i => i.toUpperCase()).join('');
+  const combKey = `${coreType}w${enn.wing}_${mbtiResult}_${instKey}`;
+  const combo = COMBINATION_PROFILES[combKey] ?? null;
+  const narrative = INTEGRATION_NARRATIVES[`${coreType}_${mbtiResult}`] ?? null;
+
   // Derived data for rich sections
   const mbtiStack = mbtiType?.stack || [];
   const domFnKey = mbtiStack[0];
@@ -360,16 +368,20 @@ function CombinedView({ setView }) {
   const corrTypes = mbtiType?.ennCorr?.split(', ').map(Number) || [];
   const isAligned = corrTypes.includes(coreType);
 
-  const strengths = [
-    ...(domFn.strengths ? domFn.strengths.split(',').slice(0, 3).map(s => s.trim()) : []),
-    `Motivated by: ${ennType?.desire?.toLowerCase()}`,
-  ];
+  const strengths = combo?.strengths?.length
+    ? combo.strengths
+    : [
+        ...(domFn.strengths ? domFn.strengths.split(',').slice(0, 3).map(s => s.trim()) : []),
+        `Motivated by: ${ennType?.desire?.toLowerCase()}`,
+      ];
 
-  const challenges = [
-    ...(infFn.shadow ? infFn.shadow.split(',').slice(0, 2).map(s => s.trim()) : []),
-    `Core anxiety: ${ennType?.fear?.toLowerCase()}`,
-    stress ? `Under stress: drawn toward Type ${stress} (${ENN_TYPES[stress]?.name}) patterns` : null,
-  ].filter(Boolean);
+  const challenges = combo?.growthEdges?.length
+    ? combo.growthEdges
+    : [
+        ...(infFn.shadow ? infFn.shadow.split(',').slice(0, 2).map(s => s.trim()) : []),
+        `Core anxiety: ${ennType?.fear?.toLowerCase()}`,
+        stress ? `Under stress: drawn toward Type ${stress} (${ENN_TYPES[stress]?.name}) patterns` : null,
+      ].filter(Boolean);
 
   const centerInteraction = (() => {
     if (center === 'heart' && domChar === 'F') return 'Heart center + Feeling-dominant processing: emotional intelligence and identity awareness are your superpower — and your most tender vulnerability.';
@@ -427,6 +439,14 @@ function CombinedView({ setView }) {
           <span style={{ ...S.tag, fontSize: 14, padding: '6px 14px' }}>{instStack.map(i => i.toUpperCase()).join('/')}</span>
         </div>
       </div>
+
+      {/* Who You Are — portrait from COMBINATION_PROFILES */}
+      {combo?.portrait && (
+        <div style={S.card}>
+          <h3 style={S.h3}>Who You Are</h3>
+          <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{combo.portrait}</p>
+        </div>
+      )}
 
       {/* Wing */}
       {WING_DESC[enn.display] && (
@@ -499,10 +519,50 @@ function CombinedView({ setView }) {
           {strengths.map((s, i) => <p key={i} style={itemStyle}>· {s}</p>)}
         </div>
         <div style={sectionStyle}>
-          <p style={labelStyle}>Challenges</p>
+          <p style={labelStyle}>Growth Edges</p>
           {challenges.map((c, i) => <p key={i} style={itemStyle}>· {c}</p>)}
         </div>
       </div>
+
+      {/* In Relationships / At Work / Under Stress / Growth Path */}
+      {combo?.inRelationships && (
+        <div style={S.card}>
+          <h3 style={S.h3}>In Relationships</h3>
+          <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{combo.inRelationships}</p>
+        </div>
+      )}
+      {combo?.atWork && (
+        <div style={S.card}>
+          <h3 style={S.h3}>At Work</h3>
+          <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{combo.atWork}</p>
+        </div>
+      )}
+      {combo?.stressBehavior && (
+        <div style={S.card}>
+          <h3 style={S.h3}>Under Stress</h3>
+          <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{combo.stressBehavior}</p>
+        </div>
+      )}
+      {combo?.growthPath && (
+        <div style={S.card}>
+          <h3 style={S.h3}>Growth Path</h3>
+          <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{combo.growthPath}</p>
+          {combo.notes?.map((note, i) => (
+            <p key={i} style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic', marginTop: 8 }}>{note}</p>
+          ))}
+        </div>
+      )}
+
+      {/* Integration Narrative */}
+      {narrative && (
+        <div style={S.card}>
+          <h3 style={S.h3}>{narrative.title}</h3>
+          <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{narrative.narrative}</p>
+          {narrative.typingNotes && (
+            <p style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic', marginTop: 10 }}>Typing notes: {narrative.typingNotes}</p>
+          )}
+        </div>
+      )}
 
       {/* System Interactions */}
       <div style={S.card}>

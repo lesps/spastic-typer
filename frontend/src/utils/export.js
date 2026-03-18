@@ -2,6 +2,10 @@ import { ENN_TYPES, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC, WING_DESC } from '../d
 import { MBTI_TYPES } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
 import { wingStrengthLabel, wingStrengthDesc } from '../utils/enneagram.js';
+import { COMBINATION_PROFILES } from '../data/combinationProfiles.js';
+import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
+import { MBTI_STRESS_FLOW } from '../data/mbtiStressFlow.js';
+import { SUBTYPES } from '../data/subtypes.js';
 
 export function generateExportMarkdown(ennResult, mbtiResult) {
   const now = new Date().toISOString().split('T')[0];
@@ -32,6 +36,19 @@ export function generateExportMarkdown(ennResult, mbtiResult) {
       instStack.forEach((inst, i) => {
         md += `${['**Dominant**', '**Secondary**', '**Repressed**'][i]} — **${inst.toUpperCase()} · ${instLabels[inst]}:** ${instDescs[inst]}\n\n`;
       });
+
+      // Enneagram subtype (dominant instinct)
+      const dominantInst = instStack[0];
+      const subtypeKey = `${core}_${dominantInst.toUpperCase()}`;
+      const subtype = SUBTYPES[subtypeKey];
+      if (subtype) {
+        md += `### Enneagram Subtype: ${subtype.nickname}\n\n`;
+        md += `*${subtype.name}* — ${subtype.description}\n\n`;
+        md += `**Key traits:**\n`;
+        subtype.keyTraits.forEach(trait => { md += `- ${trait}\n`; });
+        md += `\n**Blind spot:** ${subtype.blindSpot}\n\n`;
+        md += `**Growth path:** ${subtype.growthPath}\n\n`;
+      }
     }
     if (ennResult.scores) {
       const sorted = Object.entries(ennResult.scores).sort((a, b) => b[1] - a[1]);
@@ -53,12 +70,41 @@ export function generateExportMarkdown(ennResult, mbtiResult) {
         const pos = ['**Dominant (Hero)**', '**Auxiliary (Parent)**', '**Tertiary (Child)**', '**Inferior (Aspiration)**'][i];
         md += `${i + 1}. ${pos} — **${fn}** (${f.name})\n   ${f.desc}\n\n`;
       });
+
+      // Dominant function strengths and inferior shadow
+      const domFn = COG_FUNCTIONS[t.stack[0]];
+      const infFn = COG_FUNCTIONS[t.stack[3]];
+      if (domFn?.strengths) {
+        md += `**Dominant ${t.stack[0]} strengths:** ${domFn.strengths}\n\n`;
+      }
+      if (infFn?.shadow) {
+        md += `**Inferior ${t.stack[3]} shadow (stress point):** ${infFn.shadow}\n\n`;
+      }
+
       md += `### Practical Implications\n\n`;
       md += `- **Dominant ${t.stack[0]}** is this person's natural mode.\n`;
       md += `- **Auxiliary ${t.stack[1]}** is their supporting function.\n`;
       md += `- **Inferior ${t.stack[3]}** (${COG_FUNCTIONS[t.stack[3]].name}) is their growth edge and stress point.\n`;
       if (t.ennCorr) md += `- **Common Enneagram correlations:** Types ${t.ennCorr}\n`;
       md += '\n';
+
+      // Flow & grip stress
+      const sf = MBTI_STRESS_FLOW[code];
+      if (sf) {
+        md += `### Flow & Grip Stress\n\n`;
+        md += `**In flow:** ${sf.inFlow.description}\n`;
+        if (sf.inFlow.triggers?.length) {
+          md += `Flow triggers: ${sf.inFlow.triggers.join(', ')}\n`;
+        }
+        md += `\n**Under grip stress:** ${sf.underStress.description}\n`;
+        if (sf.underStress.observable) {
+          md += `Observable: ${sf.underStress.observable}\n`;
+        }
+        if (sf.underStress.recoveryPath) {
+          md += `Recovery: ${sf.underStress.recoveryPath}\n`;
+        }
+        md += '\n';
+      }
     }
     if (scores) {
       md += `### Dimension Scores\n\n| Dimension | A | B | Preference |\n|-----------|---|---|------------|\n`;
@@ -72,6 +118,60 @@ export function generateExportMarkdown(ennResult, mbtiResult) {
     md += `---\n\n`;
   }
 
+  // Combined Profile Portrait (three-system)
+  if (ennResult && mbtiResult) {
+    const core = ennResult.coreType;
+    const mbtiCode = mbtiResult.result;
+    const instStack = ennResult.instinctStack || (ennResult.instScores ? Object.entries(ennResult.instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k) : null);
+
+    if (instStack) {
+      const instKey = instStack.map(i => i.toUpperCase()).join('');
+      const combKey = `${core}w${ennResult.wing}_${mbtiCode}_${instKey}`;
+      const combo = COMBINATION_PROFILES[combKey] ?? null;
+
+      if (combo) {
+        const instDisplay = instStack.map(i => i.toUpperCase()).join('/');
+        md += `## Combined Profile Portrait\n\n`;
+        md += `> Type ${core}w${ennResult.wing} · ${mbtiCode} · ${instDisplay}\n\n`;
+        md += `${combo.portrait}\n\n`;
+
+        if (combo.strengths?.length) {
+          md += `### Strengths\n\n`;
+          combo.strengths.forEach(s => { md += `- ${s}\n`; });
+          md += '\n';
+        }
+
+        if (combo.growthEdges?.length) {
+          md += `### Growth Edges\n\n`;
+          combo.growthEdges.forEach(g => { md += `- ${g}\n`; });
+          md += '\n';
+        }
+
+        if (combo.inRelationships) {
+          md += `### In Relationships\n\n${combo.inRelationships}\n\n`;
+        }
+
+        if (combo.atWork) {
+          md += `### At Work\n\n${combo.atWork}\n\n`;
+        }
+
+        if (combo.stressBehavior) {
+          md += `### Under Stress\n\n${combo.stressBehavior}\n\n`;
+        }
+
+        if (combo.growthPath) {
+          md += `### Growth Path\n\n${combo.growthPath}\n\n`;
+        }
+
+        if (combo.notes?.length) {
+          combo.notes.forEach(n => { md += `*${n}*\n\n`; });
+        }
+
+        md += `---\n\n`;
+      }
+    }
+  }
+
   if (ennResult && mbtiResult) {
     const ennCore = ennResult.coreType, mbtiCode = mbtiResult.result;
     const t = MBTI_TYPES[mbtiCode], ennT = ENN_TYPES[ennCore];
@@ -80,6 +180,16 @@ export function generateExportMarkdown(ennResult, mbtiResult) {
     const instDisplay = instStack2 ? instStack2.map(i => i.toUpperCase()).join('/') : (ennResult.instinct?.toUpperCase() || '');
     md += `## Cross-System Synthesis\n\n**Combined Profile:** ${ennResult.coreType}w${ennResult.wing} ${instDisplay} + ${mbtiCode}\n\n`;
     md += `The Enneagram ${ennCore} (${ennT.name}) describes *why* this person is motivated. The ${mbtiCode} (${t?.name}) describes *how* they process and act.\n\n`;
+
+    // Integration narrative
+    const narrative = INTEGRATION_NARRATIVES[`${ennCore}_${mbtiCode}`] ?? null;
+    if (narrative) {
+      md += `### ${narrative.title}\n\n${narrative.narrative}\n\n`;
+      if (narrative.typingNotes) {
+        md += `*Typing notes: ${narrative.typingNotes}*\n\n`;
+      }
+    }
+
     md += `### Communication Preferences\n\n`;
     md += `- **Pace:** ${isE ? 'Thinks out loud; rapid back-and-forth.' : 'Needs time to process; don\'t rush responses.'}\n`;
     md += `- **Abstraction:** ${isN ? 'Comfortable with metaphor and big-picture framing.' : 'Prefers concrete examples and practical specifics.'}\n`;

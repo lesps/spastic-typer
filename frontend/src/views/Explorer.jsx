@@ -713,6 +713,11 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                   <span style={{ ...S.mono, fontSize: 12, color: G.gold, background: G.goldDim, border: `1px solid ${G.goldBorder}`, padding: '2px 8px', borderRadius: 6 }}>{key.replace('_', ' / ')}</span>
                   <h4 style={{ fontSize: 14, color: G.text, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, margin: 0 }}>{narr.title}</h4>
                 </div>
+                {narr.intro && (
+                  <div style={{ padding: '8px 12px', borderRadius: 6, background: G.goldDim, border: `1px solid ${G.goldBorder}`, marginBottom: 10 }}>
+                    <p style={{ ...S.body, fontSize: 13, color: G.gold, fontStyle: 'italic', margin: 0 }}>{narr.intro}</p>
+                  </div>
+                )}
                 <p style={{ ...S.body, fontSize: 13, marginBottom: 12, lineHeight: 1.75 }}>{narr.narrative}</p>
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
                   {[['SP', narr.withSP], ['SX', narr.withSX], ['SO', narr.withSO]].map(([inst, text]) => text && (
