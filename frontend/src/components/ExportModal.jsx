@@ -37,13 +37,13 @@ export default function ExportModal({ markdown, backup, onClose }) {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: backup ? '1fr 1fr' : '1fr', gap: 10 }}>
             <div style={{ ...S.card, marginBottom: 0, padding: '12px 14px' }}>
-              <h3 style={{ ...S.h3, marginBottom: 4 }}>AI Report</h3>
-              <p style={{ ...S.body, fontSize: 12, marginBottom: 10 }}>Markdown context for any AI assistant.</p>
+              <h3 style={{ ...S.h3, marginBottom: 4 }}>System Prompt</h3>
+              <p style={{ ...S.body, fontSize: 12, marginBottom: 10 }}>Paste into any AI assistant's system prompt field.</p>
               <button
                 onClick={handleCopy}
                 style={{ ...S.btn, width: '100%', padding: '8px', fontSize: 13, background: copied ? '#50c878' : G.gold }}
               >
-                {copied ? '✓ Copied' : 'Copy Markdown'}
+                {copied ? '✓ Copied' : 'Copy System Prompt'}
               </button>
             </div>
             {backup && (

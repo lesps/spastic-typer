@@ -12,7 +12,7 @@ import { analyzeGroup, getCenterDistribution, getHarmonicDistribution, getHornev
 import { getCommunicationMatrix, getGrowthStressInteraction, getCognitiveHarmony, getInstinctDepthAnalysisSync } from '../utils/compare.js';
 import { decodeProfileCode } from '../utils/share.js';
 import ExportModal from '../components/ExportModal.jsx';
-import { generateCompareMarkdown } from '../utils/export.js';
+import { generateCompareSystemPrompt } from '../utils/export.js';
 
 const INSTINCT_LABELS = { sp: 'SP', sx: 'SX', so: 'SO' };
 const LS_COMPARE = 'compare_persons';
@@ -382,7 +382,7 @@ export default function ComparePage() {
   const instinctChemistry = readyCount >= 3 ? getInstinctGroupChemistry(completedPersons) : null;
 
   const handleExportAI = () => {
-    setCompareExportMd(generateCompareMarkdown(completedPersons));
+    setCompareExportMd(generateCompareSystemPrompt(completedPersons));
   };
 
   const handleShare = () => {
