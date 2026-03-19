@@ -11,6 +11,7 @@ import {
   scoreInstinct,
   buildFairSequence,
   shuffleArray,
+  mulberry32,
   isMBTIDimConfident,
   allMBTIDimsConfident,
   isEnnConfident,
@@ -98,23 +99,24 @@ describe('scoreMBTI — scale calibration (bug regression)', () => {
     expect(result[0]).toBe('E');
   });
 
-  it('all -3 on E-pole questions → result starts with I', () => {
+  it('EI at -3, others at +3 → result starts with I', () => {
     const seq = mbtiSeqFromBank();
-    const answers = mbtiAnswersAll(seq, -3);
+    // Mean-centering requires discriminating answers: EI low, others high
+    const answers = { ...mbtiAnswersAll(seq, 3), ...mbtiAnswersForDim(seq, 'EI', -3) };
     const { result } = scoreMBTI(answers, seq);
     expect(result[0]).toBe('I');
   });
 
-  it('all -2 on E-pole questions → result starts with I', () => {
+  it('EI at -2, others at +3 → result starts with I', () => {
     const seq = mbtiSeqFromBank();
-    const answers = mbtiAnswersAll(seq, -2);
+    const answers = { ...mbtiAnswersAll(seq, 3), ...mbtiAnswersForDim(seq, 'EI', -2) };
     const { result } = scoreMBTI(answers, seq);
     expect(result[0]).toBe('I');
   });
 
-  it('all -1 on E-pole questions → result starts with I', () => {
+  it('EI at -1, others at +3 → result starts with I', () => {
     const seq = mbtiSeqFromBank();
-    const answers = mbtiAnswersAll(seq, -1);
+    const answers = { ...mbtiAnswersAll(seq, 3), ...mbtiAnswersForDim(seq, 'EI', -1) };
     const { result } = scoreMBTI(answers, seq);
     expect(result[0]).toBe('I');
   });
@@ -135,9 +137,11 @@ describe('scoreMBTI — all four dimensions', () => {
     expect(result).toBe('ESTJ');
   });
 
-  it('all -3 answers → INFP (every opposite-pole wins)', () => {
+  it('discriminating negative answers → INFP (every opposite-pole wins)', () => {
     const seq = mbtiSeqFromBank();
-    const answers = mbtiAnswersAll(seq, -3);
+    // direction:1 items at -3, direction:-1 items at +3 → all dims favor negative pole
+    const answers = {};
+    seq.forEach((q, i) => { answers[i] = (q.direction ?? 1) === -1 ? 3 : -3; });
     const { result } = scoreMBTI(answers, seq);
     expect(result).toBe('INFP');
   });
@@ -151,7 +155,9 @@ describe('scoreMBTI — all four dimensions', () => {
 
   it('pole score is higher than counter-pole for clear positive answers', () => {
     const seq = mbtiSeqFromBank();
-    const answers = mbtiAnswersAll(seq, 2);
+    // direction:1 items at +2, direction:-1 items at -2 → positive poles win after centering
+    const answers = {};
+    seq.forEach((q, i) => { answers[i] = (q.direction ?? 1) === -1 ? -2 : 2; });
     const { scores } = scoreMBTI(answers, seq);
     expect(scores.E).toBeGreaterThan(scores.I);
     expect(scores.S).toBeGreaterThan(scores.N);
@@ -161,7 +167,9 @@ describe('scoreMBTI — all four dimensions', () => {
 
   it('pole score is lower than counter-pole for clear negative answers', () => {
     const seq = mbtiSeqFromBank();
-    const answers = mbtiAnswersAll(seq, -2);
+    // direction:1 items at -2, direction:-1 items at +2 → negative poles win after centering
+    const answers = {};
+    seq.forEach((q, i) => { answers[i] = (q.direction ?? 1) === -1 ? 2 : -2; });
     const { scores } = scoreMBTI(answers, seq);
     expect(scores.E).toBeLessThan(scores.I);
     expect(scores.S).toBeLessThan(scores.N);
@@ -175,9 +183,9 @@ describe('scoreMBTI — all four dimensions', () => {
     const firstEI = seq.findIndex(q => q.dim === 'EI');
     const answers = { [firstEI]: 3 };
     const { scores } = scoreMBTI(answers, seq);
-    // 1 question, rawSum=3, shifted=3+3=6, neg=6-6=0
-    expect(scores.E).toBe(6);
-    expect(scores.I).toBe(0);
+    // 1 question answered, respMean=3, centered=0, rawSum=0, shifted=0+3=3, neg=6-3=3 → tie
+    expect(scores.E).toBe(3);
+    expect(scores.I).toBe(3);
   });
 });
 
@@ -236,39 +244,51 @@ describe('isMBTIDimConfident', () => {
     expect(isMBTIDimConfident('EI', answers, seq, firstEI)).toBe(false);
   });
 
-  it('returns true when 2+ questions answered with |sum|/count >= 1.5', () => {
+  it('returns true when 3+ E-pole questions answered at +2 (|sum|/count = 2 >= 1.8)', () => {
     const seq = mbtiSeqFromBank();
-    const eiIndices = seq.reduce((acc, q, i) => { if (q.dim === 'EI') acc.push(i); return acc; }, []);
-    // Answer first 2 EI questions at +2 each → rawSum=4, count=2, 4/2=2 >= 1.5
-    const answers = { [eiIndices[0]]: 2, [eiIndices[1]]: 2 };
-    const maxIndex = Math.max(eiIndices[0], eiIndices[1]);
+    // Use only E-pole (direction:1) items to get a reliable rawSum
+    const eiEIndices = seq.reduce((acc, q, i) => {
+      if (q.dim === 'EI' && (q.direction ?? 1) === 1) acc.push(i);
+      return acc;
+    }, []);
+    const answers = { [eiEIndices[0]]: 2, [eiEIndices[1]]: 2, [eiEIndices[2]]: 2 };
+    const maxIndex = Math.max(eiEIndices[0], eiEIndices[1], eiEIndices[2]);
     expect(isMBTIDimConfident('EI', answers, seq, maxIndex)).toBe(true);
   });
 
-  it('returns false when answers are weak (|sum|/count < 1.5)', () => {
+  it('returns false when answers are weak (|sum|/count < 1.8)', () => {
     const seq = mbtiSeqFromBank();
-    const eiIndices = seq.reduce((acc, q, i) => { if (q.dim === 'EI') acc.push(i); return acc; }, []);
-    // Answer first 2 EI questions at +1 each → rawSum=2, count=2, 2/2=1 < 1.5
-    const answers = { [eiIndices[0]]: 1, [eiIndices[1]]: 1 };
-    const maxIndex = Math.max(eiIndices[0], eiIndices[1]);
+    const eiEIndices = seq.reduce((acc, q, i) => {
+      if (q.dim === 'EI' && (q.direction ?? 1) === 1) acc.push(i);
+      return acc;
+    }, []);
+    // 3 answers at +1 → rawSum=3, count=3, 3/3=1 < 1.8
+    const answers = { [eiEIndices[0]]: 1, [eiEIndices[1]]: 1, [eiEIndices[2]]: 1 };
+    const maxIndex = Math.max(eiEIndices[0], eiEIndices[1], eiEIndices[2]);
     expect(isMBTIDimConfident('EI', answers, seq, maxIndex)).toBe(false);
   });
 
   it('returns false when answers cancel each other out', () => {
     const seq = mbtiSeqFromBank();
-    const eiIndices = seq.reduce((acc, q, i) => { if (q.dim === 'EI') acc.push(i); return acc; }, []);
-    // +3 and -3 → rawSum=0, |0|/2=0 < 1.5
-    const answers = { [eiIndices[0]]: 3, [eiIndices[1]]: -3 };
-    const maxIndex = Math.max(eiIndices[0], eiIndices[1]);
+    const eiEIndices = seq.reduce((acc, q, i) => {
+      if (q.dim === 'EI' && (q.direction ?? 1) === 1) acc.push(i);
+      return acc;
+    }, []);
+    // +3, -3, +3 → rawSum=3, count=3, |3|/3=1 < 1.8
+    const answers = { [eiEIndices[0]]: 3, [eiEIndices[1]]: -3, [eiEIndices[2]]: 3 };
+    const maxIndex = Math.max(eiEIndices[0], eiEIndices[1], eiEIndices[2]);
     expect(isMBTIDimConfident('EI', answers, seq, maxIndex)).toBe(false);
   });
 
-  it('returns true for strong negative answers', () => {
+  it('returns true for strong negative answers (3 E-pole at -3)', () => {
     const seq = mbtiSeqFromBank();
-    const eiIndices = seq.reduce((acc, q, i) => { if (q.dim === 'EI') acc.push(i); return acc; }, []);
-    // -3 and -2 → rawSum=-5, |-5|/2=2.5 >= 1.5
-    const answers = { [eiIndices[0]]: -3, [eiIndices[1]]: -2 };
-    const maxIndex = Math.max(eiIndices[0], eiIndices[1]);
+    const eiEIndices = seq.reduce((acc, q, i) => {
+      if (q.dim === 'EI' && (q.direction ?? 1) === 1) acc.push(i);
+      return acc;
+    }, []);
+    // -3, -3, -3 → rawSum=-9, |-9|/3=3 >= 1.8
+    const answers = { [eiEIndices[0]]: -3, [eiEIndices[1]]: -3, [eiEIndices[2]]: -3 };
+    const maxIndex = Math.max(eiEIndices[0], eiEIndices[1], eiEIndices[2]);
     expect(isMBTIDimConfident('EI', answers, seq, maxIndex)).toBe(true);
   });
 });
@@ -281,17 +301,20 @@ describe('allMBTIDimsConfident', () => {
 
   it('returns true when all 4 dims have strong confident answers', () => {
     const seq = mbtiSeqFromBank();
-    // After 8 rounds (32 questions), all dims have 8 answers at +3
-    const answers = mbtiAnswersAll(seq, 3);
+    // direction:1 items at +3, direction:-1 items at -3 → centered values are strong → all dims confident
+    const answers = {};
+    seq.forEach((q, i) => { answers[i] = (q.direction ?? 1) === -1 ? -3 : 3; });
     expect(allMBTIDimsConfident(answers, seq, seq.length - 1)).toBe(true);
   });
 
   it('returns false when only 3 of 4 dims are confident', () => {
     const seq = mbtiSeqFromBank();
-    // All dims strong except EI (zeroed out → not confident)
-    const answers = mbtiAnswersAll(seq, 3);
-    seq.forEach((q, i) => { if (q.dim === 'EI') answers[i] = 0; });
-    // After enough questions
+    // SN/TF/JP use discriminating answers (confident); EI all 0 (not confident)
+    const answers = {};
+    seq.forEach((q, i) => {
+      if (q.dim === 'EI') answers[i] = 0;
+      else answers[i] = (q.direction ?? 1) === -1 ? -3 : 3;
+    });
     expect(allMBTIDimsConfident(answers, seq, seq.length - 1)).toBe(false);
   });
 });
@@ -452,14 +475,16 @@ describe('scoreInstinct', () => {
 
   it('instScores reflect actual sums from answers', () => {
     const seq = instSeqFromBank();
-    // All SP questions +3, SX +0, SO -3
+    // SP=+3, SX=0, SO=-3; mean=(7*3+7*0+7*-3)/21=0; no centering shift
+    // Each instinct: 6 pole:1 items + 1 pole:-1 item
+    // sp: 6*(3-0)*1 + 1*(3-0)*(-1) = 18-3 = 15
+    // sx: all centered 0 = 0
+    // so: 6*(-3-0)*1 + 1*(-3-0)*(-1) = -18+3 = -15
     const answers = instAnswersOrdered(seq, 3, 0, -3);
     const { instScores } = scoreInstinct(answers, seq);
-    const spCount = seq.filter(q => q.inst === 'sp').length;
-    const soCount = seq.filter(q => q.inst === 'so').length;
-    expect(instScores.sp).toBe(spCount * 3);
+    expect(instScores.sp).toBe(15);
     expect(instScores.sx).toBe(0);
-    expect(instScores.so).toBe(soCount * -3);
+    expect(instScores.so).toBe(-15);
   });
 
   it('returns 3-element instinctStack with all three instincts', () => {
@@ -557,39 +582,39 @@ describe('isInstConfident', () => {
 // ---------------------------------------------------------------------------
 
 describe('buildFairSequence', () => {
-  it('produces equal counts per category for MBTI (8 per dim)', () => {
+  it('produces equal counts per category for MBTI (10 per dim)', () => {
     const seq = buildFairSequence(MBTI_BANK, q => q.dim);
     const counts = { EI: 0, SN: 0, TF: 0, JP: 0 };
     seq.forEach(q => { counts[q.dim]++; });
-    expect(counts.EI).toBe(8);
-    expect(counts.SN).toBe(8);
-    expect(counts.TF).toBe(8);
-    expect(counts.JP).toBe(8);
-    expect(seq).toHaveLength(32);
+    expect(counts.EI).toBe(10);
+    expect(counts.SN).toBe(10);
+    expect(counts.TF).toBe(10);
+    expect(counts.JP).toBe(10);
+    expect(seq).toHaveLength(40);
   });
 
-  it('produces equal counts per type for Enneagram (5 per type)', () => {
+  it('produces equal counts per type for Enneagram (7 per type)', () => {
     const seq = buildFairSequence(ENN_BANK, q => q.type);
     const counts = {};
     for (let t = 1; t <= 9; t++) counts[t] = 0;
     seq.forEach(q => { counts[q.type]++; });
-    for (let t = 1; t <= 9; t++) expect(counts[t]).toBe(5);
-    expect(seq).toHaveLength(45);
+    for (let t = 1; t <= 9; t++) expect(counts[t]).toBe(7);
+    expect(seq).toHaveLength(63);
   });
 
-  it('produces equal counts per instinct (5 per instinct)', () => {
+  it('produces equal counts per instinct (7 per instinct)', () => {
     const seq = buildFairSequence(INSTINCT_BANK, q => q.inst);
     const counts = { sp: 0, sx: 0, so: 0 };
     seq.forEach(q => { counts[q.inst]++; });
-    expect(counts.sp).toBe(5);
-    expect(counts.sx).toBe(5);
-    expect(counts.so).toBe(5);
-    expect(seq).toHaveLength(15);
+    expect(counts.sp).toBe(7);
+    expect(counts.sx).toBe(7);
+    expect(counts.so).toBe(7);
+    expect(seq).toHaveLength(21);
   });
 
   it('each round in MBTI sequence contains exactly one question per dim', () => {
     const seq = buildFairSequence(MBTI_BANK, q => q.dim);
-    const numRounds = 8; // 8 questions per dim
+    const numRounds = 10; // 10 questions per dim
     for (let r = 0; r < numRounds; r++) {
       const round = seq.slice(r * 4, r * 4 + 4);
       const dims = round.map(q => q.dim);
@@ -599,7 +624,7 @@ describe('buildFairSequence', () => {
 
   it('each round in Enneagram sequence contains exactly one question per type', () => {
     const seq = buildFairSequence(ENN_BANK, q => q.type);
-    const numRounds = 5;
+    const numRounds = 7;
     for (let r = 0; r < numRounds; r++) {
       const round = seq.slice(r * 9, r * 9 + 9);
       const types = round.map(q => String(q.type));
@@ -656,36 +681,47 @@ describe('shuffleArray', () => {
 // ---------------------------------------------------------------------------
 
 describe('MBTI_BANK data integrity', () => {
-  it('has exactly 8 questions per dimension', () => {
+  it('has exactly 10 questions per dimension', () => {
     const counts = { EI: 0, SN: 0, TF: 0, JP: 0 };
     MBTI_BANK.forEach(q => { counts[q.dim]++; });
-    expect(counts.EI).toBe(8);
-    expect(counts.SN).toBe(8);
-    expect(counts.TF).toBe(8);
-    expect(counts.JP).toBe(8);
+    expect(counts.EI).toBe(10);
+    expect(counts.SN).toBe(10);
+    expect(counts.TF).toBe(10);
+    expect(counts.JP).toBe(10);
   });
 
-  it('all EI questions have pole E', () => {
+  it('EI questions have pole E (direction:1) or pole I (direction:-1)', () => {
     MBTI_BANK.filter(q => q.dim === 'EI').forEach(q => {
-      expect(q.pole).toBe('E');
+      if ((q.direction ?? 1) === 1) expect(q.pole).toBe('E');
+      else expect(q.pole).toBe('I');
     });
   });
 
-  it('all SN questions have pole S', () => {
+  it('SN questions have pole S (direction:1) or pole N (direction:-1)', () => {
     MBTI_BANK.filter(q => q.dim === 'SN').forEach(q => {
-      expect(q.pole).toBe('S');
+      if ((q.direction ?? 1) === 1) expect(q.pole).toBe('S');
+      else expect(q.pole).toBe('N');
     });
   });
 
-  it('all TF questions have pole T', () => {
+  it('TF questions have pole T (direction:1) or pole F (direction:-1)', () => {
     MBTI_BANK.filter(q => q.dim === 'TF').forEach(q => {
-      expect(q.pole).toBe('T');
+      if ((q.direction ?? 1) === 1) expect(q.pole).toBe('T');
+      else expect(q.pole).toBe('F');
     });
   });
 
-  it('all JP questions have pole J', () => {
+  it('JP questions have pole J (direction:1) or pole P (direction:-1)', () => {
     MBTI_BANK.filter(q => q.dim === 'JP').forEach(q => {
-      expect(q.pole).toBe('J');
+      if ((q.direction ?? 1) === 1) expect(q.pole).toBe('J');
+      else expect(q.pole).toBe('P');
+    });
+  });
+
+  it('each dimension has exactly 2 reverse-scored questions (direction: -1)', () => {
+    ['EI', 'SN', 'TF', 'JP'].forEach(dim => {
+      const reversed = MBTI_BANK.filter(q => q.dim === dim && q.direction === -1).length;
+      expect(reversed).toBe(2);
     });
   });
 
@@ -700,15 +736,22 @@ describe('MBTI_BANK data integrity', () => {
 // ---------------------------------------------------------------------------
 
 describe('ENN_BANK data integrity', () => {
-  it('has exactly 5 questions per type (1-9)', () => {
+  it('has exactly 7 questions per type (1-9)', () => {
     const counts = {};
     for (let t = 1; t <= 9; t++) counts[t] = 0;
     ENN_BANK.forEach(q => { counts[q.type]++; });
-    for (let t = 1; t <= 9; t++) expect(counts[t]).toBe(5);
+    for (let t = 1; t <= 9; t++) expect(counts[t]).toBe(7);
   });
 
-  it('all questions have pole 1', () => {
-    ENN_BANK.forEach(q => expect(q.pole).toBe(1));
+  it('all questions have pole 1 or -1', () => {
+    ENN_BANK.forEach(q => expect([1, -1]).toContain(q.pole));
+  });
+
+  it('each type has exactly one reverse-scored question (pole: -1)', () => {
+    for (let t = 1; t <= 9; t++) {
+      const reversed = ENN_BANK.filter(q => q.type === t && q.pole === -1).length;
+      expect(reversed).toBe(1);
+    }
   });
 
   it('no two questions have the same text', () => {
@@ -722,12 +765,19 @@ describe('ENN_BANK data integrity', () => {
 // ---------------------------------------------------------------------------
 
 describe('INSTINCT_BANK data integrity', () => {
-  it('has exactly 5 questions per instinct', () => {
+  it('has exactly 7 questions per instinct', () => {
     const counts = { sp: 0, sx: 0, so: 0 };
     INSTINCT_BANK.forEach(q => { counts[q.inst]++; });
-    expect(counts.sp).toBe(5);
-    expect(counts.sx).toBe(5);
-    expect(counts.so).toBe(5);
+    expect(counts.sp).toBe(7);
+    expect(counts.sx).toBe(7);
+    expect(counts.so).toBe(7);
+  });
+
+  it('each instinct has exactly one reverse-scored question (pole: -1)', () => {
+    ['sp', 'sx', 'so'].forEach(inst => {
+      const reversed = INSTINCT_BANK.filter(q => q.inst === inst && q.pole === -1).length;
+      expect(reversed).toBe(1);
+    });
   });
 
   it('no two questions have the same text', () => {
@@ -848,21 +898,21 @@ describe('wingStrengthLabel — effective-score thresholds', () => {
     expect(wingStrengthLabel('balanced')).toBe('balanced');
   });
 
-  it('> 6 → strong', () => {
-    expect(wingStrengthLabel(7)).toBe('strong');
-    expect(wingStrengthLabel(6.1)).toBe('strong');
+  it('> 5 → strong', () => {
+    expect(wingStrengthLabel(6)).toBe('strong');
+    expect(wingStrengthLabel(5.1)).toBe('strong');
     expect(wingStrengthLabel(15)).toBe('strong');
   });
 
-  it('> 1 and ≤ 6 → moderate', () => {
-    expect(wingStrengthLabel(6)).toBe('moderate');
+  it('> 0 and ≤ 5 → moderate', () => {
+    expect(wingStrengthLabel(5)).toBe('moderate');
     expect(wingStrengthLabel(3)).toBe('moderate');
-    expect(wingStrengthLabel(1.1)).toBe('moderate');
+    expect(wingStrengthLabel(0.1)).toBe('moderate');
   });
 
-  it('≤ 1 → balanced', () => {
-    expect(wingStrengthLabel(1)).toBe('balanced');
+  it('≤ 0 → balanced', () => {
     expect(wingStrengthLabel(0)).toBe('balanced');
+    expect(wingStrengthLabel(-1)).toBe('balanced');
     expect(wingStrengthLabel(-5)).toBe('balanced');
   });
 });

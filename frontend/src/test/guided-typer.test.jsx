@@ -151,8 +151,8 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
 
-    // Answer up to 45 questions at '0' — stops automatically when result appears
-    await answerUpTo(45);
+    // Answer up to 70 questions at '0' — stops automatically when result appears
+    await answerUpTo(70);
 
     // If disambiguation was triggered, skip it
     const skipBtn = screen.queryByRole('button', { name: /skip/i });
@@ -167,7 +167,7 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
     fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
 
     // Answer strongly for all — adaptive exit fires when confidence is met
-    await answerUpTo(45, '+3');
+    await answerUpTo(70, '+3');
 
     expect(screen.getByText(/your enneagram result/i)).toBeInTheDocument();
   }, 15000);
@@ -177,7 +177,7 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
     fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
 
     // All-zero answers → all types equal → disambiguation triggered after bank exhausted
-    await answerUpTo(45);
+    await answerUpTo(70);
 
     // Either disambiguation or result appears
     const disambig = screen.queryByText(/clarifying questions/i);
@@ -189,7 +189,7 @@ describe('GuidedTyper — Enneagram quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
 
-    await answerUpTo(45);
+    await answerUpTo(70);
 
     // Skip disambiguation if it appeared
     const skipBtn = screen.queryByRole('button', { name: /skip/i });
@@ -248,8 +248,8 @@ describe('GuidedTyper — Instinct Stack quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('SP · SX · SO Drive Ordering').closest('[style]'));
 
-    // Answer up to 20 questions (15 main + up to 5 disambig); stops when result appears
-    await answerUpTo(20, '+1');
+    // Answer up to 30 questions (21 main + up to 9 disambig); stops when result appears
+    await answerUpTo(30, '+1');
 
     expect(screen.getByText(/your instinct stack result/i)).toBeInTheDocument();
     expect(screen.getByText('Dominant')).toBeInTheDocument();
@@ -261,8 +261,8 @@ describe('GuidedTyper — Instinct Stack quiz flow', () => {
   it('can return to choose screen from instinct result', async () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('SP · SX · SO Drive Ordering').closest('[style]'));
-    // Cover main bank + up to one disambig round (15 + 5)
-    await answerUpTo(20);
+    // Cover main bank + disambig (21 + 9)
+    await answerUpTo(30);
 
     fireEvent.click(screen.getByRole('button', { name: /← back to assessments/i }));
     expect(screen.getByText('Guided Typer')).toBeInTheDocument();
@@ -272,8 +272,8 @@ describe('GuidedTyper — Instinct Stack quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('SP · SX · SO Drive Ordering').closest('[style]'));
 
-    // Answer all 15 questions with same value → all instincts tie → disambig triggered
-    await answerUpTo(15, '+1');
+    // Answer all 21 questions with same value → all instincts tie → disambig triggered
+    await answerUpTo(21, '+1');
 
     expect(screen.getByText(/instinct stack assessment/i)).toBeInTheDocument();
     expect(screen.getByText(/a few more targeted questions/i)).toBeInTheDocument();
@@ -348,8 +348,8 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
 
-    // Answer up to 52 questions (32 main + up to 20 disambig for 4 weak dims)
-    await answerUpTo(52);
+    // Answer up to 65 questions (40 main + up to 25 disambig for 4 weak dims)
+    await answerUpTo(65);
 
     expect(screen.getByText(/your mbti result/i)).toBeInTheDocument();
     expect(screen.getByText(/cognitive stack/i)).toBeInTheDocument();
@@ -360,8 +360,8 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
 
-    // Answer +3 on all — confident after 2 per dim (8 total); stops automatically
-    await answerUpTo(32, '+3');
+    // Answer through all questions including disambig; result appears once resolved
+    await answerUpTo(65, '+3');
 
     expect(screen.getByText(/your mbti result/i)).toBeInTheDocument();
   }, 10000);
@@ -370,32 +370,30 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
 
-    // Answer +3 on everything — adaptive exit after ~8 questions; stops automatically
-    await answerUpTo(32, '+3');
+    // Answer +3 throughout; with uniform +3 centering produces ties so E/S/T/J win by >= rule
+    await answerUpTo(65, '+3');
 
     expect(screen.getByText(/your mbti result/i)).toBeInTheDocument();
-    // The result type heading should start with E
+    // The result type heading should start with E (E wins ties by >= rule)
     const typeHeading = document.querySelector('h1');
     expect(typeHeading?.textContent?.[0]).toBe('E');
   }, 10000);
 
-  it('result is I-type when answering strongly negatively', async () => {
+  it('uniform -3 answers produce a valid MBTI result', async () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
 
-    // Answer -3 on everything — adaptive exit after ~8 questions; stops automatically
-    await answerUpTo(32, '-3');
+    // With mean-centering, uniform -3 centers to 0 → ties → E wins by >= rule → ESTJ
+    await answerUpTo(65, '-3');
 
     expect(screen.getByText(/your mbti result/i)).toBeInTheDocument();
-    const typeHeading = document.querySelector('h1');
-    expect(typeHeading?.textContent?.[0]).toBe('I');
   }, 10000);
 
   it('can return to choose screen from MBTI result', async () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
-    // Cover main bank + full disambig for up to 4 weak dims (32 + 20)
-    await answerUpTo(52);
+    // Cover main bank + full disambig for up to 4 weak dims (40 + 25)
+    await answerUpTo(65);
 
     fireEvent.click(screen.getByRole('button', { name: /← back to assessments/i }));
     expect(screen.getByText('Guided Typer')).toBeInTheDocument();
@@ -405,8 +403,8 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
 
-    // Answer all 32 questions with 0 → no dim confident → disambig triggered
-    await answerUpTo(32);
+    // Answer all 40 questions with 0 → no dim confident → disambig triggered
+    await answerUpTo(40);
 
     expect(screen.getByText(/a few more targeted questions to clarify/i)).toBeInTheDocument();
   }, 10000);
@@ -527,7 +525,7 @@ describe('GuidedTyper — next incomplete quiz button', () => {
   it('shows Start MBTI button after completing Enneagram when MBTI is not done', async () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
-    await answerUpTo(45, '+3');
+    await answerUpTo(70, '+3');
 
     // Skip disambiguation if it appeared
     const skipBtn = screen.queryByRole('button', { name: /skip/i });
@@ -552,7 +550,7 @@ describe('GuidedTyper — next incomplete quiz button', () => {
     render(<GuidedTyper />);
     // Three retake buttons in DOM order: Enneagram, MBTI, Instinct Stack — click Enneagram's
     fireEvent.click(screen.getAllByRole('button', { name: /retake/i })[0]);
-    await answerUpTo(45, '+3');
+    await answerUpTo(70, '+3');
     const skipBtn = screen.queryByRole('button', { name: /skip/i });
     if (skipBtn) fireEvent.click(skipBtn);
 
@@ -567,7 +565,7 @@ describe('GuidedTyper — next incomplete quiz button', () => {
 
 describe('session persistence — mid-quiz navigation recovery', () => {
   it('restores enneagram quiz in progress from typer_session', () => {
-    const ennSeqIds = Array.from({ length: 45 }, (_, i) => i);
+    const ennSeqIds = Array.from({ length: 63 }, (_, i) => i);
     localStorage.setItem('typer_session', JSON.stringify({
       phase: 'enn', qi: 2,
       answers: { 0: 2, 1: -1 }, mbtiAnswers: {}, instAnswers: {}, branchAnswers: {},
@@ -581,7 +579,7 @@ describe('session persistence — mid-quiz navigation recovery', () => {
   });
 
   it('restores MBTI quiz in progress from typer_session', () => {
-    const mbtiSeqIds = Array.from({ length: 32 }, (_, i) => i);
+    const mbtiSeqIds = Array.from({ length: 40 }, (_, i) => i);
     localStorage.setItem('typer_session', JSON.stringify({
       phase: 'mbti', qi: 3,
       answers: {}, mbtiAnswers: { 0: 1, 1: -2, 2: 3 }, instAnswers: {}, branchAnswers: {},
@@ -594,7 +592,7 @@ describe('session persistence — mid-quiz navigation recovery', () => {
   });
 
   it('restores instinct quiz in progress from typer_session', () => {
-    const instSeqIds = Array.from({ length: 15 }, (_, i) => i);
+    const instSeqIds = Array.from({ length: 21 }, (_, i) => i);
     localStorage.setItem('typer_session', JSON.stringify({
       phase: 'instinct', qi: 1,
       answers: {}, mbtiAnswers: {}, instAnswers: { 0: 2 }, branchAnswers: {},
@@ -607,7 +605,7 @@ describe('session persistence — mid-quiz navigation recovery', () => {
   });
 
   it('clears typer_session when user cancels back to choose screen', () => {
-    const ennSeqIds = Array.from({ length: 45 }, (_, i) => i);
+    const ennSeqIds = Array.from({ length: 63 }, (_, i) => i);
     localStorage.setItem('typer_session', JSON.stringify({
       phase: 'enn', qi: 2,
       answers: { 0: 2, 1: -1 }, mbtiAnswers: {}, instAnswers: {}, branchAnswers: {},
