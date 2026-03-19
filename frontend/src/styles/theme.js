@@ -37,5 +37,4 @@ input,textarea{-webkit-appearance:none;appearance:none}
   .qbody{flex:1;display:flex;flex-direction:column;justify-content:center}
   .qcard{padding:20px 22px!important}
 }
-.qt-progress-bar{display:block}
 `;

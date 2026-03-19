@@ -10,17 +10,16 @@ export default function App() {
   const [view, setView] = useState('typer');
   const [explorerTab, setExplorerTab] = useState('enneagram');
   const [explorerSel, setExplorerSel] = useState(null);
-  const [quizProgress, setQuizProgress] = useState(null);
   const [modelTab, setModelTab] = useState('mbti');
 
   return (
     <>
       <style>{baseCSS}</style>
-      {view === 'typer'    && <GuidedTyper setView={setView} setExplorerTab={setExplorerTab} setExplorerSel={setExplorerSel} setQuizProgress={setQuizProgress} setModelTab={setModelTab} />}
+      {view === 'typer'    && <GuidedTyper setView={setView} setExplorerTab={setExplorerTab} setExplorerSel={setExplorerSel} setModelTab={setModelTab} />}
       {view === 'explorer' && <Explorer initialTab={explorerTab} initialSel={explorerSel} />}
       {view === 'model'    && <MentalModel setView={setView} initialTab={modelTab} />}
       {view === 'compare'  && <ComparePage />}
-      <BottomNav view={view} setView={setView} quizProgress={quizProgress} />
+      <BottomNav view={view} setView={setView} />
     </>
   );
 }
