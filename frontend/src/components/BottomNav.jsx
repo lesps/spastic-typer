@@ -7,30 +7,13 @@ const NAV_ITEMS = [
   { id: 'compare',  label: 'Compare',  icon: '⟷' },
 ];
 
-export default function BottomNav({ view, setView, quizProgress }) {
-  const pct = quizProgress ? (quizProgress.current / quizProgress.total) * 100 : 0;
-
+export default function BottomNav({ view, setView }) {
   return (
     <div style={{
       position: 'fixed', bottom: 'calc(12px + env(safe-area-inset-bottom))', left: '50%', transform: 'translateX(-50%)',
       display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: 6,
       maxWidth: 'calc(100vw - 24px)',
     }}>
-      {/* Progress bar — thin gold line above the nav pill on all screen sizes */}
-      {quizProgress && (
-        <button
-          className="qt-progress-bar"
-          onClick={() => setView('typer')}
-          aria-label="Return to active quiz"
-          style={{ height: 3, background: G.border, borderRadius: 2, border: 'none', padding: 0, cursor: 'pointer', display: 'block', width: '100%' }}
-        >
-          <div style={{
-            height: '100%', background: G.gold, borderRadius: 2,
-            width: `${pct}%`, transition: 'width 0.3s',
-          }} />
-        </button>
-      )}
-
       {/* Nav buttons row */}
       <div style={{
         display: 'flex', gap: 4, background: G.bg2,

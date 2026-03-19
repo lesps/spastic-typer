@@ -279,7 +279,7 @@ export function scoreInstinct(answers, sequence, disambigAnswers = {}, disambigS
   return { instinctStack, instScores, confidence };
 }
 
-export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setExplorerSel = () => {}, setQuizProgress = () => {}, setModelTab = () => {} }) {
+export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setExplorerSel = () => {}, setModelTab = () => {} }) {
   const goToExplorer = (tab, sel = null) => { setExplorerTab(tab); setExplorerSel(sel); setView('explorer'); };
   // Restore in-progress quiz session from localStorage if available
   const [phase, setPhase] = useState(() => {
@@ -358,24 +358,6 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     }).catch(() => setCombinationProfile(null));
   }, [saved.enn?.display, saved.mbti?.result, saved.inst?.instinctStack?.join()]);
 
-  // --- Quiz progress tracking ---
-  useEffect(() => {
-    if (phase === 'enn' && ennSeq.length > 0) {
-      setQuizProgress({ current: qi + 1, total: ennSeq.length });
-    } else if (phase === 'enn-disambig' && disambigPair && ENN_DISAMBIG[disambigPair]) {
-      setQuizProgress({ current: qi + 1, total: ENN_DISAMBIG[disambigPair].length });
-    } else if (phase === 'instinct' && instSeq.length > 0) {
-      setQuizProgress({ current: qi + 1, total: instSeq.length });
-    } else if (phase === 'inst-disambig' && instDisambigSeq.length > 0) {
-      setQuizProgress({ current: instDisambigQi + 1, total: instDisambigSeq.length });
-    } else if (phase === 'mbti' && mbtiSeq.length > 0) {
-      setQuizProgress({ current: qi + 1, total: mbtiSeq.length });
-    } else if (phase === 'mbti-disambig' && mbtiDisambigSeq.length > 0) {
-      setQuizProgress({ current: mbtiDisambigQi + 1, total: mbtiDisambigSeq.length });
-    } else {
-      setQuizProgress(null);
-    }
-  }, [phase, qi, ennSeq.length, instSeq.length, mbtiSeq.length, disambigPair, instDisambigSeq.length, instDisambigQi, mbtiDisambigSeq.length, mbtiDisambigQi]);
 
   // --- Session persistence — save/restore mid-quiz state across tab switches ---
   useEffect(() => {
@@ -919,7 +901,17 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
               </div>
             </div>
-            <ProgressBar current={qi + 1} total={ennSeq.length} />
+            {(() => {
+              const sc = {};
+              for (let t = 1; t <= 9; t++) sc[t] = 0;
+              for (let i = 0; i <= qi; i++) {
+                const q = ennSeq[i];
+                if (q && answers[i] !== undefined) sc[q.type] += answers[i] * q.pole;
+              }
+              const sv = Object.values(sc).sort((a, b) => b - a);
+              const ennCertainty = Math.min(1, Math.max(0, (sv[0] - sv[1]) / ENN_GAP_THRESHOLD));
+              return <ProgressBar current={qi + 1} total={ennSeq.length} certainty={ennCertainty} />;
+            })()}
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
               {!confirmCancel
@@ -1046,8 +1038,32 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
               </div>
             </div>
-            <ProgressBar current={qi + 1} total={instSeq.length} />
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            {(() => {
+              const isc = { sp: 0, sx: 0, so: 0 };
+              for (let i = 0; i <= qi; i++) {
+                const q = instSeq[i];
+                if (q && instAnswers[i] !== undefined) isc[q.inst] += instAnswers[i] * (q.pole ?? 1);
+              }
+              const isorted = Object.entries(isc).sort((a, b) => b[1] - a[1]);
+              const gap1 = isorted[0][1] - isorted[1][1];
+              const gap2 = isorted[1][1] - isorted[2][1];
+              const locked = {
+                [isorted[0][0]]: gap1 >= INST_GAP_THRESHOLD,
+                [isorted[1][0]]: gap1 >= INST_GAP_THRESHOLD && gap2 >= INST_GAP_THRESHOLD,
+                [isorted[2][0]]: gap2 >= INST_GAP_THRESHOLD,
+              };
+              return (
+                <div style={{ display: 'flex', gap: 6, marginTop: 8, marginBottom: 20 }}>
+                  {['sp', 'sx', 'so'].map(inst => (
+                    <div key={inst} style={{ flex: 1, position: 'relative' }}>
+                      <div style={{ height: 3, borderRadius: 2, background: locked[inst] ? '#50c878' : G.border, transition: 'background 0.4s' }} />
+                      <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: locked[inst] ? '#50c878' : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap', textTransform: 'uppercase' }}>{inst}</span>
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
               {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
               {!confirmCancel
                 ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
@@ -1171,8 +1187,18 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
               </div>
             </div>
-            <ProgressBar current={qi + 1} total={mbtiSeq.length} />
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', gap: 6, marginTop: 8, marginBottom: 20 }}>
+              {['EI', 'SN', 'TF', 'JP'].map(dim => {
+                const locked = isMBTIDimConfident(dim, mbtiAnswers, mbtiSeq, qi);
+                return (
+                  <div key={dim} style={{ flex: 1, position: 'relative' }}>
+                    <div style={{ height: 3, borderRadius: 2, background: locked ? '#50c878' : G.border, transition: 'background 0.4s' }} />
+                    <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: locked ? '#50c878' : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap' }}>{dim}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
               {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
               {!confirmCancel
                 ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>

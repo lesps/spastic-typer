@@ -324,14 +324,14 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     expect(screen.queryByText(/J vs P/)).not.toBeInTheDocument();
   });
 
-  it('does not show dimension completion badges during the quiz', () => {
+  it('shows dimension certainty segments (EI/SN/TF/JP) during the MBTI quiz', () => {
     render(<GuidedTyper />);
     fireEvent.click(screen.getByText('Cognitive Function Stack').closest('[style]'));
-    // Dimension badges (EI/SN/TF/JP) were removed as they were unreliable
-    expect(screen.queryByText('EI')).not.toBeInTheDocument();
-    expect(screen.queryByText('SN')).not.toBeInTheDocument();
-    expect(screen.queryByText('TF')).not.toBeInTheDocument();
-    expect(screen.queryByText('JP')).not.toBeInTheDocument();
+    // Certainty segments are shown as thin labeled bars below the question card
+    expect(screen.getByText('EI')).toBeInTheDocument();
+    expect(screen.getByText('SN')).toBeInTheDocument();
+    expect(screen.getByText('TF')).toBeInTheDocument();
+    expect(screen.getByText('JP')).toBeInTheDocument();
   });
 
   it('advances to question 2 after selecting an option', async () => {

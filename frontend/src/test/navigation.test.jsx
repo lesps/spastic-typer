@@ -49,13 +49,3 @@ describe('Navigation', () => {
   });
 });
 
-describe('Progress bar navigation', () => {
-  it('clicking the progress bar navigates to the typer view', async () => {
-    const user = userEvent.setup();
-    const setView = vi.fn();
-    render(<BottomNav view="compare" setView={setView} quizProgress={{ current: 3, total: 10 }} />);
-    const btn = screen.getByRole('button', { name: /return to active quiz/i });
-    await user.click(btn);
-    expect(setView).toHaveBeenCalledWith('typer');
-  });
-});
