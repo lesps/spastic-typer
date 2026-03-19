@@ -1,7 +1,7 @@
 import { G } from '../styles/theme.js';
 
 // Linearly interpolate between gold (#e8b84b) and green (#50c878) by certainty (0–1)
-function certaintyColor(certainty) {
+export function certaintyColor(certainty) {
   const r = Math.round(0xe8 + (0x50 - 0xe8) * certainty);
   const g = Math.round(0xb8 + (0xc8 - 0xb8) * certainty);
   const b = Math.round(0x4b + (0x78 - 0x4b) * certainty);

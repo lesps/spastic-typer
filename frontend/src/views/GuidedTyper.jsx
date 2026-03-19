@@ -5,7 +5,7 @@ import { ENN_TYPES, ENN_BANK, INSTINCT_BANK, INSTINCT_DISAMBIG, WING_DESC, ENN_D
 import { MBTI_BANK, MBTI_TYPES, MBTI_DISAMBIG } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
 import LikertScale from '../components/LikertScale.jsx';
-import ProgressBar from '../components/ProgressBar.jsx';
+import ProgressBar, { certaintyColor } from '../components/ProgressBar.jsx';
 import FnBadge from '../components/FnBadge.jsx';
 import ExportModal from '../components/ExportModal.jsx';
 import { generateSystemPrompt } from '../utils/export.js';
@@ -1040,26 +1040,34 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             </div>
             {(() => {
               const isc = { sp: 0, sx: 0, so: 0 };
+              const icnt = { sp: 0, sx: 0, so: 0 };
+              const itotal = { sp: 0, sx: 0, so: 0 };
+              instSeq.forEach(q => { if (itotal[q.inst] !== undefined) itotal[q.inst]++; });
               for (let i = 0; i <= qi; i++) {
                 const q = instSeq[i];
-                if (q && instAnswers[i] !== undefined) isc[q.inst] += instAnswers[i] * (q.pole ?? 1);
+                if (q && instAnswers[i] !== undefined) {
+                  isc[q.inst] += instAnswers[i] * (q.pole ?? 1);
+                  icnt[q.inst]++;
+                }
               }
               const isorted = Object.entries(isc).sort((a, b) => b[1] - a[1]);
               const gap1 = isorted[0][1] - isorted[1][1];
               const gap2 = isorted[1][1] - isorted[2][1];
-              const locked = {
-                [isorted[0][0]]: gap1 >= INST_GAP_THRESHOLD,
-                [isorted[1][0]]: gap1 >= INST_GAP_THRESHOLD && gap2 >= INST_GAP_THRESHOLD,
-                [isorted[2][0]]: gap2 >= INST_GAP_THRESHOLD,
-              };
+              const overallCertainty = Math.min(1, Math.max(0, Math.min(gap1, gap2) / INST_GAP_THRESHOLD));
+              const color = certaintyColor(overallCertainty);
               return (
                 <div style={{ display: 'flex', gap: 6, marginTop: 8, marginBottom: 20 }}>
-                  {['sp', 'sx', 'so'].map(inst => (
-                    <div key={inst} style={{ flex: 1, position: 'relative' }}>
-                      <div style={{ height: 3, borderRadius: 2, background: locked[inst] ? '#50c878' : G.border, transition: 'background 0.4s' }} />
-                      <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: locked[inst] ? '#50c878' : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap', textTransform: 'uppercase' }}>{inst}</span>
-                    </div>
-                  ))}
+                  {['sp', 'sx', 'so'].map(inst => {
+                    const fillPct = itotal[inst] > 0 ? (icnt[inst] / itotal[inst]) * 100 : 0;
+                    return (
+                      <div key={inst} style={{ flex: 1, position: 'relative' }}>
+                        <div style={{ height: 3, borderRadius: 2, background: G.border }}>
+                          <div style={{ height: '100%', borderRadius: 2, background: color, width: `${fillPct}%`, transition: 'width 0.3s, background 0.4s' }} />
+                        </div>
+                        <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: overallCertainty >= 1 ? '#50c878' : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap', textTransform: 'uppercase' }}>{inst}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })()}
@@ -1187,17 +1195,36 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 <span style={{ fontSize: 11, color: G.textFaint }}>Strongly Agree</span>
               </div>
             </div>
-            <div style={{ display: 'flex', gap: 6, marginTop: 8, marginBottom: 20 }}>
-              {['EI', 'SN', 'TF', 'JP'].map(dim => {
-                const locked = isMBTIDimConfident(dim, mbtiAnswers, mbtiSeq, qi);
-                return (
-                  <div key={dim} style={{ flex: 1, position: 'relative' }}>
-                    <div style={{ height: 3, borderRadius: 2, background: locked ? '#50c878' : G.border, transition: 'background 0.4s' }} />
-                    <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: locked ? '#50c878' : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap' }}>{dim}</span>
-                  </div>
-                );
-              })}
-            </div>
+            {(() => {
+              const dimData = {};
+              ['EI', 'SN', 'TF', 'JP'].forEach(d => { dimData[d] = { rawSum: 0, count: 0, total: 0 }; });
+              mbtiSeq.forEach(q => { if (dimData[q.dim]) dimData[q.dim].total++; });
+              for (let i = 0; i <= qi; i++) {
+                const q = mbtiSeq[i];
+                if (q && mbtiAnswers[i] !== undefined) {
+                  dimData[q.dim].rawSum += mbtiAnswers[i] * (q.direction ?? 1);
+                  dimData[q.dim].count++;
+                }
+              }
+              return (
+                <div style={{ display: 'flex', gap: 6, marginTop: 8, marginBottom: 20 }}>
+                  {['EI', 'SN', 'TF', 'JP'].map(dim => {
+                    const { rawSum, count, total } = dimData[dim];
+                    const fillPct = total > 0 ? (count / total) * 100 : 0;
+                    const certainty = count > 0 ? Math.min(1, Math.abs(rawSum) / count / MBTI_CONFIDENCE_RATIO) : 0;
+                    const color = certaintyColor(certainty);
+                    return (
+                      <div key={dim} style={{ flex: 1, position: 'relative' }}>
+                        <div style={{ height: 3, borderRadius: 2, background: G.border }}>
+                          <div style={{ height: '100%', borderRadius: 2, background: color, width: `${fillPct}%`, transition: 'width 0.3s, background 0.4s' }} />
+                        </div>
+                        <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: certainty >= 1 ? '#50c878' : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap' }}>{dim}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
               {qi > 0 ? <button onClick={() => setQi(qi - 1)} style={{ ...S.btnOutline, marginTop: 8 }}>← Previous</button> : <span />}
               {!confirmCancel
