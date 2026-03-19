@@ -1053,7 +1053,10 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
               const isorted = Object.entries(isc).sort((a, b) => b[1] - a[1]);
               const gap1 = isorted[0][1] - isorted[1][1];
               const gap2 = isorted[1][1] - isorted[2][1];
-              const overallCertainty = Math.min(1, Math.max(0, Math.min(gap1, gap2) / INST_GAP_THRESHOLD));
+              const minCount = Math.min(icnt.sp, icnt.sx, icnt.so);
+              const minProgress = Math.min(1, minCount / INST_MIN_PER_INST);
+              const gapProgress = Math.min(1, Math.max(0, Math.min(gap1, gap2) / INST_GAP_THRESHOLD));
+              const overallCertainty = minProgress * gapProgress;
               const color = certaintyColor(overallCertainty);
               return (
                 <div style={{ display: 'flex', gap: 6, marginTop: 8, marginBottom: 20 }}>
@@ -1211,7 +1214,9 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                   {['EI', 'SN', 'TF', 'JP'].map(dim => {
                     const { rawSum, count, total } = dimData[dim];
                     const fillPct = total > 0 ? (count / total) * 100 : 0;
-                    const certainty = count > 0 ? Math.min(1, Math.abs(rawSum) / count / MBTI_CONFIDENCE_RATIO) : 0;
+                    const minProgress = Math.min(1, count / MBTI_MIN_PER_DIM);
+                    const ratioProgress = count > 0 ? Math.min(1, Math.abs(rawSum) / count / MBTI_CONFIDENCE_RATIO) : 0;
+                    const certainty = minProgress * ratioProgress;
                     const color = certaintyColor(certainty);
                     return (
                       <div key={dim} style={{ flex: 1, position: 'relative' }}>
