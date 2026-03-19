@@ -109,10 +109,12 @@ const MBTI_MIN_PER_DIM = 3;        // minimum questions before a dim can be sett
 const MBTI_CONFIDENCE_RATIO = 1.8; // |rawSum| / count must exceed this
 
 const ENN_MIN_PER_TYPE = 3;        // minimum questions per type before confidence check
-const ENN_GAP_THRESHOLD = 5;       // top type must lead 2nd type by this many points
+const ENN_GAP_THRESHOLD = 5;       // top type must lead 2nd type by this many points (raw scores)
+const ENN_SCORE_GAP_THRESHOLD = 2; // gap used for confidence label on result (acquiescence-corrected scores)
 
 const INST_MIN_PER_INST = 3;       // minimum questions per instinct before confidence check
-const INST_GAP_THRESHOLD = 3;      // each adjacent pair in the ranking must differ by this much
+const INST_GAP_THRESHOLD = 3;      // each adjacent pair in the ranking must differ by this much (raw scores)
+const INST_SCORE_GAP_THRESHOLD = 1; // gap used for confidence label on result (acquiescence-corrected scores)
 
 const MIN_COMPLETE_ROUNDS = 3;     // confidence checks disabled until 3 full rounds are complete
 
@@ -247,7 +249,7 @@ export function scoreEnneagram(answers, sequence, branchAnswers, disambigPair) {
   const wing = effectiveWingScore(w1, scores) >= effectiveWingScore(w2, scores) ? w1 : w2;
   const delta = computeWingStrengthDelta(core, wing, scores);
   const gap = sorted[0][1] - sorted[1][1];
-  const confidence = gap >= ENN_GAP_THRESHOLD * 1.5 ? 'high' : gap >= ENN_GAP_THRESHOLD ? 'moderate' : 'close';
+  const confidence = gap >= ENN_SCORE_GAP_THRESHOLD * 1.5 ? 'high' : gap >= ENN_SCORE_GAP_THRESHOLD ? 'moderate' : 'close';
   return { coreType: core, wing, scores, wingStrengthDelta: delta, display: `${core}w${wing}`, confidence };
 }
 
@@ -273,7 +275,7 @@ export function scoreInstinct(answers, sequence, disambigAnswers = {}, disambigS
   const gap1 = sortedInst[0][1] - sortedInst[1][1];
   const gap2 = sortedInst[1][1] - sortedInst[2][1];
   const minGap = Math.min(gap1, gap2);
-  const confidence = minGap >= INST_GAP_THRESHOLD * 1.5 ? 'high' : minGap >= INST_GAP_THRESHOLD ? 'moderate' : 'close';
+  const confidence = minGap >= INST_SCORE_GAP_THRESHOLD * 1.5 ? 'high' : minGap >= INST_SCORE_GAP_THRESHOLD ? 'moderate' : 'close';
   return { instinctStack, instScores, confidence };
 }
 
@@ -1006,7 +1008,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             {Object.entries(result.scores).sort((a, b) => b[1] - a[1]).map(([tp, sc]) => (
               <div key={tp} style={{ background: parseInt(tp) === result.coreType ? G.goldDim : G.bg3, border: `1px solid ${parseInt(tp) === result.coreType ? G.goldBorder : G.border}`, borderRadius: 8, padding: '8px 10px', display: 'flex', alignItems: 'center' }}>
                 <span style={S.mono}>{tp}</span>
-                <span style={{ ...S.body, marginLeft: 8 }}>{sc > 0 ? '+' : ''}{sc}</span>
+                <span style={{ ...S.body, marginLeft: 8 }}>{sc > 0 ? '+' : ''}{sc.toFixed(2)}</span>
               </div>
             ))}
           </div>
@@ -1131,7 +1133,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             <div key={inst} style={{ marginBottom: 14 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
                 <span style={{ ...S.mono, fontSize: 12, color: i === 0 ? G.gold : G.textDim }}>{inst.toUpperCase()} — {INSTINCT_LABELS[inst]}</span>
-                <span style={{ fontSize: 11, color: G.textFaint }}>{instScores[inst]}</span>
+                <span style={{ fontSize: 11, color: G.textFaint }}>{instScores[inst].toFixed(2)}</span>
               </div>
               <div style={{ height: 4, background: G.border, borderRadius: 2 }}>
                 <div style={{ height: '100%', background: i === 0 ? G.gold : G.border, borderRadius: 2, width: `${maxScore > 0 ? Math.round((instScores[inst] / maxScore) * 100) : 0}%`, transition: 'width 0.4s', opacity: i === 0 ? 1 : 0.5 }} />
@@ -1258,8 +1260,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
               return (
                 <div key={dim} style={{ ...S.card, marginBottom: 0, padding: '12px 14px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <span style={{ ...S.mono, color: sa >= sb ? G.gold : G.textDim }}>{a} ({sa})</span>
-                    <span style={{ ...S.mono, color: sb > sa ? G.gold : G.textDim }}>{b} ({sb})</span>
+                    <span style={{ ...S.mono, color: sa >= sb ? G.gold : G.textDim }}>{a} ({(+sa).toFixed(2)})</span>
+                    <span style={{ ...S.mono, color: sb > sa ? G.gold : G.textDim }}>{b} ({(+sb).toFixed(2)})</span>
                   </div>
                   <div style={{ height: 4, background: G.border, borderRadius: 2 }}>
                     <div style={{ height: '100%', background: G.gold, borderRadius: 2, width: `${pct}%`, transition: 'width 0.3s' }} />
