@@ -1,47 +1,57 @@
-// MBTI_BANK: 8 questions per dimension (32 total).
-// All questions per dimension share the same pole (E, S, T, J).
+// MBTI_BANK: 10 questions per dimension (40 total).
+// All questions per dimension share the same pole unless direction: -1 is specified.
 // High agreement (+3) favors the pole letter; low agreement (-3) favors the opposite.
-// Used by the adaptive quiz: questions are shuffled and drawn fairly across dimensions.
+// direction: -1 means agreement favors the OPPOSITE of the stated pole.
 export const MBTI_BANK = [
   // --- EI: pole 'E' (agree = Extrovert) ---
   { text: 'I feel naturally energized after spending time in social settings or groups.', dim: 'EI', pole: 'E' },
   { text: 'I prefer to talk through my ideas out loud before I fully form them internally.', dim: 'EI', pole: 'E' },
-  { text: 'I tend to have a wide circle of friends and enjoy getting to know many people.', dim: 'EI', pole: 'E' },
-  { text: 'I am comfortable being the center of attention and generally do not mind it.', dim: 'EI', pole: 'E' },
+  { text: 'I tend to have a wide circle of friends and enjoy getting to know many different people.', dim: 'EI', pole: 'E' },
+  { text: 'I am comfortable being the center of attention and generally don\'t mind it.', dim: 'EI', pole: 'E' },
   { text: 'I process my experiences most effectively by discussing them with others.', dim: 'EI', pole: 'E' },
-  { text: 'When I have a completely free afternoon with no obligations, my first impulse is to spend it with people or go somewhere social.', dim: 'EI', pole: 'E' },
-  { text: 'After a long social event, I feel recharged and ready for more — not drained or in need of alone time.', dim: 'EI', pole: 'E' },
-  { text: 'I figure out what I think and feel primarily through talking and interacting with others, not by reflecting privately.', dim: 'EI', pole: 'E' },
+  { text: 'When I have a completely free afternoon, my first impulse is to seek out company rather than enjoy the solitude.', dim: 'EI', pole: 'E' },
+  { text: 'After a full day of social interaction, I feel energized rather than depleted.', dim: 'EI', pole: 'E' },
+  { text: 'I figure out what I think and feel primarily through talking and interacting, not by reflecting alone.', dim: 'EI', pole: 'E' },
+  { text: 'I need a significant amount of solitary time to feel like myself.', dim: 'EI', pole: 'I', direction: -1 },
+  { text: 'Being around people for extended periods is draining, even when I enjoy their company.', dim: 'EI', pole: 'I', direction: -1 },
 
   // --- SN: pole 'S' (agree = Sensor) ---
+  // Includes both Si-flavored (proven methods, concrete facts) and Se-flavored (sensory engagement, hands-on) items
   { text: 'I focus best on concrete facts and what is actually happening in the present moment.', dim: 'SN', pole: 'S' },
-  { text: 'I trust direct experience and proven methods more than theoretical possibilities.', dim: 'SN', pole: 'S' },
+  { text: 'I trust what I can directly observe and verify over theories about what might be possible.', dim: 'SN', pole: 'S' },
   { text: 'I prefer clear, step-by-step instructions over high-level conceptual frameworks.', dim: 'SN', pole: 'S' },
-  { text: 'I tend to describe things literally and in concrete, specific terms.', dim: 'SN', pole: 'S' },
+  { text: 'I tend to describe things in concrete, specific, literal terms rather than through metaphor or analogy.', dim: 'SN', pole: 'S' },
   { text: 'I am more interested in what is real and practical than in speculation or hypotheticals.', dim: 'SN', pole: 'S' },
-  { text: 'When starting a new task, I prefer detailed, concrete instructions over a high-level conceptual overview.', dim: 'SN', pole: 'S' },
-  { text: 'I trust observable facts and direct hands-on experience far more than intuitive hunches or abstract impressions.', dim: 'SN', pole: 'S' },
-  { text: 'I would rather refine and perfect an existing, proven approach than experiment with an untested creative one.', dim: 'SN', pole: 'S' },
+  { text: 'I\'m highly attuned to my physical surroundings — I notice sights, sounds, and textures that others seem to miss.', dim: 'SN', pole: 'S' },
+  { text: 'I learn best by doing things hands-on rather than by reading or theorizing about them.', dim: 'SN', pole: 'S' },
+  { text: 'I would rather refine and perfect an existing approach than experiment with an untested one.', dim: 'SN', pole: 'S' },
+  { text: 'I naturally notice underlying patterns and connections that aren\'t immediately visible on the surface.', dim: 'SN', pole: 'N', direction: -1 },
+  { text: 'I spend more time thinking about future possibilities than reflecting on what has actually happened.', dim: 'SN', pole: 'N', direction: -1 },
 
   // --- TF: pole 'T' (agree = Thinker) ---
-  { text: 'I make decisions primarily based on logic and objective analysis.', dim: 'TF', pole: 'T' },
-  { text: 'I believe honesty and accuracy matter more than softening the truth to spare feelings.', dim: 'TF', pole: 'T' },
+  // Includes both Te-flavored (objective criteria, efficiency, direct feedback) and Ti-flavored (internal logic, frameworks, categorizing) items
+  { text: 'I make decisions primarily based on logic and objective analysis rather than how people will feel.', dim: 'TF', pole: 'T' },
+  { text: 'I believe accuracy and honesty matter more than softening the truth to spare feelings.', dim: 'TF', pole: 'T' },
   { text: 'I am most energized by analytical or technical problem-solving.', dim: 'TF', pole: 'T' },
   { text: 'I tend to notice logical inconsistencies before I notice interpersonal tension.', dim: 'TF', pole: 'T' },
-  { text: 'I believe fairness means applying consistent principles equally to everyone.', dim: 'TF', pole: 'T' },
-  { text: 'When someone asks for my input on a problem, my first instinct is to give clear logical analysis rather than emotional support.', dim: 'TF', pole: 'T' },
-  { text: 'I find it relatively easy to give honest critical feedback, even knowing the person worked hard on what I am critiquing.', dim: 'TF', pole: 'T' },
-  { text: 'If a decision is logically correct, I am comfortable with it even if it causes discomfort to some people involved.', dim: 'TF', pole: 'T' },
+  { text: 'I enjoy breaking things down into their component parts to understand how they work.', dim: 'TF', pole: 'T' },
+  { text: 'When someone shares a problem, my first instinct is to offer logical analysis rather than emotional support.', dim: 'TF', pole: 'T' },
+  { text: 'I find it relatively easy to give honest critical feedback, even knowing the person worked hard on what I\'m critiquing.', dim: 'TF', pole: 'T' },
+  { text: 'If a decision is logically correct, I\'m comfortable with it even if it causes some people discomfort.', dim: 'TF', pole: 'T' },
+  { text: 'Maintaining harmony in my relationships often matters more to me than being right.', dim: 'TF', pole: 'F', direction: -1 },
+  { text: 'I find it genuinely difficult to critique someone\'s work when I know they put their heart into it.', dim: 'TF', pole: 'F', direction: -1 },
 
   // --- JP: pole 'J' (agree = Judger) ---
   { text: 'I prefer to have plans settled in advance and feel uncomfortable when things are unresolved.', dim: 'JP', pole: 'J' },
-  { text: 'I feel more comfortable and productive with structure, schedules, and clear expectations.', dim: 'JP', pole: 'J' },
+  { text: 'I feel most comfortable and productive with structure, schedules, and clear expectations.', dim: 'JP', pole: 'J' },
   { text: 'I prefer to complete one project fully before starting another.', dim: 'JP', pole: 'J' },
-  { text: 'I feel stressed when things are left open-ended or up in the air.', dim: 'JP', pole: 'J' },
-  { text: 'I prefer to make decisions quickly and move to action rather than gather more information.', dim: 'JP', pole: 'J' },
-  { text: 'I feel most comfortable when I know the plan for the day or week in advance and can rely on it not changing.', dim: 'JP', pole: 'J' },
-  { text: 'I feel relief — not disappointment — when a decision gets made and the uncertainty is behind me.', dim: 'JP', pole: 'J' },
+  { text: 'I prefer to have a decision made — even an imperfect one — rather than leave it open while I gather more information.', dim: 'JP', pole: 'J' },
+  { text: 'I feel relief when a decision gets finalized and the uncertainty is behind me.', dim: 'JP', pole: 'J' },
   { text: 'When working on a project, I feel most satisfied making steady, linear progress toward a clearly defined finish line.', dim: 'JP', pole: 'J' },
+  { text: 'I tend to finish tasks well before deadlines rather than doing my best work at the last minute.', dim: 'JP', pole: 'J' },
+  { text: 'I feel most comfortable when I know the plan for the day or week in advance and can rely on it not changing.', dim: 'JP', pole: 'J' },
+  { text: 'Strict schedules and rigid plans feel constraining — I prefer adapting as I go.', dim: 'JP', pole: 'P', direction: -1 },
+  { text: 'I do my best work in spontaneous bursts rather than through planned, structured effort.', dim: 'JP', pole: 'P', direction: -1 },
 ];
 
 export const MBTI_TYPES = {
@@ -64,38 +74,38 @@ export const MBTI_TYPES = {
 };
 
 // MBTI_DISAMBIG: targeted clarifying questions for each dimension.
-// Used only when the main 32-question bank is exhausted without a confident result.
+// Used only when the main 40-question bank is exhausted without a confident result.
 // Questions have the same shape as MBTI_BANK (dim + pole) and are scored identically.
 // direction: 1 (default) = positive answer favors the positive pole (E/S/T/J)
 // direction: -1 = positive answer favors the negative pole (I/N/F/P)
 export const MBTI_DISAMBIG = {
   EI: [
-    { text: 'I feel energized after spending time with a group, not drained.', dim: 'EI', pole: 'E' },
-    { text: 'I need solitary time to recharge after social interaction, no matter how enjoyable it was.', dim: 'EI', pole: 'I', direction: -1 },
-    { text: 'I prefer to think out loud and process ideas by talking them through with others.', dim: 'EI', pole: 'E' },
-    { text: 'I fully work through my thoughts internally before sharing them with others.', dim: 'EI', pole: 'I', direction: -1 },
-    { text: 'When I am feeling low, I seek out social interaction rather than retreating to solitude.', dim: 'EI', pole: 'E' },
+    { text: 'When I\'m excited about an idea, my first impulse is to tell someone about it rather than think it through alone.', dim: 'EI', pole: 'E' },
+    { text: 'I recharge most effectively through quiet solitude, even after a great social experience.', dim: 'EI', pole: 'I', direction: -1 },
+    { text: 'In a new group, I naturally initiate conversations rather than waiting to be approached.', dim: 'EI', pole: 'E' },
+    { text: 'I often feel like I need to retreat and be alone after interactions that others found perfectly comfortable.', dim: 'EI', pole: 'I', direction: -1 },
+    { text: 'When something is bothering me, talking about it with someone helps more than reflecting on it privately.', dim: 'EI', pole: 'E' },
   ],
   SN: [
-    { text: 'I prefer concrete, step-by-step information over big-picture theories.', dim: 'SN', pole: 'S' },
-    { text: 'I am more interested in what could be than in what currently is.', dim: 'SN', pole: 'N', direction: -1 },
-    { text: 'I trust direct experience and observable facts more than intuitions or hunches.', dim: 'SN', pole: 'S' },
-    { text: 'I naturally notice underlying patterns and connections that are not immediately visible.', dim: 'SN', pole: 'N', direction: -1 },
-    { text: 'I value proven methods and practical skills over novel ideas and open-ended possibilities.', dim: 'SN', pole: 'S' },
+    { text: 'I\'m more interested in the underlying meaning behind facts than in the facts themselves.', dim: 'SN', pole: 'N', direction: -1 },
+    { text: 'I rely on gut impressions and pattern recognition more than on what I can directly verify.', dim: 'SN', pole: 'N', direction: -1 },
+    { text: 'I would rather work with tangible, real-world problems than with abstract theories.', dim: 'SN', pole: 'S' },
+    { text: 'When someone explains something to me, I understand it better through specific examples than through general principles.', dim: 'SN', pole: 'S' },
+    { text: 'I think more naturally in metaphors and analogies than in literal, specific terms.', dim: 'SN', pole: 'N', direction: -1 },
   ],
   TF: [
-    { text: 'I make decisions based on logic and objective criteria, even when it may hurt someone\'s feelings.', dim: 'TF', pole: 'T' },
-    { text: 'I find it difficult to advocate for a position I believe is correct if doing so would deeply hurt someone.', dim: 'TF', pole: 'F', direction: -1 },
-    { text: 'I respect demonstrated competence over interpersonal warmth when evaluating someone\'s work.', dim: 'TF', pole: 'T' },
-    { text: 'Maintaining harmony in my relationships often matters more to me than being objectively right.', dim: 'TF', pole: 'F', direction: -1 },
-    { text: 'I prefer criticism that is accurate and direct over feedback that is gentle but vague.', dim: 'TF', pole: 'T' },
+    { text: 'I prioritize being fair and consistent over being kind and considerate when the two conflict.', dim: 'TF', pole: 'T' },
+    { text: 'I care more about whether an idea is internally consistent than about whether it makes people feel good.', dim: 'TF', pole: 'T' },
+    { text: 'I naturally attune to how people are feeling in a room, even before anyone says anything.', dim: 'TF', pole: 'F', direction: -1 },
+    { text: 'When making a tough decision, I weigh the impact on people\'s feelings as heavily as the logical merits.', dim: 'TF', pole: 'F', direction: -1 },
+    { text: 'I find emotional reasoning less persuasive than evidence-based argument.', dim: 'TF', pole: 'T' },
   ],
   JP: [
-    { text: 'I feel much more comfortable when I have a clear plan than when things are left open-ended.', dim: 'JP', pole: 'J' },
-    { text: 'I prefer to keep my options open rather than committing to a fixed plan ahead of time.', dim: 'JP', pole: 'P', direction: -1 },
-    { text: 'I make decisions promptly to avoid the discomfort of unresolved open-ended situations.', dim: 'JP', pole: 'J' },
-    { text: 'Strict schedules feel constraining to me — I prefer adapting as I go.', dim: 'JP', pole: 'P', direction: -1 },
-    { text: 'I tend to finish tasks well before deadlines rather than doing my best work at the last minute.', dim: 'JP', pole: 'J' },
+    { text: 'I\'m at my best when I can respond to what\'s happening in the moment rather than follow a preset plan.', dim: 'JP', pole: 'P', direction: -1 },
+    { text: 'An unexpected change of plans feels like an opportunity more than a disruption.', dim: 'JP', pole: 'P', direction: -1 },
+    { text: 'I feel unsettled when a project has no clear deadline or defined endpoint.', dim: 'JP', pole: 'J' },
+    { text: 'I naturally create structure — lists, schedules, systems — even when no one asks me to.', dim: 'JP', pole: 'J' },
+    { text: 'I prefer to leave room in my schedule for whatever comes up rather than plan every block.', dim: 'JP', pole: 'P', direction: -1 },
   ],
 };
 

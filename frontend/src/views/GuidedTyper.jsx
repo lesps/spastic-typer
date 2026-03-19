@@ -30,10 +30,24 @@ function clearLS(key) { try { localStorage.removeItem(key); } catch {} }
 const ACTIVE_PHASES = ['enn', 'mbti', 'instinct', 'enn-disambig', 'inst-disambig', 'mbti-disambig'];
 
 // --- Adaptive question selection ---
+/**
+ * Mulberry32 — a simple seeded 32-bit PRNG.
+ * Returns a function that produces the next pseudo-random float in [0, 1).
+ * Same seed always produces the same sequence.
+ */
+export function mulberry32(seed) {
+  return function() {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
 /** Fisher-Yates in-place shuffle. Returns the array. */
-export function shuffleArray(arr) {
+export function shuffleArray(arr, rng = Math.random) {
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(rng() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
@@ -43,13 +57,15 @@ export function shuffleArray(arr) {
  * Build a fair interleaved question sequence from a bank.
  * Each category gets one question per round before any category gets a second.
  * Questions within each category are independently shuffled first.
- * Questions within each round are shuffled to prevent pattern detection.
+ * Category positions within each round rotate using a Latin Square pattern
+ * to eliminate order-effect bias across rounds.
  *
  * @param {Array} bank - Array of question objects
  * @param {Function} getCategory - Extracts the category key from a question
+ * @param {Function} rng - Random number generator (default: Math.random)
  * @returns {Array} Ordered sequence of questions for the session
  */
-export function buildFairSequence(bank, getCategory) {
+export function buildFairSequence(bank, getCategory, rng = Math.random) {
   const byCategory = {};
   bank.forEach(q => {
     const cat = getCategory(q);
@@ -57,33 +73,52 @@ export function buildFairSequence(bank, getCategory) {
     byCategory[cat].push(q);
   });
   // Shuffle each category's pool independently
-  Object.values(byCategory).forEach(pool => shuffleArray(pool));
-  // Round-robin interleaving: one from each category per round
-  const categories = Object.values(byCategory);
-  const maxRounds = Math.max(...categories.map(p => p.length));
+  Object.values(byCategory).forEach(pool => shuffleArray(pool, rng));
+
+  // Latin Square rotation: each category rotates position across rounds.
+  // Round 0 uses a random permutation as the base ordering.
+  // Each subsequent round rotates by one step, so every category occupies
+  // every position once across N rounds (where N = number of categories).
+  const categoryKeys = Object.keys(byCategory);
+  const maxRounds = Math.max(...Object.values(byCategory).map(p => p.length));
+
+  // Generate base permutation: random ordering of category indices
+  const baseOrder = categoryKeys.map((_, i) => i);
+  shuffleArray(baseOrder, rng);
+
   const seq = [];
   for (let r = 0; r < maxRounds; r++) {
-    const roundItems = categories
-      .filter(pool => pool[r] !== undefined)
-      .map(pool => pool[r]);
-    shuffleArray(roundItems); // randomize within each round
+    // Rotate the base ordering by r positions
+    const n = categoryKeys.length;
+    const roundOrder = baseOrder.map((_, idx) => baseOrder[(idx + r) % n]);
+
+    const roundItems = roundOrder
+      .map(catIdx => {
+        const pool = byCategory[categoryKeys[catIdx]];
+        return pool[r]; // may be undefined if this category has fewer questions
+      })
+      .filter(q => q !== undefined);
+
     seq.push(...roundItems);
   }
   return seq;
 }
 
 // --- Confidence thresholds ---
-const MBTI_MIN_PER_DIM = 2;       // minimum questions before a dim can be settled
-const MBTI_CONFIDENCE_RATIO = 1.5; // |rawSum| / count must exceed this
+const MBTI_MIN_PER_DIM = 3;        // minimum questions before a dim can be settled
+const MBTI_CONFIDENCE_RATIO = 1.8; // |rawSum| / count must exceed this
 
-const ENN_MIN_PER_TYPE = 2;        // minimum questions per type before confidence check
-const ENN_GAP_THRESHOLD = 4;       // top type must lead 2nd type by this many points
+const ENN_MIN_PER_TYPE = 3;        // minimum questions per type before confidence check
+const ENN_GAP_THRESHOLD = 5;       // top type must lead 2nd type by this many points
 
-const INST_MIN_PER_INST = 2;       // minimum questions per instinct before confidence check
+const INST_MIN_PER_INST = 3;       // minimum questions per instinct before confidence check
 const INST_GAP_THRESHOLD = 3;      // each adjacent pair in the ranking must differ by this much
+
+const MIN_COMPLETE_ROUNDS = 3;     // confidence checks disabled until 3 full rounds are complete
 
 /** Returns true if a given MBTI dimension is settled given the current answers and sequence. */
 export function isMBTIDimConfident(dim, answers, sequence, upToIndex) {
+  // allMBTIDimsConfident enforces the MIN_COMPLETE_ROUNDS floor before calling this
   let rawSum = 0, count = 0;
   for (let i = 0; i <= upToIndex; i++) {
     if (sequence[i]?.dim === dim && answers[i] !== undefined) {
@@ -97,11 +132,18 @@ export function isMBTIDimConfident(dim, answers, sequence, upToIndex) {
 
 /** Returns true when all four MBTI dimensions are settled. */
 export function allMBTIDimsConfident(answers, sequence, upToIndex) {
+  // Don't check confidence until MIN_COMPLETE_ROUNDS full rounds have been presented.
+  // A "round" for MBTI is 4 questions (one per dimension).
+  if (upToIndex < 4 * MIN_COMPLETE_ROUNDS - 1) return false;
   return ['EI', 'SN', 'TF', 'JP'].every(dim => isMBTIDimConfident(dim, answers, sequence, upToIndex));
 }
 
 /** Returns true when the Enneagram top type leads the 2nd by enough points. */
 export function isEnnConfident(answers, sequence, upToIndex) {
+  // Don't check confidence until MIN_COMPLETE_ROUNDS full rounds have been presented.
+  // A "round" for Enneagram is 9 questions (one per type).
+  if (upToIndex < 9 * MIN_COMPLETE_ROUNDS - 1) return false;
+
   const scores = {};
   const counts = {};
   for (let t = 1; t <= 9; t++) { scores[t] = 0; counts[t] = 0; }
@@ -119,12 +161,16 @@ export function isEnnConfident(answers, sequence, upToIndex) {
 
 /** Returns true when the instinct ordering is clear enough to stop. */
 export function isInstConfident(answers, sequence, upToIndex) {
+  // Don't check confidence until MIN_COMPLETE_ROUNDS full rounds have been presented.
+  // A "round" for instinct is 3 questions (one per instinct).
+  if (upToIndex < 3 * MIN_COMPLETE_ROUNDS - 1) return false;
+
   const scores = { sp: 0, sx: 0, so: 0 };
   const counts = { sp: 0, sx: 0, so: 0 };
   for (let i = 0; i <= upToIndex; i++) {
     const q = sequence[i];
     if (q && answers[i] !== undefined) {
-      scores[q.inst] += answers[i];
+      scores[q.inst] += answers[i] * (q.pole ?? 1);
       counts[q.inst]++;
     }
   }
@@ -137,10 +183,16 @@ export function isInstConfident(answers, sequence, upToIndex) {
 // --- Scoring ---
 /**
  * Score MBTI dimensions from a sequence + answers.
+ * Applies acquiescence correction (mean-centering) to remove response bias.
  * BUG FIX: raw sum is shifted by count*3 so that neutral (0) answers produce a tie,
  * and positive answers correctly produce the pole letter.
  */
 export function scoreMBTI(answers, sequence) {
+  // Acquiescence correction: compute respondent mean and subtract it
+  const allVals = [];
+  sequence.forEach((q, i) => { if (answers[i] !== undefined) allVals.push(answers[i]); });
+  const respMean = allVals.length > 0 ? allVals.reduce((a, b) => a + b, 0) / allVals.length : 0;
+
   const scFinal = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
   const DIMS = { EI: ['E', 'I'], SN: ['S', 'N'], TF: ['T', 'F'], JP: ['J', 'P'] };
   ['EI', 'SN', 'TF', 'JP'].forEach(dim => {
@@ -148,7 +200,7 @@ export function scoreMBTI(answers, sequence) {
     let rawSum = 0, count = 0;
     sequence.forEach((q, i) => {
       if (q.dim === dim && answers[i] !== undefined) {
-        rawSum += answers[i] * (q.direction ?? 1);
+        rawSum += (answers[i] - respMean) * (q.direction ?? 1);
         count++;
       }
     });
@@ -159,22 +211,34 @@ export function scoreMBTI(answers, sequence) {
     scFinal[pos] = shifted;
     scFinal[neg] = count * 6 - shifted;
   });
+  const margins = ['EI', 'SN', 'TF', 'JP'].map(dim => {
+    const [a, b] = [dim[0], dim[1]];
+    return Math.abs(scFinal[a] - scFinal[b]);
+  });
+  const minMargin = Math.min(...margins);
+  const confidence = minMargin >= 10 ? 'high' : minMargin >= 4 ? 'moderate' : 'close';
   const r = (scFinal.E >= scFinal.I ? 'E' : 'I') +
             (scFinal.S >= scFinal.N ? 'S' : 'N') +
             (scFinal.T >= scFinal.F ? 'T' : 'F') +
             (scFinal.J >= scFinal.P ? 'J' : 'P');
-  return { result: r, scores: scFinal };
+  return { result: r, scores: scFinal, confidence };
 }
 
 export function scoreEnneagram(answers, sequence, branchAnswers, disambigPair) {
+  // Acquiescence correction: compute respondent mean and subtract it
+  const allVals = [];
+  sequence.forEach((q, i) => { if (answers[i] !== undefined) allVals.push(answers[i]); });
+  const respMean = allVals.length > 0 ? allVals.reduce((a, b) => a + b, 0) / allVals.length : 0;
+
   const scores = {};
   for (let t = 1; t <= 9; t++) scores[t] = 0;
   sequence.forEach((q, i) => {
-    if (answers[i] !== undefined) scores[q.type] += answers[i] * q.pole;
+    if (answers[i] !== undefined) scores[q.type] += (answers[i] - respMean) * q.pole;
   });
   if (branchAnswers && disambigPair && ENN_DISAMBIG[disambigPair]) {
+    const DISAMBIG_WEIGHT = 0.6;
     ENN_DISAMBIG[disambigPair].forEach((q, i) => {
-      if (branchAnswers[i] !== undefined) scores[q.favors] = (scores[q.favors] || 0) + branchAnswers[i];
+      if (branchAnswers[i] !== undefined) scores[q.favors] = (scores[q.favors] || 0) + branchAnswers[i] * DISAMBIG_WEIGHT;
     });
   }
   const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
@@ -182,13 +246,20 @@ export function scoreEnneagram(answers, sequence, branchAnswers, disambigPair) {
   const w1 = core === 1 ? 9 : core - 1, w2 = core === 9 ? 1 : core + 1;
   const wing = effectiveWingScore(w1, scores) >= effectiveWingScore(w2, scores) ? w1 : w2;
   const delta = computeWingStrengthDelta(core, wing, scores);
-  return { coreType: core, wing, scores, wingStrengthDelta: delta, display: `${core}w${wing}` };
+  const gap = sorted[0][1] - sorted[1][1];
+  const confidence = gap >= ENN_GAP_THRESHOLD * 1.5 ? 'high' : gap >= ENN_GAP_THRESHOLD ? 'moderate' : 'close';
+  return { coreType: core, wing, scores, wingStrengthDelta: delta, display: `${core}w${wing}`, confidence };
 }
 
 export function scoreInstinct(answers, sequence, disambigAnswers = {}, disambigSeq = []) {
+  // Acquiescence correction: compute respondent mean and subtract it
+  const allVals = [];
+  sequence.forEach((q, i) => { if (answers[i] !== undefined) allVals.push(answers[i]); });
+  const respMean = allVals.length > 0 ? allVals.reduce((a, b) => a + b, 0) / allVals.length : 0;
+
   const instScores = { sp: 0, sx: 0, so: 0 };
   sequence.forEach((q, i) => {
-    if (answers[i] !== undefined) instScores[q.inst] += answers[i];
+    if (answers[i] !== undefined) instScores[q.inst] += (answers[i] - respMean) * (q.pole ?? 1);
   });
   disambigSeq.forEach((q, i) => {
     if (disambigAnswers[i] !== undefined) {
@@ -198,7 +269,12 @@ export function scoreInstinct(answers, sequence, disambigAnswers = {}, disambigS
     }
   });
   const instinctStack = Object.entries(instScores).sort((a, b) => b[1] - a[1]).map(([k]) => k);
-  return { instinctStack, instScores };
+  const sortedInst = Object.entries(instScores).sort((a, b) => b[1] - a[1]);
+  const gap1 = sortedInst[0][1] - sortedInst[1][1];
+  const gap2 = sortedInst[1][1] - sortedInst[2][1];
+  const minGap = Math.min(gap1, gap2);
+  const confidence = minGap >= INST_GAP_THRESHOLD * 1.5 ? 'high' : minGap >= INST_GAP_THRESHOLD ? 'moderate' : 'close';
+  return { instinctStack, instScores, confidence };
 }
 
 export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setExplorerSel = () => {}, setQuizProgress = () => {}, setModelTab = () => {} }) {
@@ -321,14 +397,16 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   const QUIZ_LABEL = { enn: 'Enneagram', mbti: 'MBTI', inst: 'Instinct Stack' };
 
   const startQuiz = (quiz) => {
+    const seed = Math.floor(Math.random() * 0xFFFFFFFF);
+    const rng = mulberry32(seed);
     if (quiz === 'enn') {
-      const seq = buildFairSequence(ENN_BANK, q => q.type);
+      const seq = buildFairSequence(ENN_BANK, q => q.type, rng);
       setEnnSeq(seq); setPhase('enn'); setQi(0); setAnswers({}); setBranchAnswers({}); setDisambigPair(null);
     } else if (quiz === 'mbti') {
-      const seq = buildFairSequence(MBTI_BANK, q => q.dim);
+      const seq = buildFairSequence(MBTI_BANK, q => q.dim, rng);
       setMbtiSeq(seq); setPhase('mbti'); setQi(0); setMbtiAnswers({});
     } else if (quiz === 'inst') {
-      const seq = buildFairSequence(INSTINCT_BANK, q => q.inst);
+      const seq = buildFairSequence(INSTINCT_BANK, q => q.inst, rng);
       setInstSeq(seq); setPhase('instinct'); setQi(0); setInstAnswers({});
     }
   };
@@ -350,7 +428,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
         ennSeq.forEach((q, i) => { if (na[i] !== undefined) baseScores[q.type] += na[i] * q.pole; });
         const sorted = Object.entries(baseScores).sort((a, b) => b[1] - a[1]);
         const gap = sorted[0][1] - sorted[1][1];
-        if (gap <= 3) {
+        if (gap < ENN_GAP_THRESHOLD) {
           const t1 = parseInt(sorted[0][0]), t2 = parseInt(sorted[1][0]);
           const pairKey = `${Math.min(t1, t2)}-${Math.max(t1, t2)}`;
           if (ENN_DISAMBIG[pairKey]) {
@@ -534,20 +612,23 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   };
   const retakeEnn = () => {
     clearLS(LS.enn); clearLS(LS.session); setSaved(s => ({ ...s, enn: null }));
-    const seq = buildFairSequence(ENN_BANK, q => q.type);
+    const seed = Math.floor(Math.random() * 0xFFFFFFFF);
+    const seq = buildFairSequence(ENN_BANK, q => q.type, mulberry32(seed));
     setEnnSeq(seq);
     setPhase('enn'); setQi(0); setAnswers({}); setBranchAnswers({}); setDisambigPair(null);
   };
   const retakeMBTI = () => {
     clearLS(LS.mbti); clearLS(LS.session); setSaved(s => ({ ...s, mbti: null }));
-    const seq = buildFairSequence(MBTI_BANK, q => q.dim);
+    const seed = Math.floor(Math.random() * 0xFFFFFFFF);
+    const seq = buildFairSequence(MBTI_BANK, q => q.dim, mulberry32(seed));
     setMbtiSeq(seq);
     setPhase('mbti'); setQi(0); setMbtiAnswers({});
     setMbtiDisambigSeq([]); setMbtiDisambigAnswers({}); setMbtiDisambigQi(0);
   };
   const retakeInst = () => {
     clearLS(LS.inst); clearLS(LS.session); setSaved(s => ({ ...s, inst: null }));
-    const seq = buildFairSequence(INSTINCT_BANK, q => q.inst);
+    const seed = Math.floor(Math.random() * 0xFFFFFFFF);
+    const seq = buildFairSequence(INSTINCT_BANK, q => q.inst, mulberry32(seed));
     setInstSeq(seq);
     setPhase('instinct'); setQi(0); setInstAnswers({});
     setInstDisambigPair(null); setInstDisambigSeq([]); setInstDisambigAnswers({}); setInstDisambigQi(0);
@@ -900,6 +981,11 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           <p style={{ ...S.mono, fontSize: 12, marginBottom: 8 }}>Your Enneagram Result</p>
           <h1 style={{ ...S.h1, fontSize: 'clamp(28px,9vw,44px)', marginBottom: 4 }}>{result.display}</h1>
           <h2 style={{ ...S.h2, marginTop: 4 }}>{t.name}</h2>
+          {result.confidence && (
+            <p style={{ ...S.mono, fontSize: 11, color: result.confidence === 'high' ? '#50c878' : result.confidence === 'moderate' ? G.gold : '#e88050', marginTop: 4 }}>
+              {result.confidence === 'high' ? '● High confidence' : result.confidence === 'moderate' ? '● Moderate confidence' : '● Close result — consider exploring adjacent types'}
+            </p>
+          )}
         </div>
         <div style={S.cardGold}><p style={{ ...S.body, fontSize: 15 }}>{t.desc}</p></div>
         <div style={S.card}>
@@ -1025,6 +1111,11 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           <p style={{ ...S.mono, fontSize: 12, marginBottom: 8 }}>Your Instinct Stack Result</p>
           <h1 style={{ ...S.h1, fontSize: 'clamp(28px,9vw,44px)', marginBottom: 4 }}>{stack.map(i => i.toUpperCase()).join(' / ')}</h1>
           <h2 style={{ ...S.h2, marginTop: 4 }}>{INSTINCT_LABELS[stack[0]]} dominant</h2>
+          {result.confidence && (
+            <p style={{ ...S.mono, fontSize: 11, color: result.confidence === 'high' ? '#50c878' : result.confidence === 'moderate' ? G.gold : '#e88050', marginTop: 4 }}>
+              {result.confidence === 'high' ? '● High confidence' : result.confidence === 'moderate' ? '● Moderate confidence' : '● Close result — consider exploring adjacent types'}
+            </p>
+          )}
         </div>
         <div style={S.card}>
           <h3 style={S.h3}>Drive Breakdown</h3>
@@ -1140,6 +1231,11 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           <p style={{ ...S.mono, fontSize: 12, marginBottom: 8 }}>Your MBTI Result</p>
           <h1 style={{ ...S.h1, fontSize: 'clamp(36px,12vw,56px)', letterSpacing: 'clamp(2px,2vw,8px)', marginBottom: 4 }}>{result.result}</h1>
           <h2 style={{ ...S.h2, marginTop: 4 }}>{t.name}</h2>
+          {result.confidence && (
+            <p style={{ ...S.mono, fontSize: 11, color: result.confidence === 'high' ? '#50c878' : result.confidence === 'moderate' ? G.gold : '#e88050', marginTop: 4 }}>
+              {result.confidence === 'high' ? '● High confidence' : result.confidence === 'moderate' ? '● Moderate confidence' : '● Close result — consider exploring adjacent types'}
+            </p>
+          )}
         </div>
         <div style={S.cardGold}><p style={{ ...S.body, fontSize: 15 }}>{t.desc}</p></div>
         <div style={S.card}>

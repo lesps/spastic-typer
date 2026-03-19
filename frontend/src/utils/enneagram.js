@@ -125,8 +125,11 @@ export function computeWingStrengthDelta(coreType, wing, scores) {
 export function wingStrengthLabel(strength) {
   if (strength === null || strength === undefined) return null;
   if (typeof strength === 'string') return strength;
-  if (strength > 6) return 'strong';
-  if (strength > 1) return 'moderate';
+  // Thresholds calibrated for 7-question bank with mean-centering.
+  // effectiveWingScore range is roughly -21 to +21 raw, but with arrow bonus
+  // and mean-centering, typical range is narrower.
+  if (strength > 5) return 'strong';
+  if (strength > 0) return 'moderate';
   return 'balanced';
 }
 

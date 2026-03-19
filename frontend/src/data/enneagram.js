@@ -10,97 +10,129 @@ export const ENN_TYPES = {
   9: { name: 'The Peacemaker', fear: 'Loss and separation, of fragmentation', desire: 'To have inner stability and peace of mind', desc: 'Receptive, reassuring, agreeable, and complacent. Nines are accepting, trusting, and stable. They are usually creative, optimistic, and supportive, but can also be too willing to go along with others to keep the peace. They want everything to go smoothly and be without conflict, but they can also tend to be complacent and minimize anything upsetting.' },
 };
 
-// ENN_BANK: 5 questions per type (45 total).
-// pole is always 1; high agreement favors that type.
+// ENN_BANK: 7 questions per type (63 total).
+// pole: 1 = agreement favors this type. pole: -1 = agreement disfavors this type (reverse-scored).
 // Used by the adaptive quiz: questions are shuffled and drawn fairly across types.
 export const ENN_BANK = [
   // Type 1 — The Reformer
-  { type: 1, text: 'I hold myself to very high standards and feel frustrated when things aren\'t done correctly.', pole: 1 },
-  { type: 1, text: 'I often notice errors or inefficiencies that others seem to overlook.', pole: 1 },
-  { type: 1, text: 'I have a strong inner critic that constantly evaluates my actions and decisions.', pole: 1 },
-  { type: 1, text: 'I feel a persistent pressure to do the right thing, even in small everyday situations.', pole: 1 },
-  { type: 1, text: 'I find it difficult to fully relax when I know something is imperfect or unfinished.', pole: 1 },
+  // Targets: inner critic, moral imperative, felt sense of "should", frustration with imperfection
+  { type: 1, text: 'I have a persistent internal sense of how things should be done, and it\'s hard to let go of.', pole: 1 },
+  { type: 1, text: 'I often notice errors or flaws that others seem to overlook, and it bothers me that they don\'t see them.', pole: 1 },
+  { type: 1, text: 'There is a voice in my head that constantly evaluates whether I\'m living up to my own standards.', pole: 1 },
+  { type: 1, text: 'When I see something done sloppily, I feel an almost visceral discomfort — like something in the world is wrong that needs correcting.', pole: 1 },
+  { type: 1, text: 'I find it very difficult to fully relax when I know something around me is unfinished or imperfect.', pole: 1 },
+  { type: 1, text: 'I\'m generally comfortable with "good enough" — perfection isn\'t worth the extra energy.', pole: -1 },
+  { type: 1, text: 'I feel a deep sense of personal responsibility to uphold what is right, even when no one else seems to care.', pole: 1 },
 
   // Type 2 — The Helper
-  { type: 2, text: 'I naturally tune into what other people need, often before they ask.', pole: 1 },
-  { type: 2, text: 'I feel most fulfilled when I know I\'ve made a real difference in someone\'s life.', pole: 1 },
-  { type: 2, text: 'I sometimes struggle to identify my own needs because I\'m so focused on others.', pole: 1 },
-  { type: 2, text: 'I have a strong desire to be appreciated and valued by the people I care about.', pole: 1 },
-  { type: 2, text: 'I often go out of my way to help, even when it costs me personally.', pole: 1 },
+  // Targets: need to be needed, pride in helping role, monitoring appreciation, difficulty with own needs
+  { type: 2, text: 'I naturally tune into what other people need, often before they\'ve articulated it themselves.', pole: 1 },
+  { type: 2, text: 'I feel most like myself when I know I\'ve made a meaningful difference in someone\'s life.', pole: 1 },
+  { type: 2, text: 'When I check in with myself, I often realize I\'ve been so focused on others that I\'ve lost track of what I actually want.', pole: 1 },
+  { type: 2, text: 'I notice myself monitoring whether the people I\'ve helped actually appreciated what I did for them.', pole: 1 },
+  { type: 2, text: 'I often go out of my way to help, even when it comes at a real personal cost.', pole: 1 },
+  { type: 2, text: 'Part of me believes that if I stopped being helpful and generous, people wouldn\'t have a reason to keep me in their lives.', pole: 1 },
+  { type: 2, text: 'I find it easy to ask others for help when I need it, without feeling like I\'m burdening them.', pole: -1 },
 
   // Type 3 — The Achiever
-  { type: 3, text: 'I am highly motivated by goals and feel restless when I\'m not making progress.', pole: 1 },
-  { type: 3, text: 'I naturally adapt my presentation to fit different social situations.', pole: 1 },
-  { type: 3, text: 'Being seen as successful and competent matters deeply to me.', pole: 1 },
-  { type: 3, text: 'I am very aware of how I come across to others and manage my image carefully.', pole: 1 },
-  { type: 3, text: 'I push myself hard to achieve tangible results that others can recognize.', pole: 1 },
+  // Targets: goal orientation, image management, adapting persona, self-worth tied to results
+  { type: 3, text: 'I feel most like myself when I\'m actively working toward a clear, measurable goal.', pole: 1 },
+  { type: 3, text: 'I naturally adapt how I present myself to fit different social situations and audiences.', pole: 1 },
+  { type: 3, text: 'Being seen as successful and competent matters deeply to me — more than I sometimes want to admit.', pole: 1 },
+  { type: 3, text: 'I am very aware of how I come across to others and invest energy in managing that impression.', pole: 1 },
+  { type: 3, text: 'I push myself hard to produce tangible results that other people can see and recognize.', pole: 1 },
+  { type: 3, text: 'How other people perceive my accomplishments doesn\'t significantly affect how I feel about them.', pole: -1 },
+  { type: 3, text: 'When I fail at something publicly, the shame cuts deeper than the practical consequences of the failure itself.', pole: 1 },
 
   // Type 4 — The Individualist
-  { type: 4, text: 'I often feel fundamentally different from the people around me.', pole: 1 },
-  { type: 4, text: 'I\'m drawn to deep emotional experiences, even painful ones, because they feel authentic.', pole: 1 },
-  { type: 4, text: 'I have a rich inner world and spend a lot of time reflecting on my feelings and identity.', pole: 1 },
-  { type: 4, text: 'I long to be truly understood and recognized for who I uniquely am.', pole: 1 },
-  { type: 4, text: 'I sometimes feel an ache for something I can\'t quite name or find.', pole: 1 },
+  // Targets: identity through differentness, emotional depth as value, longing, authenticity imperative
+  { type: 4, text: 'I\'d rather be seen as unusual or even difficult than be seen as ordinary or forgettable.', pole: 1 },
+  { type: 4, text: 'I\'m drawn to deep emotional experiences, even painful ones, because they feel more real and authentic than surface-level comfort.', pole: 1 },
+  { type: 4, text: 'I have a rich inner world and spend a significant amount of time reflecting on my feelings and sense of identity.', pole: 1 },
+  { type: 4, text: 'I long to be truly understood and recognized for who I uniquely am — not just for what I do.', pole: 1 },
+  { type: 4, text: 'I sometimes feel an ache or longing for something I can\'t quite name or find.', pole: 1 },
+  { type: 4, text: 'I\'m generally comfortable blending in with the crowd and don\'t need to stand out as different.', pole: -1 },
+  { type: 4, text: 'There is something about my emotional life that feels fundamentally more intense or complex than what most people around me seem to experience.', pole: 1 },
 
   // Type 5 — The Investigator
-  { type: 5, text: 'I need significant time alone to recharge and process my thoughts.', pole: 1 },
-  { type: 5, text: 'I tend to observe and analyze situations thoroughly before participating.', pole: 1 },
-  { type: 5, text: 'I often feel drained by social demands and prefer to minimize obligations.', pole: 1 },
-  { type: 5, text: 'I feel most alive when I\'m learning something deeply or mastering a complex subject.', pole: 1 },
-  { type: 5, text: 'I guard my time, energy, and private space carefully against intrusion.', pole: 1 },
+  // Targets: resource conservation, competence through knowledge, boundary-guarding, detachment strategy
+  { type: 5, text: 'I instinctively limit what I share with others — my time, my energy, my inner world — to preserve my capacity to think and function.', pole: 1 },
+  { type: 5, text: 'I tend to observe and analyze situations thoroughly before participating or committing.', pole: 1 },
+  { type: 5, text: 'I feel most competent and alive when I\'ve mastered a complex subject deeply enough that I could explain it to anyone.', pole: 1 },
+  { type: 5, text: 'I feel most alive when I\'m learning something deeply or building a mental model of how something works.', pole: 1 },
+  { type: 5, text: 'I guard my time, energy, and private space carefully — intrusions on these feel genuinely threatening.', pole: 1 },
+  { type: 5, text: 'I\'m comfortable sharing my thoughts, feelings, and resources freely without worrying about being depleted.', pole: -1 },
+  { type: 5, text: 'When I feel overwhelmed, my instinct is to pull back and think rather than to reach out or take action.', pole: 1 },
 
   // Type 6 — The Loyalist
-  { type: 6, text: 'I frequently anticipate what could go wrong and plan for worst-case scenarios.', pole: 1 },
-  { type: 6, text: 'Trust is extremely important to me and I test whether people are reliable.', pole: 1 },
-  { type: 6, text: 'I often seek reassurance or second opinions before making major decisions.', pole: 1 },
-  { type: 6, text: 'I am highly attuned to potential threats, inconsistencies, or hidden agendas.', pole: 1 },
-  { type: 6, text: 'I value loyalty above most other qualities in relationships and commitments.', pole: 1 },
+  // Targets: anxiety/doubt cycle, testing reliability, scanning for threats, need for trusted authority
+  { type: 6, text: 'I frequently anticipate what could go wrong and plan for worst-case scenarios before they happen.', pole: 1 },
+  { type: 6, text: 'I pay close attention to whether people follow through on what they say — inconsistency between words and actions puts me on alert.', pole: 1 },
+  { type: 6, text: 'I often seek reassurance or second opinions before making major decisions, even when I suspect I already know the answer.', pole: 1 },
+  { type: 6, text: 'I am highly attuned to potential threats, hidden agendas, or inconsistencies that others don\'t seem to notice.', pole: 1 },
+  { type: 6, text: 'Doubt and second-guessing myself is one of my most persistent ongoing experiences.', pole: 1 },
+  { type: 6, text: 'I generally trust my own judgment and don\'t feel the need to check with others before committing to a decision.', pole: -1 },
+  { type: 6, text: 'I mentally rehearse problems and prepare counterarguments or escape routes well before they\'re needed.', pole: 1 },
 
   // Type 7 — The Enthusiast
-  { type: 7, text: 'I love exploring new ideas, plans, and possibilities — the more the better.', pole: 1 },
-  { type: 7, text: 'I tend to reframe negatives into positives and avoid dwelling on painful feelings.', pole: 1 },
-  { type: 7, text: 'I feel anxious or trapped when my options are limited or routines become monotonous.', pole: 1 },
-  { type: 7, text: 'I jump from one exciting thing to the next and resist being pinned down.', pole: 1 },
+  // Targets: pain avoidance through options, reframing, FOMO, resistance to limitation
+  { type: 7, text: 'I love exploring new ideas, plans, and possibilities — the more options on the table, the better I feel.', pole: 1 },
+  { type: 7, text: 'I tend to reframe negatives into positives and move quickly past painful feelings rather than sitting with them.', pole: 1 },
+  { type: 7, text: 'Having my options narrowed down or cut off feels genuinely distressing to me.', pole: 1 },
+  { type: 7, text: 'I jump from one exciting thing to the next and resist being pinned down to a single commitment.', pole: 1 },
   { type: 7, text: 'I keep my schedule full because I hate the feeling of missing out on something good.', pole: 1 },
+  { type: 7, text: 'I find it easy to sit with painful or uncomfortable feelings without trying to fix, reframe, or escape them.', pole: -1 },
+  { type: 7, text: 'When life feels heavy or painful, my instinct is to find something fun, stimulating, or new to shift my attention.', pole: 1 },
 
   // Type 8 — The Challenger
-  { type: 8, text: 'I instinctively take charge in situations and dislike feeling controlled by others.', pole: 1 },
-  { type: 8, text: 'I value directness and honesty, even when it makes people uncomfortable.', pole: 1 },
-  { type: 8, text: 'I have a strong protective instinct toward people I consider vulnerable.', pole: 1 },
-  { type: 8, text: 'I push back immediately when I feel disrespected, challenged, or controlled.', pole: 1 },
-  { type: 8, text: 'I prefer to be in control of my environment and resist being told what to do.', pole: 1 },
+  // Targets: control imperative, vulnerability avoidance, protective instinct, confrontation reflex
+  { type: 8, text: 'I instinctively take charge in situations and feel deeply uncomfortable when someone else is controlling the outcome.', pole: 1 },
+  { type: 8, text: 'I\'d rather someone be blunt with me — even if it stings — than sugarcoat or hold back what they really think.', pole: 1 },
+  { type: 8, text: 'I have a strong protective instinct toward people I see as vulnerable or being taken advantage of.', pole: 1 },
+  { type: 8, text: 'I push back immediately and forcefully when I feel disrespected or controlled.', pole: 1 },
+  { type: 8, text: 'Showing vulnerability or weakness to others feels genuinely dangerous to me — even with people I trust.', pole: 1 },
+  { type: 8, text: 'I\'m comfortable letting others take the lead and don\'t feel a need to control how things go.', pole: -1 },
+  { type: 8, text: 'I would rather be respected for my strength and directness than liked for my warmth.', pole: 1 },
 
   // Type 9 — The Peacemaker
-  { type: 9, text: 'I tend to go along with others\' preferences to maintain harmony.', pole: 1 },
-  { type: 9, text: 'I often struggle with inertia — starting things is harder than maintaining them.', pole: 1 },
-  { type: 9, text: 'I find it difficult to identify what I truly want, separate from others\' expectations.', pole: 1 },
-  { type: 9, text: 'I avoid conflict so strongly that I sometimes shut down or go numb when tension arises.', pole: 1 },
-  { type: 9, text: 'I can lose myself in routines or distractions to avoid facing difficult feelings.', pole: 1 },
+  // Targets: conflict avoidance, self-forgetting, inertia, merging with others' agendas
+  { type: 9, text: 'I tend to go along with others\' preferences to maintain harmony, even when I have a different opinion.', pole: 1 },
+  { type: 9, text: 'I often struggle with inertia — getting started on things is much harder than keeping them going once I begin.', pole: 1 },
+  { type: 9, text: 'I find it genuinely difficult to identify what I want, separate from what the people around me want.', pole: 1 },
+  { type: 9, text: 'When conflict is building around me, my instinct is to smooth things over rather than engage directly.', pole: 1 },
+  { type: 9, text: 'I can lose myself in routines, comfort activities, or distractions to avoid facing difficult feelings or decisions.', pole: 1 },
+  { type: 9, text: 'My own opinions and desires sometimes feel less real or less important than other people\'s.', pole: 1 },
+  { type: 9, text: 'I have strong opinions and find it easy to assert them, even when others disagree.', pole: -1 },
 ];
 
-// INSTINCT_BANK: 5 questions per instinct (15 total).
-// Used by the adaptive instinct quiz.
+// INSTINCT_BANK: 7 questions per instinct (21 total).
 export const INSTINCT_BANK = [
   // SP — Self-Preservation
-  { text: 'Physical comfort, health, and financial security are constant concerns for me.', inst: 'sp' },
-  { text: 'I carefully manage my resources and energy to ensure personal well-being.', inst: 'sp' },
-  { text: 'I tend to be cautious about my health, finances, and physical environment.', inst: 'sp' },
-  { text: 'When stressed, I focus on self-care, routines, and personal stability first.', inst: 'sp' },
-  { text: 'I regularly think about things like having enough money, food, warmth, and security.', inst: 'sp' },
+  { text: 'Physical comfort, health, and financial security are constant background concerns for me.', inst: 'sp' },
+  { text: 'I carefully manage my resources and energy to make sure I\'m covered for what\'s ahead.', inst: 'sp' },
+  { text: 'I have reliable routines and habits that keep my life functioning well, and disrupting them feels genuinely unsettling.', inst: 'sp' },
+  { text: 'When stressed, my first move is to stabilize my physical situation — rest, eat, secure my environment.', inst: 'sp' },
+  { text: 'I think often about whether I have enough — enough time, enough energy, enough resources — to handle what\'s coming.', inst: 'sp' },
+  { text: 'I am drawn to situations that feel safe, grounded, and predictable over those that are exciting but unstable.', inst: 'sp' },
+  { text: 'I rarely think about my physical comfort, health, or financial safety — those things tend to take care of themselves.', inst: 'sp', pole: -1 },
 
   // SX — Sexual / One-to-One
-  { text: 'I prefer one-on-one intensity over group dynamics.', inst: 'sx' },
-  { text: 'I\'m drawn to experiences that feel electric, transformative, or deeply intimate.', inst: 'sx' },
-  { text: 'I often become fixated on specific people or experiences that feel magnetically compelling.', inst: 'sx' },
-  { text: 'Deep one-on-one connection energizes me far more than being part of a group.', inst: 'sx' },
-  { text: 'I want every important relationship in my life to have real depth and intensity.', inst: 'sx' },
+  { text: 'I am drawn to people, experiences, or ideas that feel electric or all-consuming — I want to be completely absorbed.', inst: 'sx' },
+  { text: 'I\'m drawn to experiences that feel transformative, intense, or deeply intimate — even when they\'re risky.', inst: 'sx' },
+  { text: 'I often become fixated on a specific person or experience that feels magnetically compelling to me.', inst: 'sx' },
+  { text: 'When I connect with someone, I want to go deep fast — surface-level interaction feels almost physically unsatisfying.', inst: 'sx' },
+  { text: 'I would rather have one relationship of extraordinary depth than many pleasant but moderate connections.', inst: 'sx' },
+  { text: 'There is an intensity to how I engage with what matters to me that other people sometimes find overwhelming.', inst: 'sx' },
+  { text: 'I don\'t need intensity or depth in my connections — I\'m content with pleasant, easy-going relationships.', inst: 'sx', pole: -1 },
 
   // SO — Social
-  { text: 'I\'m highly aware of social dynamics, group roles, and where I stand with others.', inst: 'so' },
-  { text: 'Being part of a community or group and contributing to something larger matters deeply to me.', inst: 'so' },
+  { text: 'I naturally track the dynamics of groups I\'m in — who\'s aligned with whom, what the unspoken rules are, where the tensions lie.', inst: 'so' },
+  { text: 'Being part of a community and contributing to something larger than myself matters deeply to me.', inst: 'so' },
   { text: 'I feel most alive when I have a recognized role or purpose within a group.', inst: 'so' },
-  { text: 'I pay close attention to how I\'m perceived by others in social contexts.', inst: 'so' },
-  { text: 'I feel a strong pull toward belonging and participating in a meaningful community.', inst: 'so' },
+  { text: 'I instinctively read the social hierarchy in any room I enter — who has influence, who\'s on the outside.', inst: 'so' },
+  { text: 'I feel a strong pull toward belonging and participating in a meaningful community or cause.', inst: 'so' },
+  { text: 'I feel a sense of duty or responsibility toward the groups and communities I\'m part of.', inst: 'so' },
+  { text: 'I don\'t pay much attention to social dynamics or group politics — they just don\'t register for me.', inst: 'so', pole: -1 },
 ];
 
 export const INSTINCT_DISAMBIG = {
@@ -176,6 +208,107 @@ export const ENN_DISAMBIG = {
     { text: 'I have a persistent inner critic that evaluates whether I\'ve met my own standards.', favors: 1 },
     { text: 'I have a persistent sense of longing for something I can\'t quite name or find.', favors: 4 },
     { text: 'I feel most grounded when I\'ve acted with integrity and done things the right way.', favors: 1 },
+  ],
+
+  // --- NEW DISAMBIGUATION SETS ---
+
+  '1-3': [
+    // Both driven and high-standards. 1's standards come from moral imperative; 3's come from wanting to win.
+    { text: 'I hold high standards because doing things correctly is a moral obligation, regardless of whether anyone notices.', favors: 1 },
+    { text: 'I hold high standards because producing excellent results is how I prove my worth and earn recognition.', favors: 3 },
+    { text: 'When I fail at something, the worst part is knowing I didn\'t live up to what was right — not how it looked to others.', favors: 1 },
+    { text: 'When I fail at something, the worst part is how it makes me look — the loss of credibility and status.', favors: 3 },
+    { text: 'I would rather do something slowly and correctly than quickly and impressively.', favors: 1 },
+  ],
+
+  '2-3': [
+    // Both heart center, both image-conscious. 2 earns love through service; 3 earns admiration through achievement.
+    { text: 'When nobody is watching, I default to helping and supporting the people around me.', favors: 2 },
+    { text: 'When nobody is watching, I default to working on my goals and advancing my position.', favors: 3 },
+    { text: 'My self-worth comes primarily from being needed and valued by the people in my life.', favors: 2 },
+    { text: 'My self-worth comes primarily from my track record of achievements and successes.', favors: 3 },
+    { text: 'I am more afraid of being unloved than of being unsuccessful.', favors: 2 },
+  ],
+
+  '2-6': [
+    // Both compliant group. 2 helps to be loved; 6 helps to maintain alliance and safety.
+    { text: 'I help others because I want them to feel cared for and to see me as someone they can count on emotionally.', favors: 2 },
+    { text: 'I help others because building reliable alliances is how I create safety and security in an unpredictable world.', favors: 6 },
+    { text: 'I am confident I know what others need — my attunement to people is one of my greatest strengths.', favors: 2 },
+    { text: 'I often doubt whether I\'m making the right call, even when helping others — I second-guess my own judgment.', favors: 6 },
+    { text: 'When someone I care about pulls away, my first feeling is hurt and rejection, not suspicion about why.', favors: 2 },
+  ],
+
+  '3-6': [
+    // Stress arrow pair. 6 in stress → 3 patterns. Also both can be hard-working and image-conscious.
+    { text: 'My drive to achieve feels natural and energizing — it\'s who I am at my core, not a response to pressure.', favors: 3 },
+    { text: 'My drive to achieve tends to spike under stress or threat — it\'s how I cope with anxiety, not my resting state.', favors: 6 },
+    { text: 'I am fundamentally confident in my ability to succeed — setbacks slow me down but don\'t shake my self-belief.', favors: 3 },
+    { text: 'Under my productive exterior, there is a persistent current of anxiety and self-doubt that I manage constantly.', favors: 6 },
+    { text: 'I adapt my image to win — it\'s strategic and feels like a strength, not a coping mechanism.', favors: 3 },
+  ],
+
+  '4-9': [
+    // Both withdrawn. 4 amplifies emotional experience; 9 dampens it.
+    { text: 'My inner emotional life is vivid, complex, and sometimes overwhelming — I feel things intensely.', favors: 4 },
+    { text: 'My inner life is generally calm and even — strong emotions tend to wash over me or get smoothed out quickly.', favors: 9 },
+    { text: 'I have a very clear sense of who I am and what makes me different — even if others don\'t understand it.', favors: 4 },
+    { text: 'I find it genuinely hard to say who I really am or what I deeply want, separate from what\'s expected of me.', favors: 9 },
+    { text: 'I am more likely to intensify my feelings than to minimize them when something hurts.', favors: 4 },
+  ],
+
+  '5-9': [
+    // Both detach, both can appear calm and undemanding. 5 detaches to conserve and think; 9 detaches to avoid disturbance.
+    { text: 'I withdraw deliberately to protect my energy and focus — I know exactly what I\'m retreating to do.', favors: 5 },
+    { text: 'I withdraw because engaging feels like too much effort — I slide into passivity without really deciding to.', favors: 9 },
+    { text: 'I have strong, specific intellectual interests that I pursue actively and with intensity.', favors: 5 },
+    { text: 'I tend to go along with whatever is happening around me rather than pursuing my own agenda.', favors: 9 },
+    { text: 'I feel most like myself when I am alone with a complex problem or subject to master.', favors: 5 },
+  ],
+
+  '5-6': [
+    // Both head center. 5 deals with fear by mastering knowledge; 6 deals with fear by seeking certainty/allies.
+    { text: 'When I feel uncertain, I research and analyze until I understand the situation well enough to act independently.', favors: 5 },
+    { text: 'When I feel uncertain, I look for trusted people or frameworks to validate my thinking before I commit.', favors: 6 },
+    { text: 'I am more concerned with having complete understanding than with having support or backup.', favors: 5 },
+    { text: 'I am more concerned with knowing who I can trust and rely on than with mastering every detail myself.', favors: 6 },
+    { text: 'My fear manifests as detachment and withdrawal — I pull inward to think.', favors: 5 },
+  ],
+
+  '7-8': [
+    // Both assertive. 7 avoids pain through options/reframing; 8 avoids vulnerability through control/domination.
+    { text: 'When something threatens me, my instinct is to find a way around it — reframe it, escape it, or redirect.', favors: 7 },
+    { text: 'When something threatens me, my instinct is to confront it head-on and overpower it.', favors: 8 },
+    { text: 'I avoid pain primarily by keeping my options open and staying positive.', favors: 7 },
+    { text: 'I avoid vulnerability primarily by projecting strength and never letting anyone see me as weak.', favors: 8 },
+    { text: 'I would rather have freedom and exciting possibilities than power and control over my environment.', favors: 7 },
+  ],
+
+  '1-2': [
+    // Both compliant. 1w2/2w1 confusion. 1's anger comes from things being wrong; 2's anger comes from not being appreciated.
+    { text: 'My frustration comes from seeing things done incorrectly — the error itself bothers me, regardless of who made it.', favors: 1 },
+    { text: 'My frustration comes from feeling unappreciated after I\'ve given a lot to help someone.', favors: 2 },
+    { text: 'I hold myself to strict standards and feel most guilty when I fall short of my own principles.', favors: 1 },
+    { text: 'I pride myself on being the person others turn to, and I feel most hurt when that role goes unacknowledged.', favors: 2 },
+    { text: 'My helpfulness comes from a sense of duty and correctness, not from a need to be personally valued.', favors: 1 },
+  ],
+
+  '8-9': [
+    // Adjacent types, commonly confused especially 9w8 vs 8w9. Both can appear calm and grounded.
+    { text: 'My calm exterior comes from genuine inner peace — I don\'t feel much internal intensity or anger.', favors: 9 },
+    { text: 'My calm exterior is deliberate restraint — underneath it, I am intense, and people feel my presence.', favors: 8 },
+    { text: 'I struggle to access and express my own anger — it tends to leak out sideways or get suppressed entirely.', favors: 9 },
+    { text: 'I have easy, direct access to my anger and I\'m comfortable expressing it when something crosses my line.', favors: 8 },
+    { text: 'I would rather keep the peace than assert what I want, even if it means I lose out.', favors: 9 },
+  ],
+
+  '3-9': [
+    // Both can appear easygoing and adaptable. 3 adapts strategically; 9 adapts to avoid conflict.
+    { text: 'I adapt to different situations strategically — I know what persona will be most effective and I deploy it deliberately.', favors: 3 },
+    { text: 'I adapt to different situations because it\'s easier to merge with what\'s around me than to assert my own agenda.', favors: 9 },
+    { text: 'I have clear personal ambitions and I work hard to achieve them, even when the path is uncomfortable.', favors: 3 },
+    { text: 'I find it hard to mobilize myself toward goals — I lose momentum easily and default to the path of least resistance.', favors: 9 },
+    { text: 'When people describe me as easygoing, they\'re seeing a persona I\'ve chosen — not my actual inner state.', favors: 3 },
   ],
 };
 
