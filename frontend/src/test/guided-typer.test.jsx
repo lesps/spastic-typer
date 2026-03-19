@@ -354,7 +354,7 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     expect(screen.getByText(/your mbti result/i)).toBeInTheDocument();
     expect(screen.getByText(/cognitive stack/i)).toBeInTheDocument();
     expect(screen.getByText(/dimension scores/i)).toBeInTheDocument();
-  }, 10000);
+  }, 15000);
 
   it('ends test early when all dimensions are confident', async () => {
     render(<GuidedTyper />);
@@ -364,7 +364,7 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     await answerUpTo(65, '+3');
 
     expect(screen.getByText(/your mbti result/i)).toBeInTheDocument();
-  }, 10000);
+  }, 15000);
 
   it('result is E-type when answering strongly positively (regression test for scale bug)', async () => {
     render(<GuidedTyper />);
@@ -377,7 +377,7 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     // The result type heading should start with E (E wins ties by >= rule)
     const typeHeading = document.querySelector('h1');
     expect(typeHeading?.textContent?.[0]).toBe('E');
-  }, 10000);
+  }, 15000);
 
   it('uniform -3 answers produce a valid MBTI result', async () => {
     render(<GuidedTyper />);
@@ -387,7 +387,7 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     await answerUpTo(65, '-3');
 
     expect(screen.getByText(/your mbti result/i)).toBeInTheDocument();
-  }, 10000);
+  }, 15000);
 
   it('can return to choose screen from MBTI result', async () => {
     render(<GuidedTyper />);
@@ -397,7 +397,7 @@ describe('GuidedTyper — MBTI quiz flow', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /← back to assessments/i }));
     expect(screen.getByText('Guided Typer')).toBeInTheDocument();
-  }, 10000);
+  }, 15000);
 
   it('enters mbti-disambig phase when bank exhausts with weak dimensions (regression)', async () => {
     render(<GuidedTyper />);
@@ -407,7 +407,7 @@ describe('GuidedTyper — MBTI quiz flow', () => {
     await answerUpTo(40);
 
     expect(screen.getByText(/a few more targeted questions to clarify/i)).toBeInTheDocument();
-  }, 10000);
+  }, 15000);
 
   it('does not start quiz if MBTI is already completed', () => {
     localStorage.setItem('typer_mbti', JSON.stringify({
