@@ -27,7 +27,7 @@ function writeLS(key, val) { try { localStorage.setItem(key, JSON.stringify(val)
 function clearLS(key) { try { localStorage.removeItem(key); } catch {} }
 
 // Phases where a quiz is actively in progress (session should be saved/restored)
-const ACTIVE_PHASES = ['enn', 'mbti', 'instinct', 'enn-disambig', 'inst-disambig', 'mbti-disambig'];
+const ACTIVE_PHASES = ['enn', 'mbti', 'instinct', 'enn-disambig'];
 
 // --- Adaptive question selection ---
 /**
