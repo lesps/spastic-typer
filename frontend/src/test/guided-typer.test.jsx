@@ -53,6 +53,24 @@ describe('GuidedTyper — choose screen', () => {
     expect(screen.queryByRole('button', { name: /^export$/i })).not.toBeInTheDocument();
   });
 
+  it('shows choose screen (not blank) when session has stale inst-disambig phase (bug regression)', () => {
+    localStorage.setItem('typer_session', JSON.stringify({
+      phase: 'inst-disambig', qi: 0, answers: {}, instAnswers: {}, mbtiAnswers: {},
+      branchAnswers: {}, disambigPair: null, instSeqIds: [0, 1, 2], ennSeqIds: [], mbtiSeqIds: [],
+    }));
+    render(<GuidedTyper />);
+    expect(screen.getByText('Guided Typer')).toBeInTheDocument();
+  });
+
+  it('shows choose screen (not blank) when session has stale mbti-disambig phase (bug regression)', () => {
+    localStorage.setItem('typer_session', JSON.stringify({
+      phase: 'mbti-disambig', qi: 0, answers: {}, instAnswers: {}, mbtiAnswers: {},
+      branchAnswers: {}, disambigPair: null, instSeqIds: [], ennSeqIds: [], mbtiSeqIds: [0, 1, 2],
+    }));
+    render(<GuidedTyper />);
+    expect(screen.getByText('Guided Typer')).toBeInTheDocument();
+  });
+
   it('does not show Get Code button when only 1 of 3 assessments is complete', () => {
     localStorage.setItem('typer_enn', JSON.stringify({
       coreType: 4, wing: 5, instinctStack: ['sx', 'sp', 'so'],
