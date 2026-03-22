@@ -314,3 +314,23 @@ describe('ComparePage — Add My Profile button', () => {
     expect(screen.getByText('INFP')).toBeInTheDocument();
   });
 });
+
+describe('ComparePage — shadow dynamics', () => {
+  it('shows Full Shadow Pair callout for ENFP + INFJ', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'P1', ennType: 4, ennWing: 5, ennWingStrength: 3, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'P2', ennType: 5, ennWing: 4, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'INFJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    expect(screen.getByText(/full shadow pair/i)).toBeInTheDocument();
+  });
+
+  it('shows position crossing flags when both persons have MBTI', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'P1', ennType: 4, ennWing: 5, ennWingStrength: 3, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'P2', ennType: 5, ennWing: 6, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'INTJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    expect(screen.getByText(/position crossings/i)).toBeInTheDocument();
+  });
+});

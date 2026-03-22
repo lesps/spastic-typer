@@ -76,6 +76,7 @@ spastic-typer/
 | `cognitive.js` | 10 | `COG_FUNCTIONS` — 8 Jungian functions with color, desc, strengths, shadow |
 | `pairLookup.js` | ~6,973 | Pre-computed `ENN_DYNAMICS`, `MBTI_INSIGHTS`, `INSTINCT_STACK_DYNAMICS` for all type pairs. **Do not hand-edit** — regenerate via `scripts/generatePairs.mjs` |
 | `sop.js` | 33 | `SOP_STEPS` (typing methodology), `QUADRANTS` (MBTI 4-quadrant grid) |
+| `shadow.js` | ~180 | `POSITIONS`, `SHADOW_TEMPLATES`, `CROSSING_MATRIX`, `FULL_SHADOW_PAIR_NARRATIVE` — 8-position naming system and unified comparison algorithm data |
 
 ### Utils (`src/utils/`)
 
@@ -86,6 +87,7 @@ spastic-typer/
 | `export.js` | `generateExportMarkdown` (full profile report + AI context notes) |
 | `archetype.js` | `computeArchetypeName` (Enneagram + MBTI combo name) |
 | `group.js` | `analyzeGroup` (patterns for 3+ people) |
+| `shadow.js` | `flipAttitude`, `getShadowStack`, `getFullStack`, `getShadowType`, `getShadowMirror`, `getPositionCrossings`, `instantiateTemplate` |
 
 ### Styles (`src/styles/`)
 
@@ -140,6 +142,7 @@ All tests live in `frontend/src/test/`:
 | `guided-typer.test.jsx` | Quiz flows (start, advance, adaptive exit, disambiguation), choose screen state, share/export gating, localStorage persistence, retake behavior |
 | `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button |
 | `navigation.test.jsx` | Bottom nav tab switching |
+| `shadow.test.js` | Shadow stack derivation, position definitions, crossing algorithm, structural invariants |
 
 ### Exported Test Helpers (from `GuidedTyper.jsx`)
 
@@ -221,6 +224,10 @@ Use `vi.useFakeTimers()` / `vi.useRealTimers()` in `beforeEach`/`afterEach` for 
 ---
 
 ## Core Conventions
+
+### Position Naming
+
+The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (ego arc 1–4) and Counter, Critic, Gamble, Flood (shadow arc 5–8). Never use Beebe model terminology (Opposing, Critical Parent, Trickster, Demon) in UI copy or code comments. Reference the `POSITIONS` array from `data/shadow.js` for canonical definitions.
 
 ### No Router
 

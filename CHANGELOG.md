@@ -16,6 +16,18 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ---
 
+## [1.3]
+
+### 1.3.0 — 2026-03-22
+
+- Added 8-position naming system (Lead, Anchor, Refuge, Hunger, Counter, Critic, Gamble, Flood) replacing Beebe/Jungian terminology
+- Added shadow stack derivation utilities (`getShadowStack`, `getShadowMirror`, `getPositionCrossings`)
+- Added unified position-crossing algorithm for MBTI comparison (ego↔ego, ego↔shadow, shadow↔shadow)
+- Explorer: ego positions renamed from DOM/AUX/TER/INF to Lead/Anchor/Refuge/Hunger, shadow section expanded with position names and templates, position reference section added
+- MentalModel: shadow stack insights added to type detail view
+- ComparePage: position-crossing flags added to pairwise MBTI comparison, Full Shadow Pair callout for mirror types
+- Rewrote all 64 shadow function descriptions in `mbtiDetails.js` to use new position naming and experiential tone
+
 ## [1.2]
 
 ### 1.2.5 — 2026-03-18

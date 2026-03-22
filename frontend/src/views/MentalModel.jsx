@@ -9,6 +9,8 @@ import FnBadge from '../components/FnBadge.jsx';
 import { computeArchetypeName } from '../utils/archetype.js';
 import { COMBINATION_PROFILES } from '../data/combinationProfiles.js';
 import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
+import { getShadowMirror } from '../utils/shadow.js';
+import { MBTI_FUNCTION_DETAILS } from '../data/mbtiDetails.js';
 
 function readLS(key) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; } }
 
@@ -96,6 +98,41 @@ export default function MentalModel({ setView = () => {}, initialTab = 'mbti' })
             </div>
           </div>
         )}
+        {MBTI_FUNCTION_DETAILS[selType] && (() => {
+          const d = MBTI_FUNCTION_DETAILS[selType];
+          const mirror = getShadowMirror(selType);
+          const shadowPositions = [
+            { key: 'shadow5', pos: 5, name: 'Counter', color: '#c06050' },
+            { key: 'shadow6', pos: 6, name: 'Critic',  color: '#a05070' },
+            { key: 'shadow7', pos: 7, name: 'Gamble',  color: '#806080' },
+            { key: 'shadow8', pos: 8, name: 'Flood',   color: '#605070' },
+          ];
+          return (
+            <div style={S.card}>
+              <h3 style={S.h3}>Shadow Stack Insights</h3>
+              {shadowPositions.map(({ key, pos, name, color }) => {
+                const sh = d[key];
+                if (!sh) return null;
+                return (
+                  <div key={key} style={{ marginBottom: 12, paddingBottom: 12, borderBottom: `1px solid ${G.border}` }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                      <span style={{ fontSize: 10, color, fontFamily: "'DM Mono',monospace" }}>
+                        {['⑤','⑥','⑦','⑧'][pos - 5]} {name}
+                      </span>
+                      <FnBadge fn={sh.function} size="md" />
+                    </div>
+                    <p style={{ ...S.body, fontSize: 13, paddingLeft: 36 }}>{sh.brief}</p>
+                  </div>
+                );
+              })}
+              {mirror && (
+                <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginTop: 4 }}>
+                  Shadow mirror: <strong style={{ color: G.gold }}>{mirror}</strong> — their ego stack is your shadow stack.
+                </p>
+              )}
+            </div>
+          );
+        })()}
       </div></div>
     );
   }
