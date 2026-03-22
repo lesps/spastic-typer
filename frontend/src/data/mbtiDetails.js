@@ -34,10 +34,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Ability to organize and execute on values-aligned projects, healthy assertion of limits, constructive direct feedback.',
       unhealthyExpression: 'Harsh critical outbursts that feel out of character. Obsessive organizing as a stress response. Feeling perpetually incompetent at navigating practical external demands.',
     },
-    shadow5: { function: 'Fe', brief: 'Can feel performative or manipulative when INFPs attempt social-harmony tactics they haven\'t internalized. May dismiss others\' visible emotional expression as "putting on a show."' },
-    shadow6: { function: 'Ni', brief: 'Occasional dark certainties and paranoid hunches that feel alien to the usual Ne openness. "I just know this will fail" — without being able to say why.' },
-    shadow7: { function: 'Se', brief: 'Under extreme stress, may engage in uncharacteristic sensory excess — binge eating, impulsive purchases, reckless behavior — as a pressure valve.' },
-    shadow8: { function: 'Ti', brief: 'The deepest shadow. May quietly construct elaborate internal logical frameworks that contradict their stated values, or judge others by standards they can\'t fully articulate.' },
+    shadow5: { function: 'Fe', brief: 'Fe as your Counter fires when you feel socially cornered or your authenticity is questioned. You can read rooms under pressure, but it comes out as a critique of how others are managing the social field rather than as genuine attunement. People who know your usual quiet Fi-led presence might be startled by how precisely you can call out inauthenticity under duress.' },
+    shadow6: { function: 'Ni', brief: 'Ni as your Critic means you have an unforgiving standard for insight. You notice when pattern recognition is deployed lazily — in others and in yourself. When your own Ne generates an idea you can\'t back up with felt conviction, the internal verdict is fast and harsh.' },
+    shadow7: { function: 'Se', brief: 'Se is available but unreliable. You can engage the physical and sensory world, but your read on whether you\'re grounded or spinning out isn\'t always accurate. You may believe you\'re fully present when you\'re actually dissociated, or push through physical signals thinking you\'re managing when you\'re not.' },
+    shadow8: { function: 'Ti', brief: 'Ti as your Flood means that when your values and ideals stop holding, what surfaces isn\'t more feeling — it\'s a cold, skeletal logic. An internal auditor that picks apart your own meaning-making. It doesn\'t look like your Ne-Fi self, and it often surprises the people who know you.' },
   },
 
   INFJ: {
@@ -69,10 +69,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Appreciation for sensory beauty, ability to be genuinely present, taking practical action on their visions.',
       unhealthyExpression: 'Sensory overwhelm and hypersensitivity. Impulsive indulgence under pressure. Feeling physically incompetent or disconnected from the body.',
     },
-    shadow5: { function: 'Ne', brief: 'Shadow Ne can manifest as scattered, anxious brainstorming without Ni\'s usual convergence — or as generating catastrophic possibilities they can\'t turn off.' },
-    shadow6: { function: 'Fi', brief: 'Under stress, may become suddenly self-absorbed and emotionally defended, cutting off the usual Fe responsiveness as a protective measure.' },
-    shadow7: { function: 'Te', brief: 'Can erupt as cold, critical efficiency under pressure — making harsh decisions without the usual relational attunement.' },
-    shadow8: { function: 'Si', brief: 'The deepest shadow. May become rigidly attached to a specific past framework or experience, using it as the sole reference point in ways that contradict their usually fluid Ni perception.' },
+    shadow5: { function: 'Ne', brief: 'Ne as your Counter shows up when your Ni certainty gets challenged and you can\'t hold the vision. Instead of synthesizing toward clarity, you scatter — generating anxious "what ifs" that feel like productive thinking but are actually defensive noise. At its most reactive, it looks like brainstorming wearing the mask of doubt.' },
+    shadow6: { function: 'Fi', brief: 'Fi as your Critic means you have a charged, unforgiving standard for authenticity. You can read whether someone\'s emotional expression matches their inner state, and when it doesn\'t — or when your own Fe facilitation feels hollow — the internal judge is harsh. This isn\'t lack of feeling. It\'s an intense relationship with the question of whether feeling is real.' },
+    shadow7: { function: 'Te', brief: 'Te is available but unreliable. You can organize, execute, and make cold decisions — but your self-assessment here is weaker than in your Ni-Fe domain. You may believe you\'re being effectively decisive when you\'re actually overreaching, or think a judgment is logical when it\'s rationalizing an Ni impression.' },
+    shadow8: { function: 'Si', brief: 'Si as your Flood means that when your vision and relational attunement both fail, what surfaces is a sudden anchoring in the specific past. Not grounded memory — more like a lodged detail that dominates everything. Involuntary, ungeneralizable, and often incomprehensible to people who don\'t share your stack.' },
   },
 
   INTP: {
@@ -104,10 +104,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Ability to genuinely connect with others, social warmth that doesn\'t feel forced, awareness of how their communication lands emotionally.',
       unhealthyExpression: 'Emotional outbursts that feel alien and out of proportion. Acute fear of social rejection. Social withdrawal disguised as principled independence.',
     },
-    shadow5: { function: 'Te', brief: 'Shadow Te can emerge as blunt, authoritative pronouncements — suddenly claiming certainty rather than holding ideas provisionally, often under conditions of stress or threat.' },
-    shadow6: { function: 'Ni', brief: 'Occasional dark convergent certainties that shut down Ne\'s usual openness. "I\'ve decided this is the answer" — followed by resistance to new evidence.' },
-    shadow7: { function: 'Se', brief: 'Under stress, may seek sensory distraction or engage in impulsive physical behavior as a break from incessant mental activity.' },
-    shadow8: { function: 'Fi', brief: 'The deepest shadow. Deeply held personal values that the INTP rarely articulates, and may not even recognize as values rather than "obvious logical conclusions."' },
+    shadow5: { function: 'Te', brief: 'Te as your Counter fires when your Ti framework is challenged from outside. You push back with sudden authority — declaring conclusions rather than building toward them, demanding efficiency rather than precision. It has a blunt, dug-in quality that surprises people who know your usual provisional Ti style. It\'s a defensive posture, not your native mode.' },
+    shadow6: { function: 'Ni', brief: 'Ni as your Critic means you can spot when intuition is lazy or unfounded, and you\'re not kind about it internally. When your own Ne generates a hunch you can\'t trace logically, the inner verdict is swift and unforgiving. A charged relationship with certainty: you distrust it in others and punish it in yourself.' },
+    shadow7: { function: 'Se', brief: 'Se is available but unreliable. You can engage the physical world, act in real time, notice sensory detail — but your self-monitoring here is weaker than in your Ti domain. You may think you\'re handling a situation with presence and precision when the misfires are obvious to everyone else.' },
+    shadow8: { function: 'Fi', brief: 'Fi as your Flood means that under serious strain, a raw, inarticulate moral charge surfaces — bypassing Ti entirely. Not reasoned ethics. Something closer to outrage or grief that you can\'t explain through your usual logical framework. It doesn\'t look like your normal self and often doesn\'t feel like it either.' },
   },
 
   INTJ: {
@@ -139,10 +139,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Physical presence and embodied awareness, ability to act decisively in the present moment, appreciation for sensory quality.',
       unhealthyExpression: 'Sensory overwhelm or hedonistic excess under pressure. Inability to stop planning and simply be present. Acute frustration when the physical world resists the mental plan.',
     },
-    shadow5: { function: 'Ne', brief: 'Shadow Ne can scatter the INTJ\'s focused vision with unhelpful "what ifs" — manifesting as unusual anxiety about divergent possibilities that Ni would normally filter out.' },
-    shadow6: { function: 'Ti', brief: 'Under stress, may become obsessively self-critical about the internal logical consistency of their own frameworks, second-guessing Ni certainties.' },
-    shadow7: { function: 'Fe', brief: 'Social anxiety or sudden excessive concern with how they\'re perceived, erupting under conditions of interpersonal stress.' },
-    shadow8: { function: 'Si', brief: 'The deepest shadow. Can become rigidly attached to past frameworks or personal precedents in ways that contradict their usual future-orientation.' },
+    shadow5: { function: 'Ne', brief: 'Ne as your Counter appears when your Ni certainty is challenged and you can\'t synthesize fast enough. Instead of holding the vision, you scatter into anxious possibility-generation — not productive, but defensive. A spray of "what ifs" that feels like openness but is actually pressure. People who know your usual convergent focus find it disorienting.' },
+    shadow6: { function: 'Ti', brief: 'Ti as your Critic means you have an unforgiving internal standard for logical consistency — especially your own. When your Ni produces a conclusion you can\'t fully trace, the Ti judge activates. It\'s not self-doubt in the ordinary sense. It\'s a charged relationship with whether your reasoning actually holds.' },
+    shadow7: { function: 'Fe', brief: 'Fe is available but intermittent. You can read social dynamics and respond to emotional context — but your self-monitoring here is weaker than in your Ni-Te domain. You may believe a social interaction went well when you actually miscalibrated the room, or think you\'re coming across as warm when you\'re being perceived as performative.' },
+    shadow8: { function: 'Si', brief: 'Si as your Flood means that under serious stress or breakdown, you get anchored in a specific past moment or framework that suddenly feels like the only stable reference point. Not strategic use of precedent — a fixation. It contradicts your usual future-orientation and can confuse everyone who knows your Ni focus.' },
   },
 
   ISFP: {
@@ -174,10 +174,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Ability to execute on their creative projects, healthy assertiveness, capacity to organize external circumstances to support their values.',
       unhealthyExpression: 'Harsh verbal outbursts or critical judgments under stress. Paralysis in the face of administrative tasks. Feeling perpetually overwhelmed by practical demands.',
     },
-    shadow5: { function: 'Fe', brief: 'Can feel inauthentic when ISFPs use social harmony tactics, or may dismiss visible emotional displays as performance.' },
-    shadow6: { function: 'Si', brief: 'Occasional nostalgic attachment to a specific memory or period, used as a standard against which the present always falls short.' },
-    shadow7: { function: 'Ne', brief: 'Under stress, may generate anxious "what if" spirals, scattering the usual sensory focus.' },
-    shadow8: { function: 'Ti', brief: 'The deepest shadow. Private logical frameworks that the ISFP may not acknowledge as frameworks — "that\'s just how things are."' },
+    shadow5: { function: 'Fe', brief: 'Fe as your Counter shows up when you feel socially cornered or your authenticity is questioned. You can manage emotional fields and play relational dynamics, but it comes out with a defensive edge — not genuine attunement. You may find yourself most aware of it when others use social management in ways that feel manipulative.' },
+    shadow6: { function: 'Si', brief: 'Si as your Critic means you have a harsh internal standard for reliability and consistency. You notice when someone\'s relationship to the past is convenient or selective — and when your own sensory experience contradicts a remembered pattern, the internal verdict is uncomfortable. A charged relationship with whether what\'s remembered is actually accurate.' },
+    shadow7: { function: 'Ne', brief: 'Ne is available but unreliable. You can generate possibilities, make connections, reframe a problem — but your read on whether you\'re genuinely exploring or just spinning isn\'t always accurate. The risk isn\'t absence of imagination. It\'s overconfidence in a direction that\'s actually going nowhere.' },
+    shadow8: { function: 'Ti', brief: 'Ti as your Flood means that when your values and sensory grounding both fail, what surfaces isn\'t more feeling — it\'s a cold internal framework. An auditor that picks apart your own choices with a logic you don\'t usually operate from. It surfaces involuntarily and feels alien, like someone else\'s voice running the analysis.' },
   },
 
   ISFJ: {
@@ -209,10 +209,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Genuine openness to new approaches, creative problem-solving that draws on past experience without being limited by it.',
       unhealthyExpression: 'Catastrophic possibility-thinking under stress. Sudden perception of hidden threats. Overwhelm when situations become too ambiguous or open-ended.',
     },
-    shadow5: { function: 'Se', brief: 'Shadow Se may manifest as impulsive reactive behavior under extreme stress — sudden outbursts or uncharacteristic sensory indulgence.' },
-    shadow6: { function: 'Fi', brief: 'Occasional private, intense judgments about others\' moral character that remain unexpressed but color relationships.' },
-    shadow7: { function: 'Te', brief: 'Can emerge as sharp external criticism or controlling behavior when their established order is severely threatened.' },
-    shadow8: { function: 'Ni', brief: 'The deepest shadow. Dark hunches about where things are heading that feel like certainties, contradicting their usual evidence-based Si approach.' },
+    shadow5: { function: 'Se', brief: 'Se as your Counter fires when your established procedures or routines are disrupted and you need to respond in real time. The reaction has an urgency that your usual Si deliberateness lacks — reactive, scanning immediate reality rather than comparing to precedent. At its most activated, it can look like sudden impulsivity from someone everyone counts on for reliability.' },
+    shadow6: { function: 'Fi', brief: 'Fi as your Critic means you have a harsh internal standard for authenticity and individual moral character. You notice when emotional expression in others doesn\'t match their actual behavior over time — and when you catch yourself performing care you don\'t fully feel, the internal judge is swift. A charged relationship with whether your feelings are genuine.' },
+    shadow7: { function: 'Te', brief: 'Te is available but intermittent. You can organize externally, set expectations, direct others efficiently — but your self-monitoring here is weaker than in your Si-Fe domain. You may believe a system you\'ve built actually works when others are quietly working around it, or think you\'re being appropriately direct when you\'re overshooting.' },
+    shadow8: { function: 'Ni', brief: 'Ni as your Flood means that under breakdown, a sudden dark certainty about outcomes surfaces involuntarily — not based on observable evidence, but felt like a prophecy. It contradicts your usual evidence-based patience and often baffles the people who trust your methodical, grounded character.' },
   },
 
   ISTP: {
@@ -244,10 +244,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Genuine warmth that\'s all the more powerful for being rare, ability to connect through shared activity rather than words.',
       unhealthyExpression: 'Sudden acute sensitivity to criticism or rejection. Overcompensating people-pleasing. Clumsiness in emotional situations that usually resolves in physical competence.',
     },
-    shadow5: { function: 'Te', brief: 'Shadow Te can emerge as sudden authoritative declarations — "this is simply how it has to be done" — when their technical authority is challenged.' },
-    shadow6: { function: 'Si', brief: 'Stubborn attachment to a specific technique or approach that "worked before," resisting new methods.' },
-    shadow7: { function: 'Ne', brief: 'Under stress, may generate anxious possibilities or second-guess what previously seemed like clear mechanical logic.' },
-    shadow8: { function: 'Fi', brief: 'The deepest shadow. Quietly held personal values that the ISTP may experience as "common sense" rather than values, and which influence actions without being acknowledged.' },
+    shadow5: { function: 'Te', brief: 'Te as your Counter fires when your technical authority or internal framework is challenged. The response is blunt, authoritative, assertive — not the usual Ti precision, but a demand for recognition: this is how it works, I\'ve verified it. The dug-in quality surprises people used to your usual economical, provisional style.' },
+    shadow6: { function: 'Si', brief: 'Si as your Critic means you have an unforgiving internal standard for whether methods are actually proven or just familiar. You catch when someone defends a technique on precedent alone, and when you catch yourself doing the same, the internal discomfort is real. A charged relationship with what "proven" actually means.' },
+    shadow7: { function: 'Ne', brief: 'Ne is available but unreliable. You can generate alternatives, see multiple angles, reframe a problem — but your self-monitoring here is weaker than in your Ti-Se domain. You may think you\'re following a genuinely productive tangent when you\'re actually circling. The risk isn\'t absence of creativity. It\'s overconfidence in a direction that doesn\'t hold.' },
+    shadow8: { function: 'Fi', brief: 'Fi as your Flood means that when Ti and Se both fail to resolve the situation, raw personal value-charge surfaces involuntarily. Sudden fierce loyalty, unexpected moral conviction, uncharacteristic emotional intensity that bypasses your usual logical precision. It often confuses everyone watching.' },
   },
 
   ISTJ: {
@@ -279,10 +279,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Genuine openness to innovation when evidence supports it, ability to generate creative solutions that honor established constraints.',
       unhealthyExpression: 'Catastrophic worst-case scenario thinking under pressure. Sudden paralysis when facing genuinely unprecedented situations. Dismissing creative ideas as irresponsible unless they have a proven precedent.',
     },
-    shadow5: { function: 'Se', brief: 'Shadow Se may appear as sudden impulsive action or sensory excess under extreme stress — out of character with their usual methodical nature.' },
-    shadow6: { function: 'Ti', brief: 'Private logical second-guessing of their own established procedures — "is this actually right, or just familiar?"' },
-    shadow7: { function: 'Fe', brief: 'Acute sensitivity to being socially judged or excluded, surfacing under conditions of interpersonal stress.' },
-    shadow8: { function: 'Ni', brief: 'The deepest shadow. Occasional dark convergent certainties about where things are inevitably heading — fatalism dressed up as realism.' },
+    shadow5: { function: 'Se', brief: 'Se as your Counter shows up when your established procedures are upended and you must respond in the moment. The reaction is faster and less considered than your usual Si deliberateness — direct engagement with immediate reality rather than comparison to proven precedent. At its most reactive, it can look like uncharacteristic impulsiveness from someone others rely on for steadiness.' },
+    shadow6: { function: 'Ti', brief: 'Ti as your Critic means you have an internal standard for logical consistency that goes beyond procedure. You notice when a rule is enforced without understanding why — and when you catch yourself following a system you can no longer justify internally, the discomfort is real. A charged relationship with the difference between authority and actual correctness.' },
+    shadow7: { function: 'Fe', brief: 'Fe is available but intermittent. You can read social dynamics, respond to emotional context, adjust for relational impact — but your self-monitoring here is weaker than in your Si-Te domain. You may believe a social intervention landed well when others experienced it as cold or tone-deaf.' },
+    shadow8: { function: 'Ni', brief: 'Ni as your Flood means that under significant pressure, a sudden dark certainty about outcomes surfaces involuntarily — not validated by the usual evidence trail. It contradicts your empirical patience and can be baffling to people who trust your methodical, precedent-based judgment.' },
   },
 
   ENFP: {
@@ -314,10 +314,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Grounding in physical health and routine, ability to learn from personal experience, appreciation for what has proven reliably meaningful.',
       unhealthyExpression: 'Health anxiety and symptom fixation under stress. Unhealthy nostalgia for past relationships or periods. Becoming rigid and rote in behavior — the opposite of the usual Ne fluidity.',
     },
-    shadow5: { function: 'Ni', brief: 'Shadow Ni can manifest as dark, converging certainties that feel like prophecies — "I just know this relationship will end badly" — shutting down Ne\'s usual optimism.' },
-    shadow6: { function: 'Fe', brief: 'Can become excessively approval-seeking or socially anxious under stress, losing the confident Ne forward momentum.' },
-    shadow7: { function: 'Ti', brief: 'Under pressure, may suddenly try to construct rigid logical frameworks to explain what Ne is actually generating through intuitive leaps.' },
-    shadow8: { function: 'Se', brief: 'The deepest shadow. Impulsive sensory action as a pressure release — physical risk-taking or sensory excess that surprises even the ENFP.' },
+    shadow5: { function: 'Ni', brief: 'Ni as your Counter shows up when you\'re cornered — you pull out a convergent, stubborn certainty that surprises people who only know your Ne. It\'s a weapon under duress, not a home. At its most reactive, it looks like stubbornness wearing the mask of exploration.' },
+    shadow6: { function: 'Fe', brief: 'Fe as your Critic means you can read rooms and manage emotional tone, but performed warmth — in others or yourself — triggers something close to contempt. You know the difference between genuine attunement and social technique, and you can\'t unknow it.' },
+    shadow7: { function: 'Ti', brief: 'Ti as your Gamble means you can build logical frameworks and check internal consistency, but your read on whether your reasoning actually holds isn\'t always accurate. You\'ll catch real errors sometimes, but you don\'t always know which arguments have gaps until someone else finds them.' },
+    shadow8: { function: 'Se', brief: 'Se as your Flood means that when everything else fails, you don\'t get more cerebral — you get physical. Sensory escape, bodily collapse, the need to disappear into immediate physical reality. It doesn\'t look like your normal self because it isn\'t.' },
   },
 
   ENFJ: {
@@ -349,10 +349,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Principled thinking that grounds their relational vision, ability to make difficult logical judgments without losing compassion.',
       unhealthyExpression: 'Paranoid rumination about what they may have done wrong. Sudden harsh internal verdicts about others\' character. Acute vulnerability to criticism from logical, analytical types.',
     },
-    shadow5: { function: 'Fi', brief: 'Under stress, may suddenly retreat into private self-absorption, cutting off the usual Fe-responsiveness to protect themselves.' },
-    shadow6: { function: 'Ne', brief: 'Anxious possibility-scattering that undermines Ni\'s usual strategic clarity — "what if I\'ve misread everything?"' },
-    shadow7: { function: 'Si', brief: 'Nostalgic attachment to past relationship configurations or social arrangements that have changed.' },
-    shadow8: { function: 'Te', brief: 'The deepest shadow. Cold, controlling efficiency that bypasses the usual Fe attunement — the ENFJ at their most frighteningly decisive.' },
+    shadow5: { function: 'Fi', brief: 'Fi as your Counter surfaces when your usual Fe facilitation feels futile or when you feel deeply unseen. Instead of working the room, you retreat into a defended private self that can feel unfamiliar even to you. At its most reactive, it reads like sudden self-absorption from someone everyone expects to be the relational center.' },
+    shadow6: { function: 'Ne', brief: 'Ne as your Critic means you have a harsh internal standard for whether thinking is genuinely creative or just performance. You can spot when brainstorming is repetitive or self-serving — and when your own Ni vision starts to feel like a closed loop, the inner critic fires. A charged relationship with whether insight is actually fresh.' },
+    shadow7: { function: 'Si', brief: 'Si is available but unreliable. You can anchor in past experience, rely on precedent, draw on what has worked — but your self-monitoring here is weaker than in your Fe-Ni domain. You may believe you\'re applying useful historical knowledge when you\'re actually retreating into familiarity to avoid present-moment complexity.' },
+    shadow8: { function: 'Te', brief: 'Te as your Flood means that when your relational attunement and vision both fail, cold organizing efficiency surfaces involuntarily — bypassing the usual Fe warmth. It doesn\'t emerge as leadership. It emerges as control. And it often startles the people who know you primarily as someone who leads through connection.' },
   },
 
   ENTP: {
@@ -384,10 +384,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Personal routines that support the intellectual engine, ability to draw on past experience rather than reinventing wheels.',
       unhealthyExpression: 'Health hypochondria under stress. Sudden rigid adherence to specific past ways of doing things. Sentimental attachment to experiences that Ne would normally move past.',
     },
-    shadow5: { function: 'Ni', brief: 'Shadow Ni appears as sudden dark certainties — paranoid convergence that replaces the usual productive divergence of Ne.' },
-    shadow6: { function: 'Te', brief: 'Under stress, may become bluntly authoritarian and controlling, demanding compliance with their framework rather than inviting intellectual engagement.' },
-    shadow7: { function: 'Fi', brief: 'Privately intense values judgments that the ENTP rarely surfaces, but which quietly inform which intellectual battles they choose.' },
-    shadow8: { function: 'Se', brief: 'The deepest shadow. Impulsive sensory action as a pressure valve — physical risk-taking or excess that bypasses the usual intellectual control.' },
+    shadow5: { function: 'Ni', brief: 'Ni as your Counter fires when Ne is overwhelmed and you can\'t brainstorm your way through. Instead of opening possibilities, you shut down to a single certainty — sudden, stubborn, often paranoid. People who know your usual exploratory mode find it disorienting because it feels like a different person.' },
+    shadow6: { function: 'Te', brief: 'Te as your Critic means you have a harsh internal standard for whether ideas have real-world traction. You can spot when intellectual frameworks aren\'t producing anything — in others and in yourself. When you catch yourself defending an argument that isn\'t going anywhere, the internal verdict is brutal.' },
+    shadow7: { function: 'Fi', brief: 'Fi is available but unreliable. You have values, loyalties, and deep personal commitments — but your self-monitoring on whether you\'re acting in line with them isn\'t always accurate. You may believe you\'re making a principled stand when you\'re actually just defending a position Ti has already committed to.' },
+    shadow8: { function: 'Se', brief: 'Se as your Flood means that under serious strain, impulsive physicalized action surfaces involuntarily — present-focused in a way that bypasses your usual intellectual control. Sensory action for its own sake. It doesn\'t look like you and doesn\'t feel like you either.' },
   },
 
   ENTJ: {
@@ -419,10 +419,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Personal values that guide strategic ambition toward genuinely meaningful ends, emotional depth behind the confident exterior, genuine vulnerability with trusted others.',
       unhealthyExpression: 'Acute, disproportionate reactions to personal criticism. Sudden moralizing that contradicts their usual pragmatism. Difficulty identifying what they personally want outside of strategic goals.',
     },
-    shadow5: { function: 'Ti', brief: 'Shadow Ti appears as internal second-guessing of their own logical framework — "but is this actually right?" — in ways that temporarily paralyze the usually decisive Te.' },
-    shadow6: { function: 'Ne', brief: 'Under stress, may scatter into possibility-anxiety, suddenly seeing all the ways the plan could fail.' },
-    shadow7: { function: 'Si', brief: 'Nostalgic rigidity — "this is how it\'s always been done, and that worked" — contradicting the usual strategic flexibility.' },
-    shadow8: { function: 'Fe', brief: 'The deepest shadow. Social performance used as a control mechanism — engineering others\' emotional states rather than connecting with them.' },
+    shadow5: { function: 'Ti', brief: 'Ti as your Counter fires when your external systems and authority are challenged from a purely logical angle. Instead of organizing and leading, you turn inward — second-guessing your own frameworks, auditing your conclusions. It has a paralytic quality that contradicts your usual decisive Te mode and can disorient the people who depend on your direction.' },
+    shadow6: { function: 'Ne', brief: 'Ne as your Critic means you have a harsh standard for whether thinking is genuinely innovative or just noise. You spot undisciplined ideation immediately — and when your own Ni vision starts to seem recycled or hasn\'t been stress-tested, the internal judge is unforgiving. A charged relationship with whether you\'re still seeing clearly.' },
+    shadow7: { function: 'Si', brief: 'Si is available but intermittent. You can draw on precedent, apply institutional knowledge, honor what has worked — but your self-monitoring here is weaker than in your Te-Ni domain. You may believe you\'re applying hard-won experience when you\'re actually defaulting to familiar patterns because they\'re comfortable.' },
+    shadow8: { function: 'Fe', brief: 'Fe as your Flood means that when your strategic apparatus fails, a sudden need for connection or approval surfaces involuntarily — not genuine attunement, but pressure. It can look like manipulation to everyone watching. It\'s a pressure valve, not a tool.' },
   },
 
   ESFP: {
@@ -454,10 +454,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Ability to see where present-moment choices are leading, long-range awareness that doesn\'t undermine present joy.',
       unhealthyExpression: 'Dark paranoid certainties under stress. Fixation on a single feared future outcome. Refusal to consider consequences of present-moment choices.',
     },
-    shadow5: { function: 'Si', brief: 'Shadow Si appears as sudden rigid attachment to "the way we\'ve always done it" — contradicting the usually flexible Se orientation.' },
-    shadow6: { function: 'Fe', brief: 'Can become excessively approval-seeking or socially anxious under stress, losing the confident present-moment Se center.' },
-    shadow7: { function: 'Ti', brief: 'Under pressure, may construct elaborate justifications for present-moment choices that are actually impulsive Se.' },
-    shadow8: { function: 'Ne', brief: 'The deepest shadow. Anxious scattered possibility-thinking that prevents the usual sensory grounding.' },
+    shadow5: { function: 'Si', brief: 'Si as your Counter fires when your Se flow is interrupted and you need something stable to stand on. Instead of responding to the present, you anchor in how things have been done — suddenly rigid, procedural, resistant to the spontaneous adaptation that usually comes naturally. At its most reactive, it looks like stubborn traditionalism from someone who\'s usually the most present-focused person in the room.' },
+    shadow6: { function: 'Fe', brief: 'Fe as your Critic means you have a harsh internal standard for emotional authenticity. You can tell when warmth is being performed rather than felt — and when you catch yourself playing to the room rather than expressing genuinely, the inner judge is quick. A charged relationship with whether what you\'re doing is real.' },
+    shadow7: { function: 'Ti', brief: 'Ti is available but unreliable. You can construct logical frameworks and build arguments — but your self-monitoring here is weaker than in your Se domain. You may think your reasoning holds when it has gaps that someone with a stronger Ti would catch immediately.' },
+    shadow8: { function: 'Ne', brief: 'Ne as your Flood means that under serious strain, anxious scattered possibility-thinking surfaces involuntarily — preventing the sensory grounding you usually rely on. Possibilities multiply without filtering. It doesn\'t look like your normal self and typically doesn\'t feel like it either.' },
   },
 
   ESFJ: {
@@ -489,10 +489,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Principled thinking that prevents Fe from simply deferring to social norms, ability to make difficult judgments with clarity.',
       unhealthyExpression: 'Harsh blunt criticism that contradicts the usual warmth. Obsessive internal analysis about whether their care is "deserved." Sudden cold logic in situations that call for warmth.',
     },
-    shadow5: { function: 'Se', brief: 'Shadow Se may appear as sudden impulsive behavior when social constraints feel unbearably confining.' },
-    shadow6: { function: 'Fi', brief: 'Private, intense personal judgments about others\' moral character that remain unexpressed but shape relationships.' },
-    shadow7: { function: 'Ni', brief: 'Dark hunches about relational futures that feel like certainties — "I just know this friendship is ending" — without real evidence.' },
-    shadow8: { function: 'Te', brief: 'The deepest shadow. Cold, controlling efficiency that bypasses the usual Fe warmth when the social order feels seriously threatened.' },
+    shadow5: { function: 'Fi', brief: 'Fi as your Counter surfaces when your Fe facilitation feels futile or when you feel genuinely unseen. Instead of reading the room and responding, you retreat into a defended private self that can feel unfamiliar even to you. At its most reactive, it reads as sudden emotional withdrawal from someone others rely on for warmth and consistency.' },
+    shadow6: { function: 'Se', brief: 'Se as your Critic means you have a harsh standard for genuine presence and real-time engagement. You notice when someone is going through the motions without actually attending to what\'s in front of them — and when you catch yourself managing relational routine without real engagement, the internal discomfort is real. A charged relationship with whether care is actually alive in the moment.' },
+    shadow7: { function: 'Ni', brief: 'Ni is available but unreliable. You can read beneath the surface of situations and arrive at convergent impressions — but your self-monitoring here is weaker than in your Fe-Si domain. You may believe a hunch about someone is accurate when it\'s actually a projection from past relational experience.' },
+    shadow8: { function: 'Te', brief: 'Te as your Flood means that when your relational structure and accumulated knowledge both fail, cold organizing efficiency surfaces involuntarily — bypassing the usual Fe warmth. Not leadership. Control. It often shocks the people who count on you for care and consistency.' },
   },
 
   ESTP: {
@@ -524,10 +524,10 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Long-range awareness that complements tactical brilliance, ability to see where present-moment patterns are heading.',
       unhealthyExpression: 'Sudden dark fatalism. Paranoid certainty about negative futures. Inability to disengage from a fixed negative prediction.',
     },
-    shadow5: { function: 'Si', brief: 'Shadow Si appears as rigid attachment to proven methods or past approaches, contradicting the usually adaptable Se orientation.' },
-    shadow6: { function: 'Te', brief: 'Under stress, may become authoritarian and controlling — demanding compliance rather than adapting to the situation.' },
-    shadow7: { function: 'Fi', brief: 'Privately intense values that the ESTP rarely surfaces, influencing which battles they choose to fight.' },
-    shadow8: { function: 'Ne', brief: 'The deepest shadow. Anxious scattered possibility-thinking that prevents the usual tactical focus.' },
+    shadow5: { function: 'Si', brief: 'Si as your Counter fires when your Se-based adaptability is challenged and you need to assert that your method is right. Instead of reading the present situation, you dig into precedent — "this is how it\'s done, because it\'s worked before." At its most reactive, it looks like inflexibility from someone who\'s usually the most situationally fluid person around.' },
+    shadow6: { function: 'Te', brief: 'Te as your Critic means you have a harsh standard for whether systems and authority structures are actually efficient or just performing authority. You can spot bureaucratic overhead immediately — and when you catch yourself defending a process that isn\'t generating results, the internal verdict is brutal.' },
+    shadow7: { function: 'Fi', brief: 'Fi is available but unreliable. You have values and loyalties — but your self-monitoring on whether you\'re acting in line with them isn\'t always accurate. You may believe you\'re making a principled choice when you\'re actually following the path of least tactical resistance.' },
+    shadow8: { function: 'Ne', brief: 'Ne as your Flood means that under breakdown, scattered anxious possibility-thinking surfaces involuntarily — undermining the tactical focus you usually depend on. Possibilities multiply without filtering. It doesn\'t look like you and typically doesn\'t feel like it either.' },
   },
 
   ESTJ: {
@@ -559,9 +559,9 @@ export const MBTI_FUNCTION_DETAILS = {
       healthyExpression: 'Personal integrity behind the institutional efficiency, genuine care for individuals within the system.',
       unhealthyExpression: 'Acute sensitivity to personal criticism that seems disproportionate. Sudden moralizing when personal values are violated. Difficulty asking for what they need as individuals.',
     },
-    shadow5: { function: 'Ti', brief: 'Shadow Ti can manifest as obsessive internal auditing — "but is this procedure actually right?" — temporarily paralyzing the usually decisive Te.' },
-    shadow6: { function: 'Se', brief: 'Sudden impulsive sensory action or physical excess under extreme stress, contradicting the usual methodical structure.' },
-    shadow7: { function: 'Fe', brief: 'Under stress, may become suddenly socially anxious or obsessed with group approval in ways that contradict their usual confidence.' },
-    shadow8: { function: 'Ni', brief: 'The deepest shadow. Dark convergent certainties about where things are inevitably heading — fatalism dressed up as pragmatic realism.' },
+    shadow5: { function: 'Ti', brief: 'Ti as your Counter fires when your Te systems are challenged on logical grounds rather than procedural ones. Instead of organizing and directing, you turn inward — auditing your own frameworks, looking for the internal inconsistency, trying to prove that your structure is not just established but correct. A second-guessing mode that contradicts your usual decisiveness.' },
+    shadow6: { function: 'Se', brief: 'Se as your Critic means you have a harsh standard for genuine presence and real-time engagement. You notice when someone is enforcing procedure without observing what\'s actually in front of them — and when you catch yourself doing the same, the discomfort is real. A charged relationship with the question of whether you\'re actually seeing what\'s there.' },
+    shadow7: { function: 'Ni', brief: 'Ni is available but unreliable. You can read beneath the surface and arrive at convergent impressions about where things are heading — but your self-monitoring here is weaker than in your Te-Si domain. You may believe a hunch is validated pattern-recognition when it\'s actually an unexamined assumption from precedent.' },
+    shadow8: { function: 'Fe', brief: 'Fe as your Flood means that when your organizational capacity and institutional knowledge both fail, a sudden need for social approval or group cohesion surfaces involuntarily — bypassing your usual structured competence. It can read as manipulation to people watching, and often surprises both you and them.' },
   },
 };
