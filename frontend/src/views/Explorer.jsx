@@ -15,6 +15,8 @@ import { INSTINCT_STACK_PROFILES } from '../data/instinctStackProfiles.js';
 import { INSTINCT_PAIR_DYNAMICS, instinctPairKey } from '../data/instinctPairDynamics.js';
 import { ENN_MBTI_CORRELATION } from '../data/ennMbtiCorrelation.js';
 import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
+import { POSITIONS } from '../data/shadow.js';
+import { getShadowMirror, instantiateTemplate } from '../utils/shadow.js';
 
 const INSTINCT_META = {
   sp: { label: 'Self-Preservation', desc: 'Focused on physical security, health, comfort, and resource management.' },
@@ -34,6 +36,7 @@ const TABS = [
 export default function Explorer({ initialTab = 'enneagram', initialSel = null }) {
   const [tab, setTab] = useState(initialTab);
   const [sel, setSel] = useState(initialSel);
+  const [showPositionRef, setShowPositionRef] = useState(false);
 
   // ── Enneagram detail ──────────────────────────────────────────────────────
   if (sel && tab === 'enneagram') {
@@ -295,7 +298,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             return (
               <div key={fn} style={{ marginTop: i ? 16 : 10 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                  <span style={{ fontSize: 11, color: G.textFaint, fontFamily: "'DM Mono',monospace", width: 28 }}>{['DOM', 'AUX', 'TER', 'INF'][i]}</span>
+                  <span style={{ fontSize: 11, color: G.textFaint, fontFamily: "'DM Mono',monospace", width: 44 }}>{['① Lead', '② Anchor', '③ Refuge', '④ Hunger'][i]}</span>
                   <FnBadge fn={fn} size="md" />
                   <span style={{ fontSize: 13, color: G.textDim }}>{f.name}</span>
                 </div>
@@ -357,16 +360,16 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
           const d = MBTI_FUNCTION_DETAILS[sel];
           const t2 = MBTI_TYPES[sel];
           const positions = [
-            { key: 'dominant', label: 'DOM', color: G.gold },
-            { key: 'auxiliary', label: 'AUX', color: '#5090d0' },
-            { key: 'tertiary', label: 'TER', color: '#30a888' },
-            { key: 'inferior', label: 'INF', color: '#e88050' },
+            { key: 'dominant',  label: '① Lead',   color: G.gold },
+            { key: 'auxiliary', label: '② Anchor', color: '#5090d0' },
+            { key: 'tertiary',  label: '③ Refuge', color: '#30a888' },
+            { key: 'inferior',  label: '④ Hunger', color: '#e88050' },
           ];
           const shadows = [
-            { key: 'shadow5', label: 'SH5' },
-            { key: 'shadow6', label: 'SH6' },
-            { key: 'shadow7', label: 'SH7' },
-            { key: 'shadow8', label: 'SH8' },
+            { key: 'shadow5', pos: 5, label: '⑤ Counter', color: '#c06050' },
+            { key: 'shadow6', pos: 6, label: '⑥ Critic',  color: '#a05070' },
+            { key: 'shadow7', pos: 7, label: '⑦ Gamble',  color: '#806080' },
+            { key: 'shadow8', pos: 8, label: '⑧ Flood',   color: '#605070' },
           ];
           return (
             <div style={S.card}>
@@ -396,15 +399,32 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                   </div>
                 );
               })}
-              <div>
-                <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 8, fontFamily: "'DM Mono',monospace" }}>SHADOW FUNCTIONS (5–8)</p>
-                {shadows.map(({ key, label }) => {
+              <div style={{ marginTop: 8 }}>
+                <p style={{ ...S.h3, color: G.textDim, marginBottom: 4 }}>Shadow Stack</p>
+                <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 12 }}>
+                  Positions 5–8 — functions present but less consciously developed, each with a characteristic charge.
+                </p>
+                {(() => {
+                  const mirror = getShadowMirror(sel);
+                  return mirror ? (
+                    <div style={{ ...S.card, background: 'rgba(96,80,112,0.12)', border: '1px solid rgba(160,80,112,0.25)', marginBottom: 12, padding: '10px 14px' }}>
+                      <p style={{ ...S.body, fontSize: 12 }}>
+                        Your shadow mirror is <strong style={{ color: G.gold }}>{mirror}</strong>. Their ego stack is your shadow stack — they operate fluently in the exact domains where you're most reactive.
+                      </p>
+                    </div>
+                  ) : null;
+                })()}
+                {shadows.map(({ key, pos, label, color }) => {
                   const sh = d[key];
                   if (!sh) return null;
+                  const template = instantiateTemplate(pos, sh.function);
                   return (
-                    <div key={key} style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'flex-start' }}>
-                      <span style={{ fontSize: 10, color: G.textFaint, fontFamily: "'DM Mono',monospace", width: 28, flexShrink: 0, marginTop: 2 }}>{label}</span>
-                      <FnBadge fn={sh.function} />
+                    <div key={key} style={{ marginBottom: 12, padding: '12px 14px', borderRadius: 10, background: 'rgba(255,255,255,0.02)', border: `1px solid ${color}33` }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                        <span style={{ fontSize: 10, color, fontFamily: "'DM Mono',monospace", width: 64, flexShrink: 0 }}>{label}</span>
+                        <FnBadge fn={sh.function} />
+                      </div>
+                      <p style={{ ...S.body, fontSize: 12, color: G.textDim, marginBottom: 6 }}>{template}</p>
                       <p style={{ ...S.body, fontSize: 12, color: G.textFaint }}>{sh.brief}</p>
                     </div>
                   );
@@ -555,6 +575,38 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
               </button>
             ))}
           </div>
+          {/* Position Reference */}
+          <button onClick={() => setShowPositionRef(v => !v)} style={{ ...S.btnOutline, width: '100%', marginTop: 16, marginBottom: 16 }}>
+            {showPositionRef ? 'Hide' : 'Show'} Position Reference
+          </button>
+          {showPositionRef && (
+            <div style={S.card}>
+              <h3 style={S.h3}>Ego Arc — Positions 1–4</h3>
+              <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 10 }}>The skill-development arc — fluent to vulnerable</p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 20 }}>
+                {POSITIONS.filter(p => p.arc === 'ego').map(p => (
+                  <div key={p.pos} style={{ padding: '10px 12px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}>
+                    <p style={{ fontSize: 11, color: G.gold, fontFamily: "'DM Mono',monospace", marginBottom: 4 }}>
+                      {['①','②','③','④'][p.pos - 1]} {p.name}
+                    </p>
+                    <p style={{ ...S.body, fontSize: 12 }}>{p.brief}</p>
+                  </div>
+                ))}
+              </div>
+              <h3 style={S.h3}>Shadow Arc — Positions 5–8</h3>
+              <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 10 }}>The loss-of-control arc — reactive to involuntary</p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                {POSITIONS.filter(p => p.arc === 'shadow').map(p => (
+                  <div key={p.pos} style={{ padding: '10px 12px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}>
+                    <p style={{ fontSize: 11, color: G.textDim, fontFamily: "'DM Mono',monospace", marginBottom: 4 }}>
+                      {['⑤','⑥','⑦','⑧'][p.pos - 5]} {p.name}
+                    </p>
+                    <p style={{ ...S.body, fontSize: 12 }}>{p.brief}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </>
       )}
 

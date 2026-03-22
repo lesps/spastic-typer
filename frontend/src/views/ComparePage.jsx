@@ -13,6 +13,7 @@ import { getCommunicationMatrix, getGrowthStressInteraction, getCognitiveHarmony
 import { decodeProfileCode } from '../utils/share.js';
 import ExportModal from '../components/ExportModal.jsx';
 import { generateCompareSystemPrompt } from '../utils/export.js';
+import { getPositionCrossings } from '../utils/shadow.js';
 
 const INSTINCT_LABELS = { sp: 'SP', sx: 'SX', so: 'SO' };
 const LS_COMPARE = 'compare_persons';
@@ -423,6 +424,7 @@ export default function ComparePage() {
     const mbtiTips = mbtiKey2 ? (MBTI_TIPS[mbtiKey2] || []) : [];
     const mbtiStacks = bothMBTI ? { stack1: MBTI_TYPES[pA.mbti]?.stack, stack2: MBTI_TYPES[pB.mbti]?.stack } : null;
     const shared = mbtiStacks ? mbtiStacks.stack1.filter(f => mbtiStacks.stack2.includes(f)) : [];
+    const positionCrossings = bothMBTI ? getPositionCrossings(pA.mbti, pB.mbti) : null;
 
     return (
       <div>
@@ -546,6 +548,33 @@ export default function ComparePage() {
                 ))}
               </div>
             ))}
+            {positionCrossings && positionCrossings.crossings.length > 0 && (
+              <>
+                {positionCrossings.isFullShadowPair && (
+                  <div style={{ ...S.cardGold, marginBottom: 0 }}>
+                    <h3 style={S.h3}>Full Shadow Pair</h3>
+                    <p style={S.body}>{positionCrossings.shadowPairNarrative}</p>
+                  </div>
+                )}
+                <div style={S.card}>
+                  <h3 style={{ ...S.h3, marginBottom: 8 }}>Position Crossings</h3>
+                  {positionCrossings.crossings.map((c, i) => {
+                    const borderColor = c.tier === 'highest' ? '#e88050' : c.tier === 'high' ? G.gold : G.border;
+                    return (
+                      <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: borderColor, borderLeftStyle: 'solid', marginBottom: 8, padding: '10px 14px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6, flexWrap: 'wrap' }}>
+                          <h3 style={{ ...S.h3, marginBottom: 0, color: borderColor }}>{c.label}</h3>
+                          <FnBadge fn={c.fnA} />
+                          <span style={{ fontSize: 10, color: G.textFaint }}>↔</span>
+                          <FnBadge fn={c.fnB} />
+                        </div>
+                        <p style={S.body}>{c.description}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </>
         )}
         {/* Cognitive Harmony Score */}

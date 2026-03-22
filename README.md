@@ -35,6 +35,7 @@ For each pair the Compare page shows:
 - Wing dynamics
 - Instinct stack compatibility
 - MBTI cognitive-function overlap and tips
+- **Shadow Stack** — 8-position cognitive function model (Lead through Flood) with unified cross-stack comparison
 
 When 3 or more profiles are loaded, a **Group Analysis** section summarizes patterns across the whole set.
 
