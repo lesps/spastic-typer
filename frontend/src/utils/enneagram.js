@@ -10,7 +10,8 @@ export function getInstinctStackInteraction(stackA, stackB) {
   const notes = [];
 
   // Dominant pairing
-  const domKey = [domA, domB].sort().join('-');
+  const instOrder = { sp: 0, sx: 1, so: 2 };
+  const domKey = [domA, domB].sort((a, b) => instOrder[a] - instOrder[b]).join('-');
   const domPair = INSTINCT_COMPAT[domKey];
   if (domPair) {
     notes.push({

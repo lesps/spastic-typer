@@ -6759,12 +6759,24 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sp/sx|sp/sx/so": [
     {
+      "label": "Dominant: SP × SO",
+      "bond": "SP handles personal stability while SO navigates the social world — a natural complementary pairing.",
+      "tension": "SP may find SO's social focus draining; SO may feel SP is too self-focused or withdrawn from the group.",
+      "tier": "dominant"
+    },
+    {
       "label": "B's Secondary Matches A's Dominant",
       "note": "Person B's secondary SP resonates with Person A's primary motivation — B can naturally attune to how A leads.",
       "tier": "secondary"
     }
   ],
   "so/sx/sp|sp/sx/so": [
+    {
+      "label": "Dominant: SP × SO",
+      "bond": "SP handles personal stability while SO navigates the social world — a natural complementary pairing.",
+      "tension": "SP may find SO's social focus draining; SO may feel SP is too self-focused or withdrawn from the group.",
+      "tier": "dominant"
+    },
     {
       "label": "Mirror-Reversed Stack",
       "note": "SP/SX/SO vs SO/SX/SP — each person's dominant is the other's repressed. Maximum complementarity and maximum potential friction.",
@@ -6827,6 +6839,12 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sp/sx|sp/so/sx": [
     {
+      "label": "Dominant: SP × SO",
+      "bond": "SP handles personal stability while SO navigates the social world — a natural complementary pairing.",
+      "tension": "SP may find SO's social focus draining; SO may feel SP is too self-focused or withdrawn from the group.",
+      "tier": "dominant"
+    },
+    {
       "label": "A's Secondary Matches B's Dominant",
       "note": "Person A's secondary SO resonates with Person B's primary motivation — A can naturally attune to how B leads.",
       "tier": "secondary"
@@ -6838,6 +6856,12 @@ export const INSTINCT_STACK_DYNAMICS = {
     }
   ],
   "so/sx/sp|sp/so/sx": [
+    {
+      "label": "Dominant: SP × SO",
+      "bond": "SP handles personal stability while SO navigates the social world — a natural complementary pairing.",
+      "tension": "SP may find SO's social focus draining; SO may feel SP is too self-focused or withdrawn from the group.",
+      "tier": "dominant"
+    },
     {
       "label": "A's Secondary Matches B's Dominant",
       "note": "Person A's secondary SO resonates with Person B's primary motivation — A can naturally attune to how B leads.",
@@ -6872,6 +6896,12 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sp/sx|sx/sp/so": [
     {
+      "label": "Dominant: SX × SO",
+      "bond": "SX brings passionate depth; SO brings breadth and social awareness — a vivid complementary pair.",
+      "tension": "SX may feel SO is too diffuse or shallow; SO may feel SX's intensity is overwhelming or demanding.",
+      "tier": "dominant"
+    },
+    {
       "label": "Mirror-Reversed Stack",
       "note": "SX/SP/SO vs SO/SP/SX — each person's dominant is the other's repressed. Maximum complementarity and maximum potential friction.",
       "tier": "alignment"
@@ -6883,6 +6913,12 @@ export const INSTINCT_STACK_DYNAMICS = {
     }
   ],
   "so/sx/sp|sx/sp/so": [
+    {
+      "label": "Dominant: SX × SO",
+      "bond": "SX brings passionate depth; SO brings breadth and social awareness — a vivid complementary pair.",
+      "tension": "SX may feel SO is too diffuse or shallow; SO may feel SX's intensity is overwhelming or demanding.",
+      "tier": "dominant"
+    },
     {
       "label": "B's Secondary Matches A's Dominant",
       "note": "Person B's secondary SX resonates with Person A's primary motivation — B can naturally attune to how A leads.",
@@ -6909,12 +6945,24 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sp/sx|sx/so/sp": [
     {
+      "label": "Dominant: SX × SO",
+      "bond": "SX brings passionate depth; SO brings breadth and social awareness — a vivid complementary pair.",
+      "tension": "SX may feel SO is too diffuse or shallow; SO may feel SX's intensity is overwhelming or demanding.",
+      "tier": "dominant"
+    },
+    {
       "label": "A's Secondary Matches B's Dominant",
       "note": "Person A's secondary SO resonates with Person B's primary motivation — A can naturally attune to how B leads.",
       "tier": "secondary"
     }
   ],
   "so/sx/sp|sx/so/sp": [
+    {
+      "label": "Dominant: SX × SO",
+      "bond": "SX brings passionate depth; SO brings breadth and social awareness — a vivid complementary pair.",
+      "tension": "SX may feel SO is too diffuse or shallow; SO may feel SX's intensity is overwhelming or demanding.",
+      "tier": "dominant"
+    },
     {
       "label": "A's Secondary Matches B's Dominant",
       "note": "Person A's secondary SO resonates with Person B's primary motivation — A can naturally attune to how B leads.",

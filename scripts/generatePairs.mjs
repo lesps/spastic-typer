@@ -23,7 +23,8 @@ function getInstinctStackInteraction(stackA, stackB) {
   const repA = stackA[2], repB = stackB[2];
   const notes = [];
 
-  const domKey = [domA, domB].sort().join('-');
+  const instOrder = { sp: 0, sx: 1, so: 2 };
+  const domKey = [domA, domB].sort((a, b) => instOrder[a] - instOrder[b]).join('-');
   const domPair = INSTINCT_COMPAT[domKey];
   if (domPair) {
     notes.push({ label: `Dominant: ${domA.toUpperCase()} × ${domB.toUpperCase()}`, bond: domPair.bond, tension: domPair.tension, tier: 'dominant' });
