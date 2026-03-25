@@ -102,3 +102,48 @@ describe('getCognitiveHarmony — edge cases', () => {
     expect(isNaN(score)).toBe(false);
   });
 });
+
+describe('getCognitiveHarmony — shadow awareness', () => {
+  it('ENFP × INFJ (full shadow pair) score stays within [0, 100]', () => {
+    const { score } = getCognitiveHarmony('ENFP', 'INFJ');
+    expect(score).toBeGreaterThanOrEqual(0);
+    expect(score).toBeLessThanOrEqual(100);
+  });
+
+  it('ENFP × INFJ strengthsAsTeam includes full-shadow-pair observation', () => {
+    const { strengthsAsTeam } = getCognitiveHarmony('ENFP', 'INFJ');
+    const hasShadowEntry = strengthsAsTeam.some(s => s.toLowerCase().includes('shadow'));
+    expect(hasShadowEntry).toBe(true);
+  });
+
+  it('symmetry is preserved with shadow scoring: getCognitiveHarmony(A,B) === getCognitiveHarmony(B,A)', () => {
+    expect(getCognitiveHarmony('ENFP', 'INFJ').score).toBe(getCognitiveHarmony('INFJ', 'ENFP').score);
+    expect(getCognitiveHarmony('INTJ', 'ENTP').score).toBe(getCognitiveHarmony('ENTP', 'INTJ').score);
+    expect(getCognitiveHarmony('ENFP', 'ISTJ').score).toBe(getCognitiveHarmony('ISTJ', 'ENFP').score);
+  });
+
+  it('blindSpots is still an array (structure unchanged)', () => {
+    const { blindSpots } = getCognitiveHarmony('ENFP', 'INFJ');
+    expect(Array.isArray(blindSpots)).toBe(true);
+  });
+});
+
+describe('getCognitiveHarmony — score stability (shadow shift ≤ ±8 from ego-only baseline)', () => {
+  // Baselines computed from ego-only scoring before shadow layer was added.
+  const cases = [
+    { a: 'ENFP', b: 'ENFP', baseline: 90 },
+    { a: 'ENFP', b: 'INFJ', baseline: 50 },
+    { a: 'ENFP', b: 'ISTJ', baseline: 80 },
+    { a: 'ENFP', b: 'ISTP', baseline: 50 },
+    { a: 'INTJ', b: 'ENTP', baseline: 50 },
+  ];
+  const TOLERANCE = 8;
+
+  cases.forEach(({ a, b, baseline }) => {
+    it(`${a} × ${b} score stays within ±${TOLERANCE} of ego-only baseline (${baseline})`, () => {
+      const { score } = getCognitiveHarmony(a, b);
+      expect(score).toBeGreaterThanOrEqual(baseline - TOLERANCE);
+      expect(score).toBeLessThanOrEqual(baseline + TOLERANCE);
+    });
+  });
+});

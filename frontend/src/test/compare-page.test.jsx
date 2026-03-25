@@ -322,7 +322,7 @@ describe('ComparePage — shadow dynamics', () => {
       { label: 'P2', ennType: 5, ennWing: 4, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'INFJ', ennScores: null },
     ]));
     render(<ComparePage />);
-    expect(screen.getByText(/full shadow pair/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/full shadow pair/i).length).toBeGreaterThanOrEqual(1);
   });
 
   it('shows position crossing flags when both persons have MBTI', () => {
