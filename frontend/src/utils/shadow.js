@@ -101,25 +101,28 @@ export function getPositionCrossings(typeA, typeB) {
       const matrix = CROSSING_MATRIX[key];
       if (!matrix) continue;
 
-      // Determine which side is "A" in the template (the one with the lower position or just typeA)
-      // posA/posB track actual positions; nameA/nameB track actual position names for each type
-      const fnA = a.fn; // same as b.fn since we only match when equal
-      const fnB = b.fn;
+      // Template's {typeA} = the type whose function is at the LOWER position number.
+      // When a (typeA's entry) is at the higher position, swap so descriptions are correct.
+      const lowerIsFromA = a.pos <= b.pos;
+      const templateTypeA = lowerIsFromA ? typeA : typeB;
+      const templateTypeB = lowerIsFromA ? typeB : typeA;
 
       const description = matrix.template
-        .replace(/\{fnA\}/g, fnA)
-        .replace(/\{fnB\}/g, fnB)
-        .replace(/\{typeA\}/g, typeA)
-        .replace(/\{typeB\}/g, typeB)
-        .replace(/\{fnName\}/g, COG_FUNCTIONS[fnA]?.name || fnA);
+        .replace(/\{fnA\}/g, a.fn)
+        .replace(/\{fnB\}/g, b.fn)
+        .replace(/\{typeA\}/g, templateTypeA)
+        .replace(/\{typeB\}/g, templateTypeB)
+        .replace(/\{fnName\}/g, COG_FUNCTIONS[a.fn]?.name || a.fn);
 
       crossings.push({
         posA: a.pos,
         posB: b.pos,
         nameA: a.name,
         nameB: b.name,
-        fnA,
-        fnB,
+        fnA: a.fn,
+        fnB: b.fn,
+        typeForA: templateTypeA,  // MBTI code at template's {typeA} slot (lower position)
+        typeForB: templateTypeB,  // MBTI code at template's {typeB} slot (higher position)
         tier: matrix.tier,
         label: matrix.label,
         description,

@@ -28,6 +28,13 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 - ComparePage: position-crossing flags added to pairwise MBTI comparison, Full Shadow Pair callout for mirror types
 - Rewrote all 64 shadow function descriptions in `mbtiDetails.js` to use new position naming and experiential tone
 
+### 1.3.3 — 2026-03-25
+
+- Fix: Position crossing directionality bug — `{typeA}` in crossing templates now always refers to the type holding the **lower** position number, not the first argument to `getPositionCrossings()`. Added `typeForA`/`typeForB` metadata fields to each crossing object. `getPositionCrossings('INFJ', 'ENFP')` and `('ENFP', 'INFJ')` now produce correctly attributed descriptions in both orderings.
+- Improved: Position crossing descriptions now show person names (e.g. "Alice's Lead") instead of MBTI codes when person labels are available. Same-type pairs retain MBTI codes to avoid ambiguity.
+- Added: 6 new `CROSSING_MATRIX` entries covering previously missing position pairs: Shared Anchor (2-2), Shared Refuge (3-3), Anchor ↔ Counter (2-5), Anchor ↔ Critic (2-6, high tier), Refuge ↔ Critic (3-6), Refuge ↔ Gamble (3-7).
+- Improved: Medium-tier crossings in the Compare page now collapse behind a `▶ N medium-tier crossings` toggle, keeping the highest/high-tier crossings always visible and preventing the section from becoming overwhelming for dissimilar or full-shadow type pairs.
+
 ### 1.3.2 — 2026-03-25
 
 - Fix: Compare page pairwise analysis now substitutes actual person names (e.g. "Spencer", "Wife") for all "Person A"/"Person B" placeholders in `ENN_TIPS`, `MBTI_TIPS`, and `INSTINCT_STACK_DYNAMICS` rendered text. Canonical key ordering (lower Enneagram type / alphabetical MBTI / alphabetical instinct stack string) is used to map "Person A"/"Person B" to the correct person label, fixing a position-swap accuracy bug where tips could be attributed to the wrong person. `getGrowthStressInteraction()`, `deriveInstinctDepthAnalysis()`, and `getInstinctDepthAnalysisSync()` in `utils/compare.js` updated to accept `nameA`/`nameB` parameters; `substituteNames()` helper added to `ComparePage.jsx`.

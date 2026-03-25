@@ -598,33 +598,57 @@ export default function ComparePage() {
                 ))}
               </div>
             ))}
-            {positionCrossings && positionCrossings.crossings.length > 0 && (
-              <>
-                {positionCrossings.isFullShadowPair && (
-                  <div style={{ ...S.cardGold, marginBottom: 0 }}>
-                    <h3 style={S.h3}>Full Shadow Pair</h3>
-                    <p style={S.body}>{positionCrossings.shadowPairNarrative}</p>
+            {positionCrossings && positionCrossings.crossings.length > 0 && (() => {
+              const renderCrossingDesc = (c) => {
+                if (!c.typeForA || !c.typeForB || c.typeForA === c.typeForB) return c.description;
+                const labelA = c.typeForA === pA.mbti ? pA.label : pB.label;
+                const labelB = c.typeForB === pA.mbti ? pA.label : pB.label;
+                return c.description
+                  .replace(new RegExp(c.typeForA, 'g'), labelA)
+                  .replace(new RegExp(c.typeForB, 'g'), labelB);
+              };
+              const renderCrossing = (c, i) => {
+                const borderColor = c.tier === 'highest' ? '#e88050' : c.tier === 'high' ? G.gold : G.border;
+                return (
+                  <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: borderColor, borderLeftStyle: 'solid', marginBottom: 8, padding: '10px 14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6, flexWrap: 'wrap' }}>
+                      <h3 style={{ ...S.h3, marginBottom: 0, color: borderColor }}>{c.label}</h3>
+                      <FnBadge fn={c.fnA} />
+                      <span style={{ fontSize: 10, color: G.textFaint }}>↔</span>
+                      <FnBadge fn={c.fnB} />
+                    </div>
+                    <p style={S.body}>{renderCrossingDesc(c)}</p>
                   </div>
-                )}
-                <div style={S.card}>
-                  <h3 style={{ ...S.h3, marginBottom: 8 }}>Position Crossings</h3>
-                  {positionCrossings.crossings.map((c, i) => {
-                    const borderColor = c.tier === 'highest' ? '#e88050' : c.tier === 'high' ? G.gold : G.border;
-                    return (
-                      <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: borderColor, borderLeftStyle: 'solid', marginBottom: 8, padding: '10px 14px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6, flexWrap: 'wrap' }}>
-                          <h3 style={{ ...S.h3, marginBottom: 0, color: borderColor }}>{c.label}</h3>
-                          <FnBadge fn={c.fnA} />
-                          <span style={{ fontSize: 10, color: G.textFaint }}>↔</span>
-                          <FnBadge fn={c.fnB} />
+                );
+              };
+              const priorityCrossings = positionCrossings.crossings.filter(c => c.tier !== 'medium');
+              const mediumCrossings = positionCrossings.crossings.filter(c => c.tier === 'medium');
+              return (
+                <>
+                  {positionCrossings.isFullShadowPair && (
+                    <div style={{ ...S.cardGold, marginBottom: 0 }}>
+                      <h3 style={S.h3}>Full Shadow Pair</h3>
+                      <p style={S.body}>{positionCrossings.shadowPairNarrative}</p>
+                    </div>
+                  )}
+                  <div style={S.card}>
+                    <h3 style={{ ...S.h3, marginBottom: 8 }}>Position Crossings</h3>
+                    {priorityCrossings.map(renderCrossing)}
+                    {mediumCrossings.length > 0 && (
+                      <details style={{ marginTop: priorityCrossings.length > 0 ? 4 : 0 }}>
+                        <summary style={{ cursor: 'pointer', fontSize: 13, color: G.textFaint, userSelect: 'none', padding: '6px 2px', listStyle: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
+                          <span style={{ fontSize: 10 }}>▶</span>
+                          {mediumCrossings.length} medium-tier crossing{mediumCrossings.length !== 1 ? 's' : ''}
+                        </summary>
+                        <div style={{ marginTop: 4 }}>
+                          {mediumCrossings.map(renderCrossing)}
                         </div>
-                        <p style={S.body}>{c.description}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </>
-            )}
+                      </details>
+                    )}
+                  </div>
+                </>
+              );
+            })()}
           </>
         )}
         {/* Cognitive Harmony Score */}
