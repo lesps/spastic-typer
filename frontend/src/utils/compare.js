@@ -117,7 +117,7 @@ const ARROW_NARRATIVES = {
   },
 };
 
-export function getGrowthStressInteraction(profileA, profileB) {
+export function getGrowthStressInteraction(profileA, profileB, nameA = 'A', nameB = 'B') {
   const tA = profileA.ennType;
   const tB = profileB.ennType;
   if (!tA || !tB) return null;
@@ -126,20 +126,20 @@ export function getGrowthStressInteraction(profileA, profileB) {
   const arrowsB = ENN_ARROWS[tB];
 
   const aGrowthImpactOnB = arrowsA.growth === tB
-    ? `When A grows toward Type ${arrowsA.growth}, they move toward ${ARROW_NARRATIVES.growth[tA]} — embodying qualities that resonate deeply with B's own core type. B may feel unusually energized by A in these moments.`
-    : `A's growth direction (toward Type ${arrowsA.growth}) does not directly point toward B's type. However, A's healthier version brings ${ARROW_NARRATIVES.growth[tA]}, which may complement or challenge B's natural style.`;
+    ? `When ${nameA} grows toward Type ${arrowsA.growth}, they move toward ${ARROW_NARRATIVES.growth[tA]} — embodying qualities that resonate deeply with ${nameB}'s own core type. ${nameB} may feel unusually energized by ${nameA} in these moments.`
+    : `${nameA}'s growth direction (toward Type ${arrowsA.growth}) does not directly point toward ${nameB}'s type. However, ${nameA}'s healthier version brings ${ARROW_NARRATIVES.growth[tA]}, which may complement or challenge ${nameB}'s natural style.`;
 
   const aStressImpactOnB = arrowsA.stress === tB
-    ? `When A is stressed, they move toward Type ${arrowsA.stress} — directly mimicking B's core type patterns, often in a disintegrated form. B may feel triggered or see an unflattering mirror of their own tendencies in A under pressure.`
-    : `A's stress direction (toward Type ${arrowsA.stress}) doesn't point to B's type. A under stress shows ${ARROW_NARRATIVES.stress[tA]}, which B may find confusing or destabilizing.`;
+    ? `When ${nameA} is stressed, they move toward Type ${arrowsA.stress} — directly mimicking ${nameB}'s core type patterns, often in a disintegrated form. ${nameB} may feel triggered or see an unflattering mirror of their own tendencies in ${nameA} under pressure.`
+    : `${nameA}'s stress direction (toward Type ${arrowsA.stress}) doesn't point to ${nameB}'s type. ${nameA} under stress shows ${ARROW_NARRATIVES.stress[tA]}, which ${nameB} may find confusing or destabilizing.`;
 
   const bGrowthImpactOnA = arrowsB.growth === tA
-    ? `When B grows toward Type ${arrowsB.growth}, they embody qualities associated with A's core type. A may feel a sense of recognition and deep appreciation when B is operating from their best self.`
-    : `B's growth direction (toward Type ${arrowsB.growth}) does not directly point toward A. B's healthiest version brings ${ARROW_NARRATIVES.growth[tB]}, which may be a welcome complement to A.`;
+    ? `When ${nameB} grows toward Type ${arrowsB.growth}, they embody qualities associated with ${nameA}'s core type. ${nameA} may feel a sense of recognition and deep appreciation when ${nameB} is operating from their best self.`
+    : `${nameB}'s growth direction (toward Type ${arrowsB.growth}) does not directly point toward ${nameA}. ${nameB}'s healthiest version brings ${ARROW_NARRATIVES.growth[tB]}, which may be a welcome complement to ${nameA}.`;
 
   const bStressImpactOnA = arrowsB.stress === tA
-    ? `When B is stressed toward Type ${arrowsB.stress}, they mimic A's type in disintegrated form. A may see a distorted version of themselves in B, creating confusion, sympathy, or friction.`
-    : `B under stress moves toward ${ARROW_NARRATIVES.stress[tB]}, which A may experience as ${arrowsA.stress === arrowsB.stress ? 'a shared stress pattern that compounds' : 'an unfamiliar or destabilizing behavioral shift'}.`;
+    ? `When ${nameB} is stressed toward Type ${arrowsB.stress}, they mimic ${nameA}'s type in disintegrated form. ${nameA} may see a distorted version of themselves in ${nameB}, creating confusion, sympathy, or friction.`
+    : `${nameB} under stress moves toward ${ARROW_NARRATIVES.stress[tB]}, which ${nameA} may experience as ${arrowsA.stress === arrowsB.stress ? 'a shared stress pattern that compounds' : 'an unfamiliar or destabilizing behavioral shift'}.`;
 
   const sharedGrowthPath = arrowsA.growth === arrowsB.growth
     ? `Both share the same growth direction (toward Type ${arrowsA.growth}). When both are growing, they move in parallel — reinforcing each other's development and recognizing the shared journey.`
@@ -247,7 +247,7 @@ const INSTINCT_DOM_DESC = {
   SO: { name: 'Social', label: 'SO', focus: 'belonging, group dynamics, and social contribution' },
 };
 
-function deriveInstinctDepthAnalysis(stackA, stackB) {
+function deriveInstinctDepthAnalysis(stackA, stackB, nameA = 'A', nameB = 'B') {
   const domA = stackA[0];
   const domB = stackB[0];
   const repA = stackA[2];
@@ -273,8 +273,8 @@ function deriveInstinctDepthAnalysis(stackA, stackB) {
     : null;
 
   const blindSpotAnalysis = {
-    a: repA ? { repressed: (repA || '').toUpperCase(), impact: `A doesn\'t naturally attend to ${INSTINCT_DOM_DESC[repA]?.focus || repA}.` } : null,
-    b: repB ? { repressed: (repB || '').toUpperCase(), impact: `B doesn\'t naturally attend to ${INSTINCT_DOM_DESC[repB]?.focus || repB}.` } : null,
+    a: repA ? { repressed: (repA || '').toUpperCase(), impact: `${nameA} doesn't naturally attend to ${INSTINCT_DOM_DESC[repA]?.focus || repA}.` } : null,
+    b: repB ? { repressed: (repB || '').toUpperCase(), impact: `${nameB} doesn't naturally attend to ${INSTINCT_DOM_DESC[repB]?.focus || repB}.` } : null,
     sharedBlindSpot,
   };
 
@@ -283,7 +283,7 @@ function deriveInstinctDepthAnalysis(stackA, stackB) {
   const secondaryBridge = secA && secB
     ? (secA || '').toLowerCase() === (secB || '').toLowerCase()
       ? `Both share ${secALabel} as their secondary drive — a strong secondary bridge that smooths over dominant differences and creates a natural meeting point.`
-      : `A's secondary (${secALabel}) doesn't match B's secondary (${secBLabel}). The middle instincts mediate in different ways — watch for mismatched expectations in mid-tier priorities.`
+      : `${nameA}'s secondary (${secALabel}) doesn't match ${nameB}'s secondary (${secBLabel}). The middle instincts mediate in different ways — watch for mismatched expectations in mid-tier priorities.`
     : 'Secondary instinct data unavailable.';
 
   const sameDomLower = sameDom;
@@ -298,10 +298,8 @@ function deriveInstinctDepthAnalysis(stackA, stackB) {
   return { dominantDynamic, blindSpotAnalysis, secondaryBridge, overallChemistry: chemistry, tips };
 }
 
-export async function getInstinctDepthAnalysis(stackA, stackB) {
+export async function getInstinctDepthAnalysis(stackA, stackB, nameA = 'A', nameB = 'B') {
   if (!stackA?.length || !stackB?.length) return null;
-  const normalA = stackA.map(s => (s || '').toUpperCase().replace('/', ''));
-  const normalB = stackB.map(s => (s || '').toUpperCase().replace('/', ''));
   const keyA = stackA.map(s => (s || '').toUpperCase()).join('/');
   const keyB = stackB.map(s => (s || '').toUpperCase()).join('/');
 
@@ -310,16 +308,16 @@ export async function getInstinctDepthAnalysis(stackA, stackB) {
     const key = dynMod.instinctPairKey(keyA, keyB);
     const lookup = dynMod.INSTINCT_PAIR_DYNAMICS[key];
     if (lookup) {
-      const derived = deriveInstinctDepthAnalysis(stackA, stackB);
+      const derived = deriveInstinctDepthAnalysis(stackA, stackB, nameA, nameB);
       return { ...derived, pairData: lookup };
     }
   }
 
-  return deriveInstinctDepthAnalysis(stackA, stackB);
+  return deriveInstinctDepthAnalysis(stackA, stackB, nameA, nameB);
 }
 
 // Synchronous version for cases where async is not needed
-export function getInstinctDepthAnalysisSync(stackA, stackB) {
+export function getInstinctDepthAnalysisSync(stackA, stackB, nameA = 'A', nameB = 'B') {
   if (!stackA?.length || !stackB?.length) return null;
-  return deriveInstinctDepthAnalysis(stackA, stackB);
+  return deriveInstinctDepthAnalysis(stackA, stackB, nameA, nameB);
 }

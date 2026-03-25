@@ -335,6 +335,53 @@ describe('ComparePage — shadow dynamics', () => {
   });
 });
 
+describe('ComparePage — name substitution', () => {
+  it('replaces "Person A"/"Person B" with person names in ennT tips', () => {
+    // pA type 7 > pB type 3: canonical key "3-7" → "Person A" = Bob (type 3 = pB)
+    // Without fix, "Person A"/"Person B" would appear as literal text in tip.for spans
+    // mbti required for isPersonComplete so PairResults renders
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Alice', ennType: 7, ennWing: 8, ennWingStrength: 2, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'Bob',   ennType: 3, ennWing: 2, ennWingStrength: 1, instinctStack: ['sp', 'sx', 'so'], mbti: 'ESTJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    expect(screen.queryByText('Person A')).not.toBeInTheDocument();
+    expect(screen.queryByText('Person B')).not.toBeInTheDocument();
+    // Both names must appear (chips + tip labels)
+    expect(screen.getAllByText('Alice').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Bob').length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('substitutes bare A/B references in instStackDyn labels and notes', () => {
+    // pA stack "sx/sp/so", pB stack "sp/sx/so"
+    // stackKey → "sp/sx/so|sx/sp/so" → canonical Person A = pB (sp/sx/so sorts first)
+    // mbti required for isPersonComplete so PairResults renders
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Alice', ennType: 7, ennWing: 8, ennWingStrength: 2, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'Bob',   ennType: 3, ennWing: 2, ennWingStrength: 1, instinctStack: ['sp', 'sx', 'so'], mbti: 'ESTJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    // "A's Secondary Matches B's Dominant" label must not appear verbatim
+    expect(screen.queryByText(/A's Secondary/)).not.toBeInTheDocument();
+    // "Person A's secondary..." note must not appear verbatim
+    expect(screen.queryByText(/Person A's secondary/)).not.toBeInTheDocument();
+  });
+
+  it('replaces bare A/B in growthStress narratives with person names', () => {
+    // pA type 3 grows toward type 6; pB is type 6 → "When A grows toward Type 6..."
+    // must become "When Alice grows toward Type 6..."
+    // mbti required for isPersonComplete so PairResults renders
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Alice', ennType: 3, ennWing: 2, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'ESTJ', ennScores: null },
+      { label: 'Bob',   ennType: 6, ennWing: 7, ennWingStrength: 2, instinctStack: ['so', 'sp', 'sx'], mbti: 'ISFJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    expect(screen.queryByText(/When A grows/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/When A is stressed/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/When Alice grows/)).toBeInTheDocument();
+  });
+});
+
 describe('ComparePage — 8-position stack display', () => {
   const twoPersons = [
     { label: 'P1', ennType: 4, ennWing: 5, ennWingStrength: 3, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
