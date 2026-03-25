@@ -676,7 +676,7 @@ export default function ComparePage() {
               </div>
             )}
             {cogHarmony.blindSpots.length > 0 && (
-              <p style={{ ...S.body, fontSize: 12, color: G.textFaint }}>Functions absent from both top-4 stacks: {cogHarmony.blindSpots.join(', ')}</p>
+              <p style={{ ...S.body, fontSize: 12, color: G.textFaint }}>Shadow-only functions (reactive, not fluent): {cogHarmony.blindSpots.join(', ')}</p>
             )}
           </div>
         )}

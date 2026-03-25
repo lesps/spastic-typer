@@ -1,5 +1,6 @@
 import { ENN_CENTER, ENN_ARROWS } from '../data/enneagram.js';
 import { MBTI_TYPES } from '../data/mbti.js';
+import { getFullStack, getShadowMirror } from './shadow.js';
 
 // --- Communication Style Matrix ---
 
@@ -196,9 +197,34 @@ export function getCognitiveHarmony(mbtiA, mbtiB) {
   // Same dominant penalty (both competing for same cognitive niche)
   if (stackA[0] === stackB[0]) score -= 5;
 
+  // Shadow interaction scoring (lower weight than ego)
+  const fullA = getFullStack(mbtiA);
+  const fullB = getFullStack(mbtiB);
+  if (fullA && fullB) {
+    const SHADOW_WEIGHT = 0.3;
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        if (fullA[i].fn !== fullB[j].fn) continue;
+        if (i < 4 && j < 4) continue; // ego-ego already counted above
+        const posWeightA = 8 - i;
+        const posWeightB = 8 - j;
+        const interactionWeight = posWeightA * posWeightB * SHADOW_WEIGHT;
+        if ((i < 4 && j >= 4) || (i >= 4 && j < 4)) {
+          // Ego ↔ Shadow: Lead/Anchor meeting Counter/Critic = high friction
+          const isHighFriction = (i < 2 && j === 5) || (j < 2 && i === 5) ||
+                                  (i < 2 && j === 6) || (j < 2 && i === 6);
+          score += isHighFriction ? -interactionWeight * 0.5 : interactionWeight * 0.3;
+        } else {
+          // Shadow ↔ Shadow: shared shadow function — recognizable but low-weight
+          score += interactionWeight * 0.15;
+        }
+      }
+    }
+  }
+
   score = Math.min(100, Math.max(0, Math.round(score)));
 
-  // Narrative
+  // Functions absent from both ego stacks — present only in shadow positions (reactive, not fluent)
   const blindSpots = [];
   const allFunctions = ['Fi', 'Fe', 'Ti', 'Te', 'Ni', 'Ne', 'Si', 'Se'];
   const combined = new Set([...stackA.slice(0, 4), ...stackB.slice(0, 4)]);
@@ -209,6 +235,15 @@ export function getCognitiveHarmony(mbtiA, mbtiB) {
   if (complementaryPairs.length > 0) strengthsAsTeam.push('Complementary function pairs — natural coverage of each other\'s gaps');
   if (stackA[0] !== stackB[0]) strengthsAsTeam.push('Different dominant functions — one\'s strength is not the other\'s, reducing competition');
   if (stackA[3] === stackB[0] || stackB[3] === stackA[0]) strengthsAsTeam.push('One person\'s inferior is the other\'s dominant — profound growth potential if navigated with patience');
+  if (fullA && fullB) {
+    const isFullShadowPair = getShadowMirror(mbtiA) === mbtiB || getShadowMirror(mbtiB) === mbtiA;
+    if (isFullShadowPair) {
+      strengthsAsTeam.push('Full shadow pair — every ego function of one type is a shadow function of the other. Maximum growth potential with significant friction.');
+    }
+    if (fullA[0].fn === fullB[7].fn || fullB[0].fn === fullA[7].fn) {
+      strengthsAsTeam.push('One person\'s Lead function is the other\'s Flood — profound asymmetry that can be either deeply complementary or deeply triggering.');
+    }
+  }
 
   const narrative = score >= 75 ? 'High cognitive harmony. These two types share significant cognitive overlap and complement each other\'s strengths. Communication will generally be smooth, with natural intuitive understanding.'
     : score >= 55 ? 'Moderate cognitive harmony. There are both shared touchpoints and notable differences. The relationship requires some translation work but offers meaningful complementarity.'
