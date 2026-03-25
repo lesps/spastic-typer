@@ -64,6 +64,20 @@ function stackKey(sA, sB) { return [sA.join('/'), sB.join('/')].sort().join('|')
 
 function readLS(key) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; } }
 
+/**
+ * Replace "Person A"/"Person B" and possessive "A's"/"B's" with actual names.
+ * dataA/dataB are the names that correspond to "Person A"/"Person B" in the
+ * canonical key order (NOT necessarily pA/pB in the UI).
+ */
+function substituteNames(text, dataA, dataB) {
+  if (!text || typeof text !== 'string') return text;
+  return text
+    .replace(/Person A/g, dataA)
+    .replace(/Person B/g, dataB)
+    .replace(/\bA's\b/g, `${dataA}'s`)
+    .replace(/\bB's\b/g, `${dataB}'s`);
+}
+
 // --- PersonEditor: defined at module scope to prevent remount on parent re-render ---
 function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, onDone }) {
   const [mode, setMode] = useState('code');
@@ -402,10 +416,25 @@ export default function ComparePage() {
   const PairResults = ({ pA, pB }) => {
     const bothEnn = pA.ennType && pB.ennType;
     const bothMBTI = pA.mbti && pB.mbti;
+
+    // Canonical name mappings — "Person A" in pairLookup data refers to the person
+    // whose key component sorts first, which may be pB in the UI.
+    // Enneagram: lower type number = Person A in canonical key
+    const ennDataA = (parseInt(pA.ennType) <= parseInt(pB.ennType)) ? pA.label : pB.label;
+    const ennDataB = (parseInt(pA.ennType) <= parseInt(pB.ennType)) ? pB.label : pA.label;
+    // MBTI: alphabetically first type = Person A
+    const mbtiDataA = (pA.mbti || '') <= (pB.mbti || '') ? pA.label : pB.label;
+    const mbtiDataB = (pA.mbti || '') <= (pB.mbti || '') ? pB.label : pA.label;
+    // Instinct stack: alphabetically first stack string = Person A
+    const stackStrA = pA.instinctStack?.join('/') || '';
+    const stackStrB = pB.instinctStack?.join('/') || '';
+    const instDataA = stackStrA <= stackStrB ? pA.label : pB.label;
+    const instDataB = stackStrA <= stackStrB ? pB.label : pA.label;
+
     const commMatrix = getCommunicationMatrix(pA, pB);
-    const growthStress = bothEnn ? getGrowthStressInteraction(pA, pB) : null;
+    const growthStress = bothEnn ? getGrowthStressInteraction(pA, pB, pA.label, pB.label) : null;
     const cogHarmony = bothMBTI ? getCognitiveHarmony(pA.mbti, pB.mbti) : null;
-    const instDepth = getInstinctDepthAnalysisSync(pA.instinctStack, pB.instinctStack);
+    const instDepth = getInstinctDepthAnalysisSync(pA.instinctStack, pB.instinctStack, pA.label, pB.label);
 
     // Enneagram lookups
     const ennDyn = bothEnn ? (ENN_DYNAMICS[ennKey(pA.ennType, pB.ennType)] || []) : [];
@@ -471,10 +500,10 @@ export default function ComparePage() {
                 </div>
                 {instStackDyn.map((note, i) => (
                   <div key={i} style={{ marginBottom: 12 }}>
-                    <p style={{ ...S.mono, fontSize: 12, color: note.tier === 'dominant' ? G.gold : note.tier === 'alignment' ? '#4a88d8' : note.tier === 'repressed' ? '#e88050' : G.textDim, marginBottom: 4 }}>{note.label}</p>
-                    {note.note && <p style={S.body}>{note.note}</p>}
-                    {note.bond && <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#50c878', fontSize: 14, marginTop: 1 }}>+</span><p style={S.body}>{note.bond}</p></div>}
-                    {note.tension && <div style={{ display: 'flex', gap: 8 }}><span style={{ color: '#e88050', fontSize: 14, marginTop: 1 }}>−</span><p style={S.body}>{note.tension}</p></div>}
+                    <p style={{ ...S.mono, fontSize: 12, color: note.tier === 'dominant' ? G.gold : note.tier === 'alignment' ? '#4a88d8' : note.tier === 'repressed' ? '#e88050' : G.textDim, marginBottom: 4 }}>{substituteNames(note.label, instDataA, instDataB)}</p>
+                    {note.note && <p style={S.body}>{substituteNames(note.note, instDataA, instDataB)}</p>}
+                    {note.bond && <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#50c878', fontSize: 14, marginTop: 1 }}>+</span><p style={S.body}>{substituteNames(note.bond, instDataA, instDataB)}</p></div>}
+                    {note.tension && <div style={{ display: 'flex', gap: 8 }}><span style={{ color: '#e88050', fontSize: 14, marginTop: 1 }}>−</span><p style={S.body}>{substituteNames(note.tension, instDataA, instDataB)}</p></div>}
                   </div>
                 ))}
               </div>
@@ -482,13 +511,13 @@ export default function ComparePage() {
             {ennT.map((tip, i) => (
               <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                  <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{tip.for}</span>
+                  <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, ennDataA, ennDataB)}</span>
                   <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
                 </div>
                 {tip.items.map((item, j) => (
                   <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
                     <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
-                    <p style={{ ...S.body, fontSize: 14 }}>{item}</p>
+                    <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, ennDataA, ennDataB)}</p>
                   </div>
                 ))}
               </div>
@@ -558,13 +587,13 @@ export default function ComparePage() {
             {mbtiTips.map((tip, i) => (
               <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                  <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{tip.for}</span>
+                  <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, mbtiDataA, mbtiDataB)}</span>
                   <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
                 </div>
                 {tip.items.map((item, j) => (
                   <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
                     <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
-                    <p style={{ ...S.body, fontSize: 14 }}>{item}</p>
+                    <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, mbtiDataA, mbtiDataB)}</p>
                   </div>
                 ))}
               </div>

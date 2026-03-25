@@ -28,6 +28,10 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 - ComparePage: position-crossing flags added to pairwise MBTI comparison, Full Shadow Pair callout for mirror types
 - Rewrote all 64 shadow function descriptions in `mbtiDetails.js` to use new position naming and experiential tone
 
+### 1.3.2 — 2026-03-25
+
+- Fix: Compare page pairwise analysis now substitutes actual person names (e.g. "Spencer", "Wife") for all "Person A"/"Person B" placeholders in `ENN_TIPS`, `MBTI_TIPS`, and `INSTINCT_STACK_DYNAMICS` rendered text. Canonical key ordering (lower Enneagram type / alphabetical MBTI / alphabetical instinct stack string) is used to map "Person A"/"Person B" to the correct person label, fixing a position-swap accuracy bug where tips could be attributed to the wrong person. `getGrowthStressInteraction()`, `deriveInstinctDepthAnalysis()`, and `getInstinctDepthAnalysisSync()` in `utils/compare.js` updated to accept `nameA`/`nameB` parameters; `substituteNames()` helper added to `ComparePage.jsx`.
+
 ### 1.3.1 — 2026-03-25
 
 - Improved: Compare page MBTI function stack grid now displays all 8 positions (Lead → Flood) using `getFullStack()`, replacing the 4-position ego-only view with outdated DOM/AUX/TER/INF labels. Shadow arc (positions 5–8) is visually separated by a "SHADOW" divider and rendered at reduced opacity. Match indicators (=, ~, ×) cover all 8 rows; shared-function logic remains ego-only for cognitive relevance.
