@@ -28,6 +28,10 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 - ComparePage: position-crossing flags added to pairwise MBTI comparison, Full Shadow Pair callout for mirror types
 - Rewrote all 64 shadow function descriptions in `mbtiDetails.js` to use new position naming and experiential tone
 
+### 1.3.1 — 2026-03-25
+
+- Improved: Compare page MBTI function stack grid now displays all 8 positions (Lead → Flood) using `getFullStack()`, replacing the 4-position ego-only view with outdated DOM/AUX/TER/INF labels. Shadow arc (positions 5–8) is visually separated by a "SHADOW" divider and rendered at reduced opacity. Match indicators (=, ~, ×) cover all 8 rows; shared-function logic remains ego-only for cognitive relevance.
+
 ## [1.2]
 
 ### 1.2.5 — 2026-03-18

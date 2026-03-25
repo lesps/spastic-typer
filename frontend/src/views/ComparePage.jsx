@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, WING_DESC } from '../data/enneagram.js';
@@ -13,7 +13,7 @@ import { getCommunicationMatrix, getGrowthStressInteraction, getCognitiveHarmony
 import { decodeProfileCode } from '../utils/share.js';
 import ExportModal from '../components/ExportModal.jsx';
 import { generateCompareSystemPrompt } from '../utils/export.js';
-import { getPositionCrossings } from '../utils/shadow.js';
+import { getPositionCrossings, getFullStack } from '../utils/shadow.js';
 
 const INSTINCT_LABELS = { sp: 'SP', sx: 'SX', so: 'SO' };
 const LS_COMPARE = 'compare_persons';
@@ -422,8 +422,15 @@ export default function ComparePage() {
     const mbtiKey2 = bothMBTI ? mbtiKey(pA.mbti, pB.mbti) : null;
     const mbtiInsights = mbtiKey2 ? (MBTI_INSIGHTS[mbtiKey2] || []) : [];
     const mbtiTips = mbtiKey2 ? (MBTI_TIPS[mbtiKey2] || []) : [];
-    const mbtiStacks = bothMBTI ? { stack1: MBTI_TYPES[pA.mbti]?.stack, stack2: MBTI_TYPES[pB.mbti]?.stack } : null;
-    const shared = mbtiStacks ? mbtiStacks.stack1.filter(f => mbtiStacks.stack2.includes(f)) : [];
+    const fullStackA = bothMBTI ? getFullStack(pA.mbti) : null;
+    const fullStackB = bothMBTI ? getFullStack(pB.mbti) : null;
+    const mbtiStacks = fullStackA && fullStackB ? {
+      stack1: fullStackA.map(p => p.fn),
+      stack2: fullStackB.map(p => p.fn),
+    } : null;
+    const egoA = fullStackA?.slice(0, 4).map(p => p.fn) || [];
+    const egoB = fullStackB?.slice(0, 4).map(p => p.fn) || [];
+    const shared = egoA.filter(f => egoB.includes(f));
     const positionCrossings = bothMBTI ? getPositionCrossings(pA.mbti, pB.mbti) : null;
 
     return (
@@ -494,39 +501,53 @@ export default function ComparePage() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 28px 1fr', gap: 4, alignItems: 'center' }}>
                 <div style={{ textAlign: 'center' }}>
                   <p style={{ ...S.mono, fontSize: 14, marginBottom: 8 }}>{pA.mbti}</p>
-                  {mbtiStacks.stack1.map((fn, i) => (
-                    <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, marginBottom: 4 }}>
-                      <span style={{ fontSize: 9, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}>{['DOM', 'AUX', 'TER', 'INF'][i]}</span>
-                      <FnBadge fn={fn} />
-                    </div>
-                  ))}
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, paddingTop: 32 }}>
-                  {mbtiStacks.stack1.map((fn, i) => {
-                    const fn2 = mbtiStacks.stack2[i], match = fn === fn2, isShared = shared.includes(fn) || shared.includes(fn2);
-                    return (
-                      <div key={i} style={{ width: 20, height: 20, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: match ? 'rgba(80,200,120,0.1)' : 'transparent' }}>
-                        <span style={{ fontSize: 9, color: match ? '#50c878' : isShared ? G.gold : G.textFaint }}>{match ? '=' : isShared ? '~' : '×'}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+                <div />
                 <div style={{ textAlign: 'center' }}>
                   <p style={{ ...S.mono, fontSize: 14, marginBottom: 8 }}>{pB.mbti}</p>
-                  {mbtiStacks.stack2.map((fn, i) => (
-                    <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, marginBottom: 4 }}>
-                      <FnBadge fn={fn} />
-                      <span style={{ fontSize: 9, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}>{['DOM', 'AUX', 'TER', 'INF'][i]}</span>
-                    </div>
-                  ))}
                 </div>
+
+                {fullStackA.map((posA, i) => {
+                  const posB = fullStackB[i];
+                  const isShadow = posA.arc === 'shadow';
+                  const match = posA.fn === posB.fn;
+                  const isShared = egoA.includes(posB.fn) || egoB.includes(posA.fn);
+
+                  return (
+                    <Fragment key={i}>
+                      {i === 4 && (
+                        <div style={{ gridColumn: '1 / -1', display: 'flex', alignItems: 'center', gap: 8, margin: '4px 0' }}>
+                          <div style={{ flex: 1, height: 1, background: G.border }} />
+                          <span style={{ fontSize: 9, color: G.textFaint, fontFamily: "'DM Mono',monospace", letterSpacing: 1 }}>SHADOW</span>
+                          <div style={{ flex: 1, height: 1, background: G.border }} />
+                        </div>
+                      )}
+
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, marginBottom: 4, opacity: isShadow ? 0.65 : 1 }}>
+                        <span style={{ fontSize: 9, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}>{posA.name.toUpperCase()}</span>
+                        <FnBadge fn={posA.fn} />
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: isShadow ? 0.65 : 1 }}>
+                        <div style={{ width: 20, height: 20, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: match ? 'rgba(80,200,120,0.1)' : 'transparent' }}>
+                          <span style={{ fontSize: 9, color: match ? '#50c878' : isShared ? G.gold : G.textFaint }}>{match ? '=' : isShared ? '~' : '×'}</span>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, marginBottom: 4, opacity: isShadow ? 0.65 : 1 }}>
+                        <FnBadge fn={posB.fn} />
+                        <span style={{ fontSize: 9, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}>{posB.name.toUpperCase()}</span>
+                      </div>
+                    </Fragment>
+                  );
+                })}
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginTop: 12, flexWrap: 'wrap' }}>
                 <span style={{ fontSize: 10, color: '#50c878', fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>=</span> same function</span>
-                <span style={{ fontSize: 10, color: G.gold, fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>~</span> shared in stack</span>
+                <span style={{ fontSize: 10, color: G.gold, fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>~</span> shared in ego</span>
                 <span style={{ fontSize: 10, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>×</span> not shared</span>
               </div>
-              {shared.length > 0 && <p style={{ ...S.body, fontSize: 11, textAlign: 'center', marginTop: 8 }}>Shared functions: {shared.map(f => <FnBadge key={f} fn={f} />)}</p>}
+              {shared.length > 0 && <p style={{ ...S.body, fontSize: 11, textAlign: 'center', marginTop: 8 }}>Shared ego functions: {shared.map(f => <FnBadge key={f} fn={f} />)}</p>}
             </div>
             {mbtiInsights.map((ins, i) => (
               <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: ins.color || G.gold, borderLeftStyle: 'solid' }}>
