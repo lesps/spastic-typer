@@ -382,6 +382,72 @@ describe('ComparePage — name substitution', () => {
   });
 });
 
+describe('ComparePage — same-type deduplication', () => {
+  it('shows one merged ENN_TIPS card when both people share the same enn type', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Spencer', ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'sx', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'Myat',    ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'so', 'sx'], mbti: 'ENFP', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    // Only one "SHARED TYPE" tag for the merged enn tips card
+    const sharedTags = screen.getAllByText('SHARED TYPE');
+    // There may be one for enn and one for mbti — ensure at least one exists
+    expect(sharedTags.length).toBeGreaterThanOrEqual(1);
+    // Should not render two separate "Understanding the Achiever" headings
+    const headings = screen.getAllByText('Understanding the Achiever (Type 3)');
+    expect(headings.length).toBe(1);
+  });
+
+  it('shows one merged MBTI_TIPS card when both people share the same MBTI type', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Spencer', ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'sx', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'Myat',    ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'so', 'sx'], mbti: 'ENFP', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    // Should not render two separate MBTI tip headings
+    const mbtiTipHeadings = screen.getAllByText("Understanding ENFP's Lead: Ne");
+    expect(mbtiTipHeadings.length).toBe(1);
+    // The shared-type subtitle should appear
+    expect(screen.getByText(/Both share this cognitive stack/)).toBeInTheDocument();
+  });
+
+  it('still shows two separate tip cards when types differ', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Alice', ennType: 4, ennWing: 5, ennWingStrength: 2, instinctStack: ['sx', 'sp', 'so'], mbti: 'INFP', ennScores: null },
+      { label: 'Bob',   ennType: 8, ennWing: 9, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'ENTJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    // No "SHARED TYPE" tags when types differ
+    expect(screen.queryByText('SHARED TYPE')).not.toBeInTheDocument();
+  });
+
+  it('substitutes person names in same-type crossing descriptions', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Spencer', ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'sx', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'Myat',    ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'so', 'sx'], mbti: 'ENFP', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    // Should NOT contain the raw "ENFP and ENFP" pattern
+    expect(screen.queryByText(/ENFP and ENFP/)).not.toBeInTheDocument();
+    // Should contain person names in crossing descriptions
+    const crossingMatches = screen.queryAllByText(/Spencer.*Myat|Myat.*Spencer/);
+    expect(crossingMatches.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('shows condensed growth/stress for same enn type', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Spencer', ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'sx', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'Myat',    ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'so', 'sx'], mbti: 'ENFP', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    // Condensed labels should appear
+    expect(screen.getByText('SHARED STRESS PATTERN')).toBeInTheDocument();
+    // Directional sub-section labels must NOT appear (4-way breakdown is suppressed)
+    expect(screen.queryByText(new RegExp(`SPENCER → MYAT \\(GROWTH\\)`, 'i'))).not.toBeInTheDocument();
+    expect(screen.queryByText(new RegExp(`MYAT → SPENCER \\(GROWTH\\)`, 'i'))).not.toBeInTheDocument();
+  });
+});
+
 describe('ComparePage — 8-position stack display', () => {
   const twoPersons = [
     { label: 'P1', ennType: 4, ennWing: 5, ennWingStrength: 3, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },

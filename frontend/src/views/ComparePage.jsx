@@ -508,20 +508,43 @@ export default function ComparePage() {
                 ))}
               </div>
             )}
-            {ennT.map((tip, i) => (
-              <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                  <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, ennDataA, ennDataB)}</span>
-                  <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
-                </div>
-                {tip.items.map((item, j) => (
-                  <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
-                    <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
-                    <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, ennDataA, ennDataB)}</p>
+            {(() => {
+              const sameEnnType = pA.ennType === pB.ennType;
+              if (sameEnnType && ennT.length === 2) {
+                const tip = ennT[0];
+                return (
+                  <div style={{ ...S.card, background: 'rgba(96,160,208,0.05)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                      <span style={{ ...S.tag, background: 'rgba(96,160,208,0.15)', color: '#60a0d0', fontSize: 10 }}>SHARED TYPE</span>
+                      <h3 style={{ ...S.h3, marginBottom: 0, color: '#60a0d0' }}>{tip.label}</h3>
+                    </div>
+                    <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 8 }}>
+                      Both {pA.label} and {pB.label} are this type — these dynamics apply to each person equally.
+                    </p>
+                    {tip.items.map((item, j) => (
+                      <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
+                        <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
+                        <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, ennDataA, ennDataB)}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            ))}
+                );
+              }
+              return ennT.map((tip, i) => (
+                <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                    <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, ennDataA, ennDataB)}</span>
+                    <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
+                  </div>
+                  {tip.items.map((item, j) => (
+                    <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
+                      <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
+                      <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, ennDataA, ennDataB)}</p>
+                    </div>
+                  ))}
+                </div>
+              ));
+            })()}
           </>
         )}
         {bothMBTI && mbtiStacks && (
@@ -584,23 +607,54 @@ export default function ComparePage() {
                 <p style={S.body}>{ins.desc}</p>
               </div>
             ))}
-            {mbtiTips.map((tip, i) => (
-              <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                  <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, mbtiDataA, mbtiDataB)}</span>
-                  <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
-                </div>
-                {tip.items.map((item, j) => (
-                  <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
-                    <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
-                    <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, mbtiDataA, mbtiDataB)}</p>
+            {(() => {
+              const sameMBTI = pA.mbti === pB.mbti;
+              if (sameMBTI && mbtiTips.length === 2) {
+                const tip = mbtiTips[0];
+                return (
+                  <div style={{ ...S.card, background: 'rgba(96,160,208,0.05)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                      <span style={{ ...S.tag, background: 'rgba(96,160,208,0.15)', color: '#60a0d0', fontSize: 10 }}>SHARED TYPE</span>
+                      <h3 style={{ ...S.h3, marginBottom: 0, color: '#60a0d0' }}>{tip.label}</h3>
+                    </div>
+                    <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 8 }}>
+                      Both share this cognitive stack — these patterns apply equally to each.
+                    </p>
+                    {tip.items.map((item, j) => (
+                      <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
+                        <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
+                        <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, mbtiDataA, mbtiDataB)}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            ))}
+                );
+              }
+              return mbtiTips.map((tip, i) => (
+                <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                    <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, mbtiDataA, mbtiDataB)}</span>
+                    <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
+                  </div>
+                  {tip.items.map((item, j) => (
+                    <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
+                      <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
+                      <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, mbtiDataA, mbtiDataB)}</p>
+                    </div>
+                  ))}
+                </div>
+              ));
+            })()}
             {positionCrossings && positionCrossings.crossings.length > 0 && (() => {
               const renderCrossingDesc = (c) => {
-                if (!c.typeForA || !c.typeForB || c.typeForA === c.typeForB) return c.description;
+                if (!c.typeForA || !c.typeForB) return c.description;
+                if (c.typeForA === c.typeForB) {
+                  let count = 0;
+                  const names = [pA.label, pB.label];
+                  return c.description.replace(
+                    new RegExp(c.typeForA.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
+                    () => names[Math.min(count++, 1)]
+                  );
+                }
                 const labelA = c.typeForA === pA.mbti ? pA.label : pB.label;
                 const labelB = c.typeForB === pA.mbti ? pA.label : pB.label;
                 return c.description
@@ -732,23 +786,41 @@ export default function ComparePage() {
               <span style={{ fontSize: 14, color: '#e88050' }}>↕</span>
               <h3 style={{ ...S.h3, marginBottom: 0 }}>Growth & Stress Dynamics</h3>
             </div>
-            {[
-              { label: `${pA.label} → ${pB.label} (growth)`, text: growthStress.aGrowthImpactOnB, color: '#50c878' },
-              { label: `${pA.label} → ${pB.label} (stress)`, text: growthStress.aStressImpactOnB, color: '#e88050' },
-              { label: `${pB.label} → ${pA.label} (growth)`, text: growthStress.bGrowthImpactOnA, color: '#50c878' },
-              { label: `${pB.label} → ${pA.label} (stress)`, text: growthStress.bStressImpactOnA, color: '#e88050' },
-            ].map((row, i) => (
-              <div key={i} style={{ marginBottom: 10, paddingBottom: 10, borderBottom: i < 3 ? `1px solid ${G.border}` : 'none' }}>
-                <p style={{ fontSize: 11, color: row.color, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>{row.label.toUpperCase()}</p>
-                <p style={{ ...S.body, fontSize: 13 }}>{row.text}</p>
-              </div>
-            ))}
-            {growthStress.sharedGrowthPath && (
-              <div style={{ padding: '8px 10px', borderRadius: 6, background: 'rgba(80,200,120,0.08)', border: `1px solid rgba(80,200,120,0.2)`, marginBottom: 8 }}>
-                <p style={{ ...S.body, fontSize: 13, color: '#50c878' }}>{growthStress.sharedGrowthPath}</p>
-              </div>
+            {pA.ennType === pB.ennType ? (
+              <>
+                {growthStress.sharedGrowthPath && (
+                  <div style={{ marginBottom: 10, paddingBottom: 10, borderBottom: `1px solid ${G.border}` }}>
+                    <p style={{ fontSize: 11, color: '#50c878', marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>SHARED GROWTH PATH</p>
+                    <p style={{ ...S.body, fontSize: 13 }}>{growthStress.sharedGrowthPath}</p>
+                  </div>
+                )}
+                <div style={{ marginBottom: 10, paddingBottom: 10, borderBottom: `1px solid ${G.border}` }}>
+                  <p style={{ fontSize: 11, color: '#e88050', marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>SHARED STRESS PATTERN</p>
+                  <p style={{ ...S.body, fontSize: 13 }}>{growthStress.aStressImpactOnB}</p>
+                </div>
+                <p style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic' }}>{growthStress.potentialFriction}</p>
+              </>
+            ) : (
+              <>
+                {[
+                  { label: `${pA.label} → ${pB.label} (growth)`, text: growthStress.aGrowthImpactOnB, color: '#50c878' },
+                  { label: `${pA.label} → ${pB.label} (stress)`, text: growthStress.aStressImpactOnB, color: '#e88050' },
+                  { label: `${pB.label} → ${pA.label} (growth)`, text: growthStress.bGrowthImpactOnA, color: '#50c878' },
+                  { label: `${pB.label} → ${pA.label} (stress)`, text: growthStress.bStressImpactOnA, color: '#e88050' },
+                ].map((row, i) => (
+                  <div key={i} style={{ marginBottom: 10, paddingBottom: 10, borderBottom: i < 3 ? `1px solid ${G.border}` : 'none' }}>
+                    <p style={{ fontSize: 11, color: row.color, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>{row.label.toUpperCase()}</p>
+                    <p style={{ ...S.body, fontSize: 13 }}>{row.text}</p>
+                  </div>
+                ))}
+                {growthStress.sharedGrowthPath && (
+                  <div style={{ padding: '8px 10px', borderRadius: 6, background: 'rgba(80,200,120,0.08)', border: `1px solid rgba(80,200,120,0.2)`, marginBottom: 8 }}>
+                    <p style={{ ...S.body, fontSize: 13, color: '#50c878' }}>{growthStress.sharedGrowthPath}</p>
+                  </div>
+                )}
+                <p style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic' }}>{growthStress.potentialFriction}</p>
+              </>
             )}
-            <p style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic' }}>{growthStress.potentialFriction}</p>
           </div>
         )}
 

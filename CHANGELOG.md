@@ -28,6 +28,13 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 - ComparePage: position-crossing flags added to pairwise MBTI comparison, Full Shadow Pair callout for mirror types
 - Rewrote all 64 shadow function descriptions in `mbtiDetails.js` to use new position naming and experiential tone
 
+### 1.3.5 — 2026-03-25
+
+- Fix: Same-type crossing descriptions now substitute person names instead of repeating the MBTI code (e.g. "Both Spencer and Myat lead with Ne" instead of "Both ENFP and ENFP lead with Ne").
+- Improved: When both people share the same Enneagram type, `ENN_TIPS` renders a single merged "SHARED TYPE" card instead of two byte-for-byte identical cards. Subtitle clarifies both persons are this type.
+- Improved: When both people share the same MBTI type, `MBTI_TIPS` renders a single merged "SHARED TYPE" card instead of two identical cards.
+- Improved: Growth & Stress Dynamics section for same Enneagram type pairs now shows a condensed "SHARED GROWTH PATH" + "SHARED STRESS PATTERN" view instead of 4 symmetric directional sub-sections that repeat the same information with swapped names.
+
 ### 1.3.4 — 2026-03-25
 
 - Improved: `getCognitiveHarmony()` now accounts for shadow-position interactions. Ego↔shadow and shadow↔shadow function overlaps are scored at reduced weight (30% and 15% of equivalent ego interactions respectively), shifting scores by at most ±8 points from the ego-only baseline. Full shadow pairs (e.g. ENFP × INFJ) and Lead↔Flood asymmetries are flagged in `strengthsAsTeam`. Blind spots label updated from "Functions absent from both top-4 stacks" to "Shadow-only functions (reactive, not fluent)" to reflect that every function appears somewhere in the 8-position stack.
