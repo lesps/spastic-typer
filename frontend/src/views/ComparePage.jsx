@@ -488,26 +488,6 @@ export default function ComparePage() {
                 {wingDyn.map((note, i) => <p key={i} style={{ ...S.body, marginBottom: 6 }}>{note}</p>)}
               </div>
             )}
-            {instStackDyn && (
-              <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#30a888', borderLeftStyle: 'solid' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                  <span style={{ fontSize: 14, color: '#30a888' }}>⟳</span>
-                  <h3 style={{ ...S.h3, marginBottom: 0 }}>Instinct Stack Dynamics</h3>
-                </div>
-                <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-                  {stackA && <div style={{ padding: '4px 10px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}><span style={{ ...S.mono, fontSize: 12, color: G.gold }}>{stackA.map(i => i.toUpperCase()).join('/')}</span></div>}
-                  {stackB && <div style={{ padding: '4px 10px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}><span style={{ ...S.mono, fontSize: 12, color: G.gold }}>{stackB.map(i => i.toUpperCase()).join('/')}</span></div>}
-                </div>
-                {instStackDyn.map((note, i) => (
-                  <div key={i} style={{ marginBottom: 12 }}>
-                    <p style={{ ...S.mono, fontSize: 12, color: note.tier === 'dominant' ? G.gold : note.tier === 'alignment' ? '#4a88d8' : note.tier === 'repressed' ? '#e88050' : G.textDim, marginBottom: 4 }}>{substituteNames(note.label, instDataA, instDataB)}</p>
-                    {note.note && <p style={S.body}>{substituteNames(note.note, instDataA, instDataB)}</p>}
-                    {note.bond && <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#50c878', fontSize: 14, marginTop: 1 }}>+</span><p style={S.body}>{substituteNames(note.bond, instDataA, instDataB)}</p></div>}
-                    {note.tension && <div style={{ display: 'flex', gap: 8 }}><span style={{ color: '#e88050', fontSize: 14, marginTop: 1 }}>−</span><p style={S.body}>{substituteNames(note.tension, instDataA, instDataB)}</p></div>}
-                  </div>
-                ))}
-              </div>
-            )}
             {ennT.map((tip, i) => (
               <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
@@ -752,32 +732,66 @@ export default function ComparePage() {
           </div>
         )}
 
-        {/* Instinct Depth Analysis */}
-        {instDepth && (
+        {/* Instinct Dynamics — unified section */}
+        {(instStackDyn || instDepth) && (
           <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#30a888', borderLeftStyle: 'solid' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontSize: 14, color: '#30a888' }}>◈</span>
-              <h3 style={{ ...S.h3, marginBottom: 0 }}>Instinct Depth Analysis</h3>
-              <span style={{ marginLeft: 'auto', ...S.tag, fontSize: 10, background: instDepth.overallChemistry === 'high' ? 'rgba(80,200,120,0.12)' : instDepth.overallChemistry === 'medium' ? 'rgba(228,160,48,0.12)' : 'rgba(232,128,80,0.12)', color: instDepth.overallChemistry === 'high' ? '#50c878' : instDepth.overallChemistry === 'medium' ? G.gold : '#e88050', border: `1px solid ${instDepth.overallChemistry === 'high' ? 'rgba(80,200,120,0.3)' : instDepth.overallChemistry === 'medium' ? G.goldBorder : 'rgba(232,128,80,0.3)'}` }}>{instDepth.overallChemistry} chemistry</span>
+              <span style={{ fontSize: 14, color: '#30a888' }}>⟳</span>
+              <h3 style={{ ...S.h3, marginBottom: 0 }}>Instinct Dynamics</h3>
+              {instDepth && (
+                <span style={{ marginLeft: 'auto', ...S.tag, fontSize: 10, background: instDepth.overallChemistry === 'high' ? 'rgba(80,200,120,0.12)' : instDepth.overallChemistry === 'medium' ? 'rgba(228,160,48,0.12)' : 'rgba(232,128,80,0.12)', color: instDepth.overallChemistry === 'high' ? '#50c878' : instDepth.overallChemistry === 'medium' ? G.gold : '#e88050', border: `1px solid ${instDepth.overallChemistry === 'high' ? 'rgba(80,200,120,0.3)' : instDepth.overallChemistry === 'medium' ? G.goldBorder : 'rgba(232,128,80,0.3)'}` }}>{instDepth.overallChemistry} chemistry</span>
+              )}
             </div>
-            <p style={{ ...S.body, marginBottom: 10 }}>{instDepth.dominantDynamic.narrative}</p>
-            <div style={{ display: 'flex', gap: 10, marginBottom: 10, flexWrap: 'wrap' }}>
-              <div style={{ flex: 1, minWidth: 120, padding: '8px 10px', borderRadius: 6, background: G.bg3, border: `1px solid ${G.border}` }}>
-                <p style={{ fontSize: 10, color: G.textFaint, marginBottom: 3, fontFamily: "'DM Mono',monospace" }}>ATTRACTION</p>
-                <p style={{ ...S.body, fontSize: 12 }}>{instDepth.dominantDynamic.attraction}</p>
-              </div>
-              <div style={{ flex: 1, minWidth: 120, padding: '8px 10px', borderRadius: 6, background: G.bg3, border: `1px solid ${G.border}` }}>
-                <p style={{ fontSize: 10, color: G.textFaint, marginBottom: 3, fontFamily: "'DM Mono',monospace" }}>FRICTION</p>
-                <p style={{ ...S.body, fontSize: 12 }}>{instDepth.dominantDynamic.friction}</p>
-              </div>
+            <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+              {stackA && <div style={{ padding: '4px 10px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}><span style={{ ...S.mono, fontSize: 12, color: G.gold }}>{stackA.map(i => i.toUpperCase()).join('/')}</span></div>}
+              {stackB && <div style={{ padding: '4px 10px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}><span style={{ ...S.mono, fontSize: 12, color: G.gold }}>{stackB.map(i => i.toUpperCase()).join('/')}</span></div>}
             </div>
-            <p style={{ ...S.body, fontSize: 13, marginBottom: 8 }}><span style={{ color: G.textDim }}>Secondary bridge: </span>{instDepth.secondaryBridge}</p>
-            {instDepth.blindSpotAnalysis.sharedBlindSpot && (
+            {instDepth ? (
+              <>
+                <p style={{ ...S.body, marginBottom: 10 }}>{instDepth.dominantDynamic.narrative}</p>
+                <div style={{ display: 'flex', gap: 10, marginBottom: 10, flexWrap: 'wrap' }}>
+                  <div style={{ flex: 1, minWidth: 120, padding: '8px 10px', borderRadius: 6, background: G.bg3, border: `1px solid ${G.border}` }}>
+                    <p style={{ fontSize: 10, color: G.textFaint, marginBottom: 3, fontFamily: "'DM Mono',monospace" }}>ATTRACTION</p>
+                    <p style={{ ...S.body, fontSize: 12 }}>{instDepth.dominantDynamic.attraction}</p>
+                  </div>
+                  <div style={{ flex: 1, minWidth: 120, padding: '8px 10px', borderRadius: 6, background: G.bg3, border: `1px solid ${G.border}` }}>
+                    <p style={{ fontSize: 10, color: G.textFaint, marginBottom: 3, fontFamily: "'DM Mono',monospace" }}>FRICTION</p>
+                    <p style={{ ...S.body, fontSize: 12 }}>{instDepth.dominantDynamic.friction}</p>
+                  </div>
+                </div>
+              </>
+            ) : instStackDyn?.filter(n => n.tier === 'dominant').map((note, i) => (
+              <div key={'dom-' + i} style={{ marginBottom: 10 }}>
+                {note.bond && <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#50c878', fontSize: 14, marginTop: 1 }}>+</span><p style={S.body}>{substituteNames(note.bond, instDataA, instDataB)}</p></div>}
+                {note.tension && <div style={{ display: 'flex', gap: 8 }}><span style={{ color: '#e88050', fontSize: 14, marginTop: 1 }}>−</span><p style={S.body}>{substituteNames(note.tension, instDataA, instDataB)}</p></div>}
+              </div>
+            ))}
+            {instStackDyn?.filter(n => n.tier === 'alignment').map((note, i) => (
+              <div key={'align-' + i} style={{ marginBottom: 10 }}>
+                <p style={{ ...S.mono, fontSize: 12, color: '#4a88d8', marginBottom: 4 }}>{substituteNames(note.label, instDataA, instDataB)}</p>
+                {note.note && <p style={S.body}>{substituteNames(note.note, instDataA, instDataB)}</p>}
+              </div>
+            ))}
+            {instStackDyn?.filter(n => n.tier === 'secondary').map((note, i) => (
+              <div key={'sec-' + i} style={{ marginBottom: 6 }}>
+                <p style={{ ...S.mono, fontSize: 12, color: G.textDim, marginBottom: 4 }}>{substituteNames(note.label, instDataA, instDataB)}</p>
+                {note.note && <p style={S.body}>{substituteNames(note.note, instDataA, instDataB)}</p>}
+              </div>
+            ))}
+            {instDepth && (
+              <p style={{ ...S.body, fontSize: 13, marginBottom: 8 }}><span style={{ color: G.textDim }}>Secondary bridge: </span>{instDepth.secondaryBridge}</p>
+            )}
+            {instDepth?.blindSpotAnalysis.sharedBlindSpot ? (
               <div style={{ padding: '8px 10px', borderRadius: 6, background: 'rgba(232,128,80,0.08)', border: `1px solid rgba(232,128,80,0.2)`, marginBottom: 8 }}>
                 <p style={{ ...S.body, fontSize: 13, color: '#e88050' }}>{instDepth.blindSpotAnalysis.sharedBlindSpot}</p>
               </div>
-            )}
-            {instDepth.tips.map((tip, i) => (
+            ) : instStackDyn?.filter(n => n.tier === 'repressed').map((note, i) => (
+              <div key={'rep-' + i} style={{ padding: '8px 10px', borderRadius: 6, background: 'rgba(232,128,80,0.08)', border: `1px solid rgba(232,128,80,0.2)`, marginBottom: 8 }}>
+                <p style={{ ...S.mono, fontSize: 12, color: '#e88050', marginBottom: 4 }}>{substituteNames(note.label, instDataA, instDataB)}</p>
+                {note.note && <p style={{ ...S.body, fontSize: 13, color: '#e88050' }}>{substituteNames(note.note, instDataA, instDataB)}</p>}
+              </div>
+            ))}
+            {instDepth?.tips.map((tip, i) => (
               <div key={i} style={{ display: 'flex', gap: 8, marginTop: 4 }}>
                 <span style={{ color: '#30a888', fontSize: 12, flexShrink: 0 }}>→</span>
                 <p style={{ ...S.body, fontSize: 13 }}>{tip}</p>
