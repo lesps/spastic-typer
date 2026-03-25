@@ -28,6 +28,10 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 - ComparePage: position-crossing flags added to pairwise MBTI comparison, Full Shadow Pair callout for mirror types
 - Rewrote all 64 shadow function descriptions in `mbtiDetails.js` to use new position naming and experiential tone
 
+### 1.3.5 — 2026-03-25
+
+- Improved: Compare page consolidates "Instinct Stack Dynamics" and "Instinct Depth Analysis" into a single "Instinct Dynamics" section. The merged section preserves all unique content: chemistry tag and tips (from runtime analysis), dominant narrative with attraction/friction boxes, stack alignment note and secondary match notes (from pairLookup), secondary bridge, and shared blind spot. Eliminates duplicate coverage of dominant pairing and blind spot concepts that previously appeared at two different scroll positions.
+
 ### 1.3.4 — 2026-03-25
 
 - Improved: `getCognitiveHarmony()` now accounts for shadow-position interactions. Ego↔shadow and shadow↔shadow function overlaps are scored at reduced weight (30% and 15% of equivalent ego interactions respectively), shifting scores by at most ±8 points from the ego-only baseline. Full shadow pairs (e.g. ENFP × INFJ) and Lead↔Flood asymmetries are flagged in `strengthsAsTeam`. Blind spots label updated from "Functions absent from both top-4 stacks" to "Shadow-only functions (reactive, not fluent)" to reflect that every function appears somewhere in the 8-position stack.

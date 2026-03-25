@@ -367,6 +367,35 @@ describe('ComparePage — name substitution', () => {
     expect(screen.queryByText(/Person A's secondary/)).not.toBeInTheDocument();
   });
 
+  it('renders "Instinct Dynamics" heading, not the two old separate headings', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Alice', ennType: 7, ennWing: 8, ennWingStrength: 2, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'Bob',   ennType: 3, ennWing: 2, ennWingStrength: 1, instinctStack: ['sp', 'sx', 'so'], mbti: 'ESTJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    expect(screen.getByText('Instinct Dynamics')).toBeInTheDocument();
+    expect(screen.queryByText('Instinct Stack Dynamics')).not.toBeInTheDocument();
+    expect(screen.queryByText('Instinct Depth Analysis')).not.toBeInTheDocument();
+  });
+
+  it('shows chemistry tag in unified instinct section', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Alice', ennType: 7, ennWing: 8, ennWingStrength: 2, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'Bob',   ennType: 3, ennWing: 2, ennWingStrength: 1, instinctStack: ['sp', 'sx', 'so'], mbti: 'ESTJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    expect(screen.getAllByText(/chemistry/i).length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('shows stack alignment note for identical stacks', () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'Alice', ennType: 7, ennWing: 8, ennWingStrength: 2, instinctStack: ['sp', 'sx', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'Bob',   ennType: 3, ennWing: 2, ennWingStrength: 1, instinctStack: ['sp', 'sx', 'so'], mbti: 'ESTJ', ennScores: null },
+    ]));
+    render(<ComparePage />);
+    expect(screen.getByText(/Identical Stack Order/i)).toBeInTheDocument();
+  });
+
   it('replaces bare A/B in growthStress narratives with person names', () => {
     // pA type 3 grows toward type 6; pB is type 6 → "When A grows toward Type 6..."
     // must become "When Alice grows toward Type 6..."
