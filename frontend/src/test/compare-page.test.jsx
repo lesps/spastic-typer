@@ -334,3 +334,33 @@ describe('ComparePage — shadow dynamics', () => {
     expect(screen.getByText(/position crossings/i)).toBeInTheDocument();
   });
 });
+
+describe('ComparePage — 8-position stack display', () => {
+  const twoPersons = [
+    { label: 'P1', ennType: 4, ennWing: 5, ennWingStrength: 3, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
+    { label: 'P2', ennType: 5, ennWing: 4, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'INFJ', ennScores: null },
+  ];
+
+  beforeEach(() => {
+    localStorage.setItem('compare_persons', JSON.stringify(twoPersons));
+  });
+
+  it('renders all 8 position labels for each person', () => {
+    render(<ComparePage />);
+    for (const name of ['LEAD', 'ANCHOR', 'REFUGE', 'HUNGER', 'COUNTER', 'CRITIC', 'GAMBLE', 'FLOOD']) {
+      expect(screen.getAllByText(name).length).toBeGreaterThanOrEqual(1);
+    }
+  });
+
+  it('does not render old DOM/AUX/TER/INF labels', () => {
+    render(<ComparePage />);
+    for (const old of ['DOM', 'AUX', 'TER', 'INF']) {
+      expect(screen.queryByText(old)).not.toBeInTheDocument();
+    }
+  });
+
+  it('renders a shadow arc separator between positions 4 and 5', () => {
+    render(<ComparePage />);
+    expect(screen.getByText('SHADOW')).toBeInTheDocument();
+  });
+});
