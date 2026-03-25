@@ -200,6 +200,57 @@ describe('shadow — getPositionCrossings', () => {
   });
 });
 
+describe('getPositionCrossings — directionality', () => {
+  it('argument order does not change which type is labeled at Lead for Ne crossing', () => {
+    // ENFP has Ne at pos 1 (Lead), INFJ has Ne at pos 5 (Counter)
+    const ab = getPositionCrossings('ENFP', 'INFJ');
+    const ba = getPositionCrossings('INFJ', 'ENFP');
+    // Find the Ne 1-5 crossing in each result
+    const neCrossAB = ab.crossings.find(c => c.fnA === 'Ne' && (c.posA === 1 || c.posB === 1));
+    const neCrossBA = ba.crossings.find(c => c.fnA === 'Ne' && (c.posA === 1 || c.posB === 1));
+    // typeForA should always be ENFP (holds Ne at pos 1, the lower position)
+    expect(neCrossAB?.typeForA).toBe('ENFP');
+    expect(neCrossBA?.typeForA).toBe('ENFP');
+  });
+
+  it('descriptions contain no unresolved placeholders', () => {
+    const result = getPositionCrossings('ENFP', 'ISTJ');
+    result.crossings.forEach(c => {
+      expect(c.description).not.toContain('{typeA}');
+      expect(c.description).not.toContain('{typeB}');
+      expect(c.description).not.toContain('{fnA}');
+      expect(c.description).not.toContain('{fnB}');
+      expect(c.description).not.toContain('{fnName}');
+    });
+  });
+
+  it('crossings include typeForA and typeForB fields', () => {
+    const result = getPositionCrossings('ENFP', 'INFJ');
+    result.crossings.forEach(c => {
+      expect(c).toHaveProperty('typeForA');
+      expect(c).toHaveProperty('typeForB');
+    });
+  });
+
+  it('reversed argument order produces same label set', () => {
+    const ab = getPositionCrossings('ENFP', 'INFJ');
+    const ba = getPositionCrossings('INFJ', 'ENFP');
+    const labelsAB = ab.crossings.map(c => c.label).sort();
+    const labelsBA = ba.crossings.map(c => c.label).sort();
+    expect(labelsAB).toEqual(labelsBA);
+  });
+
+  it('typeForA always refers to the type holding the lower position', () => {
+    // For INFJ/ENFP: INFJ has Ni at pos 1, ENFP has Ni at pos 5
+    const result = getPositionCrossings('INFJ', 'ENFP');
+    const niCross = result.crossings.find(c => c.fnA === 'Ni');
+    // INFJ holds Ni at pos 1 — should be typeForA
+    expect(niCross?.typeForA).toBe('INFJ');
+    // ENFP holds Ni at pos 5 — should be typeForB
+    expect(niCross?.typeForB).toBe('ENFP');
+  });
+});
+
 describe('shadow — instantiateTemplate', () => {
   it('replaces {fn} placeholder', () => {
     const result = instantiateTemplate(5, 'Ni');

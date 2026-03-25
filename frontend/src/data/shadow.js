@@ -103,6 +103,36 @@ export const CROSSING_MATRIX = {
     label: 'Shared Counter',
     template: 'Both {typeA} and {typeB} carry {fnA} as their Counter — reactive, defensive, not fully fluid. Neither has genuine ease with this function; both access it primarily under duress. This shared limitation can create mutual recognition, or it can mean two people pushing back with the same charged energy when the function gets activated.',
   },
+  '2-2': {
+    tier: 'medium',
+    label: 'Shared Anchor',
+    template: 'Both {typeA} and {typeB} use {fnA} as their Anchor — the function that supports and balances the Lead. This creates a quiet compatibility: both know how to let this function serve a stabilizing role rather than a primary one. The alignment here is less visible than a shared Lead but tends to make sustained interaction feel grounded.',
+  },
+  '3-3': {
+    tier: 'medium',
+    label: 'Shared Refuge',
+    template: 'Both {typeA} and {typeB} retreat to {fnA} under pressure. When things get difficult, both reach for the same comfort function — which means they may withdraw to similar places and recognize the same instinct in each other. This can create quiet solidarity, or mutual collusion in avoidance if neither is willing to stay in harder territory.',
+  },
+  '2-5': {
+    tier: 'medium',
+    label: 'Anchor ↔ Counter',
+    template: '{typeA}\'s Anchor ({fnA}) maps to {typeB}\'s Counter. What one type uses as steady support, the other fires defensively and reactively. {typeB} has real access to this function but tends to wield it with a dug-in quality — which can make {typeA}\'s relaxed, reliable version of it feel like a provocation or an implicit challenge.',
+  },
+  '2-6': {
+    tier: 'high',
+    label: 'Anchor ↔ Critic',
+    template: '{typeA}\'s Anchor ({fnA}) sits at {typeB}\'s Critic position. What one type deploys as reliable background support, the other has a charged, judgmental relationship with. {typeB}\'s inner critic is attuned to exactly the function {typeA} leans on steadily — which means {typeA}\'s consistent use of it can quietly activate {typeB}\'s harshest internal judge.',
+  },
+  '3-6': {
+    tier: 'medium',
+    label: 'Refuge ↔ Critic',
+    template: '{typeA}\'s Refuge ({fnA}) maps to {typeB}\'s Critic position. What one retreats into for comfort, the other has a harsh and charged relationship with. When {typeA} pulls back into this function under pressure, it may inadvertently trigger {typeB}\'s internal critic — making what feels like a safe retreat to {typeA} look like a failure of execution to {typeB}.',
+  },
+  '3-7': {
+    tier: 'medium',
+    label: 'Refuge ↔ Gamble',
+    template: '{typeA}\'s Refuge ({fnA}) maps to {typeB}\'s Gamble. What one uses as a reliable comfort zone, the other accesses intermittently and can\'t always gauge accurately. {typeB} may believe they\'re following {typeA}\'s retreat into this function when they\'re actually misfiring — an asymmetry that becomes visible only when precision matters.',
+  },
 };
 
 /**
