@@ -695,7 +695,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -705,7 +705,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -717,7 +717,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -727,7 +727,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -739,7 +739,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -749,7 +749,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -761,7 +761,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -771,7 +771,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -783,7 +783,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -793,7 +793,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -805,7 +805,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -815,7 +815,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -827,7 +827,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -837,7 +837,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -849,7 +849,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -859,7 +859,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -871,7 +871,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -881,7 +881,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Reformer (Type 1)",
       "items": [
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
-        "They need to feel be good and have integrity.",
+        "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
         "Their growth edge is Type 7 qualities — Enthusiast."
       ]
@@ -893,7 +893,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -903,7 +903,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -915,7 +915,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -925,7 +925,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -937,7 +937,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -947,7 +947,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -959,7 +959,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -969,7 +969,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -981,7 +981,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -991,7 +991,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -1003,7 +1003,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -1013,7 +1013,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -1025,7 +1025,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -1035,7 +1035,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -1047,7 +1047,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -1057,7 +1057,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Helper (Type 2)",
       "items": [
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
-        "They need to feel feel loved and needed.",
+        "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
         "Their growth edge is Type 4 qualities — Individualist."
       ]
@@ -1069,7 +1069,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -1079,7 +1079,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -1091,7 +1091,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -1101,7 +1101,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -1113,7 +1113,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -1123,7 +1123,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -1135,7 +1135,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -1145,7 +1145,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -1157,7 +1157,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -1167,7 +1167,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -1179,7 +1179,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -1189,7 +1189,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -1201,7 +1201,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -1211,7 +1211,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Achiever (Type 3)",
       "items": [
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
-        "They need to feel feel valuable and worthwhile.",
+        "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
         "Their growth edge is Type 6 qualities — Loyalist."
       ]
@@ -1223,7 +1223,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -1233,7 +1233,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -1245,7 +1245,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -1255,7 +1255,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -1267,7 +1267,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -1277,7 +1277,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -1289,7 +1289,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -1299,7 +1299,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -1311,7 +1311,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -1321,7 +1321,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -1333,7 +1333,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -1343,7 +1343,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Individualist (Type 4)",
       "items": [
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
-        "They need to feel find themselves and their significance.",
+        "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
         "Their growth edge is Type 1 qualities — Reformer."
       ]
@@ -1355,7 +1355,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -1365,7 +1365,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -1377,7 +1377,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -1387,7 +1387,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -1399,7 +1399,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -1409,7 +1409,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -1421,7 +1421,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -1431,7 +1431,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -1443,7 +1443,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -1453,7 +1453,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Investigator (Type 5)",
       "items": [
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
-        "They need to feel be capable and competent.",
+        "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
         "Their growth edge is Type 8 qualities — Challenger."
       ]
@@ -1465,7 +1465,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -1475,7 +1475,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -1487,7 +1487,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -1497,7 +1497,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -1509,7 +1509,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -1519,7 +1519,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -1531,7 +1531,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -1541,7 +1541,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Loyalist (Type 6)",
       "items": [
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
-        "They need to feel have security and support.",
+        "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
         "Their growth edge is Type 9 qualities — Peacemaker."
       ]
@@ -1553,7 +1553,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -1563,7 +1563,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -1575,7 +1575,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -1585,7 +1585,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -1597,7 +1597,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -1607,7 +1607,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Enthusiast (Type 7)",
       "items": [
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
-        "They need to feel be satisfied and content.",
+        "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
         "Their growth edge is Type 5 qualities — Investigator."
       ]
@@ -1619,7 +1619,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -1629,7 +1629,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -1641,7 +1641,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -1651,7 +1651,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Challenger (Type 8)",
       "items": [
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
-        "They need to feel protect themselves and be in control.",
+        "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
         "Their growth edge is Type 2 qualities — Helper."
       ]
@@ -1663,7 +1663,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -1673,7 +1673,7 @@ export const ENN_TIPS = {
       "label": "Understanding the Peacemaker (Type 9)",
       "items": [
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
-        "They need to feel have inner stability and peace of mind.",
+        "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
         "Their growth edge is Type 3 qualities — Achiever."
       ]
@@ -4020,58 +4020,58 @@ export const MBTI_TIPS = {
   "ENTJ-INTJ": [
     {
       "for": "Person A",
+      "label": "Understanding INTJ's Lead: Ni",
+      "items": [
+        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ENTJ's Lead: Te",
       "items": [
         "ENTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
       ]
-    },
+    }
+  ],
+  "ENTP-INTJ": [
     {
-      "for": "Person B",
+      "for": "Person A",
       "label": "Understanding INTJ's Lead: Ni",
       "items": [
         "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
       ]
-    }
-  ],
-  "ENTP-INTJ": [
+    },
     {
-      "for": "Person A",
+      "for": "Person B",
       "label": "Understanding ENTP's Lead: Ne",
       "items": [
         "ENTP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INTJ's Lead: Ni",
-      "items": [
-        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
-      ]
     }
   ],
   "INFJ-INTJ": [
     {
       "for": "Person A",
-      "label": "Understanding INFJ's Lead: Ni",
+      "label": "Understanding INTJ's Lead: Ni",
       "items": [
-        "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
       ]
     },
     {
       "for": "Person B",
-      "label": "Understanding INTJ's Lead: Ni",
+      "label": "Understanding INFJ's Lead: Ni",
       "items": [
-        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
       ]
@@ -4080,60 +4080,60 @@ export const MBTI_TIPS = {
   "INFP-INTJ": [
     {
       "for": "Person A",
+      "label": "Understanding INTJ's Lead: Ni",
+      "items": [
+        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding INFP's Lead: Fi",
       "items": [
         "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
       ]
-    },
+    }
+  ],
+  "ENFJ-INTJ": [
     {
-      "for": "Person B",
+      "for": "Person A",
       "label": "Understanding INTJ's Lead: Ni",
       "items": [
         "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
       ]
-    }
-  ],
-  "ENFJ-INTJ": [
+    },
     {
-      "for": "Person A",
+      "for": "Person B",
       "label": "Understanding ENFJ's Lead: Fe",
       "items": [
         "ENFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INTJ's Lead: Ni",
-      "items": [
-        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
-      ]
     }
   ],
   "ENFP-INTJ": [
     {
       "for": "Person A",
-      "label": "Understanding ENFP's Lead: Ne",
-      "items": [
-        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INTJ's Lead: Ni",
       "items": [
         "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ENFP's Lead: Ne",
+      "items": [
+        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
       ]
     }
   ],
@@ -4180,40 +4180,40 @@ export const MBTI_TIPS = {
   "ESTJ-INTJ": [
     {
       "for": "Person A",
+      "label": "Understanding INTJ's Lead: Ni",
+      "items": [
+        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTJ's Lead: Te",
       "items": [
         "ESTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INTJ's Lead: Ni",
-      "items": [
-        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFJ-INTJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFJ's Lead: Fe",
-      "items": [
-        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INTJ's Lead: Ni",
       "items": [
         "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFJ's Lead: Fe",
+      "items": [
+        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
     }
   ],
@@ -4260,40 +4260,40 @@ export const MBTI_TIPS = {
   "ESTP-INTJ": [
     {
       "for": "Person A",
+      "label": "Understanding INTJ's Lead: Ni",
+      "items": [
+        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTP's Lead: Se",
       "items": [
         "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INTJ's Lead: Ni",
-      "items": [
-        "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFP-INTJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
-      "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INTJ's Lead: Ni",
       "items": [
         "INTJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFP's Lead: Se",
+      "items": [
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     }
   ],
@@ -4320,120 +4320,120 @@ export const MBTI_TIPS = {
   "ENTJ-INTP": [
     {
       "for": "Person A",
+      "label": "Understanding INTP's Lead: Ti",
+      "items": [
+        "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ENTJ's Lead: Te",
       "items": [
         "ENTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
       ]
-    },
+    }
+  ],
+  "ENTP-INTP": [
     {
-      "for": "Person B",
+      "for": "Person A",
       "label": "Understanding INTP's Lead: Ti",
       "items": [
         "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
       ]
-    }
-  ],
-  "ENTP-INTP": [
+    },
     {
-      "for": "Person A",
+      "for": "Person B",
       "label": "Understanding ENTP's Lead: Ne",
       "items": [
         "ENTP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
       ]
-    },
+    }
+  ],
+  "INFJ-INTP": [
     {
-      "for": "Person B",
+      "for": "Person A",
       "label": "Understanding INTP's Lead: Ti",
       "items": [
         "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
       ]
-    }
-  ],
-  "INFJ-INTP": [
+    },
     {
-      "for": "Person A",
+      "for": "Person B",
       "label": "Understanding INFJ's Lead: Ni",
       "items": [
         "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
       ]
-    },
+    }
+  ],
+  "INFP-INTP": [
     {
-      "for": "Person B",
+      "for": "Person A",
       "label": "Understanding INTP's Lead: Ti",
       "items": [
         "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
       ]
-    }
-  ],
-  "INFP-INTP": [
+    },
     {
-      "for": "Person A",
+      "for": "Person B",
       "label": "Understanding INFP's Lead: Fi",
       "items": [
         "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
       ]
-    },
+    }
+  ],
+  "ENFJ-INTP": [
     {
-      "for": "Person B",
+      "for": "Person A",
       "label": "Understanding INTP's Lead: Ti",
       "items": [
         "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
       ]
-    }
-  ],
-  "ENFJ-INTP": [
+    },
     {
-      "for": "Person A",
+      "for": "Person B",
       "label": "Understanding ENFJ's Lead: Fe",
       "items": [
         "ENFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INTP's Lead: Ti",
-      "items": [
-        "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
-      ]
     }
   ],
   "ENFP-INTP": [
     {
       "for": "Person A",
-      "label": "Understanding ENFP's Lead: Ne",
-      "items": [
-        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INTP's Lead: Ti",
       "items": [
         "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ENFP's Lead: Ne",
+      "items": [
+        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
       ]
     }
   ],
@@ -4480,40 +4480,40 @@ export const MBTI_TIPS = {
   "ESTJ-INTP": [
     {
       "for": "Person A",
+      "label": "Understanding INTP's Lead: Ti",
+      "items": [
+        "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTJ's Lead: Te",
       "items": [
         "ESTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INTP's Lead: Ti",
-      "items": [
-        "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFJ-INTP": [
     {
       "for": "Person A",
-      "label": "Understanding ESFJ's Lead: Fe",
-      "items": [
-        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INTP's Lead: Ti",
       "items": [
         "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFJ's Lead: Fe",
+      "items": [
+        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
     }
   ],
@@ -4560,40 +4560,40 @@ export const MBTI_TIPS = {
   "ESTP-INTP": [
     {
       "for": "Person A",
+      "label": "Understanding INTP's Lead: Ti",
+      "items": [
+        "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTP's Lead: Se",
       "items": [
         "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INTP's Lead: Ti",
-      "items": [
-        "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFP-INTP": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
-      "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INTP's Lead: Ti",
       "items": [
         "INTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFP's Lead: Se",
+      "items": [
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     }
   ],
@@ -4680,40 +4680,40 @@ export const MBTI_TIPS = {
   "ENFJ-ENTJ": [
     {
       "for": "Person A",
+      "label": "Understanding ENTJ's Lead: Te",
+      "items": [
+        "ENTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ENFJ's Lead: Fe",
       "items": [
         "ENFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding ENTJ's Lead: Te",
-      "items": [
-        "ENTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
-      ]
     }
   ],
   "ENFP-ENTJ": [
     {
       "for": "Person A",
-      "label": "Understanding ENFP's Lead: Ne",
-      "items": [
-        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding ENTJ's Lead: Te",
       "items": [
         "ENTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ENFP's Lead: Ne",
+      "items": [
+        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
       ]
     }
   ],
@@ -4940,38 +4940,38 @@ export const MBTI_TIPS = {
   "ENFJ-ENTP": [
     {
       "for": "Person A",
+      "label": "Understanding ENTP's Lead: Ne",
+      "items": [
+        "ENTP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ENFJ's Lead: Fe",
       "items": [
         "ENFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding ENTP's Lead: Ne",
-      "items": [
-        "ENTP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
-      ]
     }
   ],
   "ENFP-ENTP": [
     {
       "for": "Person A",
-      "label": "Understanding ENFP's Lead: Ne",
+      "label": "Understanding ENTP's Lead: Ne",
       "items": [
-        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "ENTP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
       ]
     },
     {
       "for": "Person B",
-      "label": "Understanding ENTP's Lead: Ne",
+      "label": "Understanding ENFP's Lead: Ne",
       "items": [
-        "ENTP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
       ]
@@ -5180,40 +5180,40 @@ export const MBTI_TIPS = {
   "ENFJ-INFJ": [
     {
       "for": "Person A",
+      "label": "Understanding INFJ's Lead: Ni",
+      "items": [
+        "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ENFJ's Lead: Fe",
       "items": [
         "ENFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INFJ's Lead: Ni",
-      "items": [
-        "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
-      ]
     }
   ],
   "ENFP-INFJ": [
     {
       "for": "Person A",
-      "label": "Understanding ENFP's Lead: Ne",
-      "items": [
-        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INFJ's Lead: Ni",
       "items": [
         "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ENFP's Lead: Ne",
+      "items": [
+        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
       ]
     }
   ],
@@ -5260,40 +5260,40 @@ export const MBTI_TIPS = {
   "ESTJ-INFJ": [
     {
       "for": "Person A",
+      "label": "Understanding INFJ's Lead: Ni",
+      "items": [
+        "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTJ's Lead: Te",
       "items": [
         "ESTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INFJ's Lead: Ni",
-      "items": [
-        "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFJ-INFJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFJ's Lead: Fe",
-      "items": [
-        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INFJ's Lead: Ni",
       "items": [
         "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFJ's Lead: Fe",
+      "items": [
+        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
     }
   ],
@@ -5340,40 +5340,40 @@ export const MBTI_TIPS = {
   "ESTP-INFJ": [
     {
       "for": "Person A",
+      "label": "Understanding INFJ's Lead: Ni",
+      "items": [
+        "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTP's Lead: Se",
       "items": [
         "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INFJ's Lead: Ni",
-      "items": [
-        "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFP-INFJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
-      "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INFJ's Lead: Ni",
       "items": [
         "INFJ leads with Introverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Se (Extraverted Sensing) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFP's Lead: Se",
+      "items": [
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     }
   ],
@@ -5400,40 +5400,40 @@ export const MBTI_TIPS = {
   "ENFJ-INFP": [
     {
       "for": "Person A",
+      "label": "Understanding INFP's Lead: Fi",
+      "items": [
+        "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ENFJ's Lead: Fe",
       "items": [
         "ENFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INFP's Lead: Fi",
-      "items": [
-        "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
-      ]
     }
   ],
   "ENFP-INFP": [
     {
       "for": "Person A",
-      "label": "Understanding ENFP's Lead: Ne",
-      "items": [
-        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INFP's Lead: Fi",
       "items": [
         "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ENFP's Lead: Ne",
+      "items": [
+        "ENFP leads with Extraverted Intuition — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Si (Introverted Sensing) — avoid triggering it under stress."
       ]
     }
   ],
@@ -5480,40 +5480,40 @@ export const MBTI_TIPS = {
   "ESTJ-INFP": [
     {
       "for": "Person A",
+      "label": "Understanding INFP's Lead: Fi",
+      "items": [
+        "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTJ's Lead: Te",
       "items": [
         "ESTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INFP's Lead: Fi",
-      "items": [
-        "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFJ-INFP": [
     {
       "for": "Person A",
-      "label": "Understanding ESFJ's Lead: Fe",
-      "items": [
-        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INFP's Lead: Fi",
       "items": [
         "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFJ's Lead: Fe",
+      "items": [
+        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
     }
   ],
@@ -5560,40 +5560,40 @@ export const MBTI_TIPS = {
   "ESTP-INFP": [
     {
       "for": "Person A",
+      "label": "Understanding INFP's Lead: Fi",
+      "items": [
+        "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTP's Lead: Se",
       "items": [
         "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding INFP's Lead: Fi",
-      "items": [
-        "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFP-INFP": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
-      "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding INFP's Lead: Fi",
       "items": [
         "INFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFP's Lead: Se",
+      "items": [
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     }
   ],
@@ -6000,18 +6000,18 @@ export const MBTI_TIPS = {
   "ISFJ-ISTJ": [
     {
       "for": "Person A",
-      "label": "Understanding ISFJ's Lead: Si",
+      "label": "Understanding ISTJ's Lead: Si",
       "items": [
-        "ISFJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "ISTJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
       ]
     },
     {
       "for": "Person B",
-      "label": "Understanding ISTJ's Lead: Si",
+      "label": "Understanding ISFJ's Lead: Si",
       "items": [
-        "ISTJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "ISFJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
       ]
@@ -6020,40 +6020,40 @@ export const MBTI_TIPS = {
   "ESTJ-ISTJ": [
     {
       "for": "Person A",
+      "label": "Understanding ISTJ's Lead: Si",
+      "items": [
+        "ISTJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTJ's Lead: Te",
       "items": [
         "ESTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding ISTJ's Lead: Si",
-      "items": [
-        "ISTJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFJ-ISTJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFJ's Lead: Fe",
-      "items": [
-        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding ISTJ's Lead: Si",
       "items": [
         "ISTJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFJ's Lead: Fe",
+      "items": [
+        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
     }
   ],
@@ -6080,60 +6080,60 @@ export const MBTI_TIPS = {
   "ISFP-ISTJ": [
     {
       "for": "Person A",
+      "label": "Understanding ISTJ's Lead: Si",
+      "items": [
+        "ISTJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ISFP's Lead: Fi",
       "items": [
         "ISFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
       ]
-    },
+    }
+  ],
+  "ESTP-ISTJ": [
     {
-      "for": "Person B",
+      "for": "Person A",
       "label": "Understanding ISTJ's Lead: Si",
       "items": [
         "ISTJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
       ]
-    }
-  ],
-  "ESTP-ISTJ": [
+    },
     {
-      "for": "Person A",
+      "for": "Person B",
       "label": "Understanding ESTP's Lead: Se",
       "items": [
         "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding ISTJ's Lead: Si",
-      "items": [
-        "ISTJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFP-ISTJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
-      "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding ISTJ's Lead: Si",
       "items": [
         "ISTJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFP's Lead: Se",
+      "items": [
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     }
   ],
@@ -6160,40 +6160,40 @@ export const MBTI_TIPS = {
   "ESTJ-ISFJ": [
     {
       "for": "Person A",
+      "label": "Understanding ISFJ's Lead: Si",
+      "items": [
+        "ISFJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTJ's Lead: Te",
       "items": [
         "ESTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding ISFJ's Lead: Si",
-      "items": [
-        "ISFJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFJ-ISFJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFJ's Lead: Fe",
-      "items": [
-        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding ISFJ's Lead: Si",
       "items": [
         "ISFJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFJ's Lead: Fe",
+      "items": [
+        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
     }
   ],
@@ -6240,40 +6240,40 @@ export const MBTI_TIPS = {
   "ESTP-ISFJ": [
     {
       "for": "Person A",
+      "label": "Understanding ISFJ's Lead: Si",
+      "items": [
+        "ISFJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTP's Lead: Se",
       "items": [
         "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding ISFJ's Lead: Si",
-      "items": [
-        "ISFJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFP-ISFJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
-      "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding ISFJ's Lead: Si",
       "items": [
         "ISFJ leads with Introverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Ne (Extraverted Intuition) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFP's Lead: Se",
+      "items": [
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     }
   ],
@@ -6300,20 +6300,20 @@ export const MBTI_TIPS = {
   "ESFJ-ESTJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFJ's Lead: Fe",
-      "items": [
-        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding ESTJ's Lead: Te",
       "items": [
         "ESTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFJ's Lead: Fe",
+      "items": [
+        "ESFJ leads with Extraverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ti (Introverted Thinking) — avoid triggering it under stress."
       ]
     }
   ],
@@ -6380,20 +6380,20 @@ export const MBTI_TIPS = {
   "ESFP-ESTJ": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
-      "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding ESTJ's Lead: Te",
       "items": [
         "ESTJ leads with Extraverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Fi (Introverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFP's Lead: Se",
+      "items": [
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     }
   ],
@@ -6520,60 +6520,60 @@ export const MBTI_TIPS = {
   "ISFP-ISTP": [
     {
       "for": "Person A",
+      "label": "Understanding ISTP's Lead: Ti",
+      "items": [
+        "ISTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ISFP's Lead: Fi",
       "items": [
         "ISFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
       ]
-    },
+    }
+  ],
+  "ESTP-ISTP": [
     {
-      "for": "Person B",
+      "for": "Person A",
       "label": "Understanding ISTP's Lead: Ti",
       "items": [
         "ISTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
       ]
-    }
-  ],
-  "ESTP-ISTP": [
+    },
     {
-      "for": "Person A",
+      "for": "Person B",
       "label": "Understanding ESTP's Lead: Se",
       "items": [
         "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding ISTP's Lead: Ti",
-      "items": [
-        "ISTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFP-ISTP": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
-      "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding ISTP's Lead: Ti",
       "items": [
         "ISTP leads with Introverted Thinking — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Fe (Extraverted Feeling) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFP's Lead: Se",
+      "items": [
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     }
   ],
@@ -6600,40 +6600,40 @@ export const MBTI_TIPS = {
   "ESTP-ISFP": [
     {
       "for": "Person A",
+      "label": "Understanding ISFP's Lead: Fi",
+      "items": [
+        "ISFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
+        "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
       "label": "Understanding ESTP's Lead: Se",
       "items": [
         "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
-    },
-    {
-      "for": "Person B",
-      "label": "Understanding ISFP's Lead: Fi",
-      "items": [
-        "ISFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
-        "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
-      ]
     }
   ],
   "ESFP-ISFP": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
-      "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
-        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
-        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
-      ]
-    },
-    {
-      "for": "Person B",
       "label": "Understanding ISFP's Lead: Fi",
       "items": [
         "ISFP leads with Introverted Feeling — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: give them space to process — don't push for immediate responses, let conclusions emerge.",
         "Their inferior function is Te (Extraverted Thinking) — avoid triggering it under stress."
+      ]
+    },
+    {
+      "for": "Person B",
+      "label": "Understanding ESFP's Lead: Se",
+      "items": [
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "To connect: join them in the external process — engage actively, think out loud, match their energy.",
+        "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     }
   ],
@@ -6660,18 +6660,18 @@ export const MBTI_TIPS = {
   "ESFP-ESTP": [
     {
       "for": "Person A",
-      "label": "Understanding ESFP's Lead: Se",
+      "label": "Understanding ESTP's Lead: Se",
       "items": [
-        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
     },
     {
       "for": "Person B",
-      "label": "Understanding ESTP's Lead: Se",
+      "label": "Understanding ESFP's Lead: Se",
       "items": [
-        "ESTP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
+        "ESFP leads with Extraverted Sensing — this is how they see everything first. Lead with that lens when communicating.",
         "To connect: join them in the external process — engage actively, think out loud, match their energy.",
         "Their inferior function is Ni (Introverted Intuition) — avoid triggering it under stress."
       ]
@@ -6759,27 +6759,27 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sp/sx|sp/sx/so": [
     {
-      "label": "Dominant: SP × SO",
+      "label": "Dominant: SO × SP",
       "bond": "SP handles personal stability while SO navigates the social world — a natural complementary pairing.",
       "tension": "SP may find SO's social focus draining; SO may feel SP is too self-focused or withdrawn from the group.",
       "tier": "dominant"
     },
     {
-      "label": "B's Secondary Matches A's Dominant",
-      "note": "Person B's secondary SP resonates with Person A's primary motivation — B can naturally attune to how A leads.",
+      "label": "A's Secondary Matches B's Dominant",
+      "note": "Person A's secondary SP resonates with Person B's primary motivation — A can naturally attune to how B leads.",
       "tier": "secondary"
     }
   ],
   "so/sx/sp|sp/sx/so": [
     {
-      "label": "Dominant: SP × SO",
+      "label": "Dominant: SO × SP",
       "bond": "SP handles personal stability while SO navigates the social world — a natural complementary pairing.",
       "tension": "SP may find SO's social focus draining; SO may feel SP is too self-focused or withdrawn from the group.",
       "tier": "dominant"
     },
     {
       "label": "Mirror-Reversed Stack",
-      "note": "SP/SX/SO vs SO/SX/SP — each person's dominant is the other's repressed. Maximum complementarity and maximum potential friction.",
+      "note": "SO/SX/SP vs SP/SX/SO — each person's dominant is the other's repressed. Maximum complementarity and maximum potential friction.",
       "tier": "alignment"
     },
     {
@@ -6839,14 +6839,14 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sp/sx|sp/so/sx": [
     {
-      "label": "Dominant: SP × SO",
+      "label": "Dominant: SO × SP",
       "bond": "SP handles personal stability while SO navigates the social world — a natural complementary pairing.",
       "tension": "SP may find SO's social focus draining; SO may feel SP is too self-focused or withdrawn from the group.",
       "tier": "dominant"
     },
     {
       "label": "A's Secondary Matches B's Dominant",
-      "note": "Person A's secondary SO resonates with Person B's primary motivation — A can naturally attune to how B leads.",
+      "note": "Person A's secondary SP resonates with Person B's primary motivation — A can naturally attune to how B leads.",
       "tier": "secondary"
     },
     {
@@ -6857,14 +6857,14 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sx/sp|sp/so/sx": [
     {
-      "label": "Dominant: SP × SO",
+      "label": "Dominant: SO × SP",
       "bond": "SP handles personal stability while SO navigates the social world — a natural complementary pairing.",
       "tension": "SP may find SO's social focus draining; SO may feel SP is too self-focused or withdrawn from the group.",
       "tier": "dominant"
     },
     {
-      "label": "A's Secondary Matches B's Dominant",
-      "note": "Person A's secondary SO resonates with Person B's primary motivation — A can naturally attune to how B leads.",
+      "label": "B's Secondary Matches A's Dominant",
+      "note": "Person B's secondary SO resonates with Person A's primary motivation — B can naturally attune to how A leads.",
       "tier": "secondary"
     }
   ],
@@ -6896,14 +6896,14 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sp/sx|sx/sp/so": [
     {
-      "label": "Dominant: SX × SO",
+      "label": "Dominant: SO × SX",
       "bond": "SX brings passionate depth; SO brings breadth and social awareness — a vivid complementary pair.",
       "tension": "SX may feel SO is too diffuse or shallow; SO may feel SX's intensity is overwhelming or demanding.",
       "tier": "dominant"
     },
     {
       "label": "Mirror-Reversed Stack",
-      "note": "SX/SP/SO vs SO/SP/SX — each person's dominant is the other's repressed. Maximum complementarity and maximum potential friction.",
+      "note": "SO/SP/SX vs SX/SP/SO — each person's dominant is the other's repressed. Maximum complementarity and maximum potential friction.",
       "tier": "alignment"
     },
     {
@@ -6914,14 +6914,14 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sx/sp|sx/sp/so": [
     {
-      "label": "Dominant: SX × SO",
+      "label": "Dominant: SO × SX",
       "bond": "SX brings passionate depth; SO brings breadth and social awareness — a vivid complementary pair.",
       "tension": "SX may feel SO is too diffuse or shallow; SO may feel SX's intensity is overwhelming or demanding.",
       "tier": "dominant"
     },
     {
-      "label": "B's Secondary Matches A's Dominant",
-      "note": "Person B's secondary SX resonates with Person A's primary motivation — B can naturally attune to how A leads.",
+      "label": "A's Secondary Matches B's Dominant",
+      "note": "Person A's secondary SX resonates with Person B's primary motivation — A can naturally attune to how B leads.",
       "tier": "secondary"
     }
   ],
@@ -6945,27 +6945,27 @@ export const INSTINCT_STACK_DYNAMICS = {
   ],
   "so/sp/sx|sx/so/sp": [
     {
-      "label": "Dominant: SX × SO",
+      "label": "Dominant: SO × SX",
       "bond": "SX brings passionate depth; SO brings breadth and social awareness — a vivid complementary pair.",
       "tension": "SX may feel SO is too diffuse or shallow; SO may feel SX's intensity is overwhelming or demanding.",
       "tier": "dominant"
     },
     {
-      "label": "A's Secondary Matches B's Dominant",
-      "note": "Person A's secondary SO resonates with Person B's primary motivation — A can naturally attune to how B leads.",
+      "label": "B's Secondary Matches A's Dominant",
+      "note": "Person B's secondary SO resonates with Person A's primary motivation — B can naturally attune to how A leads.",
       "tier": "secondary"
     }
   ],
   "so/sx/sp|sx/so/sp": [
     {
-      "label": "Dominant: SX × SO",
+      "label": "Dominant: SO × SX",
       "bond": "SX brings passionate depth; SO brings breadth and social awareness — a vivid complementary pair.",
       "tension": "SX may feel SO is too diffuse or shallow; SO may feel SX's intensity is overwhelming or demanding.",
       "tier": "dominant"
     },
     {
       "label": "A's Secondary Matches B's Dominant",
-      "note": "Person A's secondary SO resonates with Person B's primary motivation — A can naturally attune to how B leads.",
+      "note": "Person A's secondary SX resonates with Person B's primary motivation — A can naturally attune to how B leads.",
       "tier": "secondary"
     },
     {

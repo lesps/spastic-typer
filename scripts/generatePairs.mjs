@@ -81,7 +81,9 @@ for (let i = 0; i < mbtiTypes.length; i++) {
     const res = getMBTIInteraction(t1, t2);
     if (res) {
       MBTI_INSIGHTS[key] = res.insights;
-      MBTI_TIPS_MAP[key] = getMBTITips(t1, t2);
+      // Pass types in canonical key order so Person A/B labels match the key
+      const [canonA, canonB] = key.split('-');
+      MBTI_TIPS_MAP[key] = getMBTITips(canonA, canonB);
     }
   }
 }
@@ -103,7 +105,10 @@ for (let i = 0; i < INSTINCT_STACKS.length; i++) {
     const keyParts = [sA.join('/'), sB.join('/')].sort();
     const key = keyParts.join('|');
     if (!INSTINCT_STACK_DYNAMICS[key]) {
-      INSTINCT_STACK_DYNAMICS[key] = getInstinctStackInteraction(sA, sB);
+      // Pass stacks in canonical key order so Person A/B labels match the key
+      const canonA = keyParts[0].split('/');
+      const canonB = keyParts[1].split('/');
+      INSTINCT_STACK_DYNAMICS[key] = getInstinctStackInteraction(canonA, canonB);
     }
   }
 }

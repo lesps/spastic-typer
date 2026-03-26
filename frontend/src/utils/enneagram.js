@@ -87,7 +87,7 @@ export function getEnnTips(c1, c2) {
     {
       for: 'Person A', label: `Understanding the ${n2} (Type ${c2})`, items: [
         `Their core fear is "${ENN_TYPES[c2].fear.toLowerCase()}" — avoid framing that triggers it.`,
-        `They need to feel ${ENN_TYPES[c2].desire.toLowerCase().replace('to ', '')}.`,
+        `They need ${ENN_TYPES[c2].desire.toLowerCase()}.`,
         `Under stress they move toward Type ${ENN_ARROWS[c2].stress} patterns — ${ENN_TYPES[ENN_ARROWS[c2].stress].name.replace('The ', '')}.`,
         `Their growth edge is Type ${ENN_ARROWS[c2].growth} qualities — ${ENN_TYPES[ENN_ARROWS[c2].growth].name.replace('The ', '')}.`,
       ],
@@ -95,7 +95,7 @@ export function getEnnTips(c1, c2) {
     {
       for: 'Person B', label: `Understanding the ${n1} (Type ${c1})`, items: [
         `Their core fear is "${ENN_TYPES[c1].fear.toLowerCase()}" — avoid framing that triggers it.`,
-        `They need to feel ${ENN_TYPES[c1].desire.toLowerCase().replace('to ', '')}.`,
+        `They need ${ENN_TYPES[c1].desire.toLowerCase()}.`,
         `Under stress they move toward Type ${ENN_ARROWS[c1].stress} patterns — ${ENN_TYPES[ENN_ARROWS[c1].stress].name.replace('The ', '')}.`,
         `Their growth edge is Type ${ENN_ARROWS[c1].growth} qualities — ${ENN_TYPES[ENN_ARROWS[c1].growth].name.replace('The ', '')}.`,
       ],
