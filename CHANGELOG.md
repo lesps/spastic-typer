@@ -28,6 +28,13 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 - ComparePage: position-crossing flags added to pairwise MBTI comparison, Full Shadow Pair callout for mirror types
 - Rewrote all 64 shadow function descriptions in `mbtiDetails.js` to use new position naming and experiential tone
 
+### 1.3.6 — 2026-03-26
+
+- Fix: MBTI tip Person A/B direction bug — 54 of 120 different-type tip pairs were swapped, telling each person about their own type instead of the other person's. Root cause: `generatePairs.mjs` called `getMBTITips(t1, t2)` in insertion order but stored results under alphabetically-sorted keys. Fixed by passing types in canonical key order (`canonA, canonB`).
+- Fix: Instinct stack tip direction bug — 6 of 9 pairs with Person A/B labels were swapped for the same reason. Fixed by deriving `canonA`/`canonB` from sorted `keyParts` before calling `getInstinctStackInteraction`.
+- Fix: Grammar error in `getEnnTips()` — `"They need to feel " + desire.replace('to ', '')` produced malformed strings like "They need to feel be good and have integrity". Fixed to `"They need " + desire` (e.g. "They need to be good and have integrity").
+- Regenerated `pairLookup.js` with all three fixes applied.
+
 ### 1.3.5 — 2026-03-25
 
 - Improved: Compare page consolidates "Instinct Stack Dynamics" and "Instinct Depth Analysis" into a single "Instinct Dynamics" section. The merged section preserves all unique content: chemistry tag and tips (from runtime analysis), dominant narrative with attraction/friction boxes, stack alignment note and secondary match notes (from pairLookup), secondary bridge, and shared blind spot. Eliminates duplicate coverage of dominant pairing and blind spot concepts that previously appeared at two different scroll positions.
