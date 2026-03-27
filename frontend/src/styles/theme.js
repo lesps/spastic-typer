@@ -32,6 +32,8 @@ body,html{background:#08080c;color:#f0ede8;font-family:'DM Sans',sans-serif;min-
 ::-webkit-scrollbar-thumb{background:rgba(232,184,75,0.3);border-radius:3px}
 button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:pointer}
 input,textarea{-webkit-appearance:none;appearance:none}
+details>summary{list-style:none}
+details>summary::-webkit-details-marker{display:none}
 @media(max-width:680px){
   .qpage{display:flex;flex-direction:column}
   .qbody{flex:1;display:flex;flex-direction:column;justify-content:center}

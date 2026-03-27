@@ -28,6 +28,14 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 - ComparePage: position-crossing flags added to pairwise MBTI comparison, Full Shadow Pair callout for mirror types
 - Rewrote all 64 shadow function descriptions in `mbtiDetails.js` to use new position naming and experiential tone
 
+### 1.3.7 — 2026-03-27
+
+- Fix: Same-MBTI crossing descriptions now substitute person names instead of returning raw template text (e.g. "Both Spencer and Myat lead with Ne" instead of "Both ENFP and ENFP lead with Ne"). Sequential regex replacement maps first type-code occurrence to pA's name and second to pB's name.
+- Improved: ENN_TIPS and MBTI_TIPS cards are now collapsed by default using `<details>`/`<summary>` elements. These are generic type-reference cards; collapsing them by default reduces visual clutter and lets pair-specific analysis sections take precedence.
+- Improved: When two people share the same Enneagram type, the two identical ENN_TIPS cards are merged into a single collapsed card with a "SHARED TYPE" tag instead of rendering duplicate content.
+- Improved: When two people share the same MBTI type, the two identical MBTI_TIPS cards are merged into a single collapsed card with a "SHARED TYPE" tag.
+- Improved: Growth & Stress section condenses to "SHARED GROWTH PATH" + "SHARED STRESS PATTERN" for same-Enneagram-type pairs, replacing 4 symmetric sub-sections (which contained identical directional information due to identical arrows).
+
 ### 1.3.6 — 2026-03-26
 
 - Fix: MBTI tip Person A/B direction bug — 54 of 120 different-type tip pairs were swapped, telling each person about their own type instead of the other person's. Root cause: `generatePairs.mjs` called `getMBTITips(t1, t2)` in insertion order but stored results under alphabetically-sorted keys. Fixed by passing types in canonical key order (`canonA, canonB`).

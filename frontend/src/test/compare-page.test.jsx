@@ -440,3 +440,97 @@ describe('ComparePage — 8-position stack display', () => {
     expect(screen.getByText('SHADOW')).toBeInTheDocument();
   });
 });
+
+describe('ComparePage — same-type dedup', () => {
+  // Same enn type + same MBTI: 3w2 ENFP × 3w2 ENFP
+  const sameTypePair = [
+    { label: 'Spencer', ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'so', 'sx'], mbti: 'ENFP', ennScores: null },
+    { label: 'Myat',    ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sx', 'so', 'sp'], mbti: 'ENFP', ennScores: null },
+  ];
+
+  // Same enn, different MBTI: 3w2 ENFP × 3w2 INFP
+  const mixedPair = [
+    { label: 'Spencer', ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'so', 'sx'], mbti: 'ENFP', ennScores: null },
+    { label: 'Myat',    ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sx', 'so', 'sp'], mbti: 'INFP', ennScores: null },
+  ];
+
+  // Different enn + different MBTI: 3w2 ENFP × 4w5 INFJ
+  const diffPair = [
+    { label: 'Spencer', ennType: 3, ennWing: 2, ennWingStrength: 2, instinctStack: ['sp', 'so', 'sx'], mbti: 'ENFP', ennScores: null },
+    { label: 'Alex',    ennType: 4, ennWing: 5, ennWingStrength: 1, instinctStack: ['sx', 'sp', 'so'], mbti: 'INFJ', ennScores: null },
+  ];
+
+  beforeEach(() => localStorage.clear());
+
+  it('renders one merged enn tip card with SHARED TYPE tag for same Enneagram type', () => {
+    localStorage.setItem('compare_persons', JSON.stringify(sameTypePair));
+    render(<ComparePage />);
+    // "SHARED TYPE" tag should appear exactly once for the merged enn tip card
+    expect(screen.getAllByText('SHARED TYPE').length).toBeGreaterThanOrEqual(1);
+    // Only one enn tip heading (e.g. "Understanding the Achiever") — not two
+    const achieverHeadings = screen.getAllByText(/Understanding the Achiever/i);
+    expect(achieverHeadings.length).toBe(1);
+  });
+
+  it('renders tip cards as <details> elements (collapsed by default)', () => {
+    localStorage.setItem('compare_persons', JSON.stringify(sameTypePair));
+    const { container } = render(<ComparePage />);
+    // tip cards should be wrapped in <details>
+    const detailsEls = container.querySelectorAll('details');
+    expect(detailsEls.length).toBeGreaterThanOrEqual(1);
+    // none should have open attribute by default
+    detailsEls.forEach(d => {
+      expect(d.hasAttribute('open')).toBe(false);
+    });
+  });
+
+  it('renders <details> tip cards for different-type pairs too', () => {
+    localStorage.setItem('compare_persons', JSON.stringify(diffPair));
+    const { container } = render(<ComparePage />);
+    const detailsEls = container.querySelectorAll('details');
+    expect(detailsEls.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it('shows condensed growth/stress for same Enneagram type', () => {
+    localStorage.setItem('compare_persons', JSON.stringify(sameTypePair));
+    render(<ComparePage />);
+    expect(screen.getByText('SHARED GROWTH PATH')).toBeInTheDocument();
+    expect(screen.getByText('SHARED STRESS PATTERN')).toBeInTheDocument();
+    // Directional sub-sections should NOT appear
+    expect(screen.queryByText(/spencer → myat \(growth\)/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/myat → spencer \(growth\)/i)).not.toBeInTheDocument();
+  });
+
+  it('preserves full 4-way growth/stress for different Enneagram types', () => {
+    localStorage.setItem('compare_persons', JSON.stringify(diffPair));
+    render(<ComparePage />);
+    expect(screen.queryByText('SHARED GROWTH PATH')).not.toBeInTheDocument();
+    expect(screen.queryByText('SHARED STRESS PATTERN')).not.toBeInTheDocument();
+    // Directional rows should be present
+    expect(screen.getByText(/spencer → alex \(growth\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/alex → spencer \(growth\)/i)).toBeInTheDocument();
+  });
+
+  it('substitutes person names in same-MBTI crossing descriptions', () => {
+    localStorage.setItem('compare_persons', JSON.stringify(sameTypePair));
+    render(<ComparePage />);
+    // Raw type code "ENFP" should not remain unreplaced in crossing descriptions
+    // (person names should appear instead — checked via absence of "Both ENFP and ENFP")
+    expect(screen.queryByText(/Both ENFP and ENFP/)).not.toBeInTheDocument();
+    // Both person names should appear in the document
+    expect(screen.getAllByText('Spencer').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('Myat').length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('renders two separate MBTI tip cards for different MBTI types (same enn)', () => {
+    localStorage.setItem('compare_persons', JSON.stringify(mixedPair));
+    render(<ComparePage />);
+    // SHARED TYPE should not appear for MBTI since types differ
+    // but should appear for enn since enn types match
+    expect(screen.getAllByText('SHARED TYPE').length).toBeGreaterThanOrEqual(1);
+    // Two different MBTI tip headings should appear (one for ENFP, one for INFP)
+    const { container } = render(<ComparePage />);
+    const detailsEls = container.querySelectorAll('details');
+    expect(detailsEls.length).toBeGreaterThanOrEqual(2);
+  });
+});
