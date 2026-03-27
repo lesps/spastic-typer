@@ -472,23 +472,21 @@ describe('ComparePage — same-type dedup', () => {
     expect(achieverHeadings.length).toBe(1);
   });
 
-  it('renders tip cards as <details> elements (collapsed by default)', () => {
-    localStorage.setItem('compare_persons', JSON.stringify(sameTypePair));
-    const { container } = render(<ComparePage />);
-    // tip cards should be wrapped in <details>
-    const detailsEls = container.querySelectorAll('details');
-    expect(detailsEls.length).toBeGreaterThanOrEqual(1);
-    // none should have open attribute by default
-    detailsEls.forEach(d => {
-      expect(d.hasAttribute('open')).toBe(false);
-    });
+  it('renders enn tip cards as always-visible (headings not inside <details>)', () => {
+    localStorage.setItem('compare_persons', JSON.stringify(diffPair));
+    render(<ComparePage />);
+    // Enn tip headings should be visible without clicking anything
+    const achieverHeading = screen.getByText(/Understanding the Achiever/i);
+    expect(achieverHeading).toBeInTheDocument();
+    // The heading must not be a descendant of a <details> element
+    expect(achieverHeading.closest('details')).toBeNull();
   });
 
-  it('renders <details> tip cards for different-type pairs too', () => {
+  it('does not render MBTI tip cards', () => {
     localStorage.setItem('compare_persons', JSON.stringify(diffPair));
-    const { container } = render(<ComparePage />);
-    const detailsEls = container.querySelectorAll('details');
-    expect(detailsEls.length).toBeGreaterThanOrEqual(2);
+    render(<ComparePage />);
+    expect(screen.queryByText(/Understanding ENFP/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Understanding INFJ/i)).not.toBeInTheDocument();
   });
 
   it('shows condensed growth/stress for same Enneagram type', () => {
@@ -522,15 +520,13 @@ describe('ComparePage — same-type dedup', () => {
     expect(screen.getAllByText('Myat').length).toBeGreaterThanOrEqual(1);
   });
 
-  it('renders two separate MBTI tip cards for different MBTI types (same enn)', () => {
+  it('shows SHARED TYPE enn card for mixed-MBTI same-enn pair (no MBTI tips)', () => {
     localStorage.setItem('compare_persons', JSON.stringify(mixedPair));
     render(<ComparePage />);
-    // SHARED TYPE should not appear for MBTI since types differ
-    // but should appear for enn since enn types match
+    // SHARED TYPE appears for enn (same enn type), not MBTI
     expect(screen.getAllByText('SHARED TYPE').length).toBeGreaterThanOrEqual(1);
-    // Two different MBTI tip headings should appear (one for ENFP, one for INFP)
-    const { container } = render(<ComparePage />);
-    const detailsEls = container.querySelectorAll('details');
-    expect(detailsEls.length).toBeGreaterThanOrEqual(2);
+    // No MBTI tips rendered
+    expect(screen.queryByText(/Understanding ENFP/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Understanding INFP/i)).not.toBeInTheDocument();
   });
 });

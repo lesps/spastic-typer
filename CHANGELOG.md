@@ -28,6 +28,11 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 - ComparePage: position-crossing flags added to pairwise MBTI comparison, Full Shadow Pair callout for mirror types
 - Rewrote all 64 shadow function descriptions in `mbtiDetails.js` to use new position naming and experiential tone
 
+### 1.3.8 — 2026-03-27
+
+- Removed: MBTI tips section ("Understanding [Type]'s Lead: [Fn]" cards) removed from Compare page pairwise analysis. These cards restated type-profile information already visible in the 8-position stack grid and were identical regardless of who the pair partner was. The MBTI section now flows: stack grid → MBTI Insights → Position Crossings → Cognitive Harmony.
+- Improved: Enneagram tips cards (core fear, desire, stress/growth arrows) are now always-visible `<div>` cards instead of collapsed `<details>` elements. These 4-line reference cards surface motivational data not shown elsewhere on the Compare page and are compact enough to show without a click.
+
 ### 1.3.7 — 2026-03-27
 
 - Fix: Same-MBTI crossing descriptions now substitute person names instead of returning raw template text (e.g. "Both Spencer and Myat lead with Ne" instead of "Both ENFP and ENFP lead with Ne"). Sequential regex replacement maps first type-code occurrence to pA's name and second to pB's name.
