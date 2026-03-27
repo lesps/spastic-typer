@@ -4,7 +4,7 @@ import { S } from '../styles/styles.js';
 import { ENN_TYPES, WING_DESC } from '../data/enneagram.js';
 
 import { MBTI_TYPES } from '../data/mbti.js';
-import { ENN_DYNAMICS, ENN_TIPS, MBTI_INSIGHTS, MBTI_TIPS, INSTINCT_STACK_DYNAMICS } from '../data/pairLookup.js';
+import { ENN_DYNAMICS, ENN_TIPS, MBTI_INSIGHTS, INSTINCT_STACK_DYNAMICS } from '../data/pairLookup.js';
 import FnBadge from '../components/FnBadge.jsx';
 import { getWingDynamics, wingStrengthLabel, wingStrengthDesc, computeWingStrengthDelta } from '../utils/enneagram.js';
 import { computeArchetypeName } from '../utils/archetype.js';
@@ -450,7 +450,6 @@ export default function ComparePage() {
     // MBTI lookups
     const mbtiKey2 = bothMBTI ? mbtiKey(pA.mbti, pB.mbti) : null;
     const mbtiInsights = mbtiKey2 ? (MBTI_INSIGHTS[mbtiKey2] || []) : [];
-    const mbtiTips = mbtiKey2 ? (MBTI_TIPS[mbtiKey2] || []) : [];
     const fullStackA = bothMBTI ? getFullStack(pA.mbti) : null;
     const fullStackB = bothMBTI ? getFullStack(pB.mbti) : null;
     const mbtiStacks = fullStackA && fullStackB ? {
@@ -493,31 +492,11 @@ export default function ComparePage() {
               if (sameEnnType && ennT.length === 2) {
                 const tip = ennT[0];
                 return (
-                  <details style={{ ...S.card, background: 'rgba(96,160,208,0.05)' }}>
-                    <summary style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, userSelect: 'none' }}>
-                      <span style={{ fontSize: 10, color: G.textFaint }}>▶</span>
+                  <div style={{ ...S.card, background: 'rgba(96,160,208,0.05)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
                       <span style={{ ...S.tag, background: 'rgba(96,160,208,0.15)', color: '#60a0d0', fontSize: 10 }}>SHARED TYPE</span>
                       <h3 style={{ ...S.h3, marginBottom: 0, color: '#60a0d0' }}>{tip.label}</h3>
-                    </summary>
-                    <div style={{ marginTop: 8 }}>
-                      {tip.items.map((item, j) => (
-                        <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
-                          <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
-                          <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, ennDataA, ennDataB)}</p>
-                        </div>
-                      ))}
                     </div>
-                  </details>
-                );
-              }
-              return ennT.map((tip, i) => (
-                <details key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
-                  <summary style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, userSelect: 'none' }}>
-                    <span style={{ fontSize: 10, color: G.textFaint }}>▶</span>
-                    <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, ennDataA, ennDataB)}</span>
-                    <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
-                  </summary>
-                  <div style={{ marginTop: 8 }}>
                     {tip.items.map((item, j) => (
                       <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
                         <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
@@ -525,7 +504,21 @@ export default function ComparePage() {
                       </div>
                     ))}
                   </div>
-                </details>
+                );
+              }
+              return ennT.map((tip, i) => (
+                <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                    <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, ennDataA, ennDataB)}</span>
+                    <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
+                  </div>
+                  {tip.items.map((item, j) => (
+                    <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
+                      <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
+                      <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, ennDataA, ennDataB)}</p>
+                    </div>
+                  ))}
+                </div>
               ));
             })()}
           </>
@@ -590,46 +583,6 @@ export default function ComparePage() {
                 <p style={S.body}>{ins.desc}</p>
               </div>
             ))}
-            {(() => {
-              const sameMBTI = pA.mbti === pB.mbti;
-              if (sameMBTI && mbtiTips.length === 2) {
-                const tip = mbtiTips[0];
-                return (
-                  <details style={{ ...S.card, background: 'rgba(96,160,208,0.05)' }}>
-                    <summary style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, userSelect: 'none' }}>
-                      <span style={{ fontSize: 10, color: G.textFaint }}>▶</span>
-                      <span style={{ ...S.tag, background: 'rgba(96,160,208,0.15)', color: '#60a0d0', fontSize: 10 }}>SHARED TYPE</span>
-                      <h3 style={{ ...S.h3, marginBottom: 0, color: '#60a0d0' }}>{tip.label}</h3>
-                    </summary>
-                    <div style={{ marginTop: 8 }}>
-                      {tip.items.map((item, j) => (
-                        <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
-                          <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
-                          <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, mbtiDataA, mbtiDataB)}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </details>
-                );
-              }
-              return mbtiTips.map((tip, i) => (
-                <details key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
-                  <summary style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, userSelect: 'none' }}>
-                    <span style={{ fontSize: 10, color: G.textFaint }}>▶</span>
-                    <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, mbtiDataA, mbtiDataB)}</span>
-                    <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
-                  </summary>
-                  <div style={{ marginTop: 8 }}>
-                    {tip.items.map((item, j) => (
-                      <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
-                        <span style={{ color: G.textFaint, fontSize: 12, fontFamily: "'DM Mono',monospace", flexShrink: 0, marginTop: 2 }}>{j + 1}.</span>
-                        <p style={{ ...S.body, fontSize: 14 }}>{substituteNames(item, mbtiDataA, mbtiDataB)}</p>
-                      </div>
-                    ))}
-                  </div>
-                </details>
-              ));
-            })()}
             {positionCrossings && positionCrossings.crossings.length > 0 && (() => {
               const renderCrossingDesc = (c) => {
                 if (!c.typeForA || !c.typeForB) return c.description;
