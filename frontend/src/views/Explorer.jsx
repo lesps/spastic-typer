@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useScrollToTop } from '../utils/scroll.js';
-import { G } from '../styles/theme.js';
+import { G, CENTER, POS, SYSTEM, alpha } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { MBTI_TYPES } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
@@ -17,6 +17,7 @@ import { INSTINCT_PAIR_DYNAMICS, instinctPairKey } from '../data/instinctPairDyn
 import { ENN_MBTI_CORRELATION } from '../data/ennMbtiCorrelation.js';
 import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
 import { POSITIONS } from '../data/shadow.js';
+import { SOP_STEPS, QUADRANTS } from '../data/sop.js';
 import { getShadowMirror, instantiateTemplate } from '../utils/shadow.js';
 
 const INSTINCT_META = {
@@ -25,7 +26,6 @@ const INSTINCT_META = {
   so: { label: 'Social', desc: 'Attuned to group dynamics, social roles, and a sense of belonging and contribution.' },
 };
 
-const CENTER_COLOR = { gut: '#e07040', heart: '#c060a0', head: '#5090d0' };
 
 const TABS = [
   { key: 'enneagram', label: 'Enneagram' },
@@ -38,6 +38,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
   const [tab, setTab] = useState(initialTab);
   const [sel, setSel] = useState(initialSel);
   const [showPositionRef, setShowPositionRef] = useState(false);
+  const [showSOP, setShowSOP] = useState(false);
   useScrollToTop(tab, sel);
 
   // ── Enneagram detail ──────────────────────────────────────────────────────
@@ -54,7 +55,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <h1 style={{ ...S.h1, fontSize: 'clamp(32px,10vw,44px)', letterSpacing: 'clamp(2px,2vw,8px)', marginBottom: 4 }}>Type {n}</h1>
           <h2 style={{ ...S.h2, marginTop: 4 }}>{t.name}</h2>
-          <span style={{ ...S.tag, background: `${CENTER_COLOR[center]}22`, color: CENTER_COLOR[center], border: `1px solid ${CENTER_COLOR[center]}44`, marginTop: 8, display: 'inline-block' }}>{center} center</span>
+          <span style={{ ...S.tag, background: `${CENTER[center]}22`, color: CENTER[center], border: `1px solid ${CENTER[center]}44`, marginTop: 8, display: 'inline-block' }}>{center} center</span>
         </div>
         <div style={S.cardGold}><p style={S.body}>{t.desc}</p></div>
         <div style={S.card}>
@@ -67,17 +68,17 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
         <div style={S.card}>
           <h3 style={S.h3}>Movement Lines</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
-            <div style={{ background: 'rgba(80,200,120,0.06)', border: `1px solid rgba(80,200,120,0.2)`, borderRadius: 8, padding: '12px 14px' }}>
+            <div style={{ background: alpha(G.success, 0.06), border: `1px solid ${alpha(G.success, 0.2)}`, borderRadius: 8, padding: '12px 14px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                <span style={{ fontSize: 13, color: '#50c878' }}>↗</span>
-                <p style={{ fontSize: 11, color: '#50c878' }}>Growth → Type {arrows.growth} · {ENN_TYPES[arrows.growth].name}</p>
+                <span style={{ fontSize: 13, color: G.success }}>↗</span>
+                <p style={{ fontSize: 11, color: G.success }}>Growth → Type {arrows.growth} · {ENN_TYPES[arrows.growth].name}</p>
               </div>
               <p style={{ ...S.body, fontSize: 13 }}>At their best, Type {n} moves toward Type {arrows.growth}'s qualities — oriented toward: {ENN_TYPES[arrows.growth].desire.toLowerCase()}.</p>
             </div>
-            <div style={{ background: 'rgba(232,128,80,0.06)', border: `1px solid rgba(232,128,80,0.2)`, borderRadius: 8, padding: '12px 14px' }}>
+            <div style={{ background: alpha(G.warn, 0.06), border: `1px solid ${alpha(G.warn, 0.2)}`, borderRadius: 8, padding: '12px 14px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                <span style={{ fontSize: 13, color: '#e88050' }}>↘</span>
-                <p style={{ fontSize: 11, color: '#e88050' }}>Stress → Type {arrows.stress} · {ENN_TYPES[arrows.stress].name}</p>
+                <span style={{ fontSize: 13, color: G.warn }}>↘</span>
+                <p style={{ fontSize: 11, color: G.warn }}>Stress → Type {arrows.stress} · {ENN_TYPES[arrows.stress].name}</p>
               </div>
               <p style={{ ...S.body, fontSize: 13 }}>Under stress, Type {n} regresses toward Type {arrows.stress}'s patterns — driven by the fear: {ENN_TYPES[arrows.stress].fear.toLowerCase()}.</p>
             </div>
@@ -114,8 +115,8 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                       {sub.keyTraits.map((t, i) => <span key={i} style={{ fontSize: 11, color: G.textDim, background: G.bg3, border: `1px solid ${G.border}`, borderRadius: 6, padding: '2px 8px' }}>{t}</span>)}
                     </div>
                   )}
-                  {sub.blindSpot && <p style={{ ...S.body, fontSize: 12, color: '#e88050', marginBottom: 4 }}>Blind spot: {sub.blindSpot}</p>}
-                  {sub.growthPath && <p style={{ ...S.body, fontSize: 12, color: '#50c878' }}>Growth: {sub.growthPath}</p>}
+                  {sub.blindSpot && <p style={{ ...S.body, fontSize: 12, color: G.warn, marginBottom: 4 }}>Blind spot: {sub.blindSpot}</p>}
+                  {sub.growthPath && <p style={{ ...S.body, fontSize: 12, color: G.success }}>Growth: {sub.growthPath}</p>}
                 </div>
               );
             })}
@@ -127,9 +128,9 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
           <div style={S.card}>
             <h3 style={{ ...S.h3, marginBottom: 12 }}>Levels of Development</h3>
             {[
-              { key: 'healthy', color: '#50c878', label: 'Healthy (Levels 1–3)' },
+              { key: 'healthy', color: G.success, label: 'Healthy (Levels 1–3)' },
               { key: 'average', color: G.gold, label: 'Average (Levels 4–6)' },
-              { key: 'unhealthy', color: '#e88050', label: 'Unhealthy (Levels 7–9)' },
+              { key: 'unhealthy', color: G.warn, label: 'Unhealthy (Levels 7–9)' },
             ].map(({ key, color, label }) => {
               const level = LEVELS[n][key];
               if (!level) return null;
@@ -221,8 +222,8 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                     {profile.worldview && <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}><strong style={{ color: G.text }}>Worldview:</strong> {profile.worldview}</p>}
                     {profile.inRelationships && <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}><strong style={{ color: G.text }}>In relationships:</strong> {profile.inRelationships}</p>}
                     {profile.atWork && <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}><strong style={{ color: G.text }}>At work:</strong> {profile.atWork}</p>}
-                    {profile.blindSpot && <p style={{ ...S.body, fontSize: 12, color: '#e88050', marginBottom: 4 }}>Blind spot: {profile.blindSpot}</p>}
-                    {profile.growth && <p style={{ ...S.body, fontSize: 12, color: '#50c878' }}>Growth: {profile.growth}</p>}
+                    {profile.blindSpot && <p style={{ ...S.body, fontSize: 12, color: G.warn, marginBottom: 4 }}>Blind spot: {profile.blindSpot}</p>}
+                    {profile.growth && <p style={{ ...S.body, fontSize: 12, color: G.success }}>Growth: {profile.growth}</p>}
                   </div>
                 );
               })}
@@ -241,7 +242,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             return { otherStack, entry: INSTINCT_PAIR_DYNAMICS[key] };
           }).filter(x => x.entry);
           if (!pairEntries.length) return null;
-          const chemColor = { high: '#50c878', medium: G.gold, variable: '#5090d0', low: '#e88050' };
+          const chemColor = { high: G.success, medium: G.gold, variable: G.info, low: G.warn };
           return (
             <div style={S.card}>
               <h3 style={{ ...S.h3, marginBottom: 4 }}>Stack Pairing Dynamics</h3>
@@ -256,8 +257,8 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                     )}
                   </div>
                   {entry.dynamic && <p style={{ ...S.body, fontSize: 12, marginBottom: 4 }}>{entry.dynamic}</p>}
-                  {entry.strength && <p style={{ fontSize: 12, color: '#50c878', marginBottom: 2 }}>+ {entry.strength}</p>}
-                  {entry.challenge && <p style={{ fontSize: 12, color: '#e88050', marginBottom: 4 }}>- {entry.challenge}</p>}
+                  {entry.strength && <p style={{ fontSize: 12, color: G.success, marginBottom: 2 }}>+ {entry.strength}</p>}
+                  {entry.challenge && <p style={{ fontSize: 12, color: G.warn, marginBottom: 4 }}>- {entry.challenge}</p>}
                   {entry.tip && <p style={{ fontSize: 11, color: G.textFaint, fontStyle: 'italic' }}>{entry.tip}</p>}
                 </div>
               ))}
@@ -271,8 +272,8 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
           return (
             <div key={key} style={{ ...S.card, marginBottom: 12 }}>
               <p style={{ ...S.mono, fontSize: 14, marginBottom: 8 }}>{a} × {b}</p>
-              <p style={{ fontSize: 12, color: '#6abf69', marginBottom: 4 }}>Bond — {val.bond}</p>
-              <p style={{ fontSize: 12, color: '#e07878' }}>Tension — {val.tension}</p>
+              <p style={{ fontSize: 12, color: G.success, marginBottom: 4 }}>Bond — {val.bond}</p>
+              <p style={{ fontSize: 12, color: G.dangerSoft }}>Tension — {val.tension}</p>
             </div>
           );
         })}
@@ -307,7 +308,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                 <p style={{ ...S.body, fontSize: 13, marginTop: 4, paddingLeft: 36 }}>{f.desc}</p>
                 {isDom && (
                   <div style={{ marginTop: 6, paddingLeft: 36 }}>
-                    <p style={{ fontSize: 11, color: '#50c878', marginBottom: 4 }}>Strengths</p>
+                    <p style={{ fontSize: 11, color: G.success, marginBottom: 4 }}>Strengths</p>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                       {f.strengths.split(', ').map((s, si) => (
                         <span key={si} style={{ fontSize: 11, color: G.textDim, background: G.bg3, border: `1px solid ${G.border}`, borderRadius: 6, padding: '2px 7px' }}>{s.trim()}</span>
@@ -317,10 +318,10 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                 )}
                 {isInf && (
                   <div style={{ marginTop: 6, paddingLeft: 36 }}>
-                    <p style={{ fontSize: 11, color: '#e88050', marginBottom: 4 }}>Shadow — watch for under stress</p>
+                    <p style={{ fontSize: 11, color: G.warn, marginBottom: 4 }}>Shadow — watch for under stress</p>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                       {f.shadow.split(', ').map((s, si) => (
-                        <span key={si} style={{ fontSize: 11, color: G.textDim, background: 'rgba(232,128,80,0.08)', border: `1px solid rgba(232,128,80,0.2)`, borderRadius: 6, padding: '2px 7px' }}>{s.trim()}</span>
+                        <span key={si} style={{ fontSize: 11, color: G.textDim, background: alpha(G.warn, 0.08), border: `1px solid ${alpha(G.warn, 0.2)}`, borderRadius: 6, padding: '2px 7px' }}>{s.trim()}</span>
                       ))}
                     </div>
                   </div>
@@ -362,16 +363,16 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
           const d = MBTI_FUNCTION_DETAILS[sel];
           const t2 = MBTI_TYPES[sel];
           const positions = [
-            { key: 'dominant',  label: '① Lead',   color: G.gold },
-            { key: 'auxiliary', label: '② Anchor', color: '#5090d0' },
-            { key: 'tertiary',  label: '③ Refuge', color: '#30a888' },
-            { key: 'inferior',  label: '④ Hunger', color: '#e88050' },
+            { key: 'dominant',  label: '① Lead',   color: POS[1] },
+            { key: 'auxiliary', label: '② Anchor', color: POS[2] },
+            { key: 'tertiary',  label: '③ Refuge', color: POS[3] },
+            { key: 'inferior',  label: '④ Hunger', color: POS[4] },
           ];
           const shadows = [
-            { key: 'shadow5', pos: 5, label: '⑤ Counter', color: '#c06050' },
-            { key: 'shadow6', pos: 6, label: '⑥ Critic',  color: '#a05070' },
-            { key: 'shadow7', pos: 7, label: '⑦ Gamble',  color: '#806080' },
-            { key: 'shadow8', pos: 8, label: '⑧ Flood',   color: '#605070' },
+            { key: 'shadow5', pos: 5, label: '⑤ Counter', color: POS[5] },
+            { key: 'shadow6', pos: 6, label: '⑥ Critic',  color: POS[6] },
+            { key: 'shadow7', pos: 7, label: '⑦ Gamble',  color: POS[7] },
+            { key: 'shadow8', pos: 8, label: '⑧ Flood',   color: POS[8] },
           ];
           return (
             <div style={S.card}>
@@ -389,12 +390,12 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                     </div>
                     <p style={{ ...S.body, fontSize: 13, marginBottom: 8, paddingLeft: 36 }}>{fn.inThisType}</p>
                     <div style={{ paddingLeft: 36, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                      <div style={{ flex: 1, minWidth: 140, padding: '8px 10px', borderRadius: 6, background: 'rgba(80,200,120,0.06)', border: '1px solid rgba(80,200,120,0.15)' }}>
-                        <p style={{ fontSize: 10, color: '#50c878', marginBottom: 4 }}>Healthy</p>
+                      <div style={{ flex: 1, minWidth: 140, padding: '8px 10px', borderRadius: 6, background: alpha(G.success, 0.06), border: `1px solid ${alpha(G.success, 0.15)}` }}>
+                        <p style={{ fontSize: 10, color: G.success, marginBottom: 4 }}>Healthy</p>
                         <p style={{ ...S.body, fontSize: 12 }}>{fn.healthyExpression}</p>
                       </div>
-                      <div style={{ flex: 1, minWidth: 140, padding: '8px 10px', borderRadius: 6, background: 'rgba(232,128,80,0.06)', border: '1px solid rgba(232,128,80,0.15)' }}>
-                        <p style={{ fontSize: 10, color: '#e88050', marginBottom: 4 }}>Unhealthy</p>
+                      <div style={{ flex: 1, minWidth: 140, padding: '8px 10px', borderRadius: 6, background: alpha(G.warn, 0.06), border: `1px solid ${alpha(G.warn, 0.15)}` }}>
+                        <p style={{ fontSize: 10, color: G.warn, marginBottom: 4 }}>Unhealthy</p>
                         <p style={{ ...S.body, fontSize: 12 }}>{fn.unhealthyExpression}</p>
                       </div>
                     </div>
@@ -409,7 +410,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                 {(() => {
                   const mirror = getShadowMirror(sel);
                   return mirror ? (
-                    <div style={{ ...S.card, background: 'rgba(96,80,112,0.12)', border: '1px solid rgba(160,80,112,0.25)', marginBottom: 12, padding: '10px 14px' }}>
+                    <div style={{ ...S.card, background: alpha(POS[8], 0.12), border: `1px solid ${alpha(POS[6], 0.25)}`, marginBottom: 12, padding: '10px 14px' }}>
                       <p style={{ ...S.body, fontSize: 12 }}>
                         Your shadow mirror is <strong style={{ color: G.gold }}>{mirror}</strong>. Their ego stack is your shadow stack — they operate fluently in the exact domains where you're most reactive.
                       </p>
@@ -421,7 +422,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                   if (!sh) return null;
                   const template = instantiateTemplate(pos, sh.function);
                   return (
-                    <div key={key} style={{ marginBottom: 12, padding: '12px 14px', borderRadius: 10, background: 'rgba(255,255,255,0.02)', border: `1px solid ${color}33` }}>
+                    <div key={key} style={{ marginBottom: 12, padding: '12px 14px', borderRadius: 10, background: G.bgHover, border: `1px solid ${color}33` }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                         <span style={{ fontSize: 10, color, fontFamily: "'DM Mono',monospace", width: 64, flexShrink: 0 }}>{label}</span>
                         <FnBadge fn={sh.function} />
@@ -442,11 +443,11 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             <h3 style={{ ...S.h3, marginBottom: 12 }}>Development Trajectory</h3>
             <p style={{ ...S.body, fontSize: 13, marginBottom: 14, color: G.textFaint }}>How this type tends to develop across the lifespan as the function stack matures.</p>
             {[
-              { key: 'childhood', label: 'Childhood', color: '#5090d0' },
-              { key: 'adolescence', label: 'Adolescence', color: '#7070c0' },
+              { key: 'childhood', label: 'Childhood', color: G.info },
+              { key: 'adolescence', label: 'Adolescence', color: G.indigo },
               { key: 'youngAdult', label: 'Young Adult', color: G.gold },
-              { key: 'midlife', label: 'Midlife', color: '#50c878' },
-              { key: 'maturity', label: 'Maturity', color: '#30a888' },
+              { key: 'midlife', label: 'Midlife', color: G.success },
+              { key: 'maturity', label: 'Maturity', color: SYSTEM.instinct },
             ].map(({ key, label, color }) => {
               const stage = MBTI_DEVELOPMENT[sel][key];
               if (!stage) return null;
@@ -466,26 +467,26 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             <h3 style={{ ...S.h3, marginBottom: 12 }}>Stress & Flow Profile</h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 10 }}>
               {MBTI_STRESS_FLOW[sel].inFlow && (
-                <div style={{ background: 'rgba(80,200,120,0.06)', border: '1px solid rgba(80,200,120,0.2)', borderRadius: 8, padding: '12px 10px' }}>
-                  <p style={{ fontSize: 12, color: '#50c878', marginBottom: 6, fontWeight: 500 }}>In Flow</p>
+                <div style={{ background: alpha(G.success, 0.06), border: `1px solid ${alpha(G.success, 0.2)}`, borderRadius: 8, padding: '12px 10px' }}>
+                  <p style={{ fontSize: 12, color: G.success, marginBottom: 6, fontWeight: 500 }}>In Flow</p>
                   <p style={{ ...S.body, fontSize: 12, marginBottom: 8 }}>{MBTI_STRESS_FLOW[sel].inFlow.description}</p>
                   {MBTI_STRESS_FLOW[sel].inFlow.triggers && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
                       {MBTI_STRESS_FLOW[sel].inFlow.triggers.map((trigger, i) => (
-                        <span key={i} style={{ fontSize: 10, color: '#50c878', background: 'rgba(80,200,120,0.1)', borderRadius: 4, padding: '2px 6px' }}>{trigger}</span>
+                        <span key={i} style={{ fontSize: 10, color: G.success, background: alpha(G.success, 0.1), borderRadius: 4, padding: '2px 6px' }}>{trigger}</span>
                       ))}
                     </div>
                   )}
                 </div>
               )}
               {MBTI_STRESS_FLOW[sel].underStress && (
-                <div style={{ background: 'rgba(232,128,80,0.06)', border: '1px solid rgba(232,128,80,0.2)', borderRadius: 8, padding: '12px 10px' }}>
-                  <p style={{ fontSize: 12, color: '#e88050', marginBottom: 6, fontWeight: 500 }}>Under Stress</p>
+                <div style={{ background: alpha(G.warn, 0.06), border: `1px solid ${alpha(G.warn, 0.2)}`, borderRadius: 8, padding: '12px 10px' }}>
+                  <p style={{ fontSize: 12, color: G.warn, marginBottom: 6, fontWeight: 500 }}>Under Stress</p>
                   <p style={{ ...S.body, fontSize: 12, marginBottom: 8 }}>{MBTI_STRESS_FLOW[sel].underStress.description}</p>
                   {MBTI_STRESS_FLOW[sel].underStress.triggers && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
                       {MBTI_STRESS_FLOW[sel].underStress.triggers.map((trigger, i) => (
-                        <span key={i} style={{ fontSize: 10, color: '#e88050', background: 'rgba(232,128,80,0.08)', borderRadius: 4, padding: '2px 6px' }}>{trigger}</span>
+                        <span key={i} style={{ fontSize: 10, color: G.warn, background: alpha(G.warn, 0.08), borderRadius: 4, padding: '2px 6px' }}>{trigger}</span>
                       ))}
                     </div>
                   )}
@@ -522,8 +523,12 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
       {/* ── Enneagram tab ── */}
       {tab === 'enneagram' && (
         <>
-          <div style={{ ...S.card, marginBottom: 20 }}>
-            <h3 style={{ ...S.h3, marginBottom: 8 }}>The Enneagram</h3>
+          <details style={{ ...S.card, marginBottom: 20, padding: 0 }}>
+            <summary style={{ cursor: 'pointer', padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', userSelect: 'none' }}>
+              <span style={{ ...S.h3, marginBottom: 0 }}>About the Enneagram</span>
+              <span className="intro-chev" aria-hidden="true" style={{ color: G.textFaint, fontSize: 12 }}>▸</span>
+            </summary>
+            <div style={{ padding: '0 18px 16px' }}>
             <p style={{ ...S.body, lineHeight: 1.75, marginBottom: 12 }}>
               The Enneagram describes nine distinct personality structures, each organized around a core fear and the strategies that develop in response to it. The nine types are grouped into three centers of intelligence — Gut (8, 9, 1), Heart (2, 3, 4), and Head (5, 6, 7) — reflecting whether a type's habitual reactivity runs through the body, emotion, or thinking.
             </p>
@@ -533,15 +538,16 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             <p style={{ ...S.body, lineHeight: 1.75 }}>
               Each type also has a <strong style={{ color: G.text }}>wing</strong> — an adjacent type that shades its expression — and <strong style={{ color: G.text }}>movement lines</strong> to two other types, describing how the type shifts under stress and during growth. Select a type below to explore these dynamics.
             </p>
-          </div>
+            </div>
+          </details>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 10 }}>
             {Object.entries(ENN_TYPES).map(([num, t]) => {
               const center = ENN_CENTER[Number(num)];
               return (
                 <button key={num} onClick={() => setSel(num)} style={{ background: G.bg2, border: `1px solid ${G.border}`, borderRadius: 12, padding: '14px 12px', textAlign: 'left' }}>
-                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 22, color: CENTER_COLOR[center], fontWeight: 500, marginBottom: 4 }}>{num}</div>
+                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 22, color: CENTER[center], fontWeight: 500, marginBottom: 4 }}>{num}</div>
                   <p style={{ fontSize: 11, color: G.textDim, lineHeight: 1.4 }}>{t.name}</p>
-                  <span style={{ fontSize: 10, color: CENTER_COLOR[center], opacity: 0.8 }}>{center}</span>
+                  <span style={{ fontSize: 10, color: CENTER[center], opacity: 0.8 }}>{center}</span>
                 </button>
               );
             })}
@@ -552,8 +558,12 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
       {/* ── MBTI tab ── */}
       {tab === 'mbti' && (
         <>
-          <div style={{ ...S.card, marginBottom: 20 }}>
-            <h3 style={{ ...S.h3, marginBottom: 8 }}>Myers-Briggs Type Indicator</h3>
+          <details style={{ ...S.card, marginBottom: 20, padding: 0 }}>
+            <summary style={{ cursor: 'pointer', padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', userSelect: 'none' }}>
+              <span style={{ ...S.h3, marginBottom: 0 }}>About MBTI</span>
+              <span className="intro-chev" aria-hidden="true" style={{ color: G.textFaint, fontSize: 12 }}>▸</span>
+            </summary>
+            <div style={{ padding: '0 18px 16px' }}>
             <p style={{ ...S.body, lineHeight: 1.75, marginBottom: 12 }}>
               The MBTI describes sixteen personality types based on four dimensions: Extraversion/Introversion (E/I), Sensing/Intuition (S/N), Thinking/Feeling (T/F), and Judging/Perceiving (J/P). Beneath these four letters lies a more nuanced structure: each type has a characteristic stack of four <strong style={{ color: G.text }}>cognitive functions</strong> — mental processes that govern how information is gathered and decisions are made.
             </p>
@@ -563,18 +573,22 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             <p style={{ ...S.body, lineHeight: 1.75 }}>
               Where the Enneagram maps emotional motivation, MBTI maps the cognitive style through which a person pursues any goal or manages any experience. Two people with the same Enneagram type can think and communicate very differently based on their cognitive stack. Select a type below to explore its function stack.
             </p>
-          </div>
+            </div>
+          </details>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 10 }}>
-            {Object.entries(MBTI_TYPES).map(([code, t]) => (
-              <button key={code} onClick={() => setSel(code)} style={{ background: G.bg2, border: `1px solid ${G.border}`, borderRadius: 12, padding: '14px 16px', textAlign: 'left' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                  <span style={S.mono}>{code}</span>
+            {Object.entries(QUADRANTS).map(([key, q]) => (
+              <div key={key} style={{ ...S.card, marginBottom: 0, padding: '12px 12px' }}>
+                <h3 style={{ ...S.h3, fontSize: 12 }}>{q.label}</h3>
+                <p style={{ ...S.body, fontSize: 11, marginBottom: 10 }}>{q.desc}</p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
+                  {q.types.map(code => (
+                    <button key={code} onClick={() => setSel(code)} style={{ background: G.bg3, border: `1px solid ${G.border}`, borderRadius: 8, padding: '8px 4px', textAlign: 'center' }}>
+                      <span style={{ ...S.mono, fontSize: 13 }}>{code}</span>
+                      <p style={{ fontSize: 10, color: G.textDim, marginTop: 3, lineHeight: 1.3 }}>{MBTI_TYPES[code].name}</p>
+                    </button>
+                  ))}
                 </div>
-                <p style={{ fontSize: 12, color: G.textDim }}>{t.name}</p>
-                <div style={{ display: 'flex', gap: 3, marginTop: 6, flexWrap: 'wrap' }}>
-                  {t.stack.map(fn => <FnBadge key={fn} fn={fn} />)}
-                </div>
-              </button>
+              </div>
             ))}
           </div>
           {/* Position Reference */}
@@ -609,14 +623,35 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
               </div>
             </div>
           )}
+          {/* 4-step typing SOP */}
+          <button onClick={() => setShowSOP(v => !v)} style={{ ...S.btnOutline, width: '100%', marginBottom: 16 }}>
+            {showSOP ? 'Hide' : 'Show'} 4-Step Typing SOP
+          </button>
+          {showSOP && SOP_STEPS.map((step, i) => (
+            <div key={i} style={S.card}>
+              <h3 style={S.h3}>{step.title}</h3>
+              <p style={{ ...S.body, color: G.text, marginBottom: 10 }}>{step.q}</p>
+              <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
+                {step.opts.map((o, j) => <span key={j} style={{ ...S.tag, fontSize: 12 }}>{o}</span>)}
+              </div>
+              <div style={{ marginTop: 10, padding: '10px 14px', borderRadius: 8, background: alpha(G.danger, 0.05), border: `1px solid ${alpha(G.danger, 0.15)}` }}>
+                <p style={{ fontSize: 12, color: G.dangerSoft, fontWeight: 500, marginBottom: 2 }}>Common Pitfall</p>
+                <p style={{ fontSize: 13, color: G.textDim, lineHeight: 1.5 }}>{step.pitfall}</p>
+              </div>
+            </div>
+          ))}
         </>
       )}
 
       {/* ── Instinct tab ── */}
       {tab === 'instinct' && (
         <>
-          <div style={{ ...S.card, marginBottom: 20 }}>
-            <h3 style={{ ...S.h3, marginBottom: 8 }}>Instinctual Drives</h3>
+          <details style={{ ...S.card, marginBottom: 20, padding: 0 }}>
+            <summary style={{ cursor: 'pointer', padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', userSelect: 'none' }}>
+              <span style={{ ...S.h3, marginBottom: 0 }}>About the Instinctual Drives</span>
+              <span className="intro-chev" aria-hidden="true" style={{ color: G.textFaint, fontSize: 12 }}>▸</span>
+            </summary>
+            <div style={{ padding: '0 18px 16px' }}>
             <p style={{ ...S.body, lineHeight: 1.75, marginBottom: 12 }}>
               The three Instinctual Drives — Self-Preservation (SP), Sexual/One-to-One (SX), and Social (SO) — describe the biological survival priorities that shape how an Enneagram type expresses itself in practice. Every person carries all three drives, but they are ordered by priority. The dominant drive receives the most energy and attention; the repressed drive is often the source of blind spots.
             </p>
@@ -626,7 +661,8 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             <p style={{ ...S.body, lineHeight: 1.75 }}>
               The drive stack adds a crucial dimension to any Enneagram type. Two Type 2s can look entirely different depending on whether their dominant drive is SX (deeply focused, intense warmth for a chosen few) or SO (broadly giving, concerned with social contribution and collective harmony). Select a drive below to explore pairing dynamics.
             </p>
-          </div>
+            </div>
+          </details>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 10 }}>
             {Object.entries(INSTINCT_META).map(([key, meta]) => (
               <button key={key} onClick={() => setSel(key)} style={{ background: G.bg2, border: `1px solid ${G.border}`, borderRadius: 12, padding: '16px 18px', textAlign: 'left' }}>
@@ -642,19 +678,24 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
       {/* ── Integration tab ── */}
       {tab === 'integration' && (
         <>
-          <div style={{ ...S.cardGold, marginBottom: 16 }}>
-            <h3 style={{ ...S.h3, marginBottom: 8 }}>Three Lenses, One Person</h3>
+          <details style={{ ...S.cardGold, marginBottom: 16, padding: 0 }}>
+            <summary style={{ cursor: 'pointer', padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', userSelect: 'none' }}>
+              <span style={{ ...S.h3, marginBottom: 0 }}>Three Lenses, One Person</span>
+              <span className="intro-chev" aria-hidden="true" style={{ color: G.textFaint, fontSize: 12 }}>▸</span>
+            </summary>
+            <div style={{ padding: '0 18px 16px' }}>
             <p style={{ ...S.body, lineHeight: 1.75 }}>
               No single personality system captures a complete human being. The Enneagram, MBTI, and Instinctual Drives each illuminate a different dimension of the self — and the richest picture emerges when all three are read together. Each system is doing something the others cannot: one maps emotion and reactivity, one maps cognition and strategy, one maps biological drive and approach motivation.
             </p>
-          </div>
+            </div>
+          </details>
 
           <div style={S.card}>
             <h3 style={{ ...S.h3, marginBottom: 16 }}>What Each System Describes</h3>
 
             <div style={{ marginBottom: 20 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                <span style={{ ...S.tag, background: 'rgba(192,96,160,0.15)', color: '#c060a0', border: '1px solid rgba(192,96,160,0.3)', fontSize: 11 }}>Enneagram</span>
+                <span style={{ ...S.tag, background: alpha(CENTER.heart, 0.15), color: CENTER.heart, border: `1px solid ${alpha(CENTER.heart, 0.3)}`, fontSize: 11 }}>Enneagram</span>
                 <span style={{ fontSize: 12, color: G.textDim }}>Emotional core · Avoidance motivation</span>
               </div>
               <p style={{ ...S.body, lineHeight: 1.75 }}>
@@ -666,7 +707,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
 
             <div style={{ marginBottom: 20 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                <span style={{ ...S.tag, background: 'rgba(80,144,208,0.15)', color: '#5090d0', border: '1px solid rgba(80,144,208,0.3)', fontSize: 11 }}>MBTI</span>
+                <span style={{ ...S.tag, background: alpha(G.info, 0.15), color: G.info, border: `1px solid ${alpha(G.info, 0.3)}`, fontSize: 11 }}>MBTI</span>
                 <span style={{ fontSize: 12, color: G.textDim }}>Cognitive architecture · Strategy</span>
               </div>
               <p style={{ ...S.body, lineHeight: 1.75 }}>
@@ -678,7 +719,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
 
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                <span style={{ ...S.tag, background: 'rgba(48,168,136,0.15)', color: '#30a888', border: '1px solid rgba(48,168,136,0.3)', fontSize: 11 }}>Instinct</span>
+                <span style={{ ...S.tag, background: alpha(SYSTEM.instinct, 0.15), color: SYSTEM.instinct, border: `1px solid ${alpha(SYSTEM.instinct, 0.3)}`, fontSize: 11 }}>Instinct</span>
                 <span style={{ fontSize: 12, color: G.textDim }}>Biological drive · Approach motivation</span>
               </div>
               <p style={{ ...S.body, lineHeight: 1.75 }}>
@@ -734,9 +775,9 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                   <div style={{ flex: 1 }}>
                     {corr.common && corr.common.length > 0 && (
                       <div style={{ marginBottom: 6 }}>
-                        <span style={{ fontSize: 11, color: '#50c878', marginRight: 8 }}>Common</span>
+                        <span style={{ fontSize: 11, color: G.success, marginRight: 8 }}>Common</span>
                         <span style={{ display: 'inline-flex', flexWrap: 'wrap', gap: 3 }}>
-                          {corr.common.map(m => <span key={m} style={{ ...S.tag, fontSize: 10, background: 'rgba(80,200,120,0.08)', color: '#50c878', border: '1px solid rgba(80,200,120,0.25)' }}>{m}</span>)}
+                          {corr.common.map(m => <span key={m} style={{ ...S.tag, fontSize: 10, background: alpha(G.success, 0.08), color: G.success, border: `1px solid ${alpha(G.success, 0.25)}` }}>{m}</span>)}
                         </span>
                       </div>
                     )}
@@ -776,7 +817,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
                   {[['SP', narr.withSP], ['SX', narr.withSX], ['SO', narr.withSO]].map(([inst, text]) => text && (
                     <div key={inst} style={{ flex: 1, minWidth: 160, padding: '8px 10px', borderRadius: 6, background: G.bg3, border: `1px solid ${G.border}` }}>
-                      <p style={{ fontSize: 10, color: '#30a888', marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>{inst}-DOMINANT</p>
+                      <p style={{ fontSize: 10, color: SYSTEM.instinct, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>{inst}-DOMINANT</p>
                       <p style={{ ...S.body, fontSize: 12 }}>{text}</p>
                     </div>
                   ))}

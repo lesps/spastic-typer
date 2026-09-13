@@ -28,7 +28,7 @@ export default function ExportModal({ markdown, backup, onClose }) {
   };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'flex-end', zIndex: 100 }}>
+    <div style={{ position: 'fixed', inset: 0, background: G.overlay, display: 'flex', alignItems: 'flex-end', zIndex: 100 }}>
       <div style={{ background: G.bg2, border: `1px solid ${G.goldBorder}`, borderRadius: '16px 16px 0 0', width: '100%', maxHeight: '85vh', display: 'flex', flexDirection: 'column' }}>
         <div style={{ padding: '14px 18px', borderBottom: `1px solid ${G.border}`, flexShrink: 0 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
@@ -41,7 +41,7 @@ export default function ExportModal({ markdown, backup, onClose }) {
               <p style={{ ...S.body, fontSize: 12, marginBottom: 10 }}>Paste into any AI assistant's system prompt field.</p>
               <button
                 onClick={handleCopy}
-                style={{ ...S.btn, width: '100%', padding: '8px', fontSize: 13, background: copied ? '#50c878' : G.gold }}
+                style={{ ...S.btn, width: '100%', padding: '8px', fontSize: 13, background: copied ? G.success : G.gold }}
               >
                 {copied ? '✓ Copied' : 'Copy System Prompt'}
               </button>

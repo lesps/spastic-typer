@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useScrollToTop } from '../utils/scroll.js';
+import CombinedProfile from './CombinedProfile.jsx';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, ENN_BANK, INSTINCT_BANK, INSTINCT_DISAMBIG, WING_DESC, ENN_DISAMBIG, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC } from '../data/enneagram.js';
@@ -280,7 +281,7 @@ export function scoreInstinct(answers, sequence, disambigAnswers = {}, disambigS
   return { instinctStack, instScores, confidence };
 }
 
-export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setExplorerSel = () => {}, setModelTab = () => {} }) {
+export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setExplorerSel = () => {} }) {
   const goToExplorer = (tab, sel = null) => { setExplorerTab(tab); setExplorerSel(sel); setView('explorer'); };
   // Restore in-progress quiz session from localStorage if available
   const [phase, setPhase] = useState(() => {
@@ -697,8 +698,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             <h3 style={{ ...S.h3, marginBottom: 4 }}>Your Profile</h3>
             {archetypeName && (
               <button
-                aria-label="View combined profile in Mental Model"
-                onClick={() => { setModelTab('combined'); setView('model'); }}
+                aria-label="View your full profile"
+                onClick={() => setPhase('combined')}
                 style={{ fontSize: 13, color: G.gold, marginBottom: 4, fontStyle: 'italic', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', textAlign: 'left' }}
               >{archetypeName}</button>
             )}
@@ -756,9 +757,9 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             {allDone && (
               <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${G.goldBorder}` }}>
                 <button
-                  onClick={() => { setModelTab('combined'); setView('model'); }}
+                  onClick={() => setPhase('combined')}
                   style={{ ...S.btnOutline, width: '100%', fontSize: 13 }}
-                >View full combined profile in Mental Model →</button>
+                >View your full profile →</button>
               </div>
             )}
           </div>
@@ -863,7 +864,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             />
             <button onClick={handleLoadCode} style={{ ...S.btn, whiteSpace: 'nowrap', padding: '8px 16px' }}>Load</button>
           </div>
-          {loadError && <p style={{ fontSize: 12, color: '#e87050', marginTop: 6 }}>{loadError}</p>}
+          {loadError && <p style={{ fontSize: 12, color: G.warn, marginTop: 6 }}>{loadError}</p>}
           {loadSuccess && <p style={{ fontSize: 12, color: G.gold, marginTop: 6 }}>{loadSuccess}</p>}
         </div>
 
@@ -883,6 +884,16 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           </div>
         )}
 
+      </div></div>
+    );
+  }
+
+  // --- Combined profile (all three assessments) ---
+  if (phase === 'combined') {
+    return (
+      <div style={S.page}><div style={S.container}>
+        <button onClick={reset} style={{ ...S.btnOutline, marginBottom: 16, padding: '8px 14px', fontSize: 13 }}>← Back</button>
+        <CombinedProfile onBack={reset} />
       </div></div>
     );
   }
@@ -920,7 +931,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
                 : <div style={{ display: 'flex', gap: 8 }}>
                     <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
-                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: G.danger, borderColor: G.danger }}>Yes, cancel</button>
                   </div>
               }
             </div>
@@ -978,7 +989,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           <h1 style={{ ...S.h1, fontSize: 'clamp(28px,9vw,44px)', marginBottom: 4 }}>{result.display}</h1>
           <h2 style={{ ...S.h2, marginTop: 4 }}>{t.name}</h2>
           {result.confidence && (
-            <p style={{ ...S.mono, fontSize: 11, color: result.confidence === 'high' ? '#50c878' : result.confidence === 'moderate' ? G.gold : '#e88050', marginTop: 4 }}>
+            <p style={{ ...S.mono, fontSize: 11, color: result.confidence === 'high' ? G.success : result.confidence === 'moderate' ? G.gold : G.warn, marginTop: 4 }}>
               {result.confidence === 'high' ? '● High confidence' : result.confidence === 'moderate' ? '● Moderate confidence' : '● Close result — consider exploring adjacent types'}
             </p>
           )}
@@ -1065,7 +1076,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                         <div style={{ height: 3, borderRadius: 2, background: G.border }}>
                           <div style={{ height: '100%', borderRadius: 2, background: color, width: `${fillPct}%`, transition: 'width 0.3s, background 0.4s' }} />
                         </div>
-                        <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: overallCertainty >= 1 ? '#50c878' : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap', textTransform: 'uppercase' }}>{inst}</span>
+                        <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: overallCertainty >= 1 ? G.success : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap', textTransform: 'uppercase' }}>{inst}</span>
                       </div>
                     );
                   })}
@@ -1078,7 +1089,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
                 : <div style={{ display: 'flex', gap: 8 }}>
                     <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
-                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: G.danger, borderColor: G.danger }}>Yes, cancel</button>
                   </div>
               }
             </div>
@@ -1117,7 +1128,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
                 : <div style={{ display: 'flex', gap: 8 }}>
                     <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
-                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: G.danger, borderColor: G.danger }}>Yes, cancel</button>
                   </div>
               }
             </div>
@@ -1139,7 +1150,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           <h1 style={{ ...S.h1, fontSize: 'clamp(28px,9vw,44px)', marginBottom: 4 }}>{stack.map(i => i.toUpperCase()).join(' / ')}</h1>
           <h2 style={{ ...S.h2, marginTop: 4 }}>{INSTINCT_LABELS[stack[0]]} dominant</h2>
           {result.confidence && (
-            <p style={{ ...S.mono, fontSize: 11, color: result.confidence === 'high' ? '#50c878' : result.confidence === 'moderate' ? G.gold : '#e88050', marginTop: 4 }}>
+            <p style={{ ...S.mono, fontSize: 11, color: result.confidence === 'high' ? G.success : result.confidence === 'moderate' ? G.gold : G.warn, marginTop: 4 }}>
               {result.confidence === 'high' ? '● High confidence' : result.confidence === 'moderate' ? '● Moderate confidence' : '● Close result — consider exploring adjacent types'}
             </p>
           )}
@@ -1221,7 +1232,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                         <div style={{ height: 3, borderRadius: 2, background: G.border }}>
                           <div style={{ height: '100%', borderRadius: 2, background: color, width: `${fillPct}%`, transition: 'width 0.3s, background 0.4s' }} />
                         </div>
-                        <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: certainty >= 1 ? '#50c878' : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap' }}>{dim}</span>
+                        <span style={{ position: 'absolute', top: 6, left: '50%', transform: 'translateX(-50%)', fontSize: 9, color: certainty >= 1 ? G.success : G.textFaint, fontFamily: "'DM Mono',monospace", transition: 'color 0.4s', whiteSpace: 'nowrap' }}>{dim}</span>
                       </div>
                     );
                   })}
@@ -1234,7 +1245,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
                 : <div style={{ display: 'flex', gap: 8 }}>
                     <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
-                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: G.danger, borderColor: G.danger }}>Yes, cancel</button>
                   </div>
               }
             </div>
@@ -1270,7 +1281,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 ? <button onClick={() => setConfirmCancel(true)} style={{ ...S.btnOutline, marginTop: 8 }}>Cancel</button>
                 : <div style={{ display: 'flex', gap: 8 }}>
                     <button onClick={() => setConfirmCancel(false)} style={{ ...S.btnOutline, marginTop: 8 }}>Keep going</button>
-                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: '#e85050', borderColor: '#e85050' }}>Yes, cancel</button>
+                    <button onClick={reset} style={{ ...S.btnOutline, marginTop: 8, color: G.danger, borderColor: G.danger }}>Yes, cancel</button>
                   </div>
               }
             </div>
@@ -1290,7 +1301,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           <h1 style={{ ...S.h1, fontSize: 'clamp(36px,12vw,56px)', letterSpacing: 'clamp(2px,2vw,8px)', marginBottom: 4 }}>{result.result}</h1>
           <h2 style={{ ...S.h2, marginTop: 4 }}>{t.name}</h2>
           {result.confidence && (
-            <p style={{ ...S.mono, fontSize: 11, color: result.confidence === 'high' ? '#50c878' : result.confidence === 'moderate' ? G.gold : '#e88050', marginTop: 4 }}>
+            <p style={{ ...S.mono, fontSize: 11, color: result.confidence === 'high' ? G.success : result.confidence === 'moderate' ? G.gold : G.warn, marginTop: 4 }}>
               {result.confidence === 'high' ? '● High confidence' : result.confidence === 'moderate' ? '● Moderate confidence' : '● Close result — consider exploring adjacent types'}
             </p>
           )}

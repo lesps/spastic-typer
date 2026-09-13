@@ -21,7 +21,7 @@ describe('Navigation — tabs', () => {
   it('renders a primary navigation landmark with a visible label on every tab', () => {
     render(<App />);
     const nav = screen.getByRole('navigation', { name: /primary/i });
-    for (const label of ['Typer', 'Explorer', 'Model', 'Compare']) {
+    for (const label of ['Typer', 'Explorer', 'Compare']) {
       const btn = Array.from(nav.querySelectorAll('button')).find(b => b.textContent.trim() === label);
       expect(btn, `nav button "${label}"`).toBeTruthy();
       expect(btn).toBeVisible();
@@ -52,11 +52,10 @@ describe('Navigation — tabs', () => {
     expect(screen.getByRole('heading', { name: 'Compare' })).toBeInTheDocument();
   });
 
-  it('switches to Model view', async () => {
-    const user = userEvent.setup();
+  it('has exactly three tabs', () => {
     render(<App />);
-    await user.click(navButton('model'));
-    expect(screen.getByRole('heading', { name: 'Mental Model' })).toBeInTheDocument();
+    const nav = screen.getByRole('navigation', { name: /primary/i });
+    expect(nav.querySelectorAll('button[data-view]')).toHaveLength(3);
   });
 
   it('switches back to Typer from Compare', async () => {
@@ -72,8 +71,8 @@ describe('Navigation — URL hash routing', () => {
   it('writes the view into the hash when a tab is clicked', async () => {
     const user = userEvent.setup();
     render(<App />);
-    await user.click(navButton('model'));
-    expect(window.location.hash).toBe('#/model');
+    await user.click(navButton('compare'));
+    expect(window.location.hash).toBe('#/compare');
   });
 
   it('boots into the view named by the hash', () => {
@@ -81,6 +80,20 @@ describe('Navigation — URL hash routing', () => {
     render(<App />);
     expect(screen.getByRole('heading', { name: 'Compare' })).toBeInTheDocument();
     expect(navButton('compare')).toHaveAttribute('aria-current', 'page');
+  });
+
+  it('boots a retired #/model link into Explorer and canonicalizes the hash', () => {
+    window.location.hash = '#/model';
+    render(<App />);
+    expect(screen.getByRole('heading', { name: 'Explorer', level: 1 })).toBeInTheDocument();
+    expect(navButton('explorer')).toHaveAttribute('aria-current', 'page');
+    expect(window.location.hash).toBe('#/explorer');
+  });
+
+  it('canonicalizes a legacy #p1= share link to #/compare?p1=', () => {
+    window.location.hash = '#p1=4w5%3Astrong%3Asx%2Fsp%2Fso%3AINFP&p2=8w9%3Amoderate%3Asp%2Fso%2Fsx%3AENTJ';
+    render(<App />);
+    expect(window.location.hash).toMatch(/^#\/compare\?p1=/);
   });
 
   it('boots a legacy #p1=…&p2=… share link straight into Compare with the people loaded', () => {

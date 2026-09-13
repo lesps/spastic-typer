@@ -48,7 +48,7 @@ A tabbed reference tool with four tabs:
 | Tab | Contents |
 |-----|----------|
 | **Enneagram** | All 9 types — name, description, core fear/desire, growth/stress arrows, wings, instinct compatibility |
-| **MBTI** | All 16 types — name, description, full 8-function cognitive stack |
+| **MBTI** | All 16 types grouped by quadrant (NF / NT / SF / ST) — name, description, full 8-function cognitive stack; position reference and the collapsible 4-Step Typing SOP |
 | **Instinct** | SP / SX / SO — description, dominant/secondary/repressed dynamics, pairwise compatibility |
 | **Integration** | Cross-system overview showing how the three systems relate |
 
@@ -56,18 +56,9 @@ Explorer deep-links from quiz result screens let users jump directly to the rele
 
 ---
 
-### Mental Model
+### Your Profile
 
-A multi-tab reference for understanding the typing framework:
-
-| Tab | Contents |
-|-----|----------|
-| **MBTI** | Quadrant map of all 16 types; tap any type for full detail |
-| **Enneagram** | Circle diagram; tap any type for detail |
-| **Instinct Stack** | Detailed breakdown of each drive's dominant/secondary/repressed expression |
-| **Combined** | Cross-system archetype view; reads your saved quiz results |
-
-Also hosts the **4-Step Typing Methodology (SOP)** with common pitfalls for each system.
+Once all three quizzes are complete, the Typer home screen links to a **full profile**: archetype name, portrait, wing, cognitive stack, Enneagram × MBTI correlation, instinct coloring, strengths and growth edges, and integration narrative. It reads your saved results directly.
 
 ---
 
@@ -145,6 +136,8 @@ Expected output:
 | `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button |
 | `navigation.test.jsx` | Nav landmark/labels, `aria-current`, hash routing, scroll reset |
 | `route.test.js` | URL-hash parsing and building |
+| `explorer.test.jsx` | Quadrant grid, typing SOP, type detail, collapsible intros |
+| `theme.test.js` | Theme helpers and a no-hardcoded-colors guard |
 
 All tests must pass before merging. Fix root causes — do not skip or suppress tests.
 
@@ -162,7 +155,7 @@ spastic-typer/
 │   │   │   ├── GuidedTyper.jsx   # All three quiz flows + choose screen + share/export (~785 LOC)
 │   │   │   ├── ComparePage.jsx   # Pairwise & group dynamics analysis (~607 LOC)
 │   │   │   ├── Explorer.jsx      # Reference tool: Enneagram, MBTI, Instinct, Integration (~334 LOC)
-│   │   │   └── MentalModel.jsx   # Quadrant maps, Enneagram circle, SOP (~406 LOC)
+│   │   │   └── CombinedProfile.jsx # Integrated profile from all three saved results
 │   │   ├── components/           # Small reusable UI pieces
 │   │   │   ├── AppNav.jsx        # Primary nav: bottom tabs on phones, top bar on wider screens
 │   │   │   ├── LikertScale.jsx   # 7-point scale widget (−3 to +3)
@@ -206,13 +199,12 @@ spastic-typer/
 
 ### View Switching
 
-There is no router library. `App.jsx` holds a `view` state string mirrored in the URL hash (`#/typer`, `#/explorer`, `#/model`, `#/compare`); `AppNav` calls `setView()`, which updates the hash, and a `hashchange` listener keeps state in sync so browser back/forward, refresh, and shared links open the right view. Parsing lives in `src/utils/route.js`.
+There is no router library. `App.jsx` holds a `view` state string mirrored in the URL hash (`#/typer`, `#/explorer`, `#/compare`); `AppNav` calls `setView()`, which updates the hash, and a `hashchange` listener keeps state in sync so browser back/forward, refresh, and shared links open the right view. Parsing lives in `src/utils/route.js`.
 
 ```
 App.jsx
   ├── {view === 'typer'}    → <GuidedTyper />
   ├── {view === 'explorer'} → <Explorer initialTab={explorerTab} />
-  ├── {view === 'model'}    → <MentalModel />
   └── {view === 'compare'}  → <ComparePage />
 ```
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import { parseHash, buildHash } from '../utils/route.js';
-import { G } from '../styles/theme.js';
+import { G, CENTER, SYSTEM, alpha } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, WING_DESC } from '../data/enneagram.js';
 
@@ -202,7 +202,7 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
             <input style={{ ...S.input, fontSize: 13, flex: 1 }} value={codeInput} onChange={e => setCodeInput(e.target.value)} placeholder="e.g. 453xpo-INFP" maxLength={11} onKeyDown={e => e.key === 'Enter' && handleLoadByCode()} />
             <button onClick={handleLoadByCode} style={{ ...S.btn, padding: '10px 16px', fontSize: 13 }}>Load</button>
           </div>
-          {codeError && <p style={{ color: '#e85050', fontSize: 13, marginTop: 8 }}>{codeError}</p>}
+          {codeError && <p style={{ color: G.danger, fontSize: 13, marginTop: 8 }}>{codeError}</p>}
           {(person.ennType || person.mbti) && (
             <div style={{ marginTop: 10, padding: '10px 12px', background: G.bg3, borderRadius: 8 }}>
               <p style={{ fontSize: 12, color: G.textDim, marginBottom: 4 }}>Loaded:</p>
@@ -222,7 +222,7 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
             <span style={{ ...S.mono, fontSize: 12 }}>{fileName || 'Choose .json file'}</span>
             <p style={{ fontSize: 11, color: G.textFaint, marginTop: 4 }}>Click to browse</p>
           </label>
-          {fileError && <p style={{ color: '#e85050', fontSize: 13, marginTop: 8 }}>{fileError}</p>}
+          {fileError && <p style={{ color: G.danger, fontSize: 13, marginTop: 8 }}>{fileError}</p>}
           {(person.ennType || person.mbti) && (
             <div style={{ marginTop: 10, padding: '10px 12px', background: G.bg3, borderRadius: 8 }}>
               <p style={{ fontSize: 12, color: G.textDim, marginBottom: 4 }}>Loaded:</p>
@@ -383,6 +383,8 @@ export default function ComparePage() {
   }
 
   const isPairExpanded = (i, j) => expandedPairs.has(pairKey(i, j));
+  const allPairsExpanded = validPairs.length > 0 && validPairs.every(([i, j]) => isPairExpanded(i, j));
+  const toggleAllPairs = () => setExpandedPairs(allPairsExpanded ? new Set() : new Set(validPairs.map(([i, j]) => pairKey(i, j))));
   const readyCount = persons.filter(isPersonComplete).length;
   const hasResults = readyCount >= 2;
   // Group overview is only meaningful for 3+ people — pairwise analysis covers the 2-person case fully.
@@ -476,9 +478,9 @@ export default function ComparePage() {
               </div>
             ))}
             {wingDyn && (
-              <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#e8a030', borderLeftStyle: 'solid' }}>
+              <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: G.amber, borderLeftStyle: 'solid' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                  <span style={{ fontSize: 14, color: '#e8a030' }}>↕</span>
+                  <span style={{ fontSize: 14, color: G.amber }}>↕</span>
                   <h3 style={{ ...S.h3, marginBottom: 0 }}>Wing Dynamics</h3>
                 </div>
                 <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
@@ -493,10 +495,10 @@ export default function ComparePage() {
               if (sameEnnType && ennT.length === 2) {
                 const tip = ennT[0];
                 return (
-                  <div style={{ ...S.card, background: 'rgba(96,160,208,0.05)' }}>
+                  <div style={{ ...S.card, background: alpha(G.infoSoft, 0.05) }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                      <span style={{ ...S.tag, background: 'rgba(96,160,208,0.15)', color: '#60a0d0', fontSize: 10 }}>SHARED TYPE</span>
-                      <h3 style={{ ...S.h3, marginBottom: 0, color: '#60a0d0' }}>{tip.label}</h3>
+                      <span style={{ ...S.tag, background: alpha(G.infoSoft, 0.15), color: G.infoSoft, fontSize: 10 }}>SHARED TYPE</span>
+                      <h3 style={{ ...S.h3, marginBottom: 0, color: G.infoSoft }}>{tip.label}</h3>
                     </div>
                     {tip.items.map((item, j) => (
                       <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
@@ -508,10 +510,10 @@ export default function ComparePage() {
                 );
               }
               return ennT.map((tip, i) => (
-                <div key={i} style={{ ...S.card, background: i === 0 ? 'rgba(96,160,208,0.05)' : 'rgba(176,80,192,0.05)' }}>
+                <div key={i} style={{ ...S.card, background: i === 0 ? alpha(G.infoSoft, 0.05) : alpha(G.plum, 0.05) }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                    <span style={{ ...S.tag, background: i === 0 ? 'rgba(96,160,208,0.15)' : 'rgba(176,80,192,0.15)', color: i === 0 ? '#60a0d0' : '#b850c0', fontSize: 10 }}>{substituteNames(tip.for, ennDataA, ennDataB)}</span>
-                    <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? '#60a0d0' : '#b850c0' }}>{tip.label}</h3>
+                    <span style={{ ...S.tag, background: i === 0 ? alpha(G.infoSoft, 0.15) : alpha(G.plum, 0.15), color: i === 0 ? G.infoSoft : G.plum, fontSize: 10 }}>{substituteNames(tip.for, ennDataA, ennDataB)}</span>
+                    <h3 style={{ ...S.h3, marginBottom: 0, color: i === 0 ? G.infoSoft : G.plum }}>{tip.label}</h3>
                   </div>
                   {tip.items.map((item, j) => (
                     <div key={j} style={{ display: 'flex', gap: 8, marginBottom: 6, alignItems: 'flex-start' }}>
@@ -558,8 +560,8 @@ export default function ComparePage() {
                       </div>
 
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: isShadow ? 0.65 : 1 }}>
-                        <div style={{ width: 20, height: 20, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: match ? 'rgba(80,200,120,0.1)' : 'transparent' }}>
-                          <span style={{ fontSize: 9, color: match ? '#50c878' : isShared ? G.gold : G.textFaint }}>{match ? '=' : isShared ? '~' : '×'}</span>
+                        <div style={{ width: 20, height: 20, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: match ? alpha(G.success, 0.1) : 'transparent' }}>
+                          <span style={{ fontSize: 9, color: match ? G.success : isShared ? G.gold : G.textFaint }}>{match ? '=' : isShared ? '~' : '×'}</span>
                         </div>
                       </div>
 
@@ -572,7 +574,7 @@ export default function ComparePage() {
                 })}
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginTop: 12, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: 10, color: '#50c878', fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>=</span> same function</span>
+                <span style={{ fontSize: 10, color: G.success, fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>=</span> same function</span>
                 <span style={{ fontSize: 10, color: G.gold, fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>~</span> shared in ego</span>
                 <span style={{ fontSize: 10, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>×</span> not shared</span>
               </div>
@@ -602,7 +604,7 @@ export default function ComparePage() {
                   .replace(new RegExp(c.typeForB, 'g'), labelB);
               };
               const renderCrossing = (c, i) => {
-                const borderColor = c.tier === 'highest' ? '#e88050' : c.tier === 'high' ? G.gold : G.border;
+                const borderColor = c.tier === 'highest' ? G.warn : c.tier === 'high' ? G.gold : G.border;
                 return (
                   <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: borderColor, borderLeftStyle: 'solid', marginBottom: 8, padding: '10px 14px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6, flexWrap: 'wrap' }}>
@@ -647,15 +649,15 @@ export default function ComparePage() {
         )}
         {/* Cognitive Harmony Score */}
         {cogHarmony && (
-          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#4a88d8', borderLeftStyle: 'solid' }}>
+          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: G.info, borderLeftStyle: 'solid' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontSize: 14, color: '#4a88d8' }}>◎</span>
+              <span style={{ fontSize: 14, color: G.info }}>◎</span>
               <h3 style={{ ...S.h3, marginBottom: 0 }}>Cognitive Harmony</h3>
               <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
                 <div style={{ width: 64, height: 6, borderRadius: 3, background: G.bg3, overflow: 'hidden' }}>
-                  <div style={{ width: `${cogHarmony.score}%`, height: '100%', borderRadius: 3, background: cogHarmony.score >= 75 ? '#50c878' : cogHarmony.score >= 55 ? G.gold : '#e88050' }} />
+                  <div style={{ width: `${cogHarmony.score}%`, height: '100%', borderRadius: 3, background: cogHarmony.score >= 75 ? G.success : cogHarmony.score >= 55 ? G.gold : G.warn }} />
                 </div>
-                <span style={{ ...S.mono, fontSize: 12, color: cogHarmony.score >= 75 ? '#50c878' : cogHarmony.score >= 55 ? G.gold : '#e88050' }}>{cogHarmony.score}</span>
+                <span style={{ ...S.mono, fontSize: 12, color: cogHarmony.score >= 75 ? G.success : cogHarmony.score >= 55 ? G.gold : G.warn }}>{cogHarmony.score}</span>
               </div>
             </div>
             <p style={{ ...S.body, marginBottom: 10 }}>{cogHarmony.narrative}</p>
@@ -663,7 +665,7 @@ export default function ComparePage() {
               <div style={{ marginBottom: 8 }}>
                 {cogHarmony.strengthsAsTeam.map((s, i) => (
                   <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
-                    <span style={{ color: '#50c878', fontSize: 12, flexShrink: 0 }}>+</span>
+                    <span style={{ color: G.success, fontSize: 12, flexShrink: 0 }}>+</span>
                     <p style={{ ...S.body, fontSize: 13 }}>{s}</p>
                   </div>
                 ))}
@@ -677,9 +679,9 @@ export default function ComparePage() {
 
         {/* Communication Style Matrix */}
         {(commMatrix.conflictStyle.dynamic || commMatrix.decisionMaking.dynamic || commMatrix.emotionalExpression.dynamic) && (
-          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#b850c0', borderLeftStyle: 'solid' }}>
+          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: G.plum, borderLeftStyle: 'solid' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontSize: 14, color: '#b850c0' }}>⇄</span>
+              <span style={{ fontSize: 14, color: G.plum }}>⇄</span>
               <h3 style={{ ...S.h3, marginBottom: 0 }}>Communication Style</h3>
             </div>
             {commMatrix.emotionalExpression.dynamic && (
@@ -721,21 +723,21 @@ export default function ComparePage() {
 
         {/* Growth & Stress Interaction */}
         {growthStress && (
-          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#e88050', borderLeftStyle: 'solid' }}>
+          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: G.warn, borderLeftStyle: 'solid' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontSize: 14, color: '#e88050' }}>↕</span>
+              <span style={{ fontSize: 14, color: G.warn }}>↕</span>
               <h3 style={{ ...S.h3, marginBottom: 0 }}>Growth & Stress Dynamics</h3>
             </div>
             {parseInt(pA.ennType) === parseInt(pB.ennType) ? (
               <>
                 {growthStress.sharedGrowthPath && (
                   <div style={{ marginBottom: 10, paddingBottom: 10, borderBottom: `1px solid ${G.border}` }}>
-                    <p style={{ fontSize: 11, color: '#50c878', marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>SHARED GROWTH PATH</p>
+                    <p style={{ fontSize: 11, color: G.success, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>SHARED GROWTH PATH</p>
                     <p style={{ ...S.body, fontSize: 13 }}>{growthStress.sharedGrowthPath}</p>
                   </div>
                 )}
                 <div style={{ marginBottom: 10, paddingBottom: 10, borderBottom: `1px solid ${G.border}` }}>
-                  <p style={{ fontSize: 11, color: '#e88050', marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>SHARED STRESS PATTERN</p>
+                  <p style={{ fontSize: 11, color: G.warn, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>SHARED STRESS PATTERN</p>
                   <p style={{ ...S.body, fontSize: 13 }}>{growthStress.aStressImpactOnB}</p>
                 </div>
                 <p style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic' }}>{growthStress.potentialFriction}</p>
@@ -743,10 +745,10 @@ export default function ComparePage() {
             ) : (
               <>
                 {[
-                  { label: `${pA.label} → ${pB.label} (growth)`, text: growthStress.aGrowthImpactOnB, color: '#50c878' },
-                  { label: `${pA.label} → ${pB.label} (stress)`, text: growthStress.aStressImpactOnB, color: '#e88050' },
-                  { label: `${pB.label} → ${pA.label} (growth)`, text: growthStress.bGrowthImpactOnA, color: '#50c878' },
-                  { label: `${pB.label} → ${pA.label} (stress)`, text: growthStress.bStressImpactOnA, color: '#e88050' },
+                  { label: `${pA.label} → ${pB.label} (growth)`, text: growthStress.aGrowthImpactOnB, color: G.success },
+                  { label: `${pA.label} → ${pB.label} (stress)`, text: growthStress.aStressImpactOnB, color: G.warn },
+                  { label: `${pB.label} → ${pA.label} (growth)`, text: growthStress.bGrowthImpactOnA, color: G.success },
+                  { label: `${pB.label} → ${pA.label} (stress)`, text: growthStress.bStressImpactOnA, color: G.warn },
                 ].map((row, i) => (
                   <div key={i} style={{ marginBottom: 10, paddingBottom: 10, borderBottom: i < 3 ? `1px solid ${G.border}` : 'none' }}>
                     <p style={{ fontSize: 11, color: row.color, marginBottom: 4, fontFamily: "'DM Mono',monospace" }}>{row.label.toUpperCase()}</p>
@@ -754,8 +756,8 @@ export default function ComparePage() {
                   </div>
                 ))}
                 {growthStress.sharedGrowthPath && (
-                  <div style={{ padding: '8px 10px', borderRadius: 6, background: 'rgba(80,200,120,0.08)', border: `1px solid rgba(80,200,120,0.2)`, marginBottom: 8 }}>
-                    <p style={{ ...S.body, fontSize: 13, color: '#50c878' }}>{growthStress.sharedGrowthPath}</p>
+                  <div style={{ padding: '8px 10px', borderRadius: 6, background: alpha(G.success, 0.08), border: `1px solid ${alpha(G.success, 0.2)}`, marginBottom: 8 }}>
+                    <p style={{ ...S.body, fontSize: 13, color: G.success }}>{growthStress.sharedGrowthPath}</p>
                   </div>
                 )}
                 <p style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic' }}>{growthStress.potentialFriction}</p>
@@ -766,12 +768,12 @@ export default function ComparePage() {
 
         {/* Instinct Dynamics — unified section */}
         {(instStackDyn || instDepth) && (
-          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: '#30a888', borderLeftStyle: 'solid' }}>
+          <div style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: SYSTEM.instinct, borderLeftStyle: 'solid' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <span style={{ fontSize: 14, color: '#30a888' }}>⟳</span>
+              <span style={{ fontSize: 14, color: SYSTEM.instinct }}>⟳</span>
               <h3 style={{ ...S.h3, marginBottom: 0 }}>Instinct Dynamics</h3>
               {instDepth && (
-                <span style={{ marginLeft: 'auto', ...S.tag, fontSize: 10, background: instDepth.overallChemistry === 'high' ? 'rgba(80,200,120,0.12)' : instDepth.overallChemistry === 'medium' ? 'rgba(228,160,48,0.12)' : 'rgba(232,128,80,0.12)', color: instDepth.overallChemistry === 'high' ? '#50c878' : instDepth.overallChemistry === 'medium' ? G.gold : '#e88050', border: `1px solid ${instDepth.overallChemistry === 'high' ? 'rgba(80,200,120,0.3)' : instDepth.overallChemistry === 'medium' ? G.goldBorder : 'rgba(232,128,80,0.3)'}` }}>{instDepth.overallChemistry} chemistry</span>
+                <span style={{ marginLeft: 'auto', ...S.tag, fontSize: 10, background: instDepth.overallChemistry === 'high' ? alpha(G.success, 0.12) : instDepth.overallChemistry === 'medium' ? alpha(G.gold, 0.12) : alpha(G.warn, 0.12), color: instDepth.overallChemistry === 'high' ? G.success : instDepth.overallChemistry === 'medium' ? G.gold : G.warn, border: `1px solid ${instDepth.overallChemistry === 'high' ? alpha(G.success, 0.3) : instDepth.overallChemistry === 'medium' ? G.goldBorder : alpha(G.warn, 0.3)}` }}>{instDepth.overallChemistry} chemistry</span>
               )}
             </div>
             <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
@@ -794,13 +796,13 @@ export default function ComparePage() {
               </>
             ) : instStackDyn?.filter(n => n.tier === 'dominant').map((note, i) => (
               <div key={'dom-' + i} style={{ marginBottom: 10 }}>
-                {note.bond && <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: '#50c878', fontSize: 14, marginTop: 1 }}>+</span><p style={S.body}>{substituteNames(note.bond, instDataA, instDataB)}</p></div>}
-                {note.tension && <div style={{ display: 'flex', gap: 8 }}><span style={{ color: '#e88050', fontSize: 14, marginTop: 1 }}>−</span><p style={S.body}>{substituteNames(note.tension, instDataA, instDataB)}</p></div>}
+                {note.bond && <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}><span style={{ color: G.success, fontSize: 14, marginTop: 1 }}>+</span><p style={S.body}>{substituteNames(note.bond, instDataA, instDataB)}</p></div>}
+                {note.tension && <div style={{ display: 'flex', gap: 8 }}><span style={{ color: G.warn, fontSize: 14, marginTop: 1 }}>−</span><p style={S.body}>{substituteNames(note.tension, instDataA, instDataB)}</p></div>}
               </div>
             ))}
             {instStackDyn?.filter(n => n.tier === 'alignment').map((note, i) => (
               <div key={'align-' + i} style={{ marginBottom: 10 }}>
-                <p style={{ ...S.mono, fontSize: 12, color: '#4a88d8', marginBottom: 4 }}>{substituteNames(note.label, instDataA, instDataB)}</p>
+                <p style={{ ...S.mono, fontSize: 12, color: G.info, marginBottom: 4 }}>{substituteNames(note.label, instDataA, instDataB)}</p>
                 {note.note && <p style={S.body}>{substituteNames(note.note, instDataA, instDataB)}</p>}
               </div>
             ))}
@@ -814,18 +816,18 @@ export default function ComparePage() {
               <p style={{ ...S.body, fontSize: 13, marginBottom: 8 }}><span style={{ color: G.textDim }}>Secondary bridge: </span>{instDepth.secondaryBridge}</p>
             )}
             {instDepth?.blindSpotAnalysis.sharedBlindSpot ? (
-              <div style={{ padding: '8px 10px', borderRadius: 6, background: 'rgba(232,128,80,0.08)', border: `1px solid rgba(232,128,80,0.2)`, marginBottom: 8 }}>
-                <p style={{ ...S.body, fontSize: 13, color: '#e88050' }}>{instDepth.blindSpotAnalysis.sharedBlindSpot}</p>
+              <div style={{ padding: '8px 10px', borderRadius: 6, background: alpha(G.warn, 0.08), border: `1px solid ${alpha(G.warn, 0.2)}`, marginBottom: 8 }}>
+                <p style={{ ...S.body, fontSize: 13, color: G.warn }}>{instDepth.blindSpotAnalysis.sharedBlindSpot}</p>
               </div>
             ) : instStackDyn?.filter(n => n.tier === 'repressed').map((note, i) => (
-              <div key={'rep-' + i} style={{ padding: '8px 10px', borderRadius: 6, background: 'rgba(232,128,80,0.08)', border: `1px solid rgba(232,128,80,0.2)`, marginBottom: 8 }}>
-                <p style={{ ...S.mono, fontSize: 12, color: '#e88050', marginBottom: 4 }}>{substituteNames(note.label, instDataA, instDataB)}</p>
-                {note.note && <p style={{ ...S.body, fontSize: 13, color: '#e88050' }}>{substituteNames(note.note, instDataA, instDataB)}</p>}
+              <div key={'rep-' + i} style={{ padding: '8px 10px', borderRadius: 6, background: alpha(G.warn, 0.08), border: `1px solid ${alpha(G.warn, 0.2)}`, marginBottom: 8 }}>
+                <p style={{ ...S.mono, fontSize: 12, color: G.warn, marginBottom: 4 }}>{substituteNames(note.label, instDataA, instDataB)}</p>
+                {note.note && <p style={{ ...S.body, fontSize: 13, color: G.warn }}>{substituteNames(note.note, instDataA, instDataB)}</p>}
               </div>
             ))}
             {instDepth?.tips.map((tip, i) => (
               <div key={i} style={{ display: 'flex', gap: 8, marginTop: 4 }}>
-                <span style={{ color: '#30a888', fontSize: 12, flexShrink: 0 }}>→</span>
+                <span style={{ color: SYSTEM.instinct, fontSize: 12, flexShrink: 0 }}>→</span>
                 <p style={{ ...S.body, fontSize: 13 }}>{tip}</p>
               </div>
             ))}
@@ -847,7 +849,7 @@ export default function ComparePage() {
         <h1 style={S.h1}>Compare</h1>
         <p style={S.body}>Pairwise and group dynamics for 2–12 people</p>
       </div>
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16, alignItems: 'center' }}>
+      <div data-testid="person-bar" className="person-bar" style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', background: G.bg, padding: '8px 0', marginBottom: 8 }}>
         {persons.map((p, i) => {
           const archetype = computeArchetypeName(p.ennType, p.mbti, p.instinctStack?.[0]);
           return (
@@ -963,7 +965,7 @@ export default function ComparePage() {
                 <div style={S.card}>
                   <h3 style={{ ...S.h3, marginBottom: 10 }}>Center Distribution</h3>
                   <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
-                    {[['gut', '#e88050'], ['heart', '#b850c0'], ['head', '#4a88d8']].map(([c, color]) => (
+                    {[['gut', CENTER.gut], ['heart', CENTER.heart], ['head', CENTER.head]].map(([c, color]) => (
                       <div key={c} style={{ flex: 1, minWidth: 80, padding: '8px 10px', borderRadius: 8, background: G.bg3, border: `1px solid ${centerDist.dist[c] > 0 ? color : G.border}`, textAlign: 'center' }}>
                         <p style={{ ...S.mono, fontSize: 12, color: centerDist.dist[c] > 0 ? color : G.textFaint, marginBottom: 2 }}>{c.toUpperCase()}</p>
                         <p style={{ fontSize: 18, fontWeight: 600, color: centerDist.dist[c] > 0 ? color : G.textFaint, marginBottom: 0 }}>{centerDist.pct[c]}%</p>
@@ -973,7 +975,7 @@ export default function ComparePage() {
                   </div>
                   <p style={{ ...S.body, fontSize: 13 }}>{centerDist.analysis}</p>
                   {centerDist.blindSpots.length > 0 && (
-                    <p style={{ ...S.body, fontSize: 12, color: '#e88050', marginTop: 6 }}>Blind spots: {centerDist.blindSpots.join('; ')}</p>
+                    <p style={{ ...S.body, fontSize: 12, color: G.warn, marginTop: 6 }}>Blind spots: {centerDist.blindSpots.join('; ')}</p>
                   )}
                 </div>
               )}
@@ -1033,14 +1035,14 @@ export default function ComparePage() {
                       const isCovered = cognitiveCoverage.wellCovered.includes(fn);
                       const isRep = cognitiveCoverage.represented.includes(fn);
                       return (
-                        <div key={fn} style={{ padding: '4px 10px', borderRadius: 6, border: `1px solid ${isCovered ? '#50c878' : isRep ? G.goldBorder : G.border}`, background: isCovered ? 'rgba(80,200,120,0.1)' : isRep ? G.goldDim : G.bg3 }}>
-                          <span style={{ ...S.mono, fontSize: 12, color: isCovered ? '#50c878' : isRep ? G.gold : G.textFaint }}>{fn}</span>
+                        <div key={fn} style={{ padding: '4px 10px', borderRadius: 6, border: `1px solid ${isCovered ? G.success : isRep ? G.goldBorder : G.border}`, background: isCovered ? alpha(G.success, 0.1) : isRep ? G.goldDim : G.bg3 }}>
+                          <span style={{ ...S.mono, fontSize: 12, color: isCovered ? G.success : isRep ? G.gold : G.textFaint }}>{fn}</span>
                         </div>
                       );
                     })}
                   </div>
                   <div style={{ display: 'flex', gap: 12, marginBottom: 8, flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: 10, color: '#50c878' }}>■ well-covered</span>
+                    <span style={{ fontSize: 10, color: G.success }}>■ well-covered</span>
                     <span style={{ fontSize: 10, color: G.gold }}>■ represented</span>
                     <span style={{ fontSize: 10, color: G.textFaint }}>■ absent</span>
                   </div>
@@ -1057,15 +1059,15 @@ export default function ComparePage() {
                   <h3 style={{ ...S.h3, marginBottom: 10 }}>Instinct Group Chemistry</h3>
                   <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
                     {['SP', 'SX', 'SO'].map(inst => (
-                      <div key={inst} style={{ flex: 1, padding: '8px 6px', borderRadius: 8, background: G.bg3, border: `1px solid ${instinctChemistry.dist[inst] > 0 ? '#30a888' : G.border}`, textAlign: 'center' }}>
-                        <p style={{ ...S.mono, fontSize: 13, color: instinctChemistry.dist[inst] > 0 ? '#30a888' : G.textFaint, marginBottom: 0, fontWeight: 600 }}>{inst}</p>
+                      <div key={inst} style={{ flex: 1, padding: '8px 6px', borderRadius: 8, background: G.bg3, border: `1px solid ${instinctChemistry.dist[inst] > 0 ? SYSTEM.instinct : G.border}`, textAlign: 'center' }}>
+                        <p style={{ ...S.mono, fontSize: 13, color: instinctChemistry.dist[inst] > 0 ? SYSTEM.instinct : G.textFaint, marginBottom: 0, fontWeight: 600 }}>{inst}</p>
                         <p style={{ fontSize: 16, fontWeight: 600, color: instinctChemistry.dist[inst] > 0 ? G.text : G.textFaint, marginBottom: 0 }}>{instinctChemistry.pct[inst]}%</p>
                       </div>
                     ))}
                   </div>
                   <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}>{instinctChemistry.groupEnergy}</p>
                   {instinctChemistry.conflictRisk && (
-                    <p style={{ ...S.body, fontSize: 12, color: '#e88050' }}>{instinctChemistry.conflictRisk}</p>
+                    <p style={{ ...S.body, fontSize: 12, color: G.warn }}>{instinctChemistry.conflictRisk}</p>
                   )}
                 </div>
               )}
@@ -1080,9 +1082,9 @@ export default function ComparePage() {
                 }));
                 const scoreToColor = (s) => {
                   if (s === null) return G.bg3;
-                  if (s >= 75) return 'rgba(80,200,120,0.25)';
-                  if (s >= 55) return 'rgba(228,160,48,0.25)';
-                  return 'rgba(232,128,80,0.25)';
+                  if (s >= 75) return alpha(G.success, 0.25);
+                  if (s >= 55) return alpha(G.gold, 0.25);
+                  return alpha(G.warn, 0.25);
                 };
                 return (
                   <div style={S.card}>
@@ -1115,9 +1117,9 @@ export default function ComparePage() {
                       </table>
                     </div>
                     <div style={{ display: 'flex', gap: 12, marginTop: 8, flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: 10, color: '#50c878' }}>■ ≥75 high</span>
+                      <span style={{ fontSize: 10, color: G.success }}>■ ≥75 high</span>
                       <span style={{ fontSize: 10, color: G.gold }}>■ 55–74 moderate</span>
-                      <span style={{ fontSize: 10, color: '#e88050' }}>■ &lt;55 low</span>
+                      <span style={{ fontSize: 10, color: G.warn }}>■ &lt;55 low</span>
                     </div>
                   </div>
                 );
@@ -1126,9 +1128,16 @@ export default function ComparePage() {
           )}
           {validPairs.length > 0 && (
             <>
-              <h2 style={{ ...S.h2, marginTop: validPairs.length > 1 ? 24 : 8, marginBottom: 12 }}>
-                {validPairs.length === 1 ? 'Pairwise Analysis' : `Pairwise Analysis (${validPairs.length} pairs)`}
-              </h2>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, marginTop: validPairs.length > 1 ? 24 : 8, marginBottom: 12 }}>
+                <h2 style={{ ...S.h2, marginBottom: 0 }}>
+                  {validPairs.length === 1 ? 'Pairwise Analysis' : `Pairwise Analysis (${validPairs.length} pairs)`}
+                </h2>
+                {validPairs.length > 1 && (
+                  <button onClick={toggleAllPairs} style={{ ...S.btnOutline, padding: '4px 10px', fontSize: 12, whiteSpace: 'nowrap' }}>
+                    {allPairsExpanded ? 'Collapse all' : 'Expand all'}
+                  </button>
+                )}
+              </div>
               {validPairs.map(([i, j]) => {
                 const pA = persons[i], pB = persons[j];
                 const expanded = isPairExpanded(i, j);
