@@ -718,6 +718,13 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                   style={{ ...S.tag, cursor: 'pointer', background: 'transparent' }}
                 >{saved.mbti.result} →</button>
               )}
+              {saved.mbti && (
+                <button
+                  aria-label={`See ${saved.mbti.result} in the Stack view`}
+                  onClick={() => setView('stack', `type=${saved.mbti.result}`)}
+                  style={{ ...S.tag, cursor: 'pointer', background: 'transparent' }}
+                >Stack →</button>
+              )}
               {saved.inst && (
                 <button
                   aria-label="Explore instinct stack on Explorer"
@@ -1355,6 +1362,11 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           )}
         </div>
         <button style={{ ...S.btnOutline, width: '100%', marginTop: 8 }} onClick={() => goToExplorer('mbti', result.result)}>Learn more on the Explorer tab →</button>
+        <button
+          aria-label={`See ${result.result} in the Stack view`}
+          style={{ ...S.btnOutline, width: '100%', marginTop: 8 }}
+          onClick={() => setView('stack', `type=${result.result}`)}
+        >See how {result.result}'s eight positions couple in the Stack view →</button>
       </div></div>
     );
   }

@@ -16,20 +16,22 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ---
 
+## [1.6]
+
+### 1.6.0 — 2026-09-13
+
+- Added: **Stack** view at `#/stack`, a fourth navigation tab (Typer / Explorer / Compare / Stack). An inline-SVG diagram draws the eight positions (ego arc left, shadow arc right) and the six structural couplings — gate, write-back, sample, monitor, check, trigger — with Refuge → Critic → Anchor drawn as the load-bearing spine. Nodes and edges are tappable and keyboard-selectable. A colonization scrubber (levels 1–9) tints captured positions one per level in the spec's order, pulses the just-captured node, and lights that level's active edges; the write-back edge lights across levels 5–6. Level narration, the stage band, and the equilibrium caveat sit beside the scrubber. A purpose panel shows the selected position's native purpose and its purpose in the fixation's service as two blocks, the captured block inert until the scrubber passes that position's capture level and both kept visible afterwards. A 16-type selector (or "Positions only") puts each function on its node; Replay walks 1 → 9 at 1.2s per step and jumps to the end under `prefers-reduced-motion`. With both `typer_mbti` and `typer_enn` saved, a Personalize control badges Hunger with the fixation ("Type 4 installs here"), shows the Counter threat-output form for that stack, and bridges the current level to the Riso-Hudson tier text, flagged as an interpretive bridge. Malformed or missing storage degrades to the impersonal view.
+- Added: `#/stack?type=ENFP&level=5` deep links. `App.setView(view, query)` now carries an optional query; `ComparePage` receives `setView`. Entry points: the Typer home screen and MBTI result screen ("See … in the Stack view"), and per-person links in Compare's Shadow Stack section.
+- Added: `data/stack.js` (capture order, Augusta classification, purpose transformations, level narration, equilibrium caveat, Counter threat-output forms, edges, active edges per level, label templates) and `utils/stack.js` (capture state, label templating, query parsing, saved-result reading, diagram geometry). Content is transcribed from `docs/specs/stack-view.md`; a terminology deny-list test guards every exported string and both source files.
+- Changed: the reduced-motion rule in `baseCSS` now disables animations as well as transitions; a `stack-pulse` keyframe is the only animation in the app.
+- Product decision: this view makes the app visibly CT-branded (the May 2026 CT Minimum Viable Framework: colonization, capture, Critic write-back, Anchor corruption, gated Lead) rather than a neutral MBTI/Enneagram tool. That is deliberate, not an accident of the copy.
+- Not included (needs owner content, do not infer): the Lead-utility × fixation matrix and a stakes slider — only five anchors are established (Te×3 high, Ni×4 high, Se×8 high, Fi×3 low, Se×5 low) and the remaining cells do not exist; fixation substrate/strategy/direction copy on the Hunger badge.
+- Tests: new `stack-data.test.js`, `stack-logic.test.js`, `stack-view.test.jsx`; four-tab and `#/stack` routing tests; entry-point tests in `guided-typer.test.jsx` and `compare-page.test.jsx`.
+- Docs: fixed drift — view line counts in CLAUDE.md and README were roughly half the real numbers, `data/levels.js` and five test files were undocumented, and the README structure tree was missing several data and util modules. Added `docs/specs/` and `docs/plans/`.
+
 ## [1.5]
 
-### 1.5.1 — 2026-09-13
-
-- Improved: On wide screens Compare's person bar sticks below the top bar so the people being compared stay visible while scrolling a long analysis (static on phones, where wrapped chips would eat the viewport). With more than one pair, an Expand all / Collapse all control sits beside the Pairwise Analysis heading.
-- Improved: Explorer's four tab intros are collapsed `<details>` by default ("About the Enneagram", "About MBTI", …), putting the type grid above the fold on phones.
-- Changed: All ~190 hardcoded hex/rgba colors in views and components replaced with theme tokens. `theme.js` gains semantic tokens (`success`, `warn`, `danger`, `info`, …), `CENTER`, `SYSTEM`, `POS`, and `alpha()` / `hexToRgb()`. Compare's centre-of-intelligence colours now match Explorer's. A new `theme.test.js` fails the build on any future literal.
-
-### 1.5.0 — 2026-09-13
-
-- Changed: The Mental Model view is gone; navigation is now three tabs (Typer / Explorer / Compare). Its per-type detail pages duplicated Explorer's richer ones, and its Enneagram and Instinct tabs were subsets of Explorer's.
-- Moved: The Combined profile now lives with your results — `GuidedTyper` renders the new `CombinedProfile` view in a `combined` phase, reached from "View your full profile" on the home screen. Old `#/model` links resolve to Explorer.
-- Moved: Explorer's MBTI tab now groups the sixteen types by quadrant (NF / NT / SF / ST) and carries the collapsible 4-Step Typing SOP that used to live in Mental Model.
-- Tests: new `explorer.test.jsx`; combined-profile phase tests in `guided-typer.test.jsx`; route alias and three-tab nav tests.
+- 1.5.0–1.5.1: Mental Model folded into Explorer (three tabs; `#/model` resolves to Explorer); Combined profile moved under Typer; Explorer MBTI tab grouped by quadrant with the Typing SOP; all hardcoded colors replaced with theme tokens (`success`, `warn`, `CENTER`, `SYSTEM`, `POS`, `alpha()`) guarded by `theme.test.js`; sticky Compare person bar with expand/collapse all; collapsible Explorer intros.
 
 ## [1.4]
 

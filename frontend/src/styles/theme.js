@@ -70,7 +70,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   .nav-tabs{flex:0 0 auto;margin-left:auto}
   .nav-btn{flex:0 0 auto;padding:7px 16px}
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 ::selection{background:rgba(232,184,75,0.15)}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:transparent}
@@ -81,6 +81,8 @@ details>summary{list-style:none}
 details>summary::-webkit-details-marker{display:none}
 .intro-chev{display:inline-block;transition:transform .15s}
 details[open] .intro-chev{transform:rotate(90deg)}
+@keyframes stack-pulse{0%{stroke-width:2;filter:brightness(1)}40%{stroke-width:5;filter:brightness(1.6)}100%{stroke-width:2;filter:brightness(1)}}
+.stack-pulse{animation:stack-pulse 1.1s ease-out 2}
 .qpage{display:flex;flex-direction:column}
 .qbody{flex:1;display:flex;flex-direction:column;justify-content:center}
 @media(max-width:680px){

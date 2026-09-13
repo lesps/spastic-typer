@@ -4,6 +4,7 @@ export const NAV_ITEMS = [
   { id: 'typer',    label: 'Typer' },
   { id: 'explorer', label: 'Explorer' },
   { id: 'compare',  label: 'Compare' },
+  { id: 'stack',    label: 'Stack' },
 ];
 
 // Fixed bottom tab bar on phones; fixed top bar with a brand mark from 681px up.

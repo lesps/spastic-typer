@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import ComparePage from '../views/ComparePage.jsx';
@@ -324,6 +324,19 @@ describe('ComparePage — shadow dynamics', () => {
     ]));
     render(<ComparePage />);
     expect(screen.getAllByText(/full shadow pair/i).length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('links each person into the Stack view from the Shadow Stack section', async () => {
+    localStorage.setItem('compare_persons', JSON.stringify([
+      { label: 'P1', ennType: 4, ennWing: 5, ennWingStrength: 3, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
+      { label: 'P2', ennType: 5, ennWing: 6, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'INTJ', ennScores: null },
+    ]));
+    const setView = vi.fn();
+    render(<ComparePage setView={setView} />);
+    fireEvent.click(screen.getByRole('button', { name: /ENFP.*stack/i }));
+    expect(setView).toHaveBeenCalledWith('stack', 'type=ENFP');
+    fireEvent.click(screen.getByRole('button', { name: /INTJ.*stack/i }));
+    expect(setView).toHaveBeenCalledWith('stack', 'type=INTJ');
   });
 
   it('shows position crossing flags when both persons have MBTI', () => {

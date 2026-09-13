@@ -336,7 +336,7 @@ function PersonEditor({ idx, person, personsCount, updatePerson, removePerson, o
   );
 }
 
-export default function ComparePage() {
+export default function ComparePage({ setView = () => {} }) {
   const [persons, setPersons] = useState(() => {
     const decoded = decodePersons(window.location.hash);
     if (decoded && decoded.length >= 2) return decoded;
@@ -579,6 +579,16 @@ export default function ComparePage() {
                 <span style={{ fontSize: 10, color: G.textFaint, fontFamily: "'DM Mono',monospace" }}><span style={{ fontWeight: 600 }}>×</span> not shared</span>
               </div>
               {shared.length > 0 && <p style={{ ...S.body, fontSize: 11, textAlign: 'center', marginTop: 8 }}>Shared ego functions: {shared.map(f => <FnBadge key={f} fn={f} />)}</p>}
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
+                {[pA, pB].map(p => (
+                  <button
+                    key={p.label}
+                    aria-label={`See ${p.mbti} in the Stack view`}
+                    onClick={() => setView('stack', `type=${p.mbti}`)}
+                    style={{ ...S.tag, cursor: 'pointer', background: 'transparent' }}
+                  >{p.mbti} in Stack →</button>
+                ))}
+              </div>
             </div>
             {mbtiInsights.map((ins, i) => (
               <div key={i} style={{ ...S.card, borderLeftWidth: 3, borderLeftColor: ins.color || G.gold, borderLeftStyle: 'solid' }}>
