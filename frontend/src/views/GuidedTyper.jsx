@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useScrollToTop } from '../utils/scroll.js';
+import CombinedProfile from './CombinedProfile.jsx';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, ENN_BANK, INSTINCT_BANK, INSTINCT_DISAMBIG, WING_DESC, ENN_DISAMBIG, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC } from '../data/enneagram.js';
@@ -280,7 +281,7 @@ export function scoreInstinct(answers, sequence, disambigAnswers = {}, disambigS
   return { instinctStack, instScores, confidence };
 }
 
-export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setExplorerSel = () => {}, setModelTab = () => {} }) {
+export default function GuidedTyper({ setView = () => {}, setExplorerTab = () => {}, setExplorerSel = () => {} }) {
   const goToExplorer = (tab, sel = null) => { setExplorerTab(tab); setExplorerSel(sel); setView('explorer'); };
   // Restore in-progress quiz session from localStorage if available
   const [phase, setPhase] = useState(() => {
@@ -697,8 +698,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             <h3 style={{ ...S.h3, marginBottom: 4 }}>Your Profile</h3>
             {archetypeName && (
               <button
-                aria-label="View combined profile in Mental Model"
-                onClick={() => { setModelTab('combined'); setView('model'); }}
+                aria-label="View your full profile"
+                onClick={() => setPhase('combined')}
                 style={{ fontSize: 13, color: G.gold, marginBottom: 4, fontStyle: 'italic', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', textAlign: 'left' }}
               >{archetypeName}</button>
             )}
@@ -756,9 +757,9 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
             {allDone && (
               <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${G.goldBorder}` }}>
                 <button
-                  onClick={() => { setModelTab('combined'); setView('model'); }}
+                  onClick={() => setPhase('combined')}
                   style={{ ...S.btnOutline, width: '100%', fontSize: 13 }}
-                >View full combined profile in Mental Model →</button>
+                >View your full profile →</button>
               </div>
             )}
           </div>
@@ -883,6 +884,16 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           </div>
         )}
 
+      </div></div>
+    );
+  }
+
+  // --- Combined profile (all three assessments) ---
+  if (phase === 'combined') {
+    return (
+      <div style={S.page}><div style={S.container}>
+        <button onClick={reset} style={{ ...S.btnOutline, marginBottom: 16, padding: '8px 14px', fontSize: 13 }}>← Back</button>
+        <CombinedProfile onBack={reset} />
       </div></div>
     );
   }

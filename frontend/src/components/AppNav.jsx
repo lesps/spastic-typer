@@ -3,7 +3,6 @@ import { G } from '../styles/theme.js';
 export const NAV_ITEMS = [
   { id: 'typer',    label: 'Typer' },
   { id: 'explorer', label: 'Explorer' },
-  { id: 'model',    label: 'Model' },
   { id: 'compare',  label: 'Compare' },
 ];
 

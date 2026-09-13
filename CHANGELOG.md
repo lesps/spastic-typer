@@ -16,6 +16,15 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ---
 
+## [1.5]
+
+### 1.5.0 — 2026-09-13
+
+- Changed: The Mental Model view is gone; navigation is now three tabs (Typer / Explorer / Compare). Its per-type detail pages duplicated Explorer's richer ones, and its Enneagram and Instinct tabs were subsets of Explorer's.
+- Moved: The Combined profile now lives with your results — `GuidedTyper` renders the new `CombinedProfile` view in a `combined` phase, reached from "View your full profile" on the home screen. Old `#/model` links resolve to Explorer.
+- Moved: Explorer's MBTI tab now groups the sixteen types by quadrant (NF / NT / SF / ST) and carries the collapsible 4-Step Typing SOP that used to live in Mental Model.
+- Tests: new `explorer.test.jsx`; combined-profile phase tests in `guided-typer.test.jsx`; route alias and three-tab nav tests.
+
 ## [1.4]
 
 ### 1.4.1 — 2026-09-13
