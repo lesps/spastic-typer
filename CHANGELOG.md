@@ -18,6 +18,12 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ## [1.4]
 
+### 1.4.1 — 2026-09-13
+
+- Improved: Home screen shows each type once instead of three times — the status chip row is gone, the intro card hides once all three assessments are done, and the profile card has a single action row (Get Code, Export). Clear moved out of the profile card to a small link at the bottom of the page, still behind a confirmation.
+- Improved: Each quiz card has an explicit, keyboard-reachable "Start …" button (the whole card remains tappable). Cards now start quizzes through `startQuiz`, so the seeded sequence path is used everywhere.
+- Improved: Quiz screens carry a context header — assessment name, question number, and typical length ("Question 7 · typically 15–30 questions"). Vertical centering of the question card now applies at every width, not just phones.
+
 ### 1.4.0 — 2026-09-13
 
 - Added: URL-hash routing. The active view now lives in the hash (`#/typer`, `#/explorer`, `#/model`, `#/compare?p1=…`), so refresh keeps your place, browser back/forward move between views, and every view is linkable. New `utils/route.js` (`parseHash`, `buildHash`).

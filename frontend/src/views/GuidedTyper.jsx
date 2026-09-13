@@ -381,6 +381,13 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   }
 
   const QUIZ_LABEL = { enn: 'Enneagram', mbti: 'MBTI', inst: 'Instinct Stack' };
+  const QUIZ_TYPICAL = { enn: '15–30', mbti: '8–20', inst: '6–15' };
+  const renderQuizHeader = (quiz, n) => (
+    <div style={{ textAlign: 'center', marginBottom: 16 }}>
+      <h3 style={S.h3}>{QUIZ_LABEL[quiz]} Assessment</h3>
+      <p style={{ ...S.mono, fontSize: 12 }}>Question {n} · typically {QUIZ_TYPICAL[quiz]} questions</p>
+    </div>
+  );
 
   const startQuiz = (quiz) => {
     const seed = Math.floor(Math.random() * 0xFFFFFFFF);
@@ -679,70 +686,56 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           <p style={S.body}>Discover your personality type through structured assessment</p>
         </div>
 
-        <div style={{ ...S.card, marginBottom: 20, padding: '14px 16px' }}>
+        {!allDone && (<div style={{ ...S.card, marginBottom: 20, padding: '14px 16px' }}>
           <p style={{ ...S.body, fontSize: 13, lineHeight: 1.7 }}>
             Take all three assessments to build your full personality profile. Complete all three to unlock your <strong style={{ color: G.text }}>Profile Code</strong> (share it with others or load it in the Compare tab) and the <strong style={{ color: G.text }}>Export</strong> button.
           </p>
-        </div>
-
-        <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginBottom: 20, flexWrap: 'wrap' }}>
-          {[{ key: 'enn', label: 'Enneagram', val: saved.enn?.display }, { key: 'mbti', label: 'MBTI', val: saved.mbti?.result }, { key: 'inst', label: 'Instinct Stack', val: saved.inst ? saved.inst.instinctStack?.map(i => i.toUpperCase()).join('/') : null }].map(({ key, label, val }) => (
-            <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '5px 12px', borderRadius: 20, background: val ? G.goldDim : G.bg3, border: `1px solid ${val ? G.goldBorder : G.border}` }}>
-              <span style={{ fontSize: 12, color: val ? G.gold : G.textFaint }}>{val ? '✓' : '○'}</span>
-              <span style={{ fontSize: 12, color: val ? G.text : G.textFaint }}>{val || label}</span>
-            </div>
-          ))}
-        </div>
+        </div>)}
 
         {hasAny && (
           <div style={{ ...S.cardGold, marginBottom: 20 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
-              <div style={{ flex: 1 }}>
-                <h3 style={{ ...S.h3, marginBottom: 4 }}>Your Profile</h3>
-                {archetypeName && (
-                  <button
-                    aria-label="View combined profile in Mental Model"
-                    onClick={() => { setModelTab('combined'); setView('model'); }}
-                    style={{ fontSize: 13, color: G.gold, marginBottom: 4, fontStyle: 'italic', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', textAlign: 'left' }}
-                  >{archetypeName}</button>
-                )}
-                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 6 }}>
-                  {saved.enn && (
-                    <button
-                      aria-label={`Explore Enneagram type ${saved.enn.coreType} on Explorer`}
-                      onClick={() => goToExplorer('enneagram', saved.enn.coreType)}
-                      style={{ ...S.tag, cursor: 'pointer', background: 'transparent' }}
-                    >{saved.enn.display} →</button>
-                  )}
-                  {saved.mbti && (
-                    <button
-                      aria-label={`Explore MBTI type ${saved.mbti.result} on Explorer`}
-                      onClick={() => goToExplorer('mbti', saved.mbti.result)}
-                      style={{ ...S.tag, cursor: 'pointer', background: 'transparent' }}
-                    >{saved.mbti.result} →</button>
-                  )}
-                  {saved.inst && (
-                    <button
-                      aria-label="Explore instinct stack on Explorer"
-                      onClick={() => goToExplorer('instinct', saved.inst.instinctStack?.[0])}
-                      style={{ ...S.tag, cursor: 'pointer', background: 'transparent' }}
-                    >{saved.inst.instinctStack?.map(i => i.toUpperCase()).join('/')} →</button>
-                  )}
-                </div>
-                {!allDone && (
-                  <p style={{ fontSize: 11, color: G.textFaint, marginTop: 6 }}>
-                    {doneCount}/3 complete — finish all three to unlock Profile Code and Export
-                  </p>
-                )}
-              </div>
-              <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'flex-start' }}>
-                {allDone && (<>
-                  <button onClick={handleExportAll} style={{ ...S.btnOutline, whiteSpace: 'nowrap', padding: '8px 14px', fontSize: 13 }}>Export</button>
-                  <button onClick={handleGenerateCode} style={{ ...S.btn, whiteSpace: 'nowrap' }}>Get Code</button>
-                </>)}
-                <button onClick={() => setConfirmClear(true)} style={{ ...S.btnDanger, whiteSpace: 'nowrap', padding: '8px 14px', fontSize: 13 }}>Clear</button>
-              </div>
+            <h3 style={{ ...S.h3, marginBottom: 4 }}>Your Profile</h3>
+            {archetypeName && (
+              <button
+                aria-label="View combined profile in Mental Model"
+                onClick={() => { setModelTab('combined'); setView('model'); }}
+                style={{ fontSize: 13, color: G.gold, marginBottom: 4, fontStyle: 'italic', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', textAlign: 'left' }}
+              >{archetypeName}</button>
+            )}
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 6 }}>
+              {saved.enn && (
+                <button
+                  aria-label={`Explore Enneagram type ${saved.enn.coreType} on Explorer`}
+                  onClick={() => goToExplorer('enneagram', saved.enn.coreType)}
+                  style={{ ...S.tag, cursor: 'pointer', background: 'transparent' }}
+                >{saved.enn.display} →</button>
+              )}
+              {saved.mbti && (
+                <button
+                  aria-label={`Explore MBTI type ${saved.mbti.result} on Explorer`}
+                  onClick={() => goToExplorer('mbti', saved.mbti.result)}
+                  style={{ ...S.tag, cursor: 'pointer', background: 'transparent' }}
+                >{saved.mbti.result} →</button>
+              )}
+              {saved.inst && (
+                <button
+                  aria-label="Explore instinct stack on Explorer"
+                  onClick={() => goToExplorer('instinct', saved.inst.instinctStack?.[0])}
+                  style={{ ...S.tag, cursor: 'pointer', background: 'transparent' }}
+                >{saved.inst.instinctStack?.map(i => i.toUpperCase()).join('/')} →</button>
+              )}
             </div>
+            {!allDone && (
+              <p style={{ fontSize: 11, color: G.textFaint, marginTop: 8 }}>
+                {doneCount}/3 complete — finish all three to unlock Profile Code and Export
+              </p>
+            )}
+            {allDone && (
+              <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
+                <button onClick={handleGenerateCode} style={{ ...S.btn, flex: 1 }}>Get Code</button>
+                <button onClick={handleExportAll} style={{ ...S.btnOutline, flex: 1 }}>Export</button>
+              </div>
+            )}
             {profileCode && (
               <div style={{ marginTop: 10 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -760,15 +753,6 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
                 <p style={{ fontSize: 11, color: G.textFaint, marginTop: 4 }}>Click to copy · paste this code to load your profile in Compare or share it with others</p>
               </div>
             )}
-            {confirmClear && (
-              <div style={{ marginTop: 12, padding: '10px 12px', background: G.bg3, borderRadius: 8, border: `1px solid ${G.border}` }}>
-                <p style={{ fontSize: 13, color: G.text, marginBottom: 8 }}>Clear all saved results? This cannot be undone.</p>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <button onClick={handleClearAll} style={{ ...S.btnDanger, padding: '6px 14px', fontSize: 12 }}>Yes, clear all</button>
-                  <button onClick={() => setConfirmClear(false)} style={{ ...S.btnOutline, padding: '6px 14px', fontSize: 12 }}>Cancel</button>
-                </div>
-              </div>
-            )}
             {allDone && (
               <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${G.goldBorder}` }}>
                 <button
@@ -782,10 +766,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
         {exportData && <ExportModal markdown={exportData.markdown} backup={exportData.backup} onClose={() => setExportData(null)} />}
 
         {/* Quiz cards */}
-        <div style={{ ...S.cardGold, cursor: saved.enn ? 'default' : 'pointer' }} onClick={saved.enn ? undefined : () => {
-          const seq = buildFairSequence(ENN_BANK, q => q.type);
-          setEnnSeq(seq); setPhase('enn'); setQi(0); setAnswers({}); setBranchAnswers({}); setDisambigPair(null);
-        }}>
+        <div style={{ ...S.cardGold, cursor: saved.enn ? 'default' : 'pointer' }} onClick={saved.enn ? undefined : () => startQuiz('enn')}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ flex: 1 }}>
               <h3 style={S.h3}>Enneagram</h3>
@@ -798,7 +779,10 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
               ) : (
                 <>
                   <p style={{ ...S.body, marginTop: 8 }}>Adaptive assessment — questions continue until your type is clear. Typically 15–30 questions.</p>
-                  <div style={{ marginTop: 12 }}><span style={S.tag}>~5 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>adaptive</span></div>
+                  <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+                    <div><span style={S.tag}>~5 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>adaptive</span></div>
+                    <button onClick={(e) => { e.stopPropagation(); startQuiz('enn'); }} style={{ ...S.btn, padding: '8px 16px', fontSize: 13 }}>Start Enneagram →</button>
+                  </div>
                 </>
               )}
             </div>
@@ -808,10 +792,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           </div>
         </div>
 
-        <div style={{ ...S.cardGold, cursor: saved.mbti ? 'default' : 'pointer' }} onClick={saved.mbti ? undefined : () => {
-          const seq = buildFairSequence(MBTI_BANK, q => q.dim);
-          setMbtiSeq(seq); setPhase('mbti'); setQi(0); setMbtiAnswers({});
-        }}>
+        <div style={{ ...S.cardGold, cursor: saved.mbti ? 'default' : 'pointer' }} onClick={saved.mbti ? undefined : () => startQuiz('mbti')}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ flex: 1 }}>
               <h3 style={S.h3}>MBTI</h3>
@@ -824,7 +805,10 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
               ) : (
                 <>
                   <p style={{ ...S.body, marginTop: 8 }}>Adaptive assessment across four dimensions — ends early when each dimension is clear. Typically 8–20 questions.</p>
-                  <div style={{ marginTop: 12 }}><span style={S.tag}>~4 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>adaptive</span></div>
+                  <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+                    <div><span style={S.tag}>~4 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>adaptive</span></div>
+                    <button onClick={(e) => { e.stopPropagation(); startQuiz('mbti'); }} style={{ ...S.btn, padding: '8px 16px', fontSize: 13 }}>Start MBTI →</button>
+                  </div>
                 </>
               )}
             </div>
@@ -834,10 +818,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           </div>
         </div>
 
-        <div style={{ ...S.cardGold, cursor: saved.inst ? 'default' : 'pointer' }} onClick={saved.inst ? undefined : () => {
-          const seq = buildFairSequence(INSTINCT_BANK, q => q.inst);
-          setInstSeq(seq); setPhase('instinct'); setQi(0); setInstAnswers({});
-        }}>
+        <div style={{ ...S.cardGold, cursor: saved.inst ? 'default' : 'pointer' }} onClick={saved.inst ? undefined : () => startQuiz('inst')}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ flex: 1 }}>
               <h3 style={S.h3}>Instinct Stack</h3>
@@ -850,7 +831,10 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
               ) : (
                 <>
                   <p style={{ ...S.body, marginTop: 8 }}>Adaptive assessment of your three instinctual drives — ends when their ordering is clear. Typically 6–15 questions.</p>
-                  <div style={{ marginTop: 12 }}><span style={S.tag}>~2 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>adaptive</span></div>
+                  <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+                    <div><span style={S.tag}>~2 min</span> <span style={{ ...S.tag, marginLeft: 4 }}>adaptive</span></div>
+                    <button onClick={(e) => { e.stopPropagation(); startQuiz('inst'); }} style={{ ...S.btn, padding: '8px 16px', fontSize: 13 }}>Start Instinct Stack →</button>
+                  </div>
                 </>
               )}
             </div>
@@ -883,6 +867,22 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
           {loadSuccess && <p style={{ fontSize: 12, color: G.gold, marginTop: 6 }}>{loadSuccess}</p>}
         </div>
 
+        {hasAny && (
+          <div style={{ textAlign: 'center', marginTop: 24 }}>
+            {!confirmClear ? (
+              <button onClick={() => setConfirmClear(true)} style={{ background: 'transparent', border: 'none', color: G.textFaint, fontSize: 12, textDecoration: 'underline', padding: 8 }}>Clear all saved results</button>
+            ) : (
+              <div style={{ ...S.card, padding: '12px 14px', textAlign: 'left', marginBottom: 0 }}>
+                <p style={{ fontSize: 13, color: G.text, marginBottom: 8 }}>Clear all saved results? This cannot be undone.</p>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button onClick={handleClearAll} style={{ ...S.btnDanger, padding: '6px 14px', fontSize: 12 }}>Yes, clear all</button>
+                  <button onClick={() => setConfirmClear(false)} style={{ ...S.btnOutline, padding: '6px 14px', fontSize: 12 }}>Cancel</button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
       </div></div>
     );
   }
@@ -894,8 +894,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
       <div style={S.page} className="qpage">
         <div className="qbody">
           <div style={S.container}>
+            {renderQuizHeader('enn', qi + 1)}
             <div style={S.card} className="qcard">
-              <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
               <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
               <LikertScale value={answers[qi]} onChange={handleEnnAnswer} />
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
@@ -1027,12 +1027,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
       <div style={S.page} className="qpage">
         <div className="qbody">
           <div style={S.container}>
-            <div style={{ textAlign: 'center', marginBottom: 16 }}>
-              <h3 style={S.h3}>Instinct Stack Assessment</h3>
-              <p style={{ ...S.body, fontSize: 13 }}>Rate each statement — the assessment ends when your drive ordering becomes clear.</p>
-            </div>
+            {renderQuizHeader('inst', qi + 1)}
             <div style={S.card} className="qcard">
-              <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
               <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
               <LikertScale value={instAnswers[qi]} onChange={handleInstAloneAnswer} />
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
@@ -1191,8 +1187,8 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
       <div style={S.page} className="qpage">
         <div className="qbody">
           <div style={S.container}>
+            {renderQuizHeader('mbti', qi + 1)}
             <div style={S.card} className="qcard">
-              <p style={{ ...S.mono, marginBottom: 6 }}>Question {qi + 1}</p>
               <p style={{ ...S.body, fontSize: 16, color: G.text, lineHeight: 1.7 }}>{q.text}</p>
               <LikertScale value={mbtiAnswers[qi]} onChange={handleMBTIAnswer} />
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
