@@ -191,3 +191,169 @@ describe('StackView — selection by tap and keyboard', () => {
     for (const el of [...nodes(), ...edges()]) expect(el).toHaveAttribute('tabindex', '0');
   });
 });
+
+// ---------------------------------------------------------------------------
+import { PURPOSES, COUNTER_THREAT_OUTPUT } from '../data/stack.js';
+import { captureLevelOf } from '../utils/stack.js';
+import { LEVELS as HEALTH_LEVELS } from '../data/levels.js';
+
+const panel = () => within(screen.getByTestId('stack-purpose'));
+const capturedBlock = () => screen.getByTestId('stack-purpose-captured');
+
+describe('StackView — purpose panel', () => {
+  it('shows native and captured purposes for the selected position, Lead by default', () => {
+    render(<StackView />);
+    expect(panel().getByText(PURPOSES[1].native)).toBeInTheDocument();
+    expect(panel().getByText(PURPOSES[1].captured)).toBeInTheDocument();
+  });
+
+  it.each(LEVELS)('at level %i the captured block for Critic (captured at Level 5) is inert below 5 and active from 5', (l) => {
+    render(<StackView />);
+    fireEvent.click(node(6));
+    setLevel(l);
+    expect(capturedBlock().dataset.state).toBe(l >= captureLevelOf(6) ? 'active' : 'inert');
+    // both states stay in the DOM whatever the level — the comparison is the lesson
+    expect(panel().getByText(PURPOSES[6].native)).toBeInTheDocument();
+    expect(panel().getByText(PURPOSES[6].captured)).toBeInTheDocument();
+  });
+
+  it.each(LEVELS)('at level %i the captured block for Lead (captured at Level 8) follows its own capture level', (l) => {
+    render(<StackView />);
+    setLevel(l);
+    expect(capturedBlock().dataset.state).toBe(l >= 8 ? 'active' : 'inert');
+  });
+
+  it('labels the panel with both numbering systems', () => {
+    render(<StackView />);
+    fireEvent.click(node(6));
+    expect(panel().getByText(/Position 6 · Critic · captured at Level 5/)).toBeInTheDocument();
+    expect(capturedBlock()).toHaveTextContent(/Captured at Level 5/);
+  });
+
+  it('names the actual function at the position when a type is selected', () => {
+    render(<StackView />);
+    fireEvent.change(typeSelect(), { target: { value: 'ENFP' } });
+    fireEvent.click(node(3));
+    expect(panel().getByText(/Extraverted Thinking \(Te\) at Refuge/)).toBeInTheDocument();
+    fireEvent.click(node(5));
+    expect(panel().getByText(/Introverted Intuition \(Ni\) at Counter/)).toBeInTheDocument();
+  });
+
+  it('names only the position when no type is selected', () => {
+    render(<StackView />);
+    fireEvent.click(node(3));
+    expect(panel().queryByText(/\((Ne|Ni|Se|Si|Te|Ti|Fe|Fi)\) at/)).toBeNull();
+    expect(panel().getByText(/Position 3 · Refuge/)).toBeInTheDocument();
+  });
+
+  it('shows the Counter threat-output form for the selected type', () => {
+    render(<StackView />);
+    expect(screen.queryByTestId('stack-counter-form')).toBeNull();
+    fireEvent.change(typeSelect(), { target: { value: 'ENFP' } });
+    const form = screen.getByTestId('stack-counter-form');
+    expect(form).toHaveTextContent('Ni');
+    expect(form).toHaveTextContent(COUNTER_THREAT_OUTPUT.Ni);
+  });
+});
+
+describe('StackView — replay', () => {
+  beforeEach(() => { vi.useFakeTimers(); });
+  afterEach(() => { vi.useRealTimers(); });
+
+  it('walks from level 1 to 9 at 1.2s per step and can be cancelled', () => {
+    render(<StackView />);
+    fireEvent.click(screen.getByRole('button', { name: /replay/i }));
+    act(() => { vi.advanceTimersByTime(1200); });
+    expect(range()).toHaveValue('2');
+    act(() => { vi.advanceTimersByTime(1200 * 2); });
+    expect(range()).toHaveValue('4');
+    fireEvent.click(screen.getByRole('button', { name: /cancel/i }));
+    act(() => { vi.advanceTimersByTime(1200 * 5); });
+    expect(range()).toHaveValue('4');
+    expect(screen.getByRole('button', { name: /replay/i })).toBeInTheDocument();
+  });
+
+  it('runs to level 9 and stops', () => {
+    render(<StackView />);
+    fireEvent.click(screen.getByRole('button', { name: /replay/i }));
+    act(() => { vi.advanceTimersByTime(1200 * 12); });
+    expect(range()).toHaveValue('9');
+    expect(screen.getByRole('button', { name: /replay/i })).toBeInTheDocument();
+  });
+
+  it('stops when the user moves the scrubber', () => {
+    render(<StackView />);
+    fireEvent.click(screen.getByRole('button', { name: /replay/i }));
+    act(() => { vi.advanceTimersByTime(1200); });
+    setLevel(7);
+    act(() => { vi.advanceTimersByTime(1200 * 3); });
+    expect(range()).toHaveValue('7');
+  });
+
+  it('jumps straight to level 9 under prefers-reduced-motion', () => {
+    const original = window.matchMedia;
+    window.matchMedia = vi.fn().mockImplementation(q => ({ matches: /reduce/.test(q), media: q, addEventListener() {}, removeEventListener() {} }));
+    try {
+      render(<StackView />);
+      fireEvent.click(screen.getByRole('button', { name: /replay/i }));
+      expect(range()).toHaveValue('9');
+    } finally {
+      window.matchMedia = original;
+    }
+  });
+
+  it('clears its timer on unmount', () => {
+    const { unmount } = render(<StackView />);
+    fireEvent.click(screen.getByRole('button', { name: /replay/i }));
+    unmount();
+    expect(() => act(() => { vi.advanceTimersByTime(1200 * 10); })).not.toThrow();
+  });
+});
+
+describe('StackView — personalization', () => {
+  const saveBoth = () => {
+    localStorage.setItem('typer_mbti', JSON.stringify({ result: 'ENFP', scores: {} }));
+    localStorage.setItem('typer_enn', JSON.stringify({ coreType: 4, wing: 5, display: '4w5' }));
+  };
+
+  it('offers to personalize only when both results are saved and valid', () => {
+    render(<StackView />);
+    expect(screen.queryByRole('button', { name: /personalize/i })).toBeNull();
+  });
+
+  it('does not offer with only one result, or with malformed JSON', () => {
+    localStorage.setItem('typer_mbti', JSON.stringify({ result: 'ENFP' }));
+    const { unmount } = render(<StackView />);
+    expect(screen.queryByRole('button', { name: /personalize/i })).toBeNull();
+    unmount();
+    localStorage.setItem('typer_enn', '{broken');
+    expect(() => render(<StackView />)).not.toThrow();
+    expect(screen.queryByRole('button', { name: /personalize/i })).toBeNull();
+  });
+
+  it('personalizes: sets the type, badges Hunger, shows the Counter form and the health-level bridge', () => {
+    saveBoth();
+    render(<StackView />);
+    fireEvent.change(typeSelect(), { target: { value: 'ISTJ' } });
+    fireEvent.click(screen.getByRole('button', { name: /personalize/i }));
+    expect(typeSelect()).toHaveValue('ENFP');
+    expect(node(4)).toHaveTextContent('Type 4 installs here');
+    expect(screen.getByTestId('stack-counter-form')).toHaveTextContent('Ni');
+    const bridge = screen.getByTestId('stack-bridge');
+    expect(bridge).toHaveTextContent(HEALTH_LEVELS[4].healthy.title);
+    expect(bridge).toHaveTextContent(/interpretive bridge/i);
+    setLevel(5);
+    expect(screen.getByTestId('stack-bridge')).toHaveTextContent(HEALTH_LEVELS[4].average.title);
+    setLevel(9);
+    expect(screen.getByTestId('stack-bridge')).toHaveTextContent(HEALTH_LEVELS[4].unhealthy.title);
+  });
+
+  it('can be turned off again', () => {
+    saveBoth();
+    render(<StackView />);
+    fireEvent.click(screen.getByRole('button', { name: /personalize/i }));
+    fireEvent.click(screen.getByRole('button', { name: /impersonal/i }));
+    expect(screen.queryByTestId('stack-bridge')).toBeNull();
+    expect(node(4)).not.toHaveTextContent('installs here');
+  });
+});
