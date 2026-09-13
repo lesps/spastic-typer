@@ -25,7 +25,22 @@ export const FC = {
 export const baseCSS = `
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
+:root{--nav-pad-bottom:calc(64px + env(safe-area-inset-bottom));--nav-pad-top:max(16px,env(safe-area-inset-top))}
 body,html{background:#08080c;color:#f0ede8;font-family:'DM Sans',sans-serif;min-height:100vh}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid rgba(232,184,75,0.8);outline-offset:2px}
+.nav-shell{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:8px 12px calc(8px + env(safe-area-inset-bottom));border-top:1px solid}
+.nav-inner{max-width:680px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.nav-brand{display:none;white-space:nowrap}
+.nav-tabs{display:flex;gap:4px;flex:1;padding:4px;border-radius:14px}
+.nav-btn{flex:1;border:none;border-radius:10px;padding:8px 6px;font-size:13px;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:background .15s,color .15s}
+@media(min-width:681px){
+  :root{--nav-pad-bottom:40px;--nav-pad-top:76px}
+  .nav-shell{top:0;bottom:auto;padding:10px 16px;border-top:none;border-bottom:1px solid}
+  .nav-brand{display:block}
+  .nav-tabs{flex:0 0 auto;margin-left:auto}
+  .nav-btn{flex:0 0 auto;padding:7px 16px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 ::selection{background:rgba(232,184,75,0.15)}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:transparent}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useScrollToTop } from '../utils/scroll.js';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, ENN_BANK, INSTINCT_BANK, INSTINCT_DISAMBIG, WING_DESC, ENN_DISAMBIG, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC } from '../data/enneagram.js';
@@ -286,6 +287,7 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
     const s = readLS(LS.session);
     return (s && ACTIVE_PHASES.includes(s.phase)) ? s.phase : 'choose';
   });
+  useScrollToTop(phase);
   const [qi, setQi] = useState(() => {
     const s = readLS(LS.session);
     return (s && ACTIVE_PHASES.includes(s.phase)) ? (s.qi ?? 0) : 0;

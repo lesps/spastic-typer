@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import ComparePage from '../views/ComparePage.jsx';
 
 beforeEach(() => {
@@ -528,5 +528,34 @@ describe('ComparePage — same-type dedup', () => {
     // No MBTI tips rendered
     expect(screen.queryByText(/Understanding ENFP/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Understanding INFP/i)).not.toBeInTheDocument();
+  });
+});
+
+describe('ComparePage — share links', () => {
+  const HASH_QUERY = 'p1=4w5%3Astrong%3Asx%2Fsp%2Fso%3AINFP&p2=8w9%3Amoderate%3Asp%2Fso%2Fsx%3AENTJ';
+
+  it('loads people from a #/compare?p1=… hash', () => {
+    window.location.hash = `#/compare?${HASH_QUERY}`;
+    render(<ComparePage />);
+    expect(screen.getByText(/pairwise analysis/i)).toBeInTheDocument();
+  });
+
+  it('still loads people from a legacy #p1=… hash', () => {
+    window.location.hash = `#${HASH_QUERY}`;
+    render(<ComparePage />);
+    expect(screen.getByText(/pairwise analysis/i)).toBeInTheDocument();
+  });
+
+  it('copies a share URL that routes to the Compare view', async () => {
+    const user = userEvent.setup();
+    const writeText = vi.fn().mockResolvedValue();
+    Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
+    window.location.hash = `#/compare?${HASH_QUERY}`;
+    render(<ComparePage />);
+    await user.click(screen.getByRole('button', { name: /share/i }));
+    expect(writeText).toHaveBeenCalledTimes(1);
+    const url = writeText.mock.calls[0][0];
+    expect(url).toContain('#/compare?p1=');
+    expect(url).toContain('&p2=');
   });
 });

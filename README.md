@@ -143,7 +143,8 @@ Expected output:
 | `scoring.test.js` | All three scoring algorithms, `buildFairSequence`, `shuffleArray`, question bank data integrity (~140 assertions) |
 | `guided-typer.test.jsx` | Quiz flows, choose screen, share/export gating, localStorage persistence, retake, disambiguation |
 | `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button |
-| `navigation.test.jsx` | Bottom nav tab switching |
+| `navigation.test.jsx` | Nav landmark/labels, `aria-current`, hash routing, scroll reset |
+| `route.test.js` | URL-hash parsing and building |
 
 All tests must pass before merging. Fix root causes — do not skip or suppress tests.
 
@@ -163,7 +164,7 @@ spastic-typer/
 │   │   │   ├── Explorer.jsx      # Reference tool: Enneagram, MBTI, Instinct, Integration (~334 LOC)
 │   │   │   └── MentalModel.jsx   # Quadrant maps, Enneagram circle, SOP (~406 LOC)
 │   │   ├── components/           # Small reusable UI pieces
-│   │   │   ├── BottomNav.jsx     # Four-tab fixed navigation bar
+│   │   │   ├── AppNav.jsx        # Primary nav: bottom tabs on phones, top bar on wider screens
 │   │   │   ├── LikertScale.jsx   # 7-point scale widget (−3 to +3)
 │   │   │   ├── ProgressBar.jsx   # Quiz progress indicator
 │   │   │   ├── FnBadge.jsx       # Color-coded cognitive function badge
@@ -205,7 +206,7 @@ spastic-typer/
 
 ### View Switching
 
-There is no router. `App.jsx` holds a `view` state string; `BottomNav` calls `setView()` to navigate between four views:
+There is no router library. `App.jsx` holds a `view` state string mirrored in the URL hash (`#/typer`, `#/explorer`, `#/model`, `#/compare`); `AppNav` calls `setView()`, which updates the hash, and a `hashchange` listener keeps state in sync so browser back/forward, refresh, and shared links open the right view. Parsing lives in `src/utils/route.js`.
 
 ```
 App.jsx
@@ -256,10 +257,10 @@ node scripts/generatePairs.mjs
 Profile data is encoded as a URL hash fragment so it can be loaded directly into the Compare page:
 
 ```
-#p1=4w5:strong:sx/sp/so:INFP&p2=8w9:moderate:sp/so/sx:ENTJ
+#/compare?p1=4w5:strong:sx/sp/so:INFP&p2=8w9:moderate:sp/so/sx:ENTJ
 ```
 
-Fields per person: `{ennType}w{wing}:{wingStrength}:{instStack}:{mbtiType}`
+Older links without the `/compare?` prefix still open the Compare page. Fields per person: `{ennType}w{wing}:{wingStrength}:{instStack}:{mbtiType}`
 
 ---
 

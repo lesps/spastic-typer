@@ -61,7 +61,7 @@ spastic-typer/
 
 | File | Purpose |
 |------|---------|
-| `BottomNav.jsx` | Four-tab navigation (Typer / Compare / Explore / Model) |
+| `AppNav.jsx` | Primary navigation (Typer / Explorer / Model / Compare). Bottom tab bar on phones, top bar from 681px. Writes the view into the URL hash. |
 | `LikertScale.jsx` | 7-point scale widget (−3 to +3) used in all quizzes |
 | `ProgressBar.jsx` | Thin quiz progress indicator |
 | `FnBadge.jsx` | Color-coded cognitive function badge (Ne, Ni, Se…) |
@@ -88,10 +88,12 @@ spastic-typer/
 | `archetype.js` | `computeArchetypeName` (Enneagram + MBTI combo name) |
 | `group.js` | `analyzeGroup` (patterns for 3+ people) |
 | `shadow.js` | `flipAttitude`, `getShadowStack`, `getFullStack`, `getShadowType`, `getShadowMirror`, `getPositionCrossings`, `instantiateTemplate` |
+| `route.js` | `parseHash`, `buildHash`, `VIEWS`, `DEFAULT_VIEW` — URL-hash ↔ view mapping (accepts legacy `#p1=…` links) |
+| `scroll.js` | `scrollToTop`, `useScrollToTop(...deps)` — resets scroll when a view, tab, or detail selection changes |
 
 ### Styles (`src/styles/`)
 
-- `theme.js` — exports `G` (color tokens) and `FC` (cognitive function colors), plus global CSS string injected at startup
+- `theme.js` — exports `G` (color tokens) and `FC` (cognitive function colors), plus global CSS string injected at startup. The CSS string is the only place breakpoint-dependent rules live (`.nav-*` layout, `.qpage` quiz centering, `--nav-pad-*` page padding variables).
 - `styles.js` — reusable style objects (card, button, badge, etc.)
 
 **Always use `G.*` and `FC.*` tokens. Never hardcode hex values.**
@@ -141,7 +143,8 @@ All tests live in `frontend/src/test/`:
 | `scoring.test.js` | All three scoring algorithms, `buildFairSequence`, `shuffleArray`, question bank data integrity. ~140 individual `it()` assertions. |
 | `guided-typer.test.jsx` | Quiz flows (start, advance, adaptive exit, disambiguation), choose screen state, share/export gating, localStorage persistence, retake behavior |
 | `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button |
-| `navigation.test.jsx` | Bottom nav tab switching |
+| `navigation.test.jsx` | Nav landmark and labels, `aria-current`, hash routing (boot from hash, legacy share links, hashchange), scroll reset |
+| `route.test.js` | `parseHash` / `buildHash` |
 | `shadow.test.js` | Shadow stack derivation, position definitions, crossing algorithm, structural invariants |
 
 ### Exported Test Helpers (from `GuidedTyper.jsx`)
@@ -231,7 +234,7 @@ The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (
 
 ### No Router
 
-App.jsx holds a `view` state string. Navigation is done by calling `setView('compare')` etc. Do not add React Router.
+App.jsx holds a `view` state string that mirrors the URL hash (`#/typer`, `#/explorer`, `#/model`, `#/compare?p1=…`). Navigation is done by calling `setView('compare')` etc.; `setView` writes the hash and a `hashchange` listener keeps `view` in sync, so browser back/forward, refresh, and shared links all resolve to the right view. Parsing lives in `utils/route.js`. Do not add React Router.
 
 ### Styling
 
@@ -259,13 +262,13 @@ Always parse with `JSON.parse(localStorage.getItem(key))` and guard for `null`.
 
 ### Share URL Format
 
-Profile data is encoded as a URL hash fragment:
+Profile data is encoded as the query part of the Compare view's hash:
 
 ```
-#p1=4w5:strong:sx/sp/so:INFP&p2=8w9:moderate:sp/so/sx:ENTJ
+#/compare?p1=4w5:strong:sx/sp/so:INFP&p2=8w9:moderate:sp/so/sx:ENTJ
 ```
 
-Parsing/encoding logic lives in `ComparePage.jsx`.
+Legacy links without the view prefix (`#p1=…&p2=…`) still route to Compare. Person encoding/decoding lives in `ComparePage.jsx`; view/query splitting lives in `utils/route.js`.
 
 ### Pre-computed Pair Data
 
@@ -307,13 +310,16 @@ Both MBTI and Enneagram quizzes use early-exit confidence checks:
 ### View Switching
 
 ```
-App.jsx
-  └─ BottomNav (setView callback)
-  └─ {view === 'typer'}   → <GuidedTyper />
-  └─ {view === 'compare'} → <ComparePage />
-  └─ {view === 'explore'} → <Explorer />
-  └─ {view === 'model'}   → <MentalModel />
+App.jsx  (view ⇄ window.location.hash via utils/route.js)
+  └─ <main>
+       {view === 'typer'}    → <GuidedTyper />
+       {view === 'explorer'} → <Explorer />
+       {view === 'model'}    → <MentalModel />
+       {view === 'compare'}  → <ComparePage />
+  └─ AppNav (setView callback; aria-current marks the active tab)
 ```
+
+Every view calls `useScrollToTop(...)` on its own tab/selection state so detail pages open at the top.
 
 ### Data Flow in GuidedTyper
 
@@ -343,7 +349,9 @@ Entry method (URL hash | file upload | manual form)
 - **Don't hardcode question counts.** Use `buildFairSequence` and let the bank size determine the count.
 - **Don't skip `localStorage.clear()` in test `beforeEach`.** Tests that read localStorage state can bleed into each other.
 - **Don't remove exported scoring functions** from `GuidedTyper.jsx` — `scoring.test.js` imports them directly.
-- **Mobile safe areas.** The app targets mobile-first. Use `env(safe-area-inset-*)` in padding/margin for bottom-nav-adjacent elements.
+- **Mobile safe areas.** The app targets mobile-first. Use `env(safe-area-inset-*)` in padding/margin for nav-adjacent elements. Page padding that clears the nav comes from the `--nav-pad-top` / `--nav-pad-bottom` CSS variables (set in `theme.js`), which flip when the nav moves to the top at 681px — do not hardcode nav clearance.
+- **`window.scrollTo` in tests.** jsdom does not implement scrolling; `src/test/setup.js` stubs it with `vi.fn()`. Call `window.scrollTo.mockClear()` before asserting on it.
+- **Nav tests select by `data-view`.** Tab labels also appear as page headings, so tests find nav buttons via `button[data-view="…"]` inside the `Primary` navigation landmark rather than by text.
 - **Wing wrap-around.** Type 1's wings are 9 and 2; type 9's wings are 8 and 1. See the wing wrap tests in `scoring.test.js`.
 - **Disambiguation.** When top-2 Enneagram types are within threshold after bank exhaustion, a `branchKey` (e.g. `'4-5'`) triggers additional clarifying questions. This path is covered in tests — preserve it.
 - **Instinct disambig pair key format.** `INSTINCT_DISAMBIG` keys are always in canonical order: `'sp-so'`, `'sp-sx'`, `'so-sx'`. Each disambig question has a `favors` field and an `opponent` field (added at sequence-creation time from the pair key). Do not hand-edit this structure.

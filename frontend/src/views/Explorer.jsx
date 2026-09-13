@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useScrollToTop } from '../utils/scroll.js';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { MBTI_TYPES } from '../data/mbti.js';
@@ -37,6 +38,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
   const [tab, setTab] = useState(initialTab);
   const [sel, setSel] = useState(initialSel);
   const [showPositionRef, setShowPositionRef] = useState(false);
+  useScrollToTop(tab, sel);
 
   // ── Enneagram detail ──────────────────────────────────────────────────────
   if (sel && tab === 'enneagram') {

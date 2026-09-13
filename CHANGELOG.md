@@ -16,6 +16,17 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ---
 
+## [1.4]
+
+### 1.4.0 — 2026-09-13
+
+- Added: URL-hash routing. The active view now lives in the hash (`#/typer`, `#/explorer`, `#/model`, `#/compare?p1=…`), so refresh keeps your place, browser back/forward move between views, and every view is linkable. New `utils/route.js` (`parseHash`, `buildHash`).
+- Fix: Shared Compare links opened on the Typer page; they now land directly on Compare with the people loaded. Share URLs are written as `#/compare?p1=…`; legacy `#p1=…` links still work.
+- Fix: Opening a type detail in Explorer or Mental Model, switching tabs, or moving between views kept the previous scroll offset (Back button often off-screen). Views now reset to the top via `utils/scroll.js` (`useScrollToTop`).
+- Improved: Navigation rebuilt as `AppNav` (replaces `BottomNav`). Every tab shows its label at all times (inactive tabs were icon-only glyphs), the bar is a `<nav aria-label="Primary">` landmark with `aria-current` on the active tab, and from 681px it becomes a top bar with a brand mark instead of a floating pill.
+- Improved: Visible keyboard focus rings on buttons, links, inputs, and summaries; `prefers-reduced-motion` disables transitions. Page padding that clears the nav now comes from `--nav-pad-top` / `--nav-pad-bottom` CSS variables.
+- Docs: CLAUDE.md nav table listed the wrong tab order and view id (`explore`); corrected. Navigation tests select tabs by `data-view` instead of glyph text.
+
 ## [1.3]
 
 ### 1.3.0 — 2026-03-22
