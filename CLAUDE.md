@@ -12,7 +12,7 @@ Comprehensive guide for AI assistants working on this codebase.
 - **MBTI** — 16 types using 7-point Likert scales and cognitive function stacks
 - **Instinct Stack** — standalone SP/SX/SO drive ordering assessment
 
-Users complete adaptive quizzes, get detailed profiles, and can analyze compatibility/dynamics between 2–6 people on the Compare page.
+Users complete adaptive quizzes, get detailed profiles, analyze compatibility/dynamics between 2–6 people on the Compare page, and explore the eight-position stack model (positions, couplings, and how colonization changes each function's purpose) on the Stack page. Four top-level views: Typer, Explorer, Compare, Stack.
 
 **Deployed to:** GitHub Pages at `/spastic-typer/`
 **Stack:** React 18 + Vite 6 + Vitest. No router, no UI library, no backend.
@@ -28,7 +28,7 @@ spastic-typer/
 │   │   ├── main.jsx        # React entry point
 │   │   ├── App.jsx         # View switcher (no router — state-based)
 │   │   ├── components/     # Small reusable UI pieces
-│   │   ├── views/          # Page-level components (~2,100 LOC)
+│   │   ├── views/          # Page-level components (~3,900 LOC)
 │   │   ├── data/           # Static reference data & pre-computed lookups
 │   │   ├── utils/          # Pure business-logic helpers
 │   │   ├── styles/         # Theme tokens and reusable style objects
@@ -37,6 +37,9 @@ spastic-typer/
 │   └── package.json
 ├── scripts/
 │   └── generatePairs.mjs   # One-off script — regenerates pairLookup.js
+├── docs/
+│   ├── specs/              # Owner-supplied feature specs, checked in verbatim (stack-view.md)
+│   └── plans/              # Session-by-session implementation plans (stack-view-sessions.md)
 ├── .github/workflows/
 │   └── deploy.yml          # GitHub Pages CI/CD
 ├── CHANGELOG.md            # Versioned release history
@@ -52,16 +55,18 @@ spastic-typer/
 
 | File | LOC | Purpose |
 |------|-----|---------|
-| `GuidedTyper.jsx` | ~785 | All three quiz flows + choose screen + share/export |
-| `ComparePage.jsx` | ~607 | Pairwise & group dynamics analysis |
-| `Explorer.jsx` | ~820 | Reference tool: Enneagram, MBTI (quadrant grid, position reference, typing SOP), Instinct, Integration |
-| `CombinedProfile.jsx` | ~290 | Integrated profile from all three saved results; rendered by `GuidedTyper` in its `combined` phase |
+| `GuidedTyper.jsx` | ~1,375 | All three quiz flows + choose screen + share/export; links into Explorer and Stack |
+| `ComparePage.jsx` | ~1,185 | Pairwise & group dynamics analysis; receives `setView` for its Stack links |
+| `Explorer.jsx` | ~840 | Reference tool: Enneagram, MBTI (quadrant grid, position reference, typing SOP), Instinct, Integration |
+| `CombinedProfile.jsx` | ~315 | Integrated profile from all three saved results; rendered by `GuidedTyper` in its `combined` phase |
+| `StackView.jsx` | ~220 | Stack page: type selector, `StackDiagram`, colonization scrubber (levels 1–9) with narration and the equilibrium caveat, purpose panel (native vs. captured), Replay, personalization from saved results, Counter threat-output form. Reads `#/stack?type=…&level=…` on mount. |
 
 ### Components (`src/components/`)
 
 | File | Purpose |
 |------|---------|
-| `AppNav.jsx` | Primary navigation (Typer / Explorer / Compare). Bottom tab bar on phones, top bar from 681px. Writes the view into the URL hash. |
+| `AppNav.jsx` | Primary navigation (Typer / Explorer / Compare / Stack). Bottom tab bar on phones, top bar from 681px. Writes the view into the URL hash. |
+| `StackDiagram.jsx` | Inline-SVG diagram of the 8 positions and 6 couplings. Nodes/edges are `role="button"`, keyboard-activatable, and expose `data-pos`, `data-edge`, `data-fn`, `data-captured`, `data-just-captured`, `data-active`, `data-selected` for tests. Geometry comes from `stackLayout()` in `utils/stack.js`. |
 | `LikertScale.jsx` | 7-point scale widget (−3 to +3) used in all quizzes |
 | `ProgressBar.jsx` | Thin quiz progress indicator |
 | `FnBadge.jsx` | Color-coded cognitive function badge (Ne, Ni, Se…) |
@@ -77,6 +82,9 @@ spastic-typer/
 | `pairLookup.js` | ~6,973 | Pre-computed `ENN_DYNAMICS`, `MBTI_INSIGHTS`, `INSTINCT_STACK_DYNAMICS` for all type pairs. **Do not hand-edit** — regenerate via `scripts/generatePairs.mjs` |
 | `sop.js` | 33 | `SOP_STEPS` (typing methodology), `QUADRANTS` (MBTI 4-quadrant grid) |
 | `shadow.js` | ~180 | `POSITIONS`, `SHADOW_TEMPLATES`, `CROSSING_MATRIX`, `FULL_SHADOW_PAIR_NARRATIVE` — 8-position naming system and unified comparison algorithm data |
+| `levels.js` | ~300 | `LEVELS[ennType].{healthy,average,unhealthy}` — Riso-Hudson tier `range`, `title`, `description`, `behaviors` per Enneagram type |
+| `stack.js` | ~130 | Stack view content, transcribed from `docs/specs/stack-view.md`: `STAGE_BANDS`, `CAPTURE_ORDER` (level → position), `CLASSIFICATION` (Augusta), `PURPOSES` (native / captured per position), `LEVEL_NARRATION`, `EQUILIBRIUM_CAVEAT`, `COUNTER_THREAT_OUTPUT`, `EDGES`, `ACTIVE_EDGES`, `LABEL_TEMPLATES`. Strings only; guarded by the deny-list test. |
+| Others | — | `combinationProfiles.js` + `combinations/`, `crossRules.js`, `ennBase.js`, `ennMbtiCorrelation.js`, `groupArchetypes.js`, `instModifiers.js`, `instinctPairDynamics.js`, `instinctStackProfiles.js`, `integrationNarratives.js`, `mbtiDetails.js`, `mbtiDevelopment.js`, `mbtiModifiers.js`, `mbtiStressFlow.js`, `subtypes.js`, `typeInteractionGrid.js` — reference content for Explorer, Compare, and the combined profile |
 
 ### Utils (`src/utils/`)
 
@@ -88,12 +96,14 @@ spastic-typer/
 | `archetype.js` | `computeArchetypeName` (Enneagram + MBTI combo name) |
 | `group.js` | `analyzeGroup` (patterns for 3+ people) |
 | `shadow.js` | `flipAttitude`, `getShadowStack`, `getFullStack`, `getShadowType`, `getShadowMirror`, `getPositionCrossings`, `instantiateTemplate` |
-| `route.js` | `parseHash`, `buildHash`, `VIEWS`, `DEFAULT_VIEW` — URL-hash ↔ view mapping (accepts legacy `#p1=…` links) |
+| `route.js` | `parseHash`, `buildHash`, `VIEWS` (`typer`, `explorer`, `compare`, `stack`), `DEFAULT_VIEW` — URL-hash ↔ view mapping (accepts legacy `#p1=…` links; `#/model` → Explorer) |
+| `stack.js` | `captureState(level)`, `capturedAt`, `captureLevelOf`, `isCaptured`, `tierForLevel`, `fillTemplate`, `positionLabel(pos, level?)`, `fnAtPositionLabel`, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, `stackLayout()`, `bezierPoint`, `MIN_LEVEL` / `MAX_LEVEL` — pure Stack-view logic and diagram geometry |
+| `compare.js`, `share.js` | Compare-page analyses (`getCognitiveHarmony`, …) and profile-code encode/decode |
 | `scroll.js` | `scrollToTop`, `useScrollToTop(...deps)` — resets scroll when a view, tab, or detail selection changes |
 
 ### Styles (`src/styles/`)
 
-- `theme.js` — exports `G` (base + semantic color tokens: `success`, `warn`, `danger`, `dangerSoft`, `info`, `infoSoft`, `plum`, `amber`, `indigo`, `overlay`, `bgHover`), `FC` (cognitive function colors), `CENTER` (gut/heart/head), `SYSTEM` (enneagram/mbti/instinct accents), `POS` (8-position stack colors), and the helpers `hexToRgb(hex)` / `alpha(hex, a)` for translucent variants. Also the global CSS string injected at startup — the only place breakpoint-dependent rules live (`.nav-*` layout, `.qpage` quiz centering, `--nav-pad-*` variables, `.person-bar` sticky rule, `.intro-chev`).
+- `theme.js` — exports `G` (base + semantic color tokens: `success`, `warn`, `danger`, `dangerSoft`, `info`, `infoSoft`, `plum`, `amber`, `indigo`, `overlay`, `bgHover`), `FC` (cognitive function colors), `CENTER` (gut/heart/head), `SYSTEM` (enneagram/mbti/instinct accents), `POS` (8-position stack colors), and the helpers `hexToRgb(hex)` / `alpha(hex, a)` for translucent variants. Also the global CSS string injected at startup — the only place breakpoint-dependent rules and keyframes live (`.nav-*` layout, `.qpage` quiz centering, `--nav-pad-*` variables, `.person-bar` sticky rule, `.intro-chev`, the `stack-pulse` keyframe). The `prefers-reduced-motion` block disables both transitions and animations.
 - `styles.js` — reusable style objects (card, button, badge, etc.)
 
 **Always use `G.*`, `FC.*`, `CENTER.*`, `SYSTEM.*`, `POS[n]` tokens; use `alpha(token, a)` instead of a literal `rgba(...)`. Never hardcode hex or rgba values** — `theme.test.js` scans every view and component and fails on any literal.
@@ -148,6 +158,11 @@ All tests live in `frontend/src/test/`:
 | `explorer.test.jsx` | MBTI quadrant grid, typing SOP toggle, type detail open/back, collapsible tab intros |
 | `theme.test.js` | `hexToRgb` / `alpha`, semantic tokens present, and a lint-style guard that no view or component contains a hex or rgba literal |
 | `shadow.test.js` | Shadow stack derivation, position definitions, crossing algorithm, structural invariants |
+| `stack-data.test.js` | `data/stack.js` integrity (capture order, classification, purposes, narration, edges, active edges), level ≠ position labelling, and the **terminology deny-list** over every exported string and the source of both Stack modules |
+| `stack-logic.test.js` | Table-driven `captureState` across levels 1–9 (cumulative, strictly nested, empty at 1), `captureLevelOf`, templating, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, and `stackLayout` geometry invariants (no edge crosses a node body) |
+| `stack-view.test.jsx` | Stack page: type selection and deep links, diagram `data-` state per level, scrubber label/caveat/narration, tap and keyboard selection, purpose panel inert/active, Replay with fake timers and reduced motion, personalization and malformed storage |
+| `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js` | Compare-page analyses: `getCognitiveHarmony`, `analyzeGroup`, distribution helpers |
+| `combinations.test.js`, `subtypes.test.js` | Combined-profile loading and subtype data integrity |
 
 ### Exported Test Helpers (from `GuidedTyper.jsx`)
 
@@ -182,10 +197,14 @@ Run `npm test` from inside `frontend/`. Expected output format:
  ✓ src/test/guided-typer.test.jsx (XX tests)
  ✓ src/test/compare-page.test.jsx (XX tests)
  ✓ src/test/navigation.test.jsx (XX tests)
+ ✓ src/test/stack-view.test.jsx (XX tests)
+ …
 
- Test Files  4 passed (4)
- Tests       XX passed (XX)
+ Test Files  16 passed (16)
+ Tests       XXX passed (XXX)
 ```
+
+The full run takes a couple of minutes; the quiz-flow suites in `guided-typer.test.jsx` are the slow part.
 
 A failing test suite blocks merging. Fix the root cause — do not skip or suppress tests.
 
@@ -234,9 +253,15 @@ Use `vi.useFakeTimers()` / `vi.useRealTimers()` in `beforeEach`/`afterEach` for 
 
 The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (ego arc 1–4) and Counter, Critic, Gamble, Flood (shadow arc 5–8). Never use Beebe model terminology (Opposing, Critical Parent, Trickster, Demon) in UI copy or code comments. Reference the `POSITIONS` array from `data/shadow.js` for canonical definitions.
 
+### Stack Terminology Guard
+
+The Stack view's content model is the CT Minimum Viable Framework. Framework prose in `data/stack.js` is transcribed from `docs/specs/stack-view.md` — never paraphrase it into new claims or fill gaps by inference; where the spec has no content, the content does not exist yet. There is **one mechanism**: Critic samples Refuge → writes back to Anchor → Anchor's standard drifts → Anchor's gate rejects Lead's native output in fixation-hot contexts. Lead is *gated*, never "offline". The deny-list test in `stack-data.test.js` fails on exile / substituting / offline / firewall / kamikaze / conversion window and on Beebe terms; keep it.
+
+**Level ≠ position.** Riso-Hudson levels (1–9) and stack positions (1–8) collide (Critic is position 6, captured at level 5; Anchor is position 2, captured at level 6). Any surface showing both must label them — use `positionLabel(pos, level)` (`Position 6 · Critic · captured at Level 5`).
+
 ### No Router
 
-App.jsx holds a `view` state string that mirrors the URL hash (`#/typer`, `#/explorer`, `#/compare?p1=…`; the retired `#/model` resolves to Explorer). Navigation is done by calling `setView('compare')` etc.; `setView` writes the hash and a `hashchange` listener keeps `view` in sync, so browser back/forward, refresh, and shared links all resolve to the right view. Parsing lives in `utils/route.js`. Do not add React Router.
+App.jsx holds a `view` state string that mirrors the URL hash (`#/typer`, `#/explorer`, `#/compare?p1=…`, `#/stack?type=ENFP&level=5`; the retired `#/model` resolves to Explorer). Navigation is done by calling `setView('compare')` etc.; `setView(view, query?)` writes the hash (with the optional query for deep links) and a `hashchange` listener keeps `view` in sync, so browser back/forward, refresh, and shared links all resolve to the right view. Parsing lives in `utils/route.js`; each view reads its own query (`ComparePage` decodes people, `StackView` uses `parseStackQuery`). Do not add React Router.
 
 ### Styling
 
@@ -316,13 +341,25 @@ App.jsx  (view ⇄ window.location.hash via utils/route.js)
   └─ <main>
        {view === 'typer'}    → <GuidedTyper />
        {view === 'explorer'} → <Explorer />
-       {view === 'compare'}  → <ComparePage />
+       {view === 'compare'}  → <ComparePage setView />
+       {view === 'stack'}    → <StackView />
   └─ AppNav (setView callback; aria-current marks the active tab)
 ```
 
 Every view calls `useScrollToTop(...)` on its own tab/selection state so detail pages open at the top.
 
 `GuidedTyper` owns a `combined` phase that renders `CombinedProfile` (the integrated write-up of all three saved results). There is no separate "Model" view: the MBTI quadrant grid and the 4-step typing SOP live in Explorer's MBTI tab.
+
+### Data Flow in StackView
+
+```
+mount → parseStackQuery(hash query) ?? readSavedTypes().mbti ?? positions-only
+  → type → getFullStack(type) puts a function on every node
+  → level (range input, Replay interval, or ?level=) → captureState(level)
+       → StackDiagram tints captured nodes, pulses justCaptured, lights activeEdges
+       → narration + stage band + caveat; personalized: LEVELS[enn][tierForLevel(level)]
+  → selected node/edge → purpose panel (PURPOSES[pos] native + captured, captured inert until captureLevelOf(pos))
+```
 
 ### Data Flow in GuidedTyper
 
@@ -354,6 +391,8 @@ Entry method (URL hash | file upload | manual form)
 - **Don't remove exported scoring functions** from `GuidedTyper.jsx` — `scoring.test.js` imports them directly.
 - **Mobile safe areas.** The app targets mobile-first. Use `env(safe-area-inset-*)` in padding/margin for nav-adjacent elements. Page padding that clears the nav comes from the `--nav-pad-top` / `--nav-pad-bottom` CSS variables (set in `theme.js`), which flip when the nav moves to the top at 681px — do not hardcode nav clearance.
 - **`window.scrollTo` in tests.** jsdom does not implement scrolling; `src/test/setup.js` stubs it with `vi.fn()`. Call `window.scrollTo.mockClear()` before asserting on it.
+- **`window.matchMedia` in tests.** jsdom does not implement it. Code that checks `prefers-reduced-motion` must guard for its absence (see `prefersReducedMotion()` in `StackView.jsx`); tests that need it mock `window.matchMedia` and restore it afterwards.
+- **Stack diagram tests assert `data-` attributes, not styles.** Query `[data-pos]`, `[data-edge]`, `data-captured`, `data-active`, `data-selected` on the SVG groups.
 - **Nav tests select by `data-view`.** Tab labels also appear as page headings, so tests find nav buttons via `button[data-view="…"]` inside the `Primary` navigation landmark rather than by text.
 - **Wing wrap-around.** Type 1's wings are 9 and 2; type 9's wings are 8 and 1. See the wing wrap tests in `scoring.test.js`.
 - **Disambiguation.** When top-2 Enneagram types are within threshold after bank exhaustion, a `branchKey` (e.g. `'4-5'`) triggers additional clarifying questions. This path is covered in tests — preserve it.
