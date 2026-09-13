@@ -49,9 +49,9 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:
 input,textarea{-webkit-appearance:none;appearance:none}
 details>summary{list-style:none}
 details>summary::-webkit-details-marker{display:none}
+.qpage{display:flex;flex-direction:column}
+.qbody{flex:1;display:flex;flex-direction:column;justify-content:center}
 @media(max-width:680px){
-  .qpage{display:flex;flex-direction:column}
-  .qbody{flex:1;display:flex;flex-direction:column;justify-content:center}
   .qcard{padding:20px 22px!important}
 }
 `;

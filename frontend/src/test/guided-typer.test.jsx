@@ -741,3 +741,76 @@ describe('GuidedTyper — explorer deep-link from profile card', () => {
     expect(mockSetView).toHaveBeenCalledWith('explorer');
   });
 });
+
+// ---------------------------------------------------------------------------
+// Home screen layout (1.4.x): explicit Start buttons, intro hidden when done,
+// Clear moved out of the profile card, single action row
+// ---------------------------------------------------------------------------
+describe('Choose screen — layout', () => {
+  const seedAllThree = () => {
+    localStorage.setItem('typer_enn', JSON.stringify({ coreType: 4, wing: 5, wingStrengthDelta: 1, instinctStack: ['sx', 'sp', 'so'], display: '4w5', scores: {} }));
+    localStorage.setItem('typer_mbti', JSON.stringify({ result: 'INFP', scores: {} }));
+    localStorage.setItem('typer_inst', JSON.stringify({ instinctStack: ['sx', 'sp', 'so'], instScores: {} }));
+  };
+
+  it('shows a Start button on every incomplete quiz card', () => {
+    render(<GuidedTyper />);
+    expect(screen.getByRole('button', { name: /start enneagram/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /start mbti/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /start instinct/i })).toBeInTheDocument();
+  });
+
+  it('starts the Enneagram quiz from its Start button', () => {
+    render(<GuidedTyper />);
+    fireEvent.click(screen.getByRole('button', { name: /start enneagram/i }));
+    expect(screen.getByText(/enneagram assessment/i)).toBeInTheDocument();
+    expect(screen.getByText(/question 1/i)).toBeInTheDocument();
+  });
+
+  it('replaces Start with Retake once a quiz is complete', () => {
+    seedAllThree();
+    render(<GuidedTyper />);
+    expect(screen.queryByRole('button', { name: /start enneagram/i })).not.toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: /retake/i })).toHaveLength(3);
+  });
+
+  it('hides the "complete all three" intro once all three are done', () => {
+    seedAllThree();
+    render(<GuidedTyper />);
+    expect(screen.queryByText(/complete all three to unlock/i)).not.toBeInTheDocument();
+  });
+
+  it('does not render the status chip row', () => {
+    render(<GuidedTyper />);
+    expect(screen.queryByText('○')).not.toBeInTheDocument();
+  });
+
+  it('keeps Clear out of the profile card and behind a confirmation', () => {
+    seedAllThree();
+    render(<GuidedTyper />);
+    const clear = screen.getByRole('button', { name: /clear all saved results/i });
+    const profileCard = screen.getByText(/your profile/i).closest('div');
+    expect(profileCard.contains(clear)).toBe(false);
+    fireEvent.click(clear);
+    expect(screen.getByText(/this cannot be undone/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /yes, clear all/i }));
+    expect(localStorage.getItem('typer_enn')).toBeNull();
+    expect(screen.getByRole('button', { name: /start enneagram/i })).toBeInTheDocument();
+  });
+});
+
+describe('Quiz screen — context header', () => {
+  it('names the assessment and shows the question number and typical length', () => {
+    render(<GuidedTyper />);
+    fireEvent.click(screen.getByRole('button', { name: /start mbti/i }));
+    expect(screen.getByText(/mbti assessment/i)).toBeInTheDocument();
+    expect(screen.getByText(/question 1 · typically 8–20/i)).toBeInTheDocument();
+  });
+
+  it('shows the instinct header with its typical length', () => {
+    render(<GuidedTyper />);
+    fireEvent.click(screen.getByRole('button', { name: /start instinct/i }));
+    expect(screen.getByText(/instinct stack assessment/i)).toBeInTheDocument();
+    expect(screen.getByText(/question 1 · typically 6–15/i)).toBeInTheDocument();
+  });
+});
