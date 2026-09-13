@@ -18,6 +18,12 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ## [1.5]
 
+### 1.5.1 — 2026-09-13
+
+- Improved: On wide screens Compare's person bar sticks below the top bar so the people being compared stay visible while scrolling a long analysis (static on phones, where wrapped chips would eat the viewport). With more than one pair, an Expand all / Collapse all control sits beside the Pairwise Analysis heading.
+- Improved: Explorer's four tab intros are collapsed `<details>` by default ("About the Enneagram", "About MBTI", …), putting the type grid above the fold on phones.
+- Changed: All ~190 hardcoded hex/rgba colors in views and components replaced with theme tokens. `theme.js` gains semantic tokens (`success`, `warn`, `danger`, `info`, …), `CENTER`, `SYSTEM`, `POS`, and `alpha()` / `hexToRgb()`. Compare's centre-of-intelligence colours now match Explorer's. A new `theme.test.js` fails the build on any future literal.
+
 ### 1.5.0 — 2026-09-13
 
 - Changed: The Mental Model view is gone; navigation is now three tabs (Typer / Explorer / Compare). Its per-type detail pages duplicated Explorer's richer ones, and its Enneagram and Instinct tabs were subsets of Explorer's.

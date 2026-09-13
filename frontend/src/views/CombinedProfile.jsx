@@ -1,4 +1,4 @@
-import { G } from '../styles/theme.js';
+import { G, alpha } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { MBTI_TYPES } from '../data/mbti.js';
 import { ENN_TYPES, ENN_CENTER, ENN_ARROWS, ENN_HARMONIC, WING_DESC } from '../data/enneagram.js';
@@ -44,9 +44,9 @@ export default function CombinedProfile({ onBack = () => {} }) {
       <div style={S.card}>
         <h3 style={{ ...S.h3, marginBottom: 12 }}>Your Combined Profile</h3>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
-          {enn && <span style={{ ...S.tag, background: 'rgba(100,200,100,0.1)', color: 'rgba(100,200,100,0.9)', border: '1px solid rgba(100,200,100,0.2)' }}>✓ {enn.display}</span>}
-          {mbti && <span style={{ ...S.tag, background: 'rgba(100,200,100,0.1)', color: 'rgba(100,200,100,0.9)', border: '1px solid rgba(100,200,100,0.2)' }}>✓ {mbti.result}</span>}
-          {inst && <span style={{ ...S.tag, background: 'rgba(100,200,100,0.1)', color: 'rgba(100,200,100,0.9)', border: '1px solid rgba(100,200,100,0.2)' }}>✓ {inst.instinctStack.map(i => i.toUpperCase()).join('/')}</span>}
+          {enn && <span style={{ ...S.tag, background: alpha(G.success, 0.1), color: alpha(G.success, 0.9), border: `1px solid ${alpha(G.success, 0.2)}` }}>✓ {enn.display}</span>}
+          {mbti && <span style={{ ...S.tag, background: alpha(G.success, 0.1), color: alpha(G.success, 0.9), border: `1px solid ${alpha(G.success, 0.2)}` }}>✓ {mbti.result}</span>}
+          {inst && <span style={{ ...S.tag, background: alpha(G.success, 0.1), color: alpha(G.success, 0.9), border: `1px solid ${alpha(G.success, 0.2)}` }}>✓ {inst.instinctStack.map(i => i.toUpperCase()).join('/')}</span>}
         </div>
         <p style={{ ...S.body, marginBottom: 20 }}>
           Complete <strong style={{ color: G.text }}>{missing.join(' and ')}</strong> to unlock your full combined profile.

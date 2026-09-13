@@ -136,7 +136,8 @@ Expected output:
 | `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button |
 | `navigation.test.jsx` | Nav landmark/labels, `aria-current`, hash routing, scroll reset |
 | `route.test.js` | URL-hash parsing and building |
-| `explorer.test.jsx` | Quadrant grid, typing SOP, type detail |
+| `explorer.test.jsx` | Quadrant grid, typing SOP, type detail, collapsible intros |
+| `theme.test.js` | Theme helpers and a no-hardcoded-colors guard |
 
 All tests must pass before merging. Fix root causes — do not skip or suppress tests.
 

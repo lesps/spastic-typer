@@ -9,7 +9,36 @@ export const G = {
   textDim: 'rgba(240,237,232,0.55)',
   textFaint: 'rgba(240,237,232,0.3)',
   border: 'rgba(255,255,255,0.08)',
+  // Semantic accents
+  success: '#50c878',
+  warn: '#e88050',
+  danger: '#e85050',
+  dangerSoft: '#e88080',
+  info: '#5090d0',
+  infoSoft: '#60a0d0',
+  plum: '#b850c0',
+  amber: '#e8a030',
+  indigo: '#7070c0',
+  overlay: 'rgba(0,0,0,0.8)',
+  bgHover: 'rgba(255,255,255,0.02)',
 };
+
+// Enneagram centers of intelligence
+export const CENTER = { gut: '#e07040', heart: '#c060a0', head: '#5090d0' };
+// One accent per personality system (Integration tab, system tags)
+export const SYSTEM = { enneagram: '#c060a0', mbti: '#5090d0', instinct: '#30a888' };
+// 8-position stack: ego arc 1–4, shadow arc 5–8
+export const POS = { 1: G.gold, 2: '#5090d0', 3: '#30a888', 4: '#e88050', 5: '#c06050', 6: '#a05070', 7: '#806080', 8: '#605070' };
+
+export function hexToRgb(hex) {
+  const h = hex.replace('#', '');
+  return [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16));
+}
+// alpha(G.success, 0.2) → 'rgba(80,200,120,0.2)'
+export function alpha(hex, a) {
+  const [r, g, b] = hexToRgb(hex);
+  return `rgba(${r},${g},${b},${a})`;
+}
 
 export const FC = {
   Ne: '#e8a030',
@@ -35,6 +64,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .nav-btn{flex:1;border:none;border-radius:10px;padding:8px 6px;font-size:13px;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:background .15s,color .15s}
 @media(min-width:681px){
   :root{--nav-pad-bottom:40px;--nav-pad-top:76px}
+  .person-bar{position:sticky;top:60px;z-index:5}
   .nav-shell{top:0;bottom:auto;padding:10px 16px;border-top:none;border-bottom:1px solid}
   .nav-brand{display:block}
   .nav-tabs{flex:0 0 auto;margin-left:auto}
@@ -49,6 +79,8 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;cursor:
 input,textarea{-webkit-appearance:none;appearance:none}
 details>summary{list-style:none}
 details>summary::-webkit-details-marker{display:none}
+.intro-chev{display:inline-block;transition:transform .15s}
+details[open] .intro-chev{transform:rotate(90deg)}
 .qpage{display:flex;flex-direction:column}
 .qbody{flex:1;display:flex;flex-direction:column;justify-content:center}
 @media(max-width:680px){

@@ -93,10 +93,10 @@ spastic-typer/
 
 ### Styles (`src/styles/`)
 
-- `theme.js` — exports `G` (color tokens) and `FC` (cognitive function colors), plus global CSS string injected at startup. The CSS string is the only place breakpoint-dependent rules live (`.nav-*` layout, `.qpage` quiz centering, `--nav-pad-*` page padding variables).
+- `theme.js` — exports `G` (base + semantic color tokens: `success`, `warn`, `danger`, `dangerSoft`, `info`, `infoSoft`, `plum`, `amber`, `indigo`, `overlay`, `bgHover`), `FC` (cognitive function colors), `CENTER` (gut/heart/head), `SYSTEM` (enneagram/mbti/instinct accents), `POS` (8-position stack colors), and the helpers `hexToRgb(hex)` / `alpha(hex, a)` for translucent variants. Also the global CSS string injected at startup — the only place breakpoint-dependent rules live (`.nav-*` layout, `.qpage` quiz centering, `--nav-pad-*` variables, `.person-bar` sticky rule, `.intro-chev`).
 - `styles.js` — reusable style objects (card, button, badge, etc.)
 
-**Always use `G.*` and `FC.*` tokens. Never hardcode hex values.**
+**Always use `G.*`, `FC.*`, `CENTER.*`, `SYSTEM.*`, `POS[n]` tokens; use `alpha(token, a)` instead of a literal `rgba(...)`. Never hardcode hex or rgba values** — `theme.test.js` scans every view and component and fails on any literal.
 
 ---
 
@@ -142,10 +142,11 @@ All tests live in `frontend/src/test/`:
 |------|---------------|
 | `scoring.test.js` | All three scoring algorithms, `buildFairSequence`, `shuffleArray`, question bank data integrity. ~140 individual `it()` assertions. |
 | `guided-typer.test.jsx` | Quiz flows (start, advance, adaptive exit, disambiguation), choose screen state, combined-profile phase, share/export gating, localStorage persistence, retake behavior |
-| `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button |
+| `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button, share links, sticky person bar, expand/collapse all pairs |
 | `navigation.test.jsx` | Nav landmark and labels, `aria-current`, hash routing (boot from hash, legacy share links, hashchange), scroll reset |
 | `route.test.js` | `parseHash` / `buildHash`, legacy view aliases |
-| `explorer.test.jsx` | MBTI quadrant grid, typing SOP toggle, type detail open/back |
+| `explorer.test.jsx` | MBTI quadrant grid, typing SOP toggle, type detail open/back, collapsible tab intros |
+| `theme.test.js` | `hexToRgb` / `alpha`, semantic tokens present, and a lint-style guard that no view or component contains a hex or rgba literal |
 | `shadow.test.js` | Shadow stack derivation, position definitions, crossing algorithm, structural invariants |
 
 ### Exported Test Helpers (from `GuidedTyper.jsx`)

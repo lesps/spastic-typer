@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import ComparePage from '../views/ComparePage.jsx';
+import { baseCSS } from '../styles/theme.js';
 
 beforeEach(() => {
   localStorage.clear();
@@ -557,5 +558,39 @@ describe('ComparePage — share links', () => {
     const url = writeText.mock.calls[0][0];
     expect(url).toContain('#/compare?p1=');
     expect(url).toContain('&p2=');
+  });
+});
+
+describe('ComparePage — multi-pair controls', () => {
+  const THREE = '#/compare?p1=4w5%3Astrong%3Asx%2Fsp%2Fso%3AINFP&p2=8w9%3Amoderate%3Asp%2Fso%2Fsx%3AENTJ&p3=9w1%3Amoderate%3Aso%2Fsp%2Fsx%3AISFJ';
+
+  it('offers Collapse all / Expand all when there is more than one pair', async () => {
+    const user = userEvent.setup();
+    window.location.hash = THREE;
+    render(<ComparePage />);
+    const pairToggles = () => screen.getAllByRole('button', { name: / × / });
+    expect(pairToggles()).toHaveLength(3);
+    // Only the first pair is open by default.
+    expect(pairToggles().map(b => b.textContent.trim().slice(-1))).toEqual(['−', '+', '+']);
+
+    await user.click(screen.getByRole('button', { name: /expand all/i }));
+    expect(pairToggles().map(b => b.textContent.trim().slice(-1))).toEqual(['−', '−', '−']);
+
+    await user.click(screen.getByRole('button', { name: /collapse all/i }));
+    expect(pairToggles().map(b => b.textContent.trim().slice(-1))).toEqual(['+', '+', '+']);
+  });
+
+  it('does not offer the control for a single pair', () => {
+    window.location.hash = '#/compare?p1=4w5%3Astrong%3Asx%2Fsp%2Fso%3AINFP&p2=8w9%3Amoderate%3Asp%2Fso%2Fsx%3AENTJ';
+    render(<ComparePage />);
+    expect(screen.queryByRole('button', { name: /expand all|collapse all/i })).not.toBeInTheDocument();
+  });
+
+  it('gives the person bar the class that pins it below the top bar on wide screens', () => {
+    window.location.hash = THREE;
+    render(<ComparePage />);
+    expect(screen.getByTestId('person-bar')).toHaveClass('person-bar');
+    // jsdom does not evaluate media queries, so check the rule exists in the injected CSS.
+    expect(baseCSS).toMatch(/@media\(min-width:681px\)\{[^}]*\}[\s\S]*?\.person-bar\{position:sticky/);
   });
 });
