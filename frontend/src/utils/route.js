@@ -2,7 +2,7 @@
 // view is showing: `#/compare?p1=…&p2=…`. Legacy share links (`#p1=…&p2=…`,
 // written before the view lived in the hash) still resolve to Compare.
 
-export const VIEWS = ['typer', 'explorer', 'compare'];
+export const VIEWS = ['typer', 'explorer', 'compare', 'stack'];
 // Views that used to exist; old links keep working.
 const LEGACY_VIEWS = { model: 'explorer' };
 export const DEFAULT_VIEW = 'typer';

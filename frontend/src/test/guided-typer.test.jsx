@@ -740,6 +740,15 @@ describe('GuidedTyper — explorer deep-link from profile card', () => {
     expect(mockSetExplorerSel).toHaveBeenCalledWith('INFP');
     expect(mockSetView).toHaveBeenCalledWith('explorer');
   });
+
+  it('deep-links the saved MBTI type into the Stack view from the home screen', async () => {
+    ALL_THREE_LS();
+    const mockSetView = vi.fn();
+    const user = userEvent.setup();
+    render(<GuidedTyper setView={mockSetView} />);
+    await user.click(screen.getByRole('button', { name: /INFP.*stack/i }));
+    expect(mockSetView).toHaveBeenCalledWith('stack', 'type=INFP');
+  });
 });
 
 // ---------------------------------------------------------------------------

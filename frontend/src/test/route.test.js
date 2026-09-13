@@ -30,6 +30,12 @@ describe('parseHash', () => {
     expect(parseHash('#model')).toEqual({ view: 'explorer', query: '' });
   });
 
+  it('knows the stack view and keeps its query', () => {
+    expect(VIEWS).toContain('stack');
+    expect(parseHash('#/stack')).toEqual({ view: 'stack', query: '' });
+    expect(parseHash('#/stack?type=ENFP&level=5')).toEqual({ view: 'stack', query: 'type=ENFP&level=5' });
+  });
+
   it('falls back to typer for unknown views', () => {
     expect(parseHash('#/nope')).toEqual({ view: DEFAULT_VIEW, query: '' });
     expect(parseHash('#/nope?x=1')).toEqual({ view: DEFAULT_VIEW, query: '' });
@@ -43,6 +49,9 @@ describe('buildHash', () => {
   it('appends a query when given', () => {
     expect(buildHash('compare', 'p1=a&p2=b')).toBe('#/compare?p1=a&p2=b');
     expect(buildHash('compare', '')).toBe('#/compare');
+  });
+  it('builds a stack deep link', () => {
+    expect(buildHash('stack', 'type=ENFP')).toBe('#/stack?type=ENFP');
   });
   it('round-trips through parseHash', () => {
     expect(parseHash(buildHash('compare', 'p1=a'))).toEqual({ view: 'compare', query: 'p1=a' });

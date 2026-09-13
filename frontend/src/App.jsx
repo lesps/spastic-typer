@@ -6,6 +6,7 @@ import AppNav from './components/AppNav.jsx';
 import GuidedTyper from './views/GuidedTyper.jsx';
 import Explorer from './views/Explorer.jsx';
 import ComparePage from './views/ComparePage.jsx';
+import StackView from './views/StackView.jsx';
 
 export default function App() {
   const [view, setViewState] = useState(() => parseHash(window.location.hash).view);
@@ -13,10 +14,14 @@ export default function App() {
   const [explorerSel, setExplorerSel] = useState(null);
 
   // Navigation writes the hash; the hashchange listener keeps `view` in sync with it,
-  // so browser back/forward and shared links all land on the right view.
-  const setView = useCallback((next) => {
+  // so browser back/forward and shared links all land on the right view. An optional
+  // query rides along for deep links (`setView('stack', 'type=ENFP')`).
+  const setView = useCallback((next, query = '') => {
     setViewState(next);
-    if (parseHash(window.location.hash).view !== next) window.location.hash = buildHash(next);
+    const target = buildHash(next, query);
+    if (window.location.hash !== target && (query || parseHash(window.location.hash).view !== next)) {
+      window.location.hash = target;
+    }
   }, []);
 
   // Rewrite legacy hashes (#/model, #p1=…) to their canonical form without adding a history entry.
@@ -42,7 +47,8 @@ export default function App() {
       <main>
         {view === 'typer'    && <GuidedTyper setView={setView} setExplorerTab={setExplorerTab} setExplorerSel={setExplorerSel} />}
         {view === 'explorer' && <Explorer initialTab={explorerTab} initialSel={explorerSel} />}
-        {view === 'compare'  && <ComparePage />}
+        {view === 'compare'  && <ComparePage setView={setView} />}
+        {view === 'stack'    && <StackView />}
       </main>
       <AppNav view={view} setView={setView} />
     </>
