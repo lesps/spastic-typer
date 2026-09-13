@@ -1,4 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
+import { parseHash, buildHash } from '../utils/route.js';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { ENN_TYPES, WING_DESC } from '../data/enneagram.js';
@@ -35,9 +36,9 @@ function encodePersons(persons) {
 }
 
 function decodePersons(hash) {
-  if (!hash) return null;
-  const raw = hash.startsWith('#') ? hash.slice(1) : hash;
-  const parts = raw.split('&');
+  const { view, query } = parseHash(hash);
+  if (view !== 'compare' || !query) return null;
+  const parts = query.split('&');
   return parts.map((part, i) => {
     const [, encoded] = part.split('=');
     if (!encoded) return emptyPerson(i + 1);
@@ -401,13 +402,13 @@ export default function ComparePage() {
   };
 
   const handleShare = () => {
-    const hash = '#' + encodePersons(persons);
+    const hash = buildHash('compare', encodePersons(persons));
     const url = window.location.origin + window.location.pathname + hash;
     navigator.clipboard.writeText(url).then(() => {
       setShareMsg('Link copied!');
       setTimeout(() => setShareMsg(''), 3000);
     }).catch(() => {
-      window.location.hash = encodePersons(persons);
+      window.location.hash = hash;
       setShareMsg('Hash updated — copy URL from address bar');
       setTimeout(() => setShareMsg(''), 5000);
     });

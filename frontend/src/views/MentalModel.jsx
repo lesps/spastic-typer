@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useScrollToTop } from '../utils/scroll.js';
 import { G } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { MBTI_TYPES } from '../data/mbti.js';
@@ -51,6 +52,7 @@ export default function MentalModel({ setView = () => {}, initialTab = 'mbti' })
   const [selType, setSelType] = useState(null);
   const [selEnn, setSelEnn] = useState(null);
   const [showSOP, setShowSOP] = useState(false);
+  useScrollToTop(tab, selType, selEnn);
 
   // ── Tab bar ──────────────────────────────────────────────────────────────────
   const TabBar = () => (
