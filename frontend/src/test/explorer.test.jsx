@@ -43,3 +43,27 @@ describe('Explorer — Enneagram tab', () => {
     expect(screen.getByRole('heading', { name: 'Explorer', level: 1 })).toBeInTheDocument();
   });
 });
+
+describe('Explorer — collapsible intros', () => {
+  it('starts with the tab intro collapsed and expands it on click', () => {
+    render(<Explorer />);
+    const para = screen.getByText(/The Enneagram describes nine distinct personality structures/);
+    expect(para).not.toBeVisible();
+    fireEvent.click(screen.getByText(/about the enneagram/i));
+    expect(para).toBeVisible();
+  });
+
+  it('keeps the type grid reachable without expanding the intro', () => {
+    render(<Explorer />);
+    expect(screen.getByRole('button', { name: /The Individualist/ })).toBeVisible();
+  });
+
+  it('collapses the MBTI, Instinct, and Integration intros too', () => {
+    render(<Explorer initialTab="mbti" />);
+    expect(screen.getByText(/The MBTI describes sixteen personality types/)).not.toBeVisible();
+    fireEvent.click(screen.getByRole('button', { name: 'Instinct' }));
+    expect(screen.getByText(/The three Instinctual Drives/)).not.toBeVisible();
+    fireEvent.click(screen.getByRole('button', { name: 'Integration' }));
+    expect(screen.getByText(/No single personality system captures/)).not.toBeVisible();
+  });
+});
