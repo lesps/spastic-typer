@@ -17,6 +17,7 @@ import { INSTINCT_PAIR_DYNAMICS, instinctPairKey } from '../data/instinctPairDyn
 import { ENN_MBTI_CORRELATION } from '../data/ennMbtiCorrelation.js';
 import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
 import { POSITIONS } from '../data/shadow.js';
+import { SOP_STEPS, QUADRANTS } from '../data/sop.js';
 import { getShadowMirror, instantiateTemplate } from '../utils/shadow.js';
 
 const INSTINCT_META = {
@@ -38,6 +39,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
   const [tab, setTab] = useState(initialTab);
   const [sel, setSel] = useState(initialSel);
   const [showPositionRef, setShowPositionRef] = useState(false);
+  const [showSOP, setShowSOP] = useState(false);
   useScrollToTop(tab, sel);
 
   // ── Enneagram detail ──────────────────────────────────────────────────────
@@ -565,16 +567,19 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             </p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 10 }}>
-            {Object.entries(MBTI_TYPES).map(([code, t]) => (
-              <button key={code} onClick={() => setSel(code)} style={{ background: G.bg2, border: `1px solid ${G.border}`, borderRadius: 12, padding: '14px 16px', textAlign: 'left' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                  <span style={S.mono}>{code}</span>
+            {Object.entries(QUADRANTS).map(([key, q]) => (
+              <div key={key} style={{ ...S.card, marginBottom: 0, padding: '12px 12px' }}>
+                <h3 style={{ ...S.h3, fontSize: 12 }}>{q.label}</h3>
+                <p style={{ ...S.body, fontSize: 11, marginBottom: 10 }}>{q.desc}</p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
+                  {q.types.map(code => (
+                    <button key={code} onClick={() => setSel(code)} style={{ background: G.bg3, border: `1px solid ${G.border}`, borderRadius: 8, padding: '8px 4px', textAlign: 'center' }}>
+                      <span style={{ ...S.mono, fontSize: 13 }}>{code}</span>
+                      <p style={{ fontSize: 10, color: G.textDim, marginTop: 3, lineHeight: 1.3 }}>{MBTI_TYPES[code].name}</p>
+                    </button>
+                  ))}
                 </div>
-                <p style={{ fontSize: 12, color: G.textDim }}>{t.name}</p>
-                <div style={{ display: 'flex', gap: 3, marginTop: 6, flexWrap: 'wrap' }}>
-                  {t.stack.map(fn => <FnBadge key={fn} fn={fn} />)}
-                </div>
-              </button>
+              </div>
             ))}
           </div>
           {/* Position Reference */}
@@ -609,6 +614,23 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
               </div>
             </div>
           )}
+          {/* 4-step typing SOP */}
+          <button onClick={() => setShowSOP(v => !v)} style={{ ...S.btnOutline, width: '100%', marginBottom: 16 }}>
+            {showSOP ? 'Hide' : 'Show'} 4-Step Typing SOP
+          </button>
+          {showSOP && SOP_STEPS.map((step, i) => (
+            <div key={i} style={S.card}>
+              <h3 style={S.h3}>{step.title}</h3>
+              <p style={{ ...S.body, color: G.text, marginBottom: 10 }}>{step.q}</p>
+              <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
+                {step.opts.map((o, j) => <span key={j} style={{ ...S.tag, fontSize: 12 }}>{o}</span>)}
+              </div>
+              <div style={{ marginTop: 10, padding: '10px 14px', borderRadius: 8, background: 'rgba(232,80,80,0.05)', border: '1px solid rgba(232,80,80,0.15)' }}>
+                <p style={{ fontSize: 12, color: '#e88080', fontWeight: 500, marginBottom: 2 }}>Common Pitfall</p>
+                <p style={{ fontSize: 13, color: G.textDim, lineHeight: 1.5 }}>{step.pitfall}</p>
+              </div>
+            </div>
+          ))}
         </>
       )}
 

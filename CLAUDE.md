@@ -54,14 +54,14 @@ spastic-typer/
 |------|-----|---------|
 | `GuidedTyper.jsx` | ~785 | All three quiz flows + choose screen + share/export |
 | `ComparePage.jsx` | ~607 | Pairwise & group dynamics analysis |
-| `Explorer.jsx` | ~334 | Reference tool for cognitive functions and MBTI types |
-| `MentalModel.jsx` | ~406 | Quadrant maps, enneagram circle, typing methodology SOP |
+| `Explorer.jsx` | ~820 | Reference tool: Enneagram, MBTI (quadrant grid, position reference, typing SOP), Instinct, Integration |
+| `CombinedProfile.jsx` | ~290 | Integrated profile from all three saved results; rendered by `GuidedTyper` in its `combined` phase |
 
 ### Components (`src/components/`)
 
 | File | Purpose |
 |------|---------|
-| `AppNav.jsx` | Primary navigation (Typer / Explorer / Model / Compare). Bottom tab bar on phones, top bar from 681px. Writes the view into the URL hash. |
+| `AppNav.jsx` | Primary navigation (Typer / Explorer / Compare). Bottom tab bar on phones, top bar from 681px. Writes the view into the URL hash. |
 | `LikertScale.jsx` | 7-point scale widget (−3 to +3) used in all quizzes |
 | `ProgressBar.jsx` | Thin quiz progress indicator |
 | `FnBadge.jsx` | Color-coded cognitive function badge (Ne, Ni, Se…) |
@@ -141,10 +141,11 @@ All tests live in `frontend/src/test/`:
 | File | What it covers |
 |------|---------------|
 | `scoring.test.js` | All three scoring algorithms, `buildFairSequence`, `shuffleArray`, question bank data integrity. ~140 individual `it()` assertions. |
-| `guided-typer.test.jsx` | Quiz flows (start, advance, adaptive exit, disambiguation), choose screen state, share/export gating, localStorage persistence, retake behavior |
+| `guided-typer.test.jsx` | Quiz flows (start, advance, adaptive exit, disambiguation), choose screen state, combined-profile phase, share/export gating, localStorage persistence, retake behavior |
 | `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button |
 | `navigation.test.jsx` | Nav landmark and labels, `aria-current`, hash routing (boot from hash, legacy share links, hashchange), scroll reset |
-| `route.test.js` | `parseHash` / `buildHash` |
+| `route.test.js` | `parseHash` / `buildHash`, legacy view aliases |
+| `explorer.test.jsx` | MBTI quadrant grid, typing SOP toggle, type detail open/back |
 | `shadow.test.js` | Shadow stack derivation, position definitions, crossing algorithm, structural invariants |
 
 ### Exported Test Helpers (from `GuidedTyper.jsx`)
@@ -234,7 +235,7 @@ The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (
 
 ### No Router
 
-App.jsx holds a `view` state string that mirrors the URL hash (`#/typer`, `#/explorer`, `#/model`, `#/compare?p1=…`). Navigation is done by calling `setView('compare')` etc.; `setView` writes the hash and a `hashchange` listener keeps `view` in sync, so browser back/forward, refresh, and shared links all resolve to the right view. Parsing lives in `utils/route.js`. Do not add React Router.
+App.jsx holds a `view` state string that mirrors the URL hash (`#/typer`, `#/explorer`, `#/compare?p1=…`; the retired `#/model` resolves to Explorer). Navigation is done by calling `setView('compare')` etc.; `setView` writes the hash and a `hashchange` listener keeps `view` in sync, so browser back/forward, refresh, and shared links all resolve to the right view. Parsing lives in `utils/route.js`. Do not add React Router.
 
 ### Styling
 
@@ -314,12 +315,13 @@ App.jsx  (view ⇄ window.location.hash via utils/route.js)
   └─ <main>
        {view === 'typer'}    → <GuidedTyper />
        {view === 'explorer'} → <Explorer />
-       {view === 'model'}    → <MentalModel />
        {view === 'compare'}  → <ComparePage />
   └─ AppNav (setView callback; aria-current marks the active tab)
 ```
 
 Every view calls `useScrollToTop(...)` on its own tab/selection state so detail pages open at the top.
+
+`GuidedTyper` owns a `combined` phase that renders `CombinedProfile` (the integrated write-up of all three saved results). There is no separate "Model" view: the MBTI quadrant grid and the 4-step typing SOP live in Explorer's MBTI tab.
 
 ### Data Flow in GuidedTyper
 

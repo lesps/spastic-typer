@@ -669,10 +669,10 @@ const ALL_THREE_LS = () => {
 };
 
 describe('GuidedTyper — profile card teaser', () => {
-  it('shows "View full combined profile" link when all 3 assessments are complete', () => {
+  it('shows "View your full profile" link when all 3 assessments are complete', () => {
     ALL_THREE_LS();
     render(<GuidedTyper />);
-    expect(screen.getByText(/view full combined profile/i)).toBeInTheDocument();
+    expect(screen.getByText(/view your full profile/i)).toBeInTheDocument();
   });
 
   it('does not show synthesis sections in the typer (they moved to Combined tab)', () => {
@@ -692,7 +692,7 @@ describe('GuidedTyper — profile card teaser', () => {
     localStorage.setItem('typer_mbti', JSON.stringify({ result: 'INFP', scores: {} }));
     // Missing typer_inst
     render(<GuidedTyper />);
-    expect(screen.queryByText(/view full combined profile/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/view your full profile/i)).not.toBeInTheDocument();
   });
 });
 
@@ -812,5 +812,33 @@ describe('Quiz screen — context header', () => {
     fireEvent.click(screen.getByRole('button', { name: /start instinct/i }));
     expect(screen.getByText(/instinct stack assessment/i)).toBeInTheDocument();
     expect(screen.getByText(/question 1 · typically 6–15/i)).toBeInTheDocument();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Combined profile phase (1.5.0): the integrated write-up lives under Typer
+// ---------------------------------------------------------------------------
+describe('GuidedTyper — combined profile phase', () => {
+  it('opens the combined profile from the home screen and returns with Back', () => {
+    ALL_THREE_LS();
+    render(<GuidedTyper />);
+    fireEvent.click(screen.getByRole('button', { name: 'View your full profile →' }));
+    expect(screen.getByText(/your archetype/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Enneagram + MBTI' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /back to my tests/i }));
+    expect(screen.getByText('Guided Typer')).toBeInTheDocument();
+  });
+
+  it('opens the combined profile from the archetype name link', () => {
+    ALL_THREE_LS();
+    render(<GuidedTyper />);
+    fireEvent.click(screen.getByRole('button', { name: 'View your full profile' }));
+    expect(screen.getByText(/your archetype/i)).toBeInTheDocument();
+  });
+
+  it('does not mention Mental Model anywhere on the home screen', () => {
+    ALL_THREE_LS();
+    render(<GuidedTyper />);
+    expect(screen.queryByText(/mental model/i)).not.toBeInTheDocument();
   });
 });

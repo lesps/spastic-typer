@@ -25,6 +25,11 @@ describe('parseHash', () => {
       .toEqual({ view: 'compare', query: 'p1=4w5%3Astrong%3Asx%2Fsp%2Fso%3AINFP&p2=8w9%3A%3A%3AENTJ' });
   });
 
+  it('resolves the retired #/model view to explorer', () => {
+    expect(parseHash('#/model')).toEqual({ view: 'explorer', query: '' });
+    expect(parseHash('#model')).toEqual({ view: 'explorer', query: '' });
+  });
+
   it('falls back to typer for unknown views', () => {
     expect(parseHash('#/nope')).toEqual({ view: DEFAULT_VIEW, query: '' });
     expect(parseHash('#/nope?x=1')).toEqual({ view: DEFAULT_VIEW, query: '' });

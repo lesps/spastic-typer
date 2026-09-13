@@ -5,20 +5,27 @@ import { useScrollToTop } from './utils/scroll.js';
 import AppNav from './components/AppNav.jsx';
 import GuidedTyper from './views/GuidedTyper.jsx';
 import Explorer from './views/Explorer.jsx';
-import MentalModel from './views/MentalModel.jsx';
 import ComparePage from './views/ComparePage.jsx';
 
 export default function App() {
   const [view, setViewState] = useState(() => parseHash(window.location.hash).view);
   const [explorerTab, setExplorerTab] = useState('enneagram');
   const [explorerSel, setExplorerSel] = useState(null);
-  const [modelTab, setModelTab] = useState('mbti');
 
   // Navigation writes the hash; the hashchange listener keeps `view` in sync with it,
   // so browser back/forward and shared links all land on the right view.
   const setView = useCallback((next) => {
     setViewState(next);
     if (parseHash(window.location.hash).view !== next) window.location.hash = buildHash(next);
+  }, []);
+
+  // Rewrite legacy hashes (#/model, #p1=…) to their canonical form without adding a history entry.
+  useEffect(() => {
+    const { hash } = window.location;
+    if (!hash) return;
+    const { view: v, query } = parseHash(hash);
+    const canonical = buildHash(v, query);
+    if (hash !== canonical) window.history.replaceState(null, '', canonical);
   }, []);
 
   useEffect(() => {
@@ -33,9 +40,8 @@ export default function App() {
     <>
       <style>{baseCSS}</style>
       <main>
-        {view === 'typer'    && <GuidedTyper setView={setView} setExplorerTab={setExplorerTab} setExplorerSel={setExplorerSel} setModelTab={setModelTab} />}
+        {view === 'typer'    && <GuidedTyper setView={setView} setExplorerTab={setExplorerTab} setExplorerSel={setExplorerSel} />}
         {view === 'explorer' && <Explorer initialTab={explorerTab} initialSel={explorerSel} />}
-        {view === 'model'    && <MentalModel setView={setView} initialTab={modelTab} />}
         {view === 'compare'  && <ComparePage />}
       </main>
       <AppNav view={view} setView={setView} />
