@@ -158,7 +158,7 @@ describe('stackLayout — geometry invariants', () => {
   };
 
   it('has a portrait viewBox and all eight nodes', () => {
-    expect(viewBox).toEqual([0, 0, 360, 560]);
+    expect(viewBox).toEqual([0, 0, 360, 512]);
     expect(Object.keys(nodes).map(Number).sort((a, b) => a - b)).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
   });
 

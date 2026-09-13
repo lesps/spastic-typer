@@ -128,7 +128,7 @@ export function bezierPoint(p0, p1, p2, p3, t) {
   return { x: a * p0.x + b * p1.x + c * p2.x + d * p3.x, y: a * p0.y + b * p1.y + c * p2.y + d * p3.y };
 }
 
-const VIEW_W = 360, VIEW_H = 560;
+const VIEW_W = 360, VIEW_H = 512;
 const NODE_W = 120, NODE_H = 68;
 const EGO_X = 12, SHADOW_X = VIEW_W - 12 - NODE_W; // 228 → channel is x ∈ (132, 228)
 const ROW_Y = [28, 160, 292, 424];
