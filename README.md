@@ -61,14 +61,16 @@ Explorer deep-links from quiz result screens let users jump directly to the rele
 An interactive model of the eight cognitive-function positions — Lead, Anchor, Refuge, Hunger (ego arc) and Counter, Critic, Gamble, Flood (shadow arc) — and the couplings between them, at `#/stack`.
 
 - **Diagram** — ego arc on the left, shadow arc on the right, with the six structural couplings drawn: gate (Anchor → Lead), write-back (Critic → Anchor), sample (Refuge → Critic), monitor (Hunger → Counter), check (Anchor → Gamble), trigger (Lead → Flood). Refuge → Critic → Anchor is the load-bearing spine. Every node and edge is tappable and keyboard-selectable.
-- **Colonization scrubber** — a range over health levels 1–9. One position is captured per level, alternating arcs (Hunger, Counter, Refuge, Critic, Anchor, Gamble, Lead, Flood); captured nodes tint, the just-captured node pulses, and the level's active edges light up. Each level is narrated, and the equilibrium caveat (most stacks settle at a depth rather than running to 9) stays visible beside the scrubber.
+- **Colonization scrubber** — a range over health levels 1–9. One position is captured per level, alternating arcs (Hunger, Counter, Refuge, Critic, Anchor, Gamble, Lead, Flood); captured nodes tint, the just-captured node pulses, and the level's active edges light up. Each level is narrated, with the rest of its source paragraph behind a **More** expander and the falsifier where one is stated. The level's Riso-Hudson name, its capture kind (identification, immediate, accumulation) and its predicted transition sharpness sit alongside, and the equilibrium caveat stays visible beside the scrubber.
 - **Purpose panel** — for the selected position, its native purpose and its purpose in the fixation's service, side by side. The captured block stays inert until the scrubber passes that position's capture level, then both remain visible: the comparison is the lesson.
 - **Type selector** — any of the 16 types (or positions only) puts the actual function on each node, so the captured copy is about *your* Te at Refuge, not Refuge in the abstract.
 - **Replay** — walks levels 1 → 9 at about 1.2s per step; under `prefers-reduced-motion` it jumps to the end.
 - **Personalize** — with both an MBTI and an Enneagram result saved, badges Hunger with the fixation, shows the Counter threat-output form for that stack, and bridges the current level to Riso-Hudson tier language (flagged as an interpretive bridge, not an equivalence).
-- **Deep links** — `#/stack?type=ENFP&level=5`. Reached from the Typer home and MBTI result screens and from Compare's Shadow Stack section.
+- **Deep links** — `#/stack?type=ENFP&level=5`, followed on load and on later hash changes, so browser back/forward between two stack links works. Reached from the Typer home and MBTI result screens and from Compare's Shadow Stack section.
 
-The Stack view uses the CT Minimum Viable Framework's vocabulary (colonization, capture, Critic write-back, Anchor corruption, gated Lead). Its content lives in `frontend/src/data/stack.js`, transcribed from `docs/specs/stack-view.md`.
+The Stack view follows **The Cognitive Thumbprint** (`docs/specs/ct-consolidated.md`), which supersedes the earlier Minimum Viable Framework. The mechanism is adjacency corruption: a shadow position's corrupted output becomes an ego position's input, and sustained corrupted input recalibrates the receiver. Critic write-back is one instance of it.
+
+Content lives in `frontend/src/data/stack.js` and is sourced verbatim — a test asserts that every prose string is a substring of a checked-in source document, so the framework prose cannot drift into paraphrase. Surfaces outside the Stack view have not yet been brought onto the consolidated document; CLAUDE.md records exactly which.
 
 ---
 
@@ -155,8 +157,8 @@ Expected output:
 | `explorer.test.jsx` | Quadrant grid, typing SOP, type detail, collapsible intros |
 | `theme.test.js` | Theme helpers and a no-hardcoded-colors guard |
 | `shadow.test.js` | Shadow stack derivation, position crossings |
-| `stack-data.test.js` | Stack content integrity and the terminology deny-list |
-| `stack-logic.test.js` | Capture state across levels 1–9, query parsing, diagram geometry |
+| `stack-data.test.js` | Stack content provenance, integrity, and the terminology deny-list |
+| `stack-logic.test.js` | Capture state across levels 1–9, stage and pair helpers, query parsing, diagram geometry |
 | `stack-view.test.jsx` | Stack page behaviour: diagram state, scrubber, selection, purpose panel, replay, personalization |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js`, `combinations.test.js`, `subtypes.test.js` | Compare analyses, group patterns, combined-profile data |
 
@@ -177,10 +179,10 @@ spastic-typer/
 │   │   │   ├── ComparePage.jsx   # Pairwise & group dynamics analysis (~1,185 LOC)
 │   │   │   ├── Explorer.jsx      # Reference tool: Enneagram, MBTI, Instinct, Integration (~840 LOC)
 │   │   │   ├── CombinedProfile.jsx # Integrated profile from all three saved results (~315 LOC)
-│   │   │   └── StackView.jsx     # Stack page: diagram, colonization scrubber, purpose panel (~220 LOC)
+│   │   │   └── StackView.jsx     # Stack page: diagram, colonization scrubber, purpose panel (~270 LOC)
 │   │   ├── components/           # Small reusable UI pieces
 │   │   │   ├── AppNav.jsx        # Primary nav: bottom tabs on phones, top bar on wider screens
-│   │   │   ├── StackDiagram.jsx  # Inline-SVG eight-position diagram with couplings
+│   │   │   ├── StackDiagram.jsx  # Inline-SVG eight-position diagram with its eight couplings
 │   │   │   ├── LikertScale.jsx   # 7-point scale widget (−3 to +3)
 │   │   │   ├── ProgressBar.jsx   # Quiz progress indicator
 │   │   │   ├── FnBadge.jsx       # Color-coded cognitive function badge
@@ -190,7 +192,7 @@ spastic-typer/
 │   │   │   ├── mbti.js           # MBTI_BANK, MBTI_TYPES (16 entries with cognitive stacks)
 │   │   │   ├── cognitive.js      # COG_FUNCTIONS — 8 Jungian functions
 │   │   │   ├── shadow.js         # POSITIONS, shadow templates, crossing matrix
-│   │   │   ├── stack.js          # Stack view content (capture order, purposes, edges, narration)
+│   │   │   ├── stack.js          # Stack view content (mechanism, capture order, purposes, edges, narration)
 │   │   │   ├── levels.js         # Riso-Hudson health levels per Enneagram type
 │   │   │   ├── pairLookup.js     # Pre-computed pair dynamics (~7,000 lines) — do not hand-edit
 │   │   │   ├── sop.js            # SOP_STEPS, QUADRANTS
@@ -199,7 +201,7 @@ spastic-typer/
 │   │   │   ├── enneagram.js      # Wing strength, dynamics, instinct interaction helpers
 │   │   │   ├── mbti.js           # MBTI interaction and tips
 │   │   │   ├── shadow.js         # Full 8-position stack derivation and crossings
-│   │   │   ├── stack.js          # Capture state per level, deep-link parsing, diagram geometry
+│   │   │   ├── stack.js          # Capture state per level, stage/pair helpers, deep-link parsing, geometry
 │   │   │   ├── route.js          # URL hash ⇄ view mapping
 │   │   │   ├── scroll.js         # Scroll reset hook
 │   │   │   ├── export.js         # Markdown report and JSON download
@@ -216,7 +218,7 @@ spastic-typer/
 ├── scripts/
 │   └── generatePairs.mjs         # Regenerates pairLookup.js — run after changing dynamics logic
 ├── docs/
-│   ├── specs/                    # Feature specs checked in verbatim (stack-view.md)
+│   ├── specs/                    # Source documents checked in verbatim (ct-consolidated.md, stack-view.md)
 │   └── plans/                    # Implementation plans (stack-view-sessions.md)
 ├── .github/workflows/
 │   └── deploy.yml                # GitHub Actions: build + deploy to GitHub Pages on push to main
