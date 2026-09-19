@@ -2,8 +2,9 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import {
   captureLevelOf, capturedAt, captureState, isCaptured, fillTemplate, positionLabel,
   tierForLevel, parseStackQuery, readSavedTypes, counterThreatOutput, stackLayout, bezierPoint,
+  stageForLevel, sealedStages, nestedPartner, domainPartner,
 } from '../utils/stack.js';
-import { CAPTURE_ORDER, ACTIVE_EDGES, EDGES } from '../data/stack.js';
+import { CAPTURE_ORDER, ACTIVE_EDGES, EDGES, STAGES } from '../data/stack.js';
 
 const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const EXPECTED_CAPTURED = {
@@ -25,6 +26,10 @@ describe('captureState — table-driven across levels 1–9', () => {
     expect(s.captured).toEqual(EXPECTED_CAPTURED[l]);
     expect(s.justCaptured).toBe(CAPTURE_ORDER[l].pos);
     expect(s.band).toBe(CAPTURE_ORDER[l].band);
+    expect(s.kind).toBe(CAPTURE_ORDER[l].kind);
+    expect(s.transition).toBe(CAPTURE_ORDER[l].transition);
+    expect(s.rh).toBe(CAPTURE_ORDER[l].rh);
+    expect(s.rhBand).toBe(CAPTURE_ORDER[l].rhBand);
     expect(s.activeEdges).toEqual(ACTIVE_EDGES[l]);
     expect(capturedAt(l)).toEqual(EXPECTED_CAPTURED[l]);
   });
@@ -132,14 +137,100 @@ describe('readSavedTypes', () => {
   });
 });
 
+describe('stageForLevel / sealedStages', () => {
+  it('has no stage at level 1, where nothing is captured', () => {
+    expect(stageForLevel(1)).toBeNull();
+    expect(sealedStages(1)).toEqual([]);
+  });
+
+  it('assigns every level from 2 to a stage', () => {
+    const names = [2, 3, 4, 5, 6, 7, 8, 9].map(l => stageForLevel(l).name);
+    expect(names).toEqual([
+      'Boundary', 'Boundary', 'Maintenance', 'Maintenance',
+      'Reality-testing', 'Reality-testing', 'Terminal', 'Terminal',
+    ]);
+  });
+
+  it('seals a stage only once both of its positions are captured', () => {
+    expect(sealedStages(2).map(s => s.name)).toEqual([]);
+    expect(sealedStages(3).map(s => s.name)).toEqual(['Boundary']);
+    expect(sealedStages(4).map(s => s.name)).toEqual(['Boundary']);
+    expect(sealedStages(5).map(s => s.name)).toEqual(['Boundary', 'Maintenance']);
+    expect(sealedStages(9).map(s => s.name)).toEqual(STAGES.map(s => s.name));
+  });
+});
+
+describe('nestedPartner / domainPartner', () => {
+  it('returns the dependency coupling', () => {
+    expect([1, 2, 3, 4, 5, 6, 7, 8].map(nestedPartner)).toEqual([8, 7, 6, 5, 4, 3, 2, 1]);
+  });
+
+  it('returns the same-base-function partner, which is a different pairing', () => {
+    expect([1, 2, 3, 4, 5, 6, 7, 8].map(domainPartner)).toEqual([5, 6, 7, 8, 1, 2, 3, 4]);
+  });
+
+  it('never confuses the two', () => {
+    for (const pos of [1, 2, 3, 4, 5, 6, 7, 8]) {
+      expect(nestedPartner(pos)).not.toBe(domainPartner(pos));
+    }
+  });
+
+  it('is symmetric in both schemes', () => {
+    for (const pos of [1, 2, 3, 4, 5, 6, 7, 8]) {
+      expect(nestedPartner(nestedPartner(pos))).toBe(pos);
+      expect(domainPartner(domainPartner(pos))).toBe(pos);
+    }
+  });
+
+  it('returns null outside the stack', () => {
+    expect(nestedPartner(9)).toBeNull();
+    expect(domainPartner(0)).toBeNull();
+  });
+});
+
 describe('counterThreatOutput', () => {
   it('names the Counter function and its threat-output form', () => {
-    expect(counterThreatOutput('ENFP')).toEqual({ fn: 'Ni', form: 'convergent trajectory certainty' });
-    expect(counterThreatOutput('ISTJ')).toEqual({ fn: 'Se', form: 'immediate-environment threat read' });
+    expect(counterThreatOutput('ENFP')).toEqual({
+      fn: 'Ni',
+      texture: 'Convergent trajectory: one inevitable path to the feared outcome, with felt certainty',
+      contamination: 'Chronic anticipatory dread with a specific trajectory',
+    });
+    expect(counterThreatOutput('ISTJ')).toEqual({
+      fn: 'Se',
+      texture: 'Immediate environmental scan: somatic vigilance for present danger cues',
+      contamination: 'Hypervigilance to cues during rest',
+    });
   });
   it('returns null for an unknown type', () => {
     expect(counterThreatOutput('NOPE')).toBeNull();
     expect(counterThreatOutput(null)).toBeNull();
+  });
+});
+
+describe('stackLayout — edge label legibility', () => {
+  // Approximate text metrics for the 9px mono labels the diagram renders.
+  const CHAR_W = 7;
+  const LINE_H = 11;
+  const PAD = 6;
+  const box = (e) => {
+    const w = e.label.length * CHAR_W;
+    const x = e.labelAnchor === 'start' ? e.labelX : e.labelAnchor === 'end' ? e.labelX - w : e.labelX - w / 2;
+    return { x1: x - PAD, x2: x + w + PAD, y1: e.labelY - LINE_H / 2, y2: e.labelY + LINE_H / 2 };
+  };
+
+  it('keeps a readable gap between every pair of edge labels', () => {
+    const edges = stackLayout().edges;
+    const overlaps = [];
+    for (let i = 0; i < edges.length; i++) {
+      for (let j = i + 1; j < edges.length; j++) {
+        const a = box(edges[i]);
+        const b = box(edges[j]);
+        if (a.x1 < b.x2 && b.x1 < a.x2 && a.y1 < b.y2 && b.y1 < a.y2) {
+          overlaps.push(`${edges[i].id} ↔ ${edges[j].id}`);
+        }
+      }
+    }
+    expect(overlaps).toEqual([]);
   });
 });
 

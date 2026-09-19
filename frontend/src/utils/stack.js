@@ -8,7 +8,10 @@ import { MBTI_TYPES } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
 import { POSITIONS } from '../data/shadow.js';
 import { getFullStack } from './shadow.js';
-import { CAPTURE_ORDER, ACTIVE_EDGES, EDGES, COUNTER_THREAT_OUTPUT, LABEL_TEMPLATES } from '../data/stack.js';
+import {
+  CAPTURE_ORDER, ACTIVE_EDGES, EDGES, COUNTER_THREAT_OUTPUT, LABEL_TEMPLATES,
+  STAGES, NESTED_PAIRS, DOMAIN_PAIRS,
+} from '../data/stack.js';
 
 export const MIN_LEVEL = 1;
 export const MAX_LEVEL = 9;
@@ -39,13 +42,45 @@ export function isCaptured(pos, level) {
 
 export function captureState(level) {
   const l = clampLevel(level);
+  const { band, pos, kind, transition, rh, rhBand } = CAPTURE_ORDER[l];
   return {
     level: l,
-    band: CAPTURE_ORDER[l].band,
-    justCaptured: CAPTURE_ORDER[l].pos,
+    band,
+    kind,
+    transition,
+    rh,
+    rhBand,
+    justCaptured: pos,
     captured: capturedAt(l),
     activeEdges: ACTIVE_EDGES[l],
   };
+}
+
+/** The stage a level belongs to, or null at level 1 where nothing is captured. */
+export function stageForLevel(level) {
+  const l = clampLevel(level);
+  return STAGES.find(s => s.levels.includes(l)) ?? null;
+}
+
+/** Positions sealed at `level`: both members of the pair captured. */
+export function sealedStages(level) {
+  const l = clampLevel(level);
+  return STAGES.filter(s => s.levels.every(x => x <= l));
+}
+
+const partnerIn = (pairs, pos) => {
+  const pair = pairs.find(([a, b]) => a === pos || b === pos);
+  return pair ? (pair[0] === pos ? pair[1] : pair[0]) : null;
+};
+
+/** Dependency coupling: the position this one reads, or is read by. */
+export function nestedPartner(pos) {
+  return partnerIn(NESTED_PAIRS, pos);
+}
+
+/** Same base function, opposing attitudes. Not the same thing as the nested partner. */
+export function domainPartner(pos) {
+  return partnerIn(DOMAIN_PAIRS, pos);
 }
 
 /** Riso-Hudson level → LEVELS tier key. */
@@ -109,12 +144,17 @@ export function readSavedTypes() {
   return { mbti: type, enn: Number.isInteger(core) && core >= 1 && core <= 9 ? core : null };
 }
 
-/** The Counter function of a type and its threat-output form. */
+/**
+ * The Counter function of a type, the texture its threat output takes, and the
+ * way that output contaminates Refuge. Form is set by the function at position
+ * 5; content is set by the fixation, which this does not know.
+ */
 export function counterThreatOutput(type) {
   const stack = type ? getFullStack(type) : null;
   if (!stack) return null;
   const fn = stack[4].fn;
-  return { fn, form: COUNTER_THREAT_OUTPUT[fn] };
+  const { texture, contamination } = COUNTER_THREAT_OUTPUT[fn];
+  return { fn, texture, contamination };
 }
 
 // ---------------------------------------------------------------------------
@@ -138,10 +178,14 @@ const ATTACH_OFFSET = 12; // keeps two edges on one node side from sharing a poi
 const ROUTES = {
   gate:      { from: 'top',   to: 'bottom', t: 0.5,  dx: 6,  dy: 4,  anchor: 'start' },
   writeback: { from: 'left',  to: 'right',  t: 0.5,  dx: 0,  dy: -7, anchor: 'middle', fromDy: -ATTACH_OFFSET, toDy: -ATTACH_OFFSET },
-  check:     { from: 'right', to: 'left',   t: 0.72, dx: 0,  dy: 12, anchor: 'middle', fromDy: ATTACH_OFFSET },
-  sample:    { from: 'right', to: 'left',   t: 0.28, dx: 0,  dy: -8, anchor: 'middle', toDy: ATTACH_OFFSET },
-  monitor:   { from: 'right', to: 'left',   t: 0.1,  dx: 8,  dy: -6, anchor: 'start' },
-  trigger:   { from: 'right', to: 'left',   t: 0.1,  dx: 8,  dy: 12, anchor: 'start' },
+  check:     { from: 'right', to: 'left',   t: 0.72, dx: 0,  dy: 22, anchor: 'middle', fromDy: ATTACH_OFFSET,  toDy: -ATTACH_OFFSET },
+  sample:    { from: 'right', to: 'left',   t: 0.28, dx: 0,  dy: -22, anchor: 'middle', fromDy: ATTACH_OFFSET,  toDy: ATTACH_OFFSET },
+  monitor:   { from: 'right', to: 'left',   t: 0.1,  dx: 8,  dy: -6, anchor: 'start',  toDy: -ATTACH_OFFSET },
+  trigger:   { from: 'right', to: 'left',   t: 0.1,  dx: 8,  dy: 12, anchor: 'start',  fromDy: -ATTACH_OFFSET },
+  // Shadow → ego corruption edges. Both traverse the channel in the opposite
+  // direction to their nested neighbours, so they take the far attach offsets.
+  bleed:     { from: 'left',  to: 'right',  t: 0.3,  dx: 0,  dy: -8, anchor: 'middle', fromDy: ATTACH_OFFSET,  toDy: -ATTACH_OFFSET },
+  interrupt: { from: 'left',  to: 'right',  t: 0.4,  dx: 0,  dy: 0,  anchor: 'middle', fromDy: ATTACH_OFFSET,  toDy: ATTACH_OFFSET },
 };
 
 function sidePoint(node, side, dy = 0) {
@@ -174,7 +218,7 @@ export function stackLayout() {
     const lp = bezierPoint(p0, p1, p2, p3, r.t);
     const d = `M ${p0.x} ${p0.y} C ${p1.x} ${p1.y}, ${p2.x} ${p2.y}, ${p3.x} ${p3.y}`;
     return {
-      id: e.id, from: e.from, to: e.to, label: e.label, weight: e.weight,
+      id: e.id, from: e.from, to: e.to, label: e.label, weight: e.weight, kind: e.kind,
       p0, p1, p2, p3, d,
       labelX: lp.x + r.dx, labelY: lp.y + r.dy, labelAnchor: r.anchor,
     };
