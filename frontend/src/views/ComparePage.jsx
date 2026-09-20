@@ -631,10 +631,10 @@ export default function ComparePage({ setView = () => {} }) {
               const mediumCrossings = positionCrossings.crossings.filter(c => c.tier === 'medium');
               return (
                 <>
-                  {positionCrossings.isFullShadowPair && (
+                  {positionCrossings.isStackInverse && (
                     <div style={{ ...S.cardGold, marginBottom: 0 }}>
-                      <h3 style={S.h3}>Full Shadow Pair</h3>
-                      <p style={S.body}>{positionCrossings.shadowPairNarrative}</p>
+                      <h3 style={S.h3}>Full Stack Inversion</h3>
+                      <p style={S.body}>{positionCrossings.stackInversionNarrative}</p>
                     </div>
                   )}
                   <div style={S.card}>

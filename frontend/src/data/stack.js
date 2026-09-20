@@ -602,3 +602,27 @@ export const GROWTH_MECHANISM = [
   "Counter's threat output is oriented precisely toward what the growth direction delivers, so approaching it deliberately activates the defense; performing the growth direction is the fixation operating.",
   'Registration is internal and runs through Gamble, the discrepancy detector.',
 ];
+
+/**
+ * The two stress events, which the app previously ran together. Both use the
+ * Hunger/Flood domain pair, so they look alike from outside and are told apart
+ * by direction, quality and severity rather than by content.
+ */
+export const STRESS_EVENTS = [
+  {
+    id: 'reaching',
+    name: 'Hunger Reaching',
+    severity: 'moderate stress',
+    position: 4,
+    detail: 'the inferior function attempts to operate without practiced capacity — exaggerated, unskilled, recognizable as the "inferior grip."',
+  },
+  {
+    id: 'floodPrimary',
+    name: 'Flood forced-primary',
+    severity: 'extreme stress',
+    position: 8,
+    detail: 'the background channel becomes the only input; the person does not reach, they are submerged.',
+  },
+];
+
+export const STRESS_EVENTS_NOTE = 'Same base function, opposing attitudes, distinguishable by direction, quality, and severity.';

@@ -29,7 +29,7 @@ function buildPersonDirectives(ennType, wing, mbtiCode, instStack) {
       ? `Lead with external engagement — they process by doing and talking. Match their pace.\n\n`
       : `Give them room to process internally before expecting a response. Don't rush.\n\n`;
     if (inf?.shadow) {
-      out += `Inferior **${inf.fn}** (${inf.name}) is their stress point. ${inf.shadow} Avoid patterns that activate this.\n\n`;
+      out += `Inferior **${inf.fn}** (${inf.name}) sits at Hunger, the motivational base. Under moderate stress it reaches — operating without practiced capacity, exaggerated and unskilled. ${inf.shadow} Avoid patterns that activate this. Note this is distinct from the extreme-stress event, where the always-on background channel becomes the only input.\n\n`;
     }
   }
 

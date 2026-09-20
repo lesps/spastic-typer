@@ -67,3 +67,31 @@ describe('Explorer — collapsible intros', () => {
     expect(screen.getByText(/No single personality system captures/)).not.toBeVisible();
   });
 });
+
+describe('Explorer — growth direction as falsification', () => {
+  it('states the scarcity model and what the defense predicts, not an instruction', () => {
+    render(<Explorer />);
+    fireEvent.click(screen.getByRole('button', { name: /The Achiever/i }));
+    expect(screen.getByText(/Worth is produced only by performance/)).toBeInTheDocument();
+    expect(screen.getByText(/Non-performance cascades to material and relational collapse/)).toBeInTheDocument();
+    expect(screen.getByText(/support arriving without performing for it/)).toBeInTheDocument();
+  });
+
+  it('carries the caveat that the direction cannot be self-performed', () => {
+    render(<Explorer />);
+    fireEvent.click(screen.getByRole('button', { name: /The Achiever/i }));
+    const caveat = screen.getByTestId('growth-caveat');
+    expect(caveat).toHaveTextContent(/Sourcing must be external/);
+    expect(caveat).toHaveTextContent(/performing the growth direction is the fixation operating/);
+  });
+
+  it('distinguishes the two stress events on an MBTI type', () => {
+    render(<Explorer />);
+    fireEvent.click(screen.getByRole('button', { name: /MBTI/i }));
+    fireEvent.click(screen.getByRole('button', { name: /INFP/ }));
+    const events = screen.getByTestId('stress-events');
+    expect(events).toHaveTextContent(/Hunger Reaching/);
+    expect(events).toHaveTextContent(/Flood forced-primary/);
+    expect(events).toHaveTextContent(/they are submerged/);
+  });
+});
