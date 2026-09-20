@@ -137,21 +137,51 @@ describe('StackView — scrubber drives capture state', () => {
     expect(label).toMatch(/Critic/);
     expect(label).toMatch(/Position 6/);
     setLevel(1);
-    expect(screen.getByTestId('stack-level-label').textContent).toMatch(/Level 1 · Pre-colonization/);
+    const atOne = screen.getByTestId('stack-level-label').textContent;
+    expect(atOne).toMatch(/Level 1 · Liberation/);
+    expect(atOne).toMatch(/no position captured/);
+  });
+
+  it('names the capture kind and the predicted transition sharpness', () => {
+    render(<StackView />);
+    setLevel(3);
+    expect(screen.getByTestId('stack-capture-kind')).toHaveTextContent('immediate capture · sharp transition');
+    setLevel(5);
+    expect(screen.getByTestId('stack-capture-kind')).toHaveTextContent('accumulation capture · slow transition');
+    setLevel(1);
+    expect(screen.queryByTestId('stack-capture-kind')).toBeNull();
   });
 
   it.each(LEVELS)('keeps the equilibrium caveat visible at level %i', (l) => {
     render(<StackView />);
     setLevel(l);
-    expect(screen.getByText(EQUILIBRIUM_CAVEAT)).toBeVisible();
+    expect(screen.getByTestId('stack-caveat')).toHaveTextContent(EQUILIBRIUM_CAVEAT.join(' '));
   });
 
   it.each(LEVELS)('narrates level %i', (l) => {
     render(<StackView />);
     setLevel(l);
     const narration = within(screen.getByTestId('stack-narration'));
-    expect(narration.getByText(LEVEL_NARRATION[l].text)).toBeInTheDocument();
+    expect(screen.getByTestId('stack-narration')).toHaveTextContent(LEVEL_NARRATION[l].text.join(' '));
     expect(narration.getByText(LEVEL_NARRATION[l].title)).toBeInTheDocument();
+  });
+
+  it.each(LEVELS)('offers the rest of the level %i paragraph behind an expander', (l) => {
+    render(<StackView />);
+    setLevel(l);
+    expect(screen.getByTestId('stack-narration-more')).toHaveTextContent(LEVEL_NARRATION[l].more.join(' '));
+  });
+
+  it('shows the falsifier where the source states one and omits it where it does not', () => {
+    render(<StackView />);
+    for (const l of [3, 7, 9]) {
+      setLevel(l);
+      expect(screen.getByTestId('stack-falsifier')).toHaveTextContent(LEVEL_NARRATION[l].falsifier);
+    }
+    for (const l of [1, 2, 4, 5, 6, 8]) {
+      setLevel(l);
+      expect(screen.queryByTestId('stack-falsifier')).toBeNull();
+    }
   });
 });
 
@@ -203,8 +233,8 @@ const capturedBlock = () => screen.getByTestId('stack-purpose-captured');
 describe('StackView — purpose panel', () => {
   it('shows native and captured purposes for the selected position, Lead by default', () => {
     render(<StackView />);
-    expect(panel().getByText(PURPOSES[1].native)).toBeInTheDocument();
-    expect(panel().getByText(PURPOSES[1].captured)).toBeInTheDocument();
+    expect(screen.getByTestId('stack-purpose-native')).toHaveTextContent(PURPOSES[1].native.join(' '));
+    expect(screen.getByTestId('stack-purpose-captured')).toHaveTextContent(PURPOSES[1].captured.join(' '));
   });
 
   it.each(LEVELS)('at level %i the captured block for Critic (captured at Level 5) is inert below 5 and active from 5', (l) => {
@@ -213,8 +243,8 @@ describe('StackView — purpose panel', () => {
     setLevel(l);
     expect(capturedBlock().dataset.state).toBe(l >= captureLevelOf(6) ? 'active' : 'inert');
     // both states stay in the DOM whatever the level — the comparison is the lesson
-    expect(panel().getByText(PURPOSES[6].native)).toBeInTheDocument();
-    expect(panel().getByText(PURPOSES[6].captured)).toBeInTheDocument();
+    expect(screen.getByTestId('stack-purpose-native')).toHaveTextContent(PURPOSES[6].native.join(' '));
+    expect(screen.getByTestId('stack-purpose-captured')).toHaveTextContent(PURPOSES[6].captured.join(' '));
   });
 
   it.each(LEVELS)('at level %i the captured block for Lead (captured at Level 8) follows its own capture level', (l) => {
@@ -252,7 +282,48 @@ describe('StackView — purpose panel', () => {
     fireEvent.change(typeSelect(), { target: { value: 'ENFP' } });
     const form = screen.getByTestId('stack-counter-form');
     expect(form).toHaveTextContent('Ni');
-    expect(form).toHaveTextContent(COUNTER_THREAT_OUTPUT.Ni);
+    expect(form).toHaveTextContent(COUNTER_THREAT_OUTPUT.Ni.texture);
+    expect(form).toHaveTextContent(COUNTER_THREAT_OUTPUT.Ni.contamination);
+  });
+});
+
+describe('StackView — deep links after mount', () => {
+  const hashTo = (query) => {
+    window.location.hash = `#/stack?${query}`;
+    act(() => { window.dispatchEvent(new HashChangeEvent('hashchange')); });
+  };
+
+  it('follows a level change in the hash without remounting', () => {
+    render(<StackView />);
+    expect(screen.getByTestId('stack-level-label').textContent).toMatch(/Level 1/);
+    hashTo('level=6');
+    expect(screen.getByTestId('stack-level-label').textContent).toMatch(/Level 6/);
+    expect(document.querySelector('[data-pos="2"]').dataset.captured).toBe('true');
+  });
+
+  it('follows a type change in the hash', () => {
+    render(<StackView />);
+    hashTo('type=ENFP&level=4');
+    expect(document.querySelector('[data-pos="3"]').dataset.fn).toBe('Te');
+    expect(screen.getByTestId('stack-level-label').textContent).toMatch(/Level 4/);
+  });
+
+  it('ignores a malformed hash rather than resetting the view', () => {
+    render(<StackView />);
+    hashTo('level=6');
+    hashTo('type=NOPE&level=99');
+    expect(screen.getByTestId('stack-level-label').textContent).toMatch(/Level 6/);
+  });
+});
+
+describe('StackView — the two pairings', () => {
+  it('names the nested and domain partner of the selected position without conflating them', () => {
+    render(<StackView />);
+    fireEvent.click(document.querySelector('[data-pos="3"]'));
+    const pairs = screen.getByTestId('stack-pairs');
+    // Refuge: nested partner Critic (3-6), domain partner Gamble (3-7).
+    expect(pairs).toHaveTextContent('Nested partner: Critic (Position 6)');
+    expect(pairs).toHaveTextContent('Domain partner: Gamble (Position 7)');
   });
 });
 
@@ -341,7 +412,10 @@ describe('StackView — personalization', () => {
     expect(screen.getByTestId('stack-counter-form')).toHaveTextContent('Ni');
     const bridge = screen.getByTestId('stack-bridge');
     expect(bridge).toHaveTextContent(HEALTH_LEVELS[4].healthy.title);
-    expect(bridge).toHaveTextContent(/interpretive bridge/i);
+    // The two scales correspond rather than merely resemble each other, so the
+    // bridge states where they diverge instead of disclaiming the mapping.
+    expect(bridge).toHaveTextContent(/Riso-Hudson tier language for Type 4/);
+    expect(bridge).toHaveTextContent(/Where they diverge/);
     setLevel(5);
     expect(screen.getByTestId('stack-bridge')).toHaveTextContent(HEALTH_LEVELS[4].average.title);
     setLevel(9);

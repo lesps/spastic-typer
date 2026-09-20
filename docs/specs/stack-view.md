@@ -1,5 +1,27 @@
 # spastic-typer — "Stack" navigation view
 
+> **Partly superseded — read this first.** This spec was written against the May 2026 CT
+> Minimum Viable Framework. `ct-consolidated.md` (September 2026) supersedes that suite in
+> full, and where the two disagree the consolidated document is correct. As of 2.0.0:
+>
+> - **§3 Terminology guard is superseded.** The mechanism is adjacency corruption, not
+>   Critic write-back alone; write-back is one instance of it. "Do not introduce additional
+>   cascades" no longer holds — the shadow→ego edges Counter→Refuge and Gamble→Lead are part
+>   of the model. Two deny-list patterns are narrowed (`goes offline`, `opposing
+>   personality`) because the consolidated document's own wording tripped them.
+> - **§5 Content is superseded.** Capture order, classification, and the four stage bands
+>   survive; the purpose transformations, level narration, equilibrium caveat and Counter
+>   threat-output forms are re-sourced from the consolidated document. Level 1 is no longer
+>   a "Pre-colonization" band, and equilibrium sits at Reality-testing rather than
+>   Maintenance.
+> - **§9 Open items are closed.** The consolidated document supplies the fixation substrate
+>   copy and makes Lead-utility a three-way property read off the stakes-distribution
+>   diagnostic, so the 8 × 9 matrix this spec forbade inferring is no longer needed.
+>
+> §1, §2, §4, §6, §7 and §8 still describe the shipped view, except that §4's edge table is
+> now six of eight edges. Prose in §5.2 remains owner-supplied and is still a valid
+> provenance source for strings the consolidated document does not contradict.
+>
 > Owner-supplied spec, checked in verbatim so implementation sessions can transcribe §5
 > content without paraphrase. Corrections to §2 (verified against the repo on 2026-09-13)
 > are recorded in `docs/plans/stack-view-sessions.md` §1, not edited here.

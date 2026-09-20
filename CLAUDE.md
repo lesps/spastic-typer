@@ -59,14 +59,14 @@ spastic-typer/
 | `ComparePage.jsx` | ~1,185 | Pairwise & group dynamics analysis; receives `setView` for its Stack links |
 | `Explorer.jsx` | ~840 | Reference tool: Enneagram, MBTI (quadrant grid, position reference, typing SOP), Instinct, Integration |
 | `CombinedProfile.jsx` | ~315 | Integrated profile from all three saved results; rendered by `GuidedTyper` in its `combined` phase |
-| `StackView.jsx` | ~220 | Stack page: type selector, `StackDiagram`, colonization scrubber (levels 1–9) with narration and the equilibrium caveat, purpose panel (native vs. captured), Replay, personalization from saved results, Counter threat-output form. Reads `#/stack?type=…&level=…` on mount. |
+| `StackView.jsx` | ~270 | Stack page: type selector, `StackDiagram`, colonization scrubber (levels 1–9) with narration, More expander, falsifier, capture kind and the equilibrium caveat, purpose panel (native vs. captured, plus role and both pairings), Replay, personalization from saved results, Counter threat-output form. Reads `#/stack?type=…&level=…` on mount **and on `hashchange`**. |
 
 ### Components (`src/components/`)
 
 | File | Purpose |
 |------|---------|
 | `AppNav.jsx` | Primary navigation (Typer / Explorer / Compare / Stack). Bottom tab bar on phones, top bar from 681px. Writes the view into the URL hash. |
-| `StackDiagram.jsx` | Inline-SVG diagram of the 8 positions and 6 couplings. Nodes/edges are `role="button"`, keyboard-activatable, and expose `data-pos`, `data-edge`, `data-fn`, `data-captured`, `data-just-captured`, `data-active`, `data-selected` for tests. Geometry comes from `stackLayout()` in `utils/stack.js`. |
+| `StackDiagram.jsx` | Inline-SVG diagram of the 8 positions and 8 couplings (4 nested, 3 corruption, 1 structural gate). Nodes/edges are `role="button"`, keyboard-activatable, and expose `data-pos`, `data-edge`, `data-fn`, `data-captured`, `data-just-captured`, `data-active`, `data-selected` for tests. Geometry comes from `stackLayout()` in `utils/stack.js`. |
 | `LikertScale.jsx` | 7-point scale widget (−3 to +3) used in all quizzes |
 | `ProgressBar.jsx` | Thin quiz progress indicator |
 | `FnBadge.jsx` | Color-coded cognitive function badge (Ne, Ni, Se…) |
@@ -83,7 +83,7 @@ spastic-typer/
 | `sop.js` | 33 | `SOP_STEPS` (typing methodology), `QUADRANTS` (MBTI 4-quadrant grid) |
 | `shadow.js` | ~180 | `POSITIONS`, `SHADOW_TEMPLATES`, `CROSSING_MATRIX`, `FULL_SHADOW_PAIR_NARRATIVE` — 8-position naming system and unified comparison algorithm data |
 | `levels.js` | ~300 | `LEVELS[ennType].{healthy,average,unhealthy}` — Riso-Hudson tier `range`, `title`, `description`, `behaviors` per Enneagram type |
-| `stack.js` | ~130 | Stack view content, transcribed from `docs/specs/stack-view.md`: `STAGE_BANDS`, `CAPTURE_ORDER` (level → position), `CLASSIFICATION` (Augusta), `PURPOSES` (native / captured per position), `LEVEL_NARRATION`, `EQUILIBRIUM_CAVEAT`, `COUNTER_THREAT_OUTPUT`, `EDGES`, `ACTIVE_EDGES`, `LABEL_TEMPLATES`. Strings only; guarded by the deny-list test. |
+| `stack.js` | ~375 | Stack view content, sourced verbatim from `SOURCE_DOCS`: `MECHANISM`, `STAGE_BANDS`, `STAGES`, `CAPTURE_ORDER` (level → position, capture kind, transition sharpness, Riso-Hudson name and band), `CLASSIFICATION` (Augusta), `ROLES`, `NESTED_PAIRS` / `DOMAIN_PAIRS` / `PAIR_NOTES`, `PURPOSES` (native / captured sentence arrays), `LEVEL_NARRATION` (text / more / falsifier), `EQUILIBRIUM_CAVEAT`, `CORRESPONDENCE_NOTE`, `COUNTER_THREAT_OUTPUT` (texture + Refuge contamination), `EDGES`, `ACTIVE_EDGES`, `LABEL_TEMPLATES`. Strings only; guarded by the provenance and deny-list tests. |
 | Others | — | `combinationProfiles.js` + `combinations/`, `crossRules.js`, `ennBase.js`, `ennMbtiCorrelation.js`, `groupArchetypes.js`, `instModifiers.js`, `instinctPairDynamics.js`, `instinctStackProfiles.js`, `integrationNarratives.js`, `mbtiDetails.js`, `mbtiDevelopment.js`, `mbtiModifiers.js`, `mbtiStressFlow.js`, `subtypes.js`, `typeInteractionGrid.js` — reference content for Explorer, Compare, and the combined profile |
 
 ### Utils (`src/utils/`)
@@ -97,7 +97,7 @@ spastic-typer/
 | `group.js` | `analyzeGroup` (patterns for 3+ people) |
 | `shadow.js` | `flipAttitude`, `getShadowStack`, `getFullStack`, `getShadowType`, `getShadowMirror`, `getPositionCrossings`, `instantiateTemplate` |
 | `route.js` | `parseHash`, `buildHash`, `VIEWS` (`typer`, `explorer`, `compare`, `stack`), `DEFAULT_VIEW` — URL-hash ↔ view mapping (accepts legacy `#p1=…` links; `#/model` → Explorer) |
-| `stack.js` | `captureState(level)`, `capturedAt`, `captureLevelOf`, `isCaptured`, `tierForLevel`, `fillTemplate`, `positionLabel(pos, level?)`, `fnAtPositionLabel`, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, `stackLayout()`, `bezierPoint`, `MIN_LEVEL` / `MAX_LEVEL` — pure Stack-view logic and diagram geometry |
+| `stack.js` | `captureState(level)`, `capturedAt`, `captureLevelOf`, `isCaptured`, `tierForLevel`, `stageForLevel`, `sealedStages`, `nestedPartner`, `domainPartner`, `fillTemplate`, `positionLabel(pos, level?)`, `fnAtPositionLabel`, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, `stackLayout()`, `bezierPoint`, `MIN_LEVEL` / `MAX_LEVEL` — pure Stack-view logic and diagram geometry |
 | `compare.js`, `share.js` | Compare-page analyses (`getCognitiveHarmony`, …) and profile-code encode/decode |
 | `scroll.js` | `scrollToTop`, `useScrollToTop(...deps)` — resets scroll when a view, tab, or detail selection changes |
 
@@ -158,9 +158,9 @@ All tests live in `frontend/src/test/`:
 | `explorer.test.jsx` | MBTI quadrant grid, typing SOP toggle, type detail open/back, collapsible tab intros |
 | `theme.test.js` | `hexToRgb` / `alpha`, semantic tokens present, and a lint-style guard that no view or component contains a hex or rgba literal |
 | `shadow.test.js` | Shadow stack derivation, position definitions, crossing algorithm, structural invariants |
-| `stack-data.test.js` | `data/stack.js` integrity (capture order, classification, purposes, narration, edges, active edges), level ≠ position labelling, and the **terminology deny-list** over every exported string and the source of both Stack modules |
-| `stack-logic.test.js` | Table-driven `captureState` across levels 1–9 (cumulative, strictly nested, empty at 1), `captureLevelOf`, templating, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, and `stackLayout` geometry invariants (no edge crosses a node body) |
-| `stack-view.test.jsx` | Stack page: type selection and deep links, diagram `data-` state per level, scrubber label/caveat/narration, tap and keyboard selection, purpose panel inert/active, Replay with fake timers and reduced motion, personalization and malformed storage |
+| `stack-data.test.js` | **Provenance** (every prose string is a verbatim substring of a source document, and a paraphrase of a real sentence fails), `data/stack.js` integrity (capture order, capture kinds, transition profile, Riso-Hudson names, stages, roles, both pairings, purposes, narration, edge kinds and endpoints, active edges), level ≠ position labelling, and the **terminology deny-list** including the two deliberate narrowings |
+| `stack-logic.test.js` | Table-driven `captureState` across levels 1–9 (cumulative, strictly nested, empty at 1), `captureLevelOf`, stage helpers, nested/domain partners, templating, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, and `stackLayout` geometry invariants (no edge crosses a node body; no two edge labels collide) |
+| `stack-view.test.jsx` | Stack page: type selection and deep links (on mount **and** on `hashchange`), diagram `data-` state per level, scrubber label/caveat/narration/More/falsifier/capture kind, tap and keyboard selection, purpose panel inert/active and both pairings, Replay with fake timers and reduced motion, personalization and malformed storage |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js` | Compare-page analyses: `getCognitiveHarmony`, `analyzeGroup`, distribution helpers |
 | `combinations.test.js`, `subtypes.test.js` | Combined-profile loading and subtype data integrity |
 
@@ -251,11 +251,31 @@ Use `vi.useFakeTimers()` / `vi.useRealTimers()` in `beforeEach`/`afterEach` for 
 
 ### Position Naming
 
-The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (ego arc 1–4) and Counter, Critic, Gamble, Flood (shadow arc 5–8). Never use Beebe model terminology (Opposing, Critical Parent, Trickster, Demon) in UI copy or code comments. Reference the `POSITIONS` array from `data/shadow.js` for canonical definitions.
+The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (ego arc 1–4) and Counter, Critic, Gamble, Flood (shadow arc 5–8). Never use Beebe model terminology (Opposing Personality, Critical Parent, Trickster, Demon) in UI copy or code comments.
+
+`POSITIONS` in `data/shadow.js` holds the names and arcs. Its `brief` strings predate the consolidated document and are **not** aligned with it — Stack surfaces use `ROLES` from `data/stack.js` instead, which is sourced. Do not reach for `brief` in new Stack work.
+
+**Two pairings, kept distinct.** Confusing them is the most common contamination error, so both are data (`NESTED_PAIRS`, `DOMAIN_PAIRS` in `data/stack.js`; `nestedPartner`, `domainPartner` in `utils/stack.js`):
+
+| Pairing | Positions | What it is |
+|---|---|---|
+| **Nested** | 1–8, 2–7, 3–6, 4–5 | Dependency coupling. Each shadow position reads its nested partner's output. The colonization sequence runs on these. "Mirror partner" means nested partner. |
+| **Domain** | 1–5, 2–6, 3–7, 4–8 | Same base function in opposing attitudes. One territory, two access profiles. Colonization must capture both members to seal a domain. |
 
 ### Stack Terminology Guard
 
-The Stack view's content model is the CT Minimum Viable Framework. Framework prose in `data/stack.js` is transcribed from `docs/specs/stack-view.md` — never paraphrase it into new claims or fill gaps by inference; where the spec has no content, the content does not exist yet. There is **one mechanism**: Critic samples Refuge → writes back to Anchor → Anchor's standard drifts → Anchor's gate rejects Lead's native output in fixation-hot contexts. Lead is *gated*, never "offline". The deny-list test in `stack-data.test.js` fails on exile / substituting / offline / firewall / kamikaze / conversion window and on Beebe terms; keep it.
+The Stack view's content model is **`docs/specs/ct-consolidated.md`** (The Cognitive Thumbprint, September 2026). It supersedes the May 2026 CT Minimum Viable Framework in full, including most of `docs/specs/stack-view.md`; where the two disagree, the consolidated document is correct. Where it is silent, the content does not exist — do not fill gaps by inference.
+
+The mechanism is **adjacency corruption**: a shadow position's corrupted output becomes an ego position's input, and sustained corrupted input recalibrates the receiver. Each ego position corrupts its nested partner; each shadow position corrupts the ego position one step *outward* from its nested partner, which is why the sequence runs 4, 5, 3, 6, 2, 7, 1, 8 and closes at Flood. **Critic write-back is one instance of that rule, not the whole mechanism** — "write-back" names the Critic→Anchor edge only.
+
+**Provenance is mechanical, not advisory.** Every prose string in `data/stack.js` must be a verbatim substring of a document listed in `SOURCE_DOCS`. `stack-data.test.js` normalises markdown emphasis and cross-references out of both sides and then asserts containment; it does not touch wording or punctuation, so a paraphrase fails. Consequences:
+
+- Store multi-sentence content as **arrays of individually verifiable sentences**; the view joins them. Do not merge two source sentences into one string.
+- **Never add or remove punctuation** to make a fragment read better. Several strings end without a period because the source table cell does.
+- Selecting a subset of sentences is allowed. Editing one is not.
+- `LABEL_TEMPLATES` and `SOURCE_DOCS` are the only exempt exports, and a test asserts that list is exactly those two, so a new export forces a provenance decision.
+
+The deny-list in the same file fails on exile / substituting / goes offline / firewall / kamikaze / conversion window / maintenance ceiling / ego block / unimprovable, and on Beebe terms. **Two patterns are deliberately narrower than they look, and must stay that way:** `goes offline` rather than `offline`, because the source writes "Lead offline" for Flood forced-primary under extreme stress, which is a different claim from the retired one about a corrupted Anchor; and `opposing personality` rather than `opposing`, because that is Beebe's term while the source says "opposing attitude" throughout. A test pins both narrowings with the wording they exist to permit.
 
 **Level ≠ position.** Riso-Hudson levels (1–9) and stack positions (1–8) collide (Critic is position 6, captured at level 5; Anchor is position 2, captured at level 6). Any surface showing both must label them — use `positionLabel(pos, level)` (`Position 6 · Critic · captured at Level 5`).
 
@@ -355,9 +375,10 @@ Every view calls `useScrollToTop(...)` on its own tab/selection state so detail 
 ```
 mount → parseStackQuery(hash query) ?? readSavedTypes().mbti ?? positions-only
   → type → getFullStack(type) puts a function on every node
-  → level (range input, Replay interval, or ?level=) → captureState(level)
+  → level (range input, Replay interval, ?level=, or a later hashchange) → captureState(level)
        → StackDiagram tints captured nodes, pulses justCaptured, lights activeEdges
-       → narration + stage band + caveat; personalized: LEVELS[enn][tierForLevel(level)]
+       → narration + more + falsifier + capture kind + stage band + caveat;
+         personalized: LEVELS[enn][tierForLevel(level)]
   → selected node/edge → purpose panel (PURPOSES[pos] native + captured, captured inert until captureLevelOf(pos))
 ```
 
@@ -393,6 +414,8 @@ Entry method (URL hash | file upload | manual form)
 - **`window.scrollTo` in tests.** jsdom does not implement scrolling; `src/test/setup.js` stubs it with `vi.fn()`. Call `window.scrollTo.mockClear()` before asserting on it.
 - **`window.matchMedia` in tests.** jsdom does not implement it. Code that checks `prefers-reduced-motion` must guard for its absence (see `prefersReducedMotion()` in `StackView.jsx`); tests that need it mock `window.matchMedia` and restore it afterwards.
 - **Stack diagram tests assert `data-` attributes, not styles.** Query `[data-pos]`, `[data-edge]`, `data-captured`, `data-active`, `data-selected` on the SVG groups.
+- **Stack prose is not editable.** Adding a sentence to `data/stack.js` means finding it in a source document first. If it is not there, it does not exist yet — ask rather than writing it. Smoothing punctuation or merging two sentences into one string both fail the provenance test.
+- **New edges need a `ROUTES` entry and non-colliding label coordinates.** The eight edges share a narrow channel between the two columns; two geometry tests guard it, one for node bodies and one for label legibility. Verify in a browser as well — the label collision that shipped in 1.6.0 passed every test that existed at the time.
 - **Nav tests select by `data-view`.** Tab labels also appear as page headings, so tests find nav buttons via `button[data-view="…"]` inside the `Primary` navigation landmark rather than by text.
 - **Wing wrap-around.** Type 1's wings are 9 and 2; type 9's wings are 8 and 1. See the wing wrap tests in `scoring.test.js`.
 - **Disambiguation.** When top-2 Enneagram types are within threshold after bank exhaustion, a `branchKey` (e.g. `'4-5'`) triggers additional clarifying questions. This path is covered in tests — preserve it.
@@ -443,6 +466,18 @@ Version numbering guidance:
 - **Patch (Z):** bug fixes, test additions, copy/style tweaks that don't add or remove behavior
 - **Minor (Y):** new features, new views/components, significant refactors, new tooling
 - **Major (X):** breaking changes, major architectural overhauls, stack replacements
+
+### Known documentation and content drift
+
+Recorded so it is not rediscovered as an accident. As of 2.0.0 the Stack view follows `ct-consolidated.md`; the rest of the app does not yet:
+
+| Surface | Drift |
+|---|---|
+| `data/shadow.js` `POSITIONS[].brief`, `SHADOW_TEMPLATES`, `CROSSING_MATRIX` | Flood as a dormant pressure valve, Gamble as unreliable and misfiring, Counter as not-fluid, Critic as distorted. All contradicted by the source. |
+| `data/mbtiDetails.js` | All 16 `shadow8` briefs describe Flood as erupting only under breakdown. |
+| `data/mbtiStressFlow.js`, `utils/export.js` | Conflate Hunger Reaching (moderate stress, inferior grip) with Flood forced-primary (extreme stress). The source distinguishes them. |
+| `utils/shadow.js` `getShadowMirror`, `FULL_SHADOW_PAIR_NARRATIVE`, Compare's "Full Shadow Pair" | "Mirror" is reserved for the nested partner. This concept is the attitude inverse of the whole stack and needs a different name. |
+| `data/ennBase.js`, `data/combinations/`, `data/combinationProfiles.js` (~1,700 strings), `data/subtypes.js`, Explorer's growth-arrow card | Growth copy is instruction-shaped. The source says the growth direction is the falsification of Counter's threat prediction, must be externally sourced, and that performing it deliberately is the fixation operating. |
 
 ### When to update `CLAUDE.md`
 

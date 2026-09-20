@@ -16,6 +16,32 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ---
 
+## [2.0]
+
+### 2.0.0 — 2026-09-19
+
+Major: the Stack view's content model is replaced. The app previously encoded the May 2026 CT Minimum Viable Framework, whose single mechanism was Critic write-back. The September 2026 consolidated document (`docs/specs/ct-consolidated.md`, now checked in) supersedes that suite in full, and where the two disagree the consolidated document is authoritative. This is a framework replacement rather than a content edit, which is why it takes a major version: the diagram gained causal edges, several positions mean something different from what the app said they meant, and the terminology guard changed shape.
+
+- Changed: **the mechanism is adjacency corruption.** A shadow position's corrupted output becomes an ego position's input, and sustained corrupted input recalibrates the receiver; Critic write-back is the middle instance of that rule, not the whole of it. `data/stack.js` gains `MECHANISM`, and the ego→shadow and shadow→ego clauses are data rather than prose.
+- Added: **two causal edges the diagram was missing.** `bleed` (Counter → Refuge, the threat-output contamination that opens at Level 3 and captures Refuge at 4) and `interrupt` (Gamble → Lead, the interrupt line that entrains Lead at 8). Edges now carry a `kind` — `nested` for the four dependency couplings, `corruption` for the three shadow→ego edges, `structural` for the gate, which is not a corruption edge. Active edges per level are re-keyed accordingly: bleed opens at 3 and carries through 4, write-back runs across 5 and 6, interrupt drives the Lead capture at 8, trigger drives Flood at 9.
+- Fixed: **Flood is always-on background input, not an eruption.** The previous copy said it was quiet under ordinary conditions and surfaced only when everything else broke; the source says it runs all the time and becomes visible only when it surfaces through Gamble or takes over. Capture flips the direction of the override from away-from-danger to toward-fixation.
+- Fixed: **Gamble's surfacings stay accurate.** Polarity corruption is in the comparator, not the signal, so a surfacing at Level 7 or 8 still contains the accurate discrepancy — the person cannot read it, but someone else can. The view no longer describes Gamble as unreliable or misfiring.
+- Fixed: **Counter and Critic are proficient.** Both are Strong + Unvalued. Captured Counter is principled, symmetric defense applied to the fixation's territory; Critic does its job correctly throughout, and what changes is the data it samples.
+- Fixed: **Refuge is the engine**, propulsion in active mode and restoration in rest mode, not only a retreat. The Level 3 output increase sourced from downtime is its early tell.
+- Fixed: **the Level 6 gate flip validates the majority of Lead's outputs.** The previous copy described only the low-utility variant, where the gate rejects Lead, and presented it as the general case.
+- Fixed: **equilibrium sits at Reality-testing with Gamble intact**, not around Maintenance, which the source retires by name.
+- Fixed: **Level 1 is not a starting state.** It is reachable only by recovery, so it no longer carries a "Pre-colonization" band. `STAGE_BANDS` is the four stages; level 1's band is `null`.
+- Changed: the health-level bridge states where the two scales diverge instead of disclaiming the mapping. The source generates the nine Riso-Hudson levels rather than borrowing them.
+- Added: per-level Riso-Hudson name and band, capture kind (identification, immediate, accumulation) and the predicted transition sharpness, shown beside the narration. Four-stage data (`STAGES`), position roles (`ROLES`), and both pairing schemes (`NESTED_PAIRS`, `DOMAIN_PAIRS`) — the source calls confusing domain and nested pairs the most common contamination error, so the purpose panel now names both partners for the selected position.
+- Added: level narration carries the rest of its source paragraph behind a **More** expander, and the falsifier where the source states one (levels 3, 7 and 9).
+- Added: Counter threat output carries the Appendix B texture and the way that output contaminates Refuge, replacing the short form.
+- Added: **mechanical provenance.** Every prose string in `data/stack.js` must be a verbatim substring of a checked-in source document. Normalisation strips markdown emphasis and cross-references but never wording or punctuation, so a paraphrase fails. Multi-sentence content is stored as arrays of individually verifiable sentences. This makes the repo's long-standing "do not paraphrase framework prose" rule enforceable rather than advisory.
+- Changed: two deny-list patterns narrowed, because the consolidated document's own wording tripped them — `goes offline` rather than `offline` (the source says "Lead offline" for Flood forced-primary under extreme stress, a different claim from the retired one about a corrupted Anchor) and `opposing personality` rather than `opposing` (Beebe's term, while the source says "opposing attitude" throughout). Four newly retired terms added: maintenance ceiling, ego block, unimprovable, conversion window.
+- Fixed: the `interrupt`, `sample` and `check` edge labels overlapped in the diagram, with sample and check reading as a single word. Separated, and the geometry test now requires a readable gap rather than mere non-intersection.
+- Fixed: `StackView` read its deep-link query only on mount, so editing the hash or using browser back/forward between two `#/stack` links left the view unchanged. It now re-reads on `hashchange` and ignores malformed queries.
+- Docs: `docs/specs/stack-view.md` carries a supersession note — its §3 terminology guard and §5 content are superseded, its §9 open items are closed, and the rest still describes the shipped view.
+- Not yet aligned (tracked, not silently ignored): Explorer, Compare and `mbtiDetails.js` still carry the old Flood, Gamble, Counter and Critic descriptions; `mbtiStressFlow.js` conflates Hunger Reaching with Flood forced-primary; the growth copy across `combinationProfiles.js` and friends is instruction-shaped, which the source says is counterproductive. See CLAUDE.md.
+
 ## [1.6]
 
 ### 1.6.0 — 2026-09-13
