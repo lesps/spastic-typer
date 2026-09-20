@@ -19,6 +19,7 @@ import {
   substrateFor, fixationFor, MIN_LEVEL, MAX_LEVEL,
 } from '../utils/stack.js';
 import StackDiagram from '../components/StackDiagram.jsx';
+import StackReading from '../components/StackReading.jsx';
 import FnBadge from '../components/FnBadge.jsx';
 
 const TYPE_CODES = Object.keys(MBTI_TYPES);
@@ -45,9 +46,10 @@ export default function StackView() {
   const [selected, setSelected] = useState({ kind: 'node', id: 1 });
   const [personalized, setPersonalized] = useState(false);
   const [utility, setUtility] = useState('');
+  const [tab, setTab] = useState('model');
   const [replaying, setReplaying] = useState(false);
   const timer = useRef(null);
-  useScrollToTop();
+  useScrollToTop(tab);
 
   const stopReplay = useCallback(() => {
     if (timer.current) { clearInterval(timer.current); timer.current = null; }
@@ -124,6 +126,21 @@ export default function StackView() {
           The eight positions, the couplings between them, and how each one's purpose changes as colonization reaches it.
         </p>
       </div>
+
+      <div role="tablist" aria-label="Stack sections" style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+        {[{ id: 'model', label: 'Model' }, { id: 'reading', label: 'Reading' }].map(t => (
+          <button
+            key={t.id}
+            role="tab"
+            data-tab={t.id}
+            aria-selected={tab === t.id}
+            onClick={() => setTab(t.id)}
+            style={{ ...(tab === t.id ? S.btn : S.btnOutline), padding: '8px 16px', fontSize: 13 }}
+          >{t.label}</button>
+        ))}
+      </div>
+
+      {tab === 'reading' ? <StackReading level={state.level} /> : (<>
 
       <div style={{ ...S.card, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
         <label htmlFor="stack-type" style={{ ...S.mono, fontSize: 12 }}>Type</label>
@@ -418,6 +435,7 @@ export default function StackView() {
           <p style={{ ...S.body, fontSize: 12, color: G.textFaint }}>Into Refuge: {counter.contamination}</p>
         </div>
       )}
+      </>)}
     </div></div>
   );
 }
