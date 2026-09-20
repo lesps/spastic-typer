@@ -10,6 +10,8 @@ const {
   SOURCE_DOCS, STAGE_BANDS, MECHANISM, NESTED_PAIRS, DOMAIN_PAIRS, PAIR_NOTES, ROLES,
   CAPTURE_ORDER, CLASSIFICATION, STAGES, PURPOSES, LEVEL_NARRATION, EQUILIBRIUM_CAVEAT,
   CORRESPONDENCE_NOTE, COUNTER_THREAT_OUTPUT, EDGES, ACTIVE_EDGES, LABEL_TEMPLATES,
+  UTILITY, UTILITY_DIAGNOSTIC, UTILITY_ANCHORS, THRESHOLDS, GAMBLE_PROPERTIES,
+  GAMBLE_SUMMONABILITY, ODD_EVEN,
 } = STACK;
 
 const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -54,7 +56,9 @@ describe('stack data — provenance (no authored framework prose)', () => {
     for (const [name, value] of Object.entries(STACK)) {
       if (EXEMPT.has(name)) continue;
       for (const s of collectStrings(value)) {
-        if (s.length < 12) continue; // enum-ish values: 'sharp', 'nested', 'Healthy'
+        // Prose has spaces; ids and enum values ('sharp', 'gateFlip', 'Healthy')
+        // do not. Checking everything else is stricter than a length cutoff.
+        if (!/\s/.test(s)) continue;
         if (!CORPUS.includes(normalize(s))) offenders.push(`${name}: ${s.slice(0, 90)}`);
       }
     }
@@ -382,6 +386,111 @@ describe('stack data — active edges per level', () => {
   it('uses every edge at some level except the structural gate, which is not a corruption edge', () => {
     const used = new Set(LEVELS.flatMap(l => ACTIVE_EDGES[l]));
     for (const e of EDGES) expect(used.has(e.id), e.id).toBe(true);
+  });
+});
+
+describe('stack data — fixation utility for Lead', () => {
+  it('offers exactly the three utility configurations', () => {
+    expect(Object.keys(UTILITY).sort()).toEqual(['high', 'low', 'mixed']);
+  });
+
+  it('maps each to the stakes the diagnostic reads off', () => {
+    expect(UTILITY_DIAGNOSTIC.rows.map(r => r.utility)).toEqual(['high', 'mixed', 'low']);
+    for (const row of UTILITY_DIAGNOSTIC.rows) {
+      expect(UTILITY[row.utility].stakes).toBe(row.stakes);
+    }
+    expect(UTILITY_DIAGNOSTIC.nowhere).toMatch(/extreme corruption or typing error/);
+  });
+
+  it('puts low-utility equilibrium at Reality-testing with Gamble intact', () => {
+    expect(UTILITY.low.detail.join(' ')).toMatch(/Equilibrium stabilizes at Reality-testing with Gamble intact/);
+  });
+
+  it('has high utility deploy Lead across all stakes rather than compressing it', () => {
+    expect(UTILITY.high.detail.join(' ')).toMatch(/deployed in fixation service across all stakes/);
+    expect(UTILITY.high.detail.join(' ')).toMatch(/Counter operation is minimal/);
+  });
+
+  it('predicts a wide 6→7 gap at high utility and a narrow one at low', () => {
+    expect(UTILITY.high.gap).toMatch(/gap is wide/);
+    expect(UTILITY.low.gap).toMatch(/gap is narrow/);
+    expect(UTILITY.mixed.gap).toBeNull();
+  });
+
+  it('stores only the five committed anchor cells and does not infer the rest', () => {
+    expect(UTILITY_ANCHORS).toHaveLength(5);
+    expect(UTILITY_ANCHORS.filter(a => a.utility === 'high').map(a => `${a.fn}x${a.type}`))
+      .toEqual(['Tex3', 'Nix4', 'Sex8']);
+    expect(UTILITY_ANCHORS.filter(a => a.utility === 'low').map(a => `${a.fn}x${a.type}`))
+      .toEqual(['Fix3', 'Sex5']);
+    // Every anchor is about the function at Lead; the source commits to no other position.
+    for (const a of UTILITY_ANCHORS) expect(a.position).toBe(1);
+  });
+});
+
+describe('stack data — the two thresholds on Anchor drift', () => {
+  it('is the gate flip at 6 and discrepancy inversion at 7, in that order', () => {
+    expect(THRESHOLDS.map(t => [t.name, t.level])).toEqual([
+      ['gate flip', 6], ['discrepancy inversion', 7],
+    ]);
+  });
+
+  it('explains why the second threshold is higher than the first', () => {
+    expect(THRESHOLDS[1].why).toMatch(/expensive to read as wrong/);
+  });
+
+  it('lands each threshold on the level whose position it captures', () => {
+    expect(CAPTURE_ORDER[THRESHOLDS[0].level].pos).toBe(2); // Anchor
+    expect(CAPTURE_ORDER[THRESHOLDS[1].level].pos).toBe(7); // Gamble
+  });
+});
+
+describe('stack data — Gamble\'s three properties', () => {
+  it('has exactly sensitivity, lens and polarity', () => {
+    expect(GAMBLE_PROPERTIES.map(p => p.id)).toEqual(['sensitivity', 'lens', 'polarity']);
+  });
+
+  it('degrades sensitivity and lens as gradients from level 4, polarity discretely at 7', () => {
+    const by = Object.fromEntries(GAMBLE_PROPERTIES.map(p => [p.id, p]));
+    expect([by.sensitivity.degrades, by.sensitivity.from]).toEqual(['gradient', 4]);
+    expect([by.lens.degrades, by.lens.from]).toEqual(['gradient', 4]);
+    expect([by.polarity.degrades, by.polarity.from]).toEqual(['discrete', 7]);
+  });
+
+  it('keeps the signal accurate even once the comparator has inverted', () => {
+    const polarity = GAMBLE_PROPERTIES.find(p => p.id === 'polarity');
+    expect(polarity.detail.join(' ')).toMatch(/still contains the accurate discrepancy/);
+    expect(polarity.detail.join(' ')).toMatch(/Someone else can/);
+  });
+
+  it('keeps sensitivity trainable while directability is not', () => {
+    const sensitivity = GAMBLE_PROPERTIES.find(p => p.id === 'sensitivity');
+    expect(sensitivity.trainable).toMatch(/trainable in both directions/);
+    expect(GAMBLE_SUMMONABILITY).toMatch(/the background channel cannot be queried/);
+  });
+});
+
+describe('stack data — the odd/even signature', () => {
+  it('splits shadow captures from ego captures', () => {
+    expect(ODD_EVEN.odd.levels).toEqual([3, 5, 7, 9]);
+    expect(ODD_EVEN.even.levels).toEqual([4, 6, 8]);
+    expect(ODD_EVEN.odd.arc).toBe('shadow');
+    expect(ODD_EVEN.even.arc).toBe('ego');
+  });
+
+  it('matches the arc each level actually captures', () => {
+    for (const l of ODD_EVEN.odd.levels) expect(arcOf(CAPTURE_ORDER[l].pos)).toBe('shadow');
+    for (const l of ODD_EVEN.even.levels) expect(arcOf(CAPTURE_ORDER[l].pos)).toBe('ego');
+  });
+
+  it('predicts world-referential narration for odd levels and self-referential for even', () => {
+    expect(ODD_EVEN.odd.reported).toBe('the world changing');
+    expect(ODD_EVEN.even.reported).toBe('the self changing');
+    expect(ODD_EVEN.falsifier).toMatch(/uniformly self-referential or uniformly world-referential/);
+  });
+
+  it('omits level 2, which is identification rather than a capture', () => {
+    expect([...ODD_EVEN.odd.levels, ...ODD_EVEN.even.levels]).not.toContain(2);
   });
 });
 

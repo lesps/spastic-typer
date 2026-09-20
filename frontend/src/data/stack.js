@@ -375,3 +375,156 @@ export const LABEL_TEMPLATES = {
   levelLine:     'Level {level} · {rh} · {band}',
   stageLine:     '{name} stage · {pair} · Levels {levels}',
 };
+
+/**
+ * Fixation utility for Lead — the single surface modulator. Whether Lead's
+ * native output serves or conflicts with the fixation's strategy determines the
+ * surface presentation and the equilibrium depth, running on the same mechanism.
+ *
+ * `anchors` are the ONLY committed function × type cells in the source. The
+ * remaining cells do not exist; do not infer them. Utility is offered as a
+ * property the user reads off their own behaviour with the stakes-distribution
+ * diagnostic, which is how the source says to determine it.
+ */
+export const UTILITY = {
+  high: {
+    label: 'High utility',
+    stakes: 'Across all stakes',
+    summary: "Lead's native output directly serves the fixation",
+    detail: [
+      'Lead passes the corrupted gate and is deployed in fixation service across all stakes.',
+      'Integrated, ego-syntonic, recognizable as the type-fixation archetype; the fixation is visible in Lead operation.',
+      'Counter operation is minimal because Lead is doing the work.',
+    ],
+    gap: 'in high-utility configurations the gate flips early, so the 6→7 gap is wide',
+  },
+  mixed: {
+    label: 'Mixed utility',
+    stakes: 'Moderate stakes only',
+    summary: 'context-dependent operation revealing the utility seam',
+    detail: ['context-dependent operation revealing the utility seam'],
+    gap: null,
+  },
+  low: {
+    label: 'Low utility',
+    stakes: 'Low stakes only',
+    summary: "Lead's native output structurally conflicts with the fixation",
+    detail: [
+      'Lead fails validation in fixation-evaluation-hot contexts and operates only where the gate relaxes — private reflection, intimate trusted contexts, leisure, specific creative outlets.',
+      'Counter handles high-stakes load through its existing Strong + Unvalued proficiency.',
+      'Compressed, ego-dystonic, often mistyped because Counter-dominant operation resembles another type; the person senses the gap and seeks help.',
+      'Equilibrium stabilizes at Reality-testing with Gamble intact because further colonization adds no marginal utility.',
+    ],
+    gap: 'in low-utility configurations the gate flip already required deep drift, so the gap is narrow',
+  },
+};
+
+export const UTILITY_DIAGNOSTIC = {
+  question: 'where does the typed Lead actually operate natively?',
+  rows: [
+    { stakes: 'Across all stakes', utility: 'high' },
+    { stakes: 'Moderate stakes only', utility: 'mixed' },
+    { stakes: 'Low stakes only', utility: 'low' },
+  ],
+  nowhere: 'Nowhere observable → extreme corruption or typing error.',
+};
+
+// The only committed utility cells in the source. Everything else is unknown.
+export const UTILITY_ANCHORS = [
+  { fn: 'Te', position: 1, type: 3, utility: 'high' },
+  { fn: 'Ni', position: 1, type: 4, utility: 'high' },
+  { fn: 'Se', position: 1, type: 8, utility: 'high' },
+  { fn: 'Fi', position: 1, type: 3, utility: 'low' },
+  { fn: 'Se', position: 1, type: 5, utility: 'low' },
+];
+
+/**
+ * The two thresholds on Anchor's drift. Anchor's standard drifts continuously
+ * under corrupted write-back; these are the two discrete crossings on it, which
+ * is why Levels 6 and 7 are distinct levels rather than one event.
+ */
+export const THRESHOLDS = [
+  {
+    id: 'gateFlip',
+    name: 'gate flip',
+    level: 6,
+    detail: "the fixation-shaped standard validates the majority of Lead's outputs",
+    why: "reading corrupted output as acceptable takes less drift than reading clean input as wrong",
+  },
+  {
+    id: 'discrepancyInversion',
+    name: 'discrepancy inversion',
+    level: 7,
+    detail: "the standard is corrupt enough that Flood's clean data reads as deviant",
+    why: "It is higher than the gate flip because Lead's outputs are already partly fixation-shaped by Level 5 and are cheap to validate, whereas Flood's data is raw until Terminal and is expensive to read as wrong",
+  },
+];
+
+/**
+ * Gamble's three properties, and how each degrades. Only polarity is discrete;
+ * sensitivity and lens are gradients that start at Level 4, which is why
+ * surprise becomes rare before it becomes absent.
+ */
+export const GAMBLE_PROPERTIES = [
+  {
+    id: 'sensitivity',
+    name: 'Sensitivity',
+    what: 'the threshold a background signal must cross to surface',
+    degrades: 'gradient',
+    from: 4,
+    detail: [
+      'Feedback-modulated: Gamble is Unvalued, its interrupts are dismissed, and repeated dismissal raises the threshold.',
+      'A gradient at Gamble from Level 4, independent of Anchor; why surprise becomes rare (5–6) before it becomes absent (7+).',
+    ],
+    trainable: 'sensitivity is trainable in both directions, so hit rate and credited fraction can improve even though directability cannot',
+  },
+  {
+    id: 'lens',
+    name: 'Lens',
+    what: "the function Gamble evaluates through, Refuge's in opposing attitude",
+    degrades: 'gradient',
+    from: 4,
+    detail: [
+      "from Level 4 the shared function is run fixation-shaped most of the day at Refuge, and the vocabulary Gamble surfaces in leaks toward the fixation's",
+      "The flash still catches what is wrong and still reads it as wrong; the frame is increasingly the captured engine's",
+    ],
+    trainable: null,
+  },
+  {
+    id: 'polarity',
+    name: 'Polarity',
+    what: "the comparator, Anchor's standard",
+    degrades: 'discrete',
+    from: 7,
+    detail: [
+      'Because polarity corruption is in the comparator and not the signal, a surfacing at Level 7 or 8 still contains the accurate discrepancy.',
+      'The person cannot read it.',
+      'Someone else can.',
+    ],
+    trainable: null,
+  },
+];
+
+export const GAMBLE_SUMMONABILITY = 'Unsummonable stands: the background channel cannot be queried.';
+
+/**
+ * Odd levels are shadow captures, whose output is Unvalued and dismissed; even
+ * levels are ego captures, experienced as self. The source predicts the two are
+ * narrated differently, which is a check a user can run on their own memory.
+ */
+export const ODD_EVEN = {
+  odd: {
+    arc: 'shadow',
+    levels: [3, 5, 7, 9],
+    reported: 'the world changing',
+    example: 'people got more hostile, more careless, more dangerous',
+  },
+  even: {
+    arc: 'ego',
+    levels: [4, 6, 8],
+    reported: 'the self changing',
+    example: "I've been different, I can't relax the way I used to",
+  },
+  consequence: "only what the person can perceive as theirs is addressable, which is even-level positions and Gamble's registration",
+  falsifier: 'if descent narratives are uniformly self-referential or uniformly world-referential, the alternation is an artifact of the position model.',
+};
