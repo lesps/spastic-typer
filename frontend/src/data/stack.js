@@ -528,3 +528,77 @@ export const ODD_EVEN = {
   consequence: "only what the person can perceive as theirs is addressable, which is even-level positions and Gamble's registration",
   falsifier: 'if descent narratives are uniformly self-referential or uniformly world-referential, the alternation is an artifact of the position model.',
 };
+
+/**
+ * Scarcity model, Counter's threat orientation, and the growth direction, by
+ * Enneagram type. Appendix C. `growth` is the arrow target and `falsifies` is
+ * the experience Counter's threat output declares will not arrive — the growth
+ * direction is that falsification, not an aspirational quality or a practice.
+ */
+export const FIXATION = {
+  1: { scarcity: 'Nothing is sufficiently correct; error is always possible and serious', threat: 'Relaxing the standard produces irreversible damage', growth: 7, falsifies: 'satisfaction in something as it is, arriving without correction' },
+  2: { scarcity: 'Worth is produced by being needed; without giving I will be abandoned', threat: 'Without providing, no one will want me for what I am', growth: 4, falsifies: 'being sought for interiority rather than utility' },
+  3: { scarcity: 'Worth is produced only by performance; without achievement I am nothing', threat: 'Non-performance cascades to material and relational collapse', growth: 6, falsifies: 'support arriving without performing for it; structures holding during non-performance' },
+  4: { scarcity: 'Something essential is missing in me; I am too deficient to function normally', threat: 'I am too broken to sustain ordinary commitments', growth: 1, falsifies: 'consistent principled functioning available while the deficiency feeling persists' },
+  5: { scarcity: 'Internal resources are insufficient; demands exceed what I can meet', threat: 'Engagement will drain me to nothing', growth: 8, falsifies: 'direct engagement generating rather than depleting energy' },
+  6: { scarcity: 'The world is dangerous; support is unreliable; vigilance is the only defense', threat: 'Relaxing monitoring lets catastrophe arrive undetected', growth: 9, falsifies: 'rest with vigilance suspended; things hold without monitoring' },
+  7: { scarcity: 'Slowing down traps me in pain; depth means being stuck with the unbearable', threat: 'Committing to one thing exhausts all exits', growth: 5, falsifies: 'depth that is spacious rather than trapping' },
+  8: { scarcity: 'Vulnerability is exploitable; only force ensures safety', threat: 'Tenderness will be weaponized against me', growth: 2, falsifies: 'care given returning as care rather than leverage' },
+  9: { scarcity: 'My presence is disruptive; assertion destroys connection', threat: 'Asserting myself damages the field beyond repair', growth: 3, falsifies: 'assertion deepening connection; mattering welcomed' },
+};
+
+/** Structure is inborn; only calibration is revisable, and calibration is what drives level. */
+export const FIXATION_NOTES = {
+  structure: 'Its structure — the basic fear/desire architecture — is inborn.',
+  calibration: 'Its calibration — the scarcity model: how bad, how likely, how soon, in which domain — is learned.',
+  revision: "Counter's threat output is constitutional structure running on learned parameters; growth work revises the parameters, never the structure.",
+  invariance: 'Type does not change over a lifetime; level does.',
+};
+
+/**
+ * Substrate pressure by first instinct. The first instinct's territory is where
+ * IV-domain threat arises; that threat sets the amplitude of the fixation signal
+ * at Hunger and is therefore the rate term on every accumulation capture.
+ */
+export const SUBSTRATE = {
+  sp: {
+    drive: 'CARE',
+    territory: 'material stability for SP-first',
+    register: 'what is actually stable or real; worst case is losing the job, the money, the health, the roof',
+    reduction: 'stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency',
+  },
+  so: {
+    drive: 'PLAY',
+    territory: 'group standing for SO-first',
+    register: 'what happened in front of the room; worst case is public dismissal',
+    reduction: "stabilize standing — a group, a role, a place at the table that does not depend on the fixation's performance",
+  },
+  sx: {
+    drive: 'LUST',
+    territory: 'dyadic intensity for SX-first',
+    register: 'the specific person; worst case is bond rupture',
+    reduction: "stabilize the dyad — one reliable intense connection whose continuity does not track the fixation's strategy",
+  },
+};
+
+export const SUBSTRATE_ROLES = [
+  'Rate term on every accumulation capture, via Hunger signal → Counter threat output → downstream.',
+  'Co-condition at Lead, where it consumes deliberate direction.',
+  "Exceedance-frequency driver at Flood and at Gamble's firing rate",
+];
+
+export const SUBSTRATE_NOTE = 'It is not the fixation and it is not the level; it is what drives the level.';
+export const SUBSTRATE_TARGET = "In each case the target is not comfort but the removal of the specific threat the first instinct is monitoring, so that Hunger's signal amplitude drops and everything downstream runs at a lower rate.";
+
+/**
+ * Growth as falsification. Sourcing must be external and registration runs
+ * through Gamble; performing the growth direction deliberately is the fixation
+ * operating, which is why the app describes it rather than prescribing it.
+ */
+export const GROWTH_MECHANISM = [
+  "The growth direction is the specific experience Counter's threat output declares will not arrive — not a better quality, not an aspirational practice, the exact outcome Counter identifies as the consequence of the fixation failing",
+  "Each genuine growth-direction experience contradicts Counter's signal by delivering what it said was impossible, and revises the scarcity model's parameters — how bad, how likely, how soon — by one data point.",
+  'Sourcing must be external.',
+  "Counter's threat output is oriented precisely toward what the growth direction delivers, so approaching it deliberately activates the defense; performing the growth direction is the fixation operating.",
+  'Registration is internal and runs through Gamble, the discrepancy detector.',
+];

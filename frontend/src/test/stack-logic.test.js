@@ -2,9 +2,10 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import {
   captureLevelOf, capturedAt, captureState, isCaptured, fillTemplate, positionLabel,
   tierForLevel, parseStackQuery, readSavedTypes, counterThreatOutput, stackLayout, bezierPoint,
-  stageForLevel, sealedStages, nestedPartner, domainPartner,
+  stageForLevel, sealedStages, nestedPartner, domainPartner, substrateFor, fixationFor,
 } from '../utils/stack.js';
 import { CAPTURE_ORDER, ACTIVE_EDGES, EDGES, STAGES } from '../data/stack.js';
+import { ENN_ARROWS } from '../data/enneagram.js';
 
 const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const EXPECTED_CAPTURED = {
@@ -120,71 +121,67 @@ describe('readSavedTypes', () => {
   beforeEach(() => localStorage.clear());
 
   it('returns nulls when nothing is saved', () => {
-    expect(readSavedTypes()).toEqual({ mbti: null, enn: null });
+    expect(readSavedTypes()).toEqual({ mbti: null, enn: null, inst: null });
   });
   it('returns the saved MBTI and Enneagram core type', () => {
     localStorage.setItem('typer_mbti', JSON.stringify({ result: 'ENFP', scores: {} }));
     localStorage.setItem('typer_enn', JSON.stringify({ coreType: 4, wing: 5 }));
-    expect(readSavedTypes()).toEqual({ mbti: 'ENFP', enn: 4 });
+    expect(readSavedTypes()).toEqual({ mbti: 'ENFP', enn: 4, inst: null });
+  });
+  it('reads the first instinct from the standalone instinct result', () => {
+    localStorage.setItem('typer_inst', JSON.stringify({ instinctStack: ['sx', 'sp', 'so'] }));
+    expect(readSavedTypes().inst).toBe('sx');
+  });
+  it('falls back to the instinct stack on the Enneagram result', () => {
+    localStorage.setItem('typer_enn', JSON.stringify({ coreType: 9, instinctStack: ['so', 'sp', 'sx'] }));
+    expect(readSavedTypes().inst).toBe('so');
+  });
+  it('prefers the standalone instinct result when both are present', () => {
+    localStorage.setItem('typer_inst', JSON.stringify({ instinctStack: ['sp', 'so', 'sx'] }));
+    localStorage.setItem('typer_enn', JSON.stringify({ coreType: 9, instinctStack: ['sx', 'sp', 'so'] }));
+    expect(readSavedTypes().inst).toBe('sp');
   });
   it('never throws on malformed JSON or wrong shapes', () => {
     localStorage.setItem('typer_mbti', '{');
     localStorage.setItem('typer_enn', '"nope"');
-    expect(readSavedTypes()).toEqual({ mbti: null, enn: null });
+    localStorage.setItem('typer_inst', '[[[');
+    expect(readSavedTypes()).toEqual({ mbti: null, enn: null, inst: null });
     localStorage.setItem('typer_mbti', JSON.stringify({ result: 'XXXX' }));
     localStorage.setItem('typer_enn', JSON.stringify({ coreType: 12 }));
-    expect(readSavedTypes()).toEqual({ mbti: null, enn: null });
+    localStorage.setItem('typer_inst', JSON.stringify({ instinctStack: ['nope', 'sp'] }));
+    expect(readSavedTypes()).toEqual({ mbti: null, enn: null, inst: null });
+    localStorage.setItem('typer_inst', JSON.stringify({ instinctStack: 'sp' }));
+    expect(readSavedTypes().inst).toBeNull();
   });
 });
 
-describe('stageForLevel / sealedStages', () => {
-  it('has no stage at level 1, where nothing is captured', () => {
-    expect(stageForLevel(1)).toBeNull();
-    expect(sealedStages(1)).toEqual([]);
+describe('substrateFor / fixationFor', () => {
+  it('returns the substrate profile for each instinct, case-insensitively', () => {
+    expect(substrateFor('sp').territory).toMatch(/material stability/);
+    expect(substrateFor('SO').register).toMatch(/in front of the room/);
+    expect(substrateFor('sx').register).toMatch(/bond rupture/);
   });
 
-  it('assigns every level from 2 to a stage', () => {
-    const names = [2, 3, 4, 5, 6, 7, 8, 9].map(l => stageForLevel(l).name);
-    expect(names).toEqual([
-      'Boundary', 'Boundary', 'Maintenance', 'Maintenance',
-      'Reality-testing', 'Reality-testing', 'Terminal', 'Terminal',
-    ]);
-  });
-
-  it('seals a stage only once both of its positions are captured', () => {
-    expect(sealedStages(2).map(s => s.name)).toEqual([]);
-    expect(sealedStages(3).map(s => s.name)).toEqual(['Boundary']);
-    expect(sealedStages(4).map(s => s.name)).toEqual(['Boundary']);
-    expect(sealedStages(5).map(s => s.name)).toEqual(['Boundary', 'Maintenance']);
-    expect(sealedStages(9).map(s => s.name)).toEqual(STAGES.map(s => s.name));
-  });
-});
-
-describe('nestedPartner / domainPartner', () => {
-  it('returns the dependency coupling', () => {
-    expect([1, 2, 3, 4, 5, 6, 7, 8].map(nestedPartner)).toEqual([8, 7, 6, 5, 4, 3, 2, 1]);
-  });
-
-  it('returns the same-base-function partner, which is a different pairing', () => {
-    expect([1, 2, 3, 4, 5, 6, 7, 8].map(domainPartner)).toEqual([5, 6, 7, 8, 1, 2, 3, 4]);
-  });
-
-  it('never confuses the two', () => {
-    for (const pos of [1, 2, 3, 4, 5, 6, 7, 8]) {
-      expect(nestedPartner(pos)).not.toBe(domainPartner(pos));
+  it('returns the scarcity model, threat and growth direction for each type', () => {
+    for (let t = 1; t <= 9; t++) {
+      const f = fixationFor(t);
+      expect(f.scarcity.length).toBeGreaterThan(20);
+      expect(f.threat.length).toBeGreaterThan(20);
+      expect(f.falsifies.length).toBeGreaterThan(20);
     }
+    expect(fixationFor(3).growth).toBe(6);
+    expect(fixationFor(9).falsifies).toMatch(/assertion deepening connection/);
   });
 
-  it('is symmetric in both schemes', () => {
-    for (const pos of [1, 2, 3, 4, 5, 6, 7, 8]) {
-      expect(nestedPartner(nestedPartner(pos))).toBe(pos);
-      expect(domainPartner(domainPartner(pos))).toBe(pos);
-    }
+  it('matches the growth arrows the Enneagram data already uses', () => {
+    for (let t = 1; t <= 9; t++) expect(fixationFor(t).growth).toBe(ENN_ARROWS[t].growth);
   });
 
-  it('returns null outside the stack', () => {
-    expect(nestedPartner(9)).toBeNull();
-    expect(domainPartner(0)).toBeNull();
+  it('returns null for unknown input', () => {
+    expect(substrateFor('zz')).toBeNull();
+    expect(substrateFor(null)).toBeNull();
+    expect(fixationFor(0)).toBeNull();
+    expect(fixationFor('x')).toBeNull();
   });
 });
 

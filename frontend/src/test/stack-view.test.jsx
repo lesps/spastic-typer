@@ -287,6 +287,63 @@ describe('StackView — purpose panel', () => {
   });
 });
 
+describe('StackView — fixation and substrate personalization', () => {
+  const save = ({ mbti = 'ENFP', enn = 4, inst = null } = {}) => {
+    localStorage.setItem('typer_mbti', JSON.stringify({ result: mbti, scores: {} }));
+    localStorage.setItem('typer_enn', JSON.stringify({ coreType: enn, wing: 5 }));
+    if (inst) localStorage.setItem('typer_inst', JSON.stringify({ instinctStack: inst }));
+  };
+  const personalize = () => fireEvent.click(screen.getByRole('button', { name: /Personalize/ }));
+
+  it('shows the scarcity model and what Counter says will not arrive', () => {
+    save({ enn: 4 });
+    render(<StackView />);
+    expect(screen.queryByTestId('stack-fixation')).toBeNull();
+    personalize();
+    const fix = screen.getByTestId('stack-fixation');
+    expect(fix).toHaveTextContent(/Something essential is missing in me/);
+    expect(fix).toHaveTextContent(/I am too broken to sustain ordinary commitments/);
+    expect(screen.getByTestId('stack-growth')).toHaveTextContent(/consistent principled functioning available/);
+  });
+
+  it('frames the growth direction as falsification rather than as an instruction', () => {
+    save({ enn: 3 });
+    render(<StackView />);
+    personalize();
+    expect(screen.getByTestId('stack-growth')).toHaveTextContent(/performing the growth direction is the fixation operating/);
+    expect(screen.getByTestId('stack-fixation')).toHaveTextContent(/revises the parameters, never the structure/);
+  });
+
+  it('shows substrate pressure for the saved first instinct', () => {
+    save({ enn: 6, inst: ['sp', 'so', 'sx'] });
+    render(<StackView />);
+    personalize();
+    const sub = screen.getByTestId('stack-substrate');
+    expect(sub).toHaveTextContent(/SP/);
+    expect(sub).toHaveTextContent(/losing the job, the money, the health, the roof/);
+    expect(sub).toHaveTextContent(/income, housing, health, schedule/);
+    expect(sub).toHaveTextContent(/it is what drives the level/);
+  });
+
+  it('omits the substrate panel when no instinct is saved but still personalizes', () => {
+    save({ enn: 5 });
+    render(<StackView />);
+    personalize();
+    expect(screen.getByTestId('stack-fixation')).toBeInTheDocument();
+    expect(screen.queryByTestId('stack-substrate')).toBeNull();
+  });
+
+  it('drops both panels again when personalization is turned off', () => {
+    save({ enn: 8, inst: ['sx', 'sp', 'so'] });
+    render(<StackView />);
+    personalize();
+    expect(screen.getByTestId('stack-substrate')).toHaveTextContent(/bond rupture/);
+    fireEvent.click(screen.getByRole('button', { name: /Back to the impersonal view/ }));
+    expect(screen.queryByTestId('stack-fixation')).toBeNull();
+    expect(screen.queryByTestId('stack-substrate')).toBeNull();
+  });
+});
+
 describe('StackView — Anchor drift and the two thresholds', () => {
   it('marks each threshold crossed only once its level is reached', () => {
     render(<StackView />);

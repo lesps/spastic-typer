@@ -9,13 +9,14 @@ import {
   EDGES, EQUILIBRIUM_CAVEAT, LEVEL_NARRATION, PURPOSES, CLASSIFICATION, LABEL_TEMPLATES,
   ROLES, STAGES, MECHANISM, CORRESPONDENCE_NOTE,
   UTILITY, UTILITY_DIAGNOSTIC, THRESHOLDS, GAMBLE_PROPERTIES, GAMBLE_SUMMONABILITY, ODD_EVEN,
+  FIXATION_NOTES, SUBSTRATE_ROLES, SUBSTRATE_NOTE, SUBSTRATE_TARGET, GROWTH_MECHANISM,
 } from '../data/stack.js';
 import { parseHash } from '../utils/route.js';
 import { getFullStack } from '../utils/shadow.js';
 import {
   parseStackQuery, readSavedTypes, captureState, captureLevelOf, positionLabel, fnAtPositionLabel,
   fillTemplate, tierForLevel, counterThreatOutput, nestedPartner, domainPartner,
-  MIN_LEVEL, MAX_LEVEL,
+  substrateFor, fixationFor, MIN_LEVEL, MAX_LEVEL,
 } from '../utils/stack.js';
 import StackDiagram from '../components/StackDiagram.jsx';
 import FnBadge from '../components/FnBadge.jsx';
@@ -92,6 +93,8 @@ export default function StackView() {
     ? `Level ${state.level} · ${state.rh} · no position captured`
     : `Level ${state.level} · ${state.band} · captures ${nameOf(state.justCaptured)} (Position ${state.justCaptured})`;
   const counter = counterThreatOutput(type);
+  const fixation = fixationType ? fixationFor(fixationType) : null;
+  const substrate = personalized ? substrateFor(init.saved.inst) : null;
   const bridge = fixationType ? HEALTH_LEVELS[fixationType]?.[tierForLevel(state.level)] : null;
 
   const util = utility ? UTILITY[utility] : null;
@@ -141,7 +144,7 @@ export default function StackView() {
             </button>
           ) : (
             <button type="button" onClick={personalize} style={{ ...S.btn, padding: '7px 12px', fontSize: 12 }}>
-              Personalize for {init.saved.mbti} · Type {init.saved.enn}
+              Personalize for {init.saved.mbti} · Type {init.saved.enn}{init.saved.inst ? ` · ${init.saved.inst.toUpperCase()}` : ''}
             </button>
           )
         )}
@@ -363,6 +366,44 @@ export default function StackView() {
               </p>
               <p style={{ ...S.body, fontSize: 13 }}>{join(PURPOSES[selPos].captured)}</p>
             </div>
+          </div>
+        </div>
+      )}
+
+      {fixation && (
+        <div style={S.cardGold} data-testid="stack-fixation">
+          <h3 style={S.h3}>Type {fixation.type} at Hunger</h3>
+          <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, marginBottom: 8 }}>Scarcity model</p>
+          <p style={{ ...S.body, fontSize: 13, marginBottom: 12 }}>{fixation.scarcity}</p>
+          <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, marginBottom: 6 }}>Counter's threat output is oriented toward</p>
+          <p style={{ ...S.body, fontSize: 13, marginBottom: 12 }}>{fixation.threat}</p>
+          <div data-testid="stack-growth" style={{ padding: '10px 12px', borderRadius: 8, background: alpha(G.success, 0.07), border: `1px solid ${alpha(G.success, 0.25)}` }}>
+            <p style={{ ...S.mono, fontSize: 11, color: G.success, marginBottom: 6 }}>
+              What that threat says will not arrive · direction {fixation.growth}
+            </p>
+            <p style={{ ...S.body, fontSize: 13, marginBottom: 8 }}>{fixation.falsifies}</p>
+            <p style={{ fontSize: 12, color: G.textFaint }}>{GROWTH_MECHANISM[3]}</p>
+          </div>
+          <p style={{ fontSize: 12, color: G.textFaint, marginTop: 12 }}>
+            {FIXATION_NOTES.revision} {FIXATION_NOTES.invariance}
+          </p>
+        </div>
+      )}
+
+      {substrate && (
+        <div style={S.card} data-testid="stack-substrate">
+          <h3 style={S.h3}>Substrate pressure · {substrate.instinct.toUpperCase()}</h3>
+          <p style={{ ...S.body, fontSize: 13, marginBottom: 10 }}>{SUBSTRATE_NOTE}</p>
+          <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, marginBottom: 4 }}>Threat register</p>
+          <p style={{ ...S.body, fontSize: 13, marginBottom: 12 }}>{substrate.register}</p>
+          <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, marginBottom: 4 }}>Three roles</p>
+          <ul style={{ ...S.body, fontSize: 13, marginBottom: 12, paddingLeft: 18 }}>
+            {SUBSTRATE_ROLES.map((r, i) => <li key={i} style={{ marginBottom: 4 }}>{r}</li>)}
+          </ul>
+          <div style={{ padding: '10px 12px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}>
+            <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, marginBottom: 6 }}>Pressure reduction</p>
+            <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}>{substrate.reduction}</p>
+            <p style={{ fontSize: 12, color: G.textFaint }}>{SUBSTRATE_TARGET}</p>
           </div>
         </div>
       )}
