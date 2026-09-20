@@ -57,15 +57,16 @@ spastic-typer/
 |------|-----|---------|
 | `GuidedTyper.jsx` | ~1,375 | All three quiz flows + choose screen + share/export; links into Explorer and Stack |
 | `ComparePage.jsx` | ~1,185 | Pairwise & group dynamics analysis; receives `setView` for its Stack links |
-| `Explorer.jsx` | ~840 | Reference tool: Enneagram, MBTI (quadrant grid, position reference, typing SOP), Instinct, Integration |
+| `Explorer.jsx` | ~860 | Reference tool: Enneagram, MBTI (quadrant grid, position reference, typing SOP), Instinct, Integration |
 | `CombinedProfile.jsx` | ~315 | Integrated profile from all three saved results; rendered by `GuidedTyper` in its `combined` phase |
-| `StackView.jsx` | ~270 | Stack page: type selector, `StackDiagram`, colonization scrubber (levels 1–9) with narration, More expander, falsifier, capture kind and the equilibrium caveat, purpose panel (native vs. captured, plus role and both pairings), Replay, personalization from saved results, Counter threat-output form. Reads `#/stack?type=…&level=…` on mount **and on `hashchange`**. |
+| `StackView.jsx` | ~440 | Stack page: type selector, `StackDiagram`, colonization scrubber (levels 1–9) with narration, More expander, falsifier, capture kind and the equilibrium caveat, purpose panel (native vs. captured, plus role and both pairings), Replay, personalization from saved results, Counter threat-output form. Two tabs: **Model** (diagram, scrubber, purposes, Anchor drift, Gamble, utility) and **Reading** (renders `StackReading`). Reads `#/stack?type=…&level=…` on mount **and on `hashchange`**. |
 
 ### Components (`src/components/`)
 
 | File | Purpose |
 |------|---------|
 | `AppNav.jsx` | Primary navigation (Typer / Explorer / Compare / Stack). Bottom tab bar on phones, top bar from 681px. Writes the view into the URL hash. |
+| `StackReading.jsx` | The Reading tab of the Stack view: coaching bands (highlighted against the current level), diagnostic table, the three activations, predicted typing errors, clinical sequence, failure modes, and the test set. Takes `level`. |
 | `StackDiagram.jsx` | Inline-SVG diagram of the 8 positions and 8 couplings (4 nested, 3 corruption, 1 structural gate). Nodes/edges are `role="button"`, keyboard-activatable, and expose `data-pos`, `data-edge`, `data-fn`, `data-captured`, `data-just-captured`, `data-active`, `data-selected` for tests. Geometry comes from `stackLayout()` in `utils/stack.js`. |
 | `LikertScale.jsx` | 7-point scale widget (−3 to +3) used in all quizzes |
 | `ProgressBar.jsx` | Thin quiz progress indicator |
@@ -81,9 +82,9 @@ spastic-typer/
 | `cognitive.js` | 10 | `COG_FUNCTIONS` — 8 Jungian functions with color, desc, strengths, shadow |
 | `pairLookup.js` | ~6,973 | Pre-computed `ENN_DYNAMICS`, `MBTI_INSIGHTS`, `INSTINCT_STACK_DYNAMICS` for all type pairs. **Do not hand-edit** — regenerate via `scripts/generatePairs.mjs` |
 | `sop.js` | 33 | `SOP_STEPS` (typing methodology), `QUADRANTS` (MBTI 4-quadrant grid) |
-| `shadow.js` | ~180 | `POSITIONS`, `SHADOW_TEMPLATES`, `CROSSING_MATRIX`, `FULL_SHADOW_PAIR_NARRATIVE` — 8-position naming system and unified comparison algorithm data |
+| `shadow.js` | ~140 | `POSITIONS` (identity only: pos, name, arc), `CROSSING_MATRIX`, `STACK_INVERSION_NARRATIVE` — 8-position naming and the unified comparison algorithm. What a position *does* lives in `ROLES` in `stack.js`. |
 | `levels.js` | ~300 | `LEVELS[ennType].{healthy,average,unhealthy}` — Riso-Hudson tier `range`, `title`, `description`, `behaviors` per Enneagram type |
-| `stack.js` | ~375 | Stack view content, sourced verbatim from `SOURCE_DOCS`: `MECHANISM`, `STAGE_BANDS`, `STAGES`, `CAPTURE_ORDER` (level → position, capture kind, transition sharpness, Riso-Hudson name and band), `CLASSIFICATION` (Augusta), `ROLES`, `NESTED_PAIRS` / `DOMAIN_PAIRS` / `PAIR_NOTES`, `PURPOSES` (native / captured sentence arrays), `LEVEL_NARRATION` (text / more / falsifier), `EQUILIBRIUM_CAVEAT`, `CORRESPONDENCE_NOTE`, `COUNTER_THREAT_OUTPUT` (texture + Refuge contamination), `EDGES`, `ACTIVE_EDGES`, `LABEL_TEMPLATES`. Strings only; guarded by the provenance and deny-list tests. |
+| `stack.js` | ~745 | Stack view content, sourced verbatim from `SOURCE_DOCS`: `MECHANISM`, `STAGE_BANDS`, `STAGES`, `CAPTURE_ORDER` (level → position, capture kind, transition sharpness, Riso-Hudson name and band), `CLASSIFICATION` (Augusta), `ROLES`, `NESTED_PAIRS` / `DOMAIN_PAIRS` / `PAIR_NOTES`, `PURPOSES`, `LEVEL_NARRATION` (text / more / falsifier), `EQUILIBRIUM_CAVEAT`, `CORRESPONDENCE_NOTE`, `COUNTER_THREAT_OUTPUT`, `EDGES`, `ACTIVE_EDGES`, `LABEL_TEMPLATES`; **modulators** `UTILITY` / `UTILITY_DIAGNOSTIC` / `UTILITY_ANCHORS`, `THRESHOLDS`, `GAMBLE_PROPERTIES`, `ODD_EVEN`, `STRESS_EVENTS`; **personalization** `FIXATION` (Appendix C), `SUBSTRATE`, `GROWTH_MECHANISM`; **reading** `COACHING_BANDS`, `DIAGNOSTIC`, `ACTIVATIONS`, `TYPING_ERRORS`, `CLINICAL_SEQUENCE`, `FAILURE_MODES`, `TEST_SET`. Strings only; guarded by the provenance and deny-list tests. |
 | Others | — | `combinationProfiles.js` + `combinations/`, `crossRules.js`, `ennBase.js`, `ennMbtiCorrelation.js`, `groupArchetypes.js`, `instModifiers.js`, `instinctPairDynamics.js`, `instinctStackProfiles.js`, `integrationNarratives.js`, `mbtiDetails.js`, `mbtiDevelopment.js`, `mbtiModifiers.js`, `mbtiStressFlow.js`, `subtypes.js`, `typeInteractionGrid.js` — reference content for Explorer, Compare, and the combined profile |
 
 ### Utils (`src/utils/`)
@@ -95,9 +96,9 @@ spastic-typer/
 | `export.js` | `generateExportMarkdown` (full profile report + AI context notes) |
 | `archetype.js` | `computeArchetypeName` (Enneagram + MBTI combo name) |
 | `group.js` | `analyzeGroup` (patterns for 3+ people) |
-| `shadow.js` | `flipAttitude`, `getShadowStack`, `getFullStack`, `getShadowType`, `getShadowMirror`, `getPositionCrossings`, `instantiateTemplate` |
+| `shadow.js` | `flipAttitude`, `getShadowStack`, `getFullStack`, `getShadowType`, `getStackInverse`, `getPositionCrossings` |
 | `route.js` | `parseHash`, `buildHash`, `VIEWS` (`typer`, `explorer`, `compare`, `stack`), `DEFAULT_VIEW` — URL-hash ↔ view mapping (accepts legacy `#p1=…` links; `#/model` → Explorer) |
-| `stack.js` | `captureState(level)`, `capturedAt`, `captureLevelOf`, `isCaptured`, `tierForLevel`, `stageForLevel`, `sealedStages`, `nestedPartner`, `domainPartner`, `fillTemplate`, `positionLabel(pos, level?)`, `fnAtPositionLabel`, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, `stackLayout()`, `bezierPoint`, `MIN_LEVEL` / `MAX_LEVEL` — pure Stack-view logic and diagram geometry |
+| `stack.js` | `captureState(level)`, `capturedAt`, `captureLevelOf`, `isCaptured`, `tierForLevel`, `stageForLevel`, `sealedStages`, `nestedPartner`, `domainPartner`, `substrateFor`, `fixationFor`, `fillTemplate`, `positionLabel(pos, level?)`, `fnAtPositionLabel`, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, `stackLayout()`, `bezierPoint`, `MIN_LEVEL` / `MAX_LEVEL` — pure Stack-view logic and diagram geometry |
 | `compare.js`, `share.js` | Compare-page analyses (`getCognitiveHarmony`, …) and profile-code encode/decode |
 | `scroll.js` | `scrollToTop`, `useScrollToTop(...deps)` — resets scroll when a view, tab, or detail selection changes |
 
@@ -157,10 +158,11 @@ All tests live in `frontend/src/test/`:
 | `route.test.js` | `parseHash` / `buildHash`, legacy view aliases |
 | `explorer.test.jsx` | MBTI quadrant grid, typing SOP toggle, type detail open/back, collapsible tab intros |
 | `theme.test.js` | `hexToRgb` / `alpha`, semantic tokens present, and a lint-style guard that no view or component contains a hex or rgba literal |
-| `shadow.test.js` | Shadow stack derivation, position definitions, crossing algorithm, structural invariants |
+| `shadow.test.js` | Shadow stack derivation, position definitions, crossing algorithm, structural invariants, and the per-type shadow briefs (every function a brief names belongs to that type's stack; no retired claims about Flood, Gamble, Counter or Critic) |
 | `stack-data.test.js` | **Provenance** (every prose string is a verbatim substring of a source document, and a paraphrase of a real sentence fails), `data/stack.js` integrity (capture order, capture kinds, transition profile, Riso-Hudson names, stages, roles, both pairings, purposes, narration, edge kinds and endpoints, active edges), level ≠ position labelling, and the **terminology deny-list** including the two deliberate narrowings |
 | `stack-logic.test.js` | Table-driven `captureState` across levels 1–9 (cumulative, strictly nested, empty at 1), `captureLevelOf`, stage helpers, nested/domain partners, templating, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, and `stackLayout` geometry invariants (no edge crosses a node body; no two edge labels collide) |
-| `stack-view.test.jsx` | Stack page: type selection and deep links (on mount **and** on `hashchange`), diagram `data-` state per level, scrubber label/caveat/narration/More/falsifier/capture kind, tap and keyboard selection, purpose panel inert/active and both pairings, Replay with fake timers and reduced motion, personalization and malformed storage |
+| `stack-reading.test.jsx` | Model/Reading tab switching, coaching bands tracking the scrubber (including level 6 being the Reality-testing stage but the Maintenance band), diagnostic rows, activations, clinical sequence, failure modes, the test set |
+| `stack-view.test.jsx` | Stack page: type selection and deep links (on mount **and** on `hashchange`), diagram `data-` state per level, scrubber label/caveat/narration/More/falsifier/capture kind, tap and keyboard selection, purpose panel inert/active and both pairings, Replay with fake timers and reduced motion, personalization (fixation + substrate) and malformed storage, the utility selector, both Anchor thresholds, Gamble's three properties, the odd/even tag |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js` | Compare-page analyses: `getCognitiveHarmony`, `analyzeGroup`, distribution helpers |
 | `combinations.test.js`, `subtypes.test.js` | Combined-profile loading and subtype data integrity |
 
@@ -261,6 +263,10 @@ The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (
 |---|---|---|
 | **Nested** | 1–8, 2–7, 3–6, 4–5 | Dependency coupling. Each shadow position reads its nested partner's output. The colonization sequence runs on these. "Mirror partner" means nested partner. |
 | **Domain** | 1–5, 2–6, 3–7, 4–8 | Same base function in opposing attitudes. One territory, two access profiles. Colonization must capture both members to seal a domain. |
+
+**"Mirror" is reserved for the nested partner.** The type whose ego stack *is* another type's shadow stack is the **stack inverse** (`getStackInverse`, `STACK_INVERSION_NARRATIVE`, Compare's "Full Stack Inversion"). Calling that a mirror is the domain/nested confusion above.
+
+**Two stress events, not one.** `STRESS_EVENTS` keeps them apart: Hunger Reaching at moderate stress is the inferior grip; Flood forced-primary at extreme stress is the background channel becoming the only input. Same domain pair, different events. Copy describing one must say which.
 
 ### Stack Terminology Guard
 
@@ -415,6 +421,8 @@ Entry method (URL hash | file upload | manual form)
 - **`window.matchMedia` in tests.** jsdom does not implement it. Code that checks `prefers-reduced-motion` must guard for its absence (see `prefersReducedMotion()` in `StackView.jsx`); tests that need it mock `window.matchMedia` and restore it afterwards.
 - **Stack diagram tests assert `data-` attributes, not styles.** Query `[data-pos]`, `[data-edge]`, `data-captured`, `data-active`, `data-selected` on the SVG groups.
 - **Stack prose is not editable.** Adding a sentence to `data/stack.js` means finding it in a source document first. If it is not there, it does not exist yet — ask rather than writing it. Smoothing punctuation or merging two sentences into one string both fail the provenance test.
+- **Per-type content generated across all 16 stacks must be scoped per type.** The shadow briefs in `mbtiDetails.js` are generated by applying the source's per-position account to each type's stack. A generator that matches `shadow7: { function: 'Te'` globally will overwrite every type sharing that function at that position. `shadow.test.js` asserts every function a brief names belongs to that type's stack; keep it.
+- **Prose strings must carry exactly the punctuation the source gives them.** Truncating a sentence just before its period makes joined sentences run together on the page; adding a period to a string the JSX already punctuates shows a double stop. Fix by extending or trimming the *selection*, never by editing wording. `stack-data.test.js` asserts both directions.
 - **New edges need a `ROUTES` entry and non-colliding label coordinates.** The eight edges share a narrow channel between the two columns; two geometry tests guard it, one for node bodies and one for label legibility. Verify in a browser as well — the label collision that shipped in 1.6.0 passed every test that existed at the time.
 - **Nav tests select by `data-view`.** Tab labels also appear as page headings, so tests find nav buttons via `button[data-view="…"]` inside the `Primary` navigation landmark rather than by text.
 - **Wing wrap-around.** Type 1's wings are 9 and 2; type 9's wings are 8 and 1. See the wing wrap tests in `scoring.test.js`.
@@ -469,15 +477,11 @@ Version numbering guidance:
 
 ### Known documentation and content drift
 
-Recorded so it is not rediscovered as an accident. As of 2.0.0 the Stack view follows `ct-consolidated.md`; the rest of the app does not yet:
+As of 3.0.0 the whole app follows `ct-consolidated.md`; the drift table that stood here at 2.0.0 is cleared. What remains is one deliberate exception, recorded so it is not mistaken for an oversight:
 
-| Surface | Drift |
+| Surface | Status |
 |---|---|
-| `data/shadow.js` `POSITIONS[].brief`, `SHADOW_TEMPLATES`, `CROSSING_MATRIX` | Flood as a dormant pressure valve, Gamble as unreliable and misfiring, Counter as not-fluid, Critic as distorted. All contradicted by the source. |
-| `data/mbtiDetails.js` | All 16 `shadow8` briefs describe Flood as erupting only under breakdown. |
-| `data/mbtiStressFlow.js`, `utils/export.js` | Conflate Hunger Reaching (moderate stress, inferior grip) with Flood forced-primary (extreme stress). The source distinguishes them. |
-| `utils/shadow.js` `getShadowMirror`, `FULL_SHADOW_PAIR_NARRATIVE`, Compare's "Full Shadow Pair" | "Mirror" is reserved for the nested partner. This concept is the attitude inverse of the whole stack and needs a different name. |
-| `data/ennBase.js`, `data/combinations/`, `data/combinationProfiles.js` (~1,700 strings), `data/subtypes.js`, Explorer's growth-arrow card | Growth copy is instruction-shaped. The source says the growth direction is the falsification of Counter's threat prediction, must be externally sourced, and that performing it deliberately is the fixation operating. |
+| `data/combinationProfiles.js` (~1,700 strings), `data/combinations/`, `data/ennBase.js`, `data/subtypes.js` | Growth copy is generated and instruction-shaped. Not rewritten: the source supplies one growth line per type (Appendix C), not per type-wing-instinct cell, so a faithful rewrite needs content that does not exist. Explorer carries Appendix C and a caveat stating what the generated copy is — descriptions of what the arrival looks like, not instructions for producing it. Revisit only with owner-supplied per-cell content, via `scripts/`. |
 
 ### When to update `CLAUDE.md`
 
