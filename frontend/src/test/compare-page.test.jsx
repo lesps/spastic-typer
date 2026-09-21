@@ -317,7 +317,7 @@ describe('ComparePage — Add My Profile button', () => {
 });
 
 describe('ComparePage — shadow dynamics', () => {
-  it('shows Full Shadow Pair callout for ENFP + INFJ', () => {
+  it('shows Full Stack Inversion callout for ENFP + INFJ', () => {
     localStorage.setItem('compare_persons', JSON.stringify([
       { label: 'P1', ennType: 4, ennWing: 5, ennWingStrength: 3, instinctStack: ['sx', 'sp', 'so'], mbti: 'ENFP', ennScores: null },
       { label: 'P2', ennType: 5, ennWing: 4, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'INFJ', ennScores: null },

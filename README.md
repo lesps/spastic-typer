@@ -35,7 +35,7 @@ For each pair the Compare page shows:
 - Wing dynamics
 - Instinct stack compatibility
 - MBTI cognitive-function overlap and tips
-- **Shadow Stack** — 8-position cognitive function model (Lead through Flood) with unified cross-stack comparison
+- **Shadow Stack** — 8-position cognitive function model (Lead through Flood) with unified cross-stack comparison and Full Stack Inversion detection
 
 When 3 or more profiles are loaded, a **Group Analysis** section summarizes patterns across the whole set.
 
@@ -66,11 +66,14 @@ An interactive model of the eight cognitive-function positions — Lead, Anchor,
 - **Type selector** — any of the 16 types (or positions only) puts the actual function on each node, so the captured copy is about *your* Te at Refuge, not Refuge in the abstract.
 - **Replay** — walks levels 1 → 9 at about 1.2s per step; under `prefers-reduced-motion` it jumps to the end.
 - **Personalize** — with both an MBTI and an Enneagram result saved, badges Hunger with the fixation, shows the Counter threat-output form for that stack, and bridges the current level to Riso-Hudson tier language (flagged as an interpretive bridge, not an equivalence).
+- **Utility, thresholds and Gamble** — a stakes question that sets which fixation-utility configuration applies and how wide the 6→7 gap should be; Anchor's two discrete crossings marked as the scrubber passes them; and Gamble as three properties degrading at different rates rather than one switch.
+- **Personalize** — with an Enneagram result saved, the scarcity model, what the defense predicts will not arrive, and the growth direction as that prediction being falsified. With an instinct result too, the substrate pressure running underneath it and the pressure reduction that targets it.
+- **Reading tab** — coaching bands tracking the current level, a diagnostic table mapping observations to levels, the three conversational activations, the clinical sequence, the two failure modes of premature growth work, and all fourteen of the framework's own falsifiers.
 - **Deep links** — `#/stack?type=ENFP&level=5`, followed on load and on later hash changes, so browser back/forward between two stack links works. Reached from the Typer home and MBTI result screens and from Compare's Shadow Stack section.
 
-The Stack view follows **The Cognitive Thumbprint** (`docs/specs/ct-consolidated.md`), which supersedes the earlier Minimum Viable Framework. The mechanism is adjacency corruption: a shadow position's corrupted output becomes an ego position's input, and sustained corrupted input recalibrates the receiver. Critic write-back is one instance of it.
+The app follows **The Cognitive Thumbprint** (`docs/specs/ct-consolidated.md`). The mechanism is adjacency corruption: a shadow position's corrupted output becomes an ego position's input, and sustained corrupted input recalibrates the receiver. Critic write-back is one instance of it.
 
-Content lives in `frontend/src/data/stack.js` and is sourced verbatim — a test asserts that every prose string is a substring of a checked-in source document, so the framework prose cannot drift into paraphrase. Surfaces outside the Stack view have not yet been brought onto the consolidated document; CLAUDE.md records exactly which.
+Content lives in `frontend/src/data/stack.js` and is sourced verbatim — a test asserts that every prose string is a substring of a checked-in source document, so the framework prose cannot drift into paraphrase. As of 3.0.0 Explorer and Compare follow the same document; the one deliberate exception is the generated growth copy, which CLAUDE.md records.
 
 ---
 
@@ -159,7 +162,8 @@ Expected output:
 | `shadow.test.js` | Shadow stack derivation, position crossings |
 | `stack-data.test.js` | Stack content provenance, integrity, and the terminology deny-list |
 | `stack-logic.test.js` | Capture state across levels 1–9, stage and pair helpers, query parsing, diagram geometry |
-| `stack-view.test.jsx` | Stack page behaviour: diagram state, scrubber, selection, purpose panel, replay, personalization |
+| `stack-view.test.jsx` | Stack page behaviour: diagram state, scrubber, selection, purpose panel, replay, personalization, utility, thresholds, Gamble |
+| `stack-reading.test.jsx` | Reading tab: tab switching, coaching bands tracking the level, diagnostics, clinical sequence, test set |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js`, `combinations.test.js`, `subtypes.test.js` | Compare analyses, group patterns, combined-profile data |
 
 All tests must pass before merging. Fix root causes — do not skip or suppress tests.
@@ -179,10 +183,11 @@ spastic-typer/
 │   │   │   ├── ComparePage.jsx   # Pairwise & group dynamics analysis (~1,185 LOC)
 │   │   │   ├── Explorer.jsx      # Reference tool: Enneagram, MBTI, Instinct, Integration (~840 LOC)
 │   │   │   ├── CombinedProfile.jsx # Integrated profile from all three saved results (~315 LOC)
-│   │   │   └── StackView.jsx     # Stack page: diagram, colonization scrubber, purpose panel (~270 LOC)
+│   │   │   └── StackView.jsx     # Stack page: Model and Reading tabs (~440 LOC)
 │   │   ├── components/           # Small reusable UI pieces
 │   │   │   ├── AppNav.jsx        # Primary nav: bottom tabs on phones, top bar on wider screens
 │   │   │   ├── StackDiagram.jsx  # Inline-SVG eight-position diagram with its eight couplings
+│   │   │   ├── StackReading.jsx  # Reading tab: bands, diagnostics, clinical sequence, test set
 │   │   │   ├── LikertScale.jsx   # 7-point scale widget (−3 to +3)
 │   │   │   ├── ProgressBar.jsx   # Quiz progress indicator
 │   │   │   ├── FnBadge.jsx       # Color-coded cognitive function badge

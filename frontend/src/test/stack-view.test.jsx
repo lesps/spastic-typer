@@ -287,6 +287,146 @@ describe('StackView — purpose panel', () => {
   });
 });
 
+describe('StackView — fixation and substrate personalization', () => {
+  const save = ({ mbti = 'ENFP', enn = 4, inst = null } = {}) => {
+    localStorage.setItem('typer_mbti', JSON.stringify({ result: mbti, scores: {} }));
+    localStorage.setItem('typer_enn', JSON.stringify({ coreType: enn, wing: 5 }));
+    if (inst) localStorage.setItem('typer_inst', JSON.stringify({ instinctStack: inst }));
+  };
+  const personalize = () => fireEvent.click(screen.getByRole('button', { name: /Personalize/ }));
+
+  it('shows the scarcity model and what Counter says will not arrive', () => {
+    save({ enn: 4 });
+    render(<StackView />);
+    expect(screen.queryByTestId('stack-fixation')).toBeNull();
+    personalize();
+    const fix = screen.getByTestId('stack-fixation');
+    expect(fix).toHaveTextContent(/Something essential is missing in me/);
+    expect(fix).toHaveTextContent(/I am too broken to sustain ordinary commitments/);
+    expect(screen.getByTestId('stack-growth')).toHaveTextContent(/consistent principled functioning available/);
+  });
+
+  it('frames the growth direction as falsification rather than as an instruction', () => {
+    save({ enn: 3 });
+    render(<StackView />);
+    personalize();
+    expect(screen.getByTestId('stack-growth')).toHaveTextContent(/performing the growth direction is the fixation operating/);
+    expect(screen.getByTestId('stack-fixation')).toHaveTextContent(/revises the parameters, never the structure/);
+  });
+
+  it('shows substrate pressure for the saved first instinct', () => {
+    save({ enn: 6, inst: ['sp', 'so', 'sx'] });
+    render(<StackView />);
+    personalize();
+    const sub = screen.getByTestId('stack-substrate');
+    expect(sub).toHaveTextContent(/SP/);
+    expect(sub).toHaveTextContent(/losing the job, the money, the health, the roof/);
+    expect(sub).toHaveTextContent(/income, housing, health, schedule/);
+    expect(sub).toHaveTextContent(/it is what drives the level/);
+  });
+
+  it('omits the substrate panel when no instinct is saved but still personalizes', () => {
+    save({ enn: 5 });
+    render(<StackView />);
+    personalize();
+    expect(screen.getByTestId('stack-fixation')).toBeInTheDocument();
+    expect(screen.queryByTestId('stack-substrate')).toBeNull();
+  });
+
+  it('drops both panels again when personalization is turned off', () => {
+    save({ enn: 8, inst: ['sx', 'sp', 'so'] });
+    render(<StackView />);
+    personalize();
+    expect(screen.getByTestId('stack-substrate')).toHaveTextContent(/bond rupture/);
+    fireEvent.click(screen.getByRole('button', { name: /Back to the impersonal view/ }));
+    expect(screen.queryByTestId('stack-fixation')).toBeNull();
+    expect(screen.queryByTestId('stack-substrate')).toBeNull();
+  });
+});
+
+describe('StackView — Anchor drift and the two thresholds', () => {
+  it('marks each threshold crossed only once its level is reached', () => {
+    render(<StackView />);
+    const gate = () => screen.getByTestId('stack-threshold-gateFlip').dataset.crossed;
+    const inv = () => screen.getByTestId('stack-threshold-discrepancyInversion').dataset.crossed;
+    setLevel(5);
+    expect([gate(), inv()]).toEqual(['false', 'false']);
+    setLevel(6);
+    expect([gate(), inv()]).toEqual(['true', 'false']);
+    setLevel(7);
+    expect([gate(), inv()]).toEqual(['true', 'true']);
+  });
+});
+
+describe('StackView — Gamble\'s three properties', () => {
+  it('starts the two gradients at level 4 and the discrete flip at 7', () => {
+    render(<StackView />);
+    const started = (id) => screen.getByTestId(`stack-gamble-${id}`).dataset.started;
+    setLevel(3);
+    expect([started('sensitivity'), started('lens'), started('polarity')]).toEqual(['false', 'false', 'false']);
+    setLevel(4);
+    expect([started('sensitivity'), started('lens'), started('polarity')]).toEqual(['true', 'true', 'false']);
+    setLevel(7);
+    expect([started('sensitivity'), started('lens'), started('polarity')]).toEqual(['true', 'true', 'true']);
+  });
+
+  it('says the surfacing stays accurate and that sensitivity is trainable', () => {
+    render(<StackView />);
+    expect(screen.getByTestId('stack-gamble-polarity')).toHaveTextContent(/still contains the accurate discrepancy/);
+    expect(screen.getByTestId('stack-gamble-sensitivity')).toHaveTextContent(/trainable in both directions/);
+    expect(screen.getByTestId('stack-gamble')).toHaveTextContent(/cannot be queried/);
+  });
+});
+
+describe('StackView — fixation utility for Lead', () => {
+  it('shows nothing until a stakes answer is picked, then the matching configuration', () => {
+    render(<StackView />);
+    expect(screen.queryByTestId('stack-utility-detail')).toBeNull();
+    fireEvent.click(screen.getByTestId('stack-utility-low'));
+    const detail = screen.getByTestId('stack-utility-detail');
+    expect(detail).toHaveTextContent(/Low utility/);
+    expect(detail).toHaveTextContent(/Equilibrium stabilizes at Reality-testing with Gamble intact/);
+  });
+
+  it('gives high utility the opposite presentation, not a milder version of the same one', () => {
+    render(<StackView />);
+    fireEvent.click(screen.getByTestId('stack-utility-high'));
+    const detail = screen.getByTestId('stack-utility-detail');
+    expect(detail).toHaveTextContent(/across all stakes/);
+    expect(detail).toHaveTextContent(/gap is wide/);
+  });
+
+  it('toggles back off, and mixed utility predicts no lag', () => {
+    render(<StackView />);
+    fireEvent.click(screen.getByTestId('stack-utility-mixed'));
+    expect(screen.getByTestId('stack-utility-detail')).not.toHaveTextContent(/gap is/);
+    fireEvent.click(screen.getByTestId('stack-utility-mixed'));
+    expect(screen.queryByTestId('stack-utility-detail')).toBeNull();
+  });
+});
+
+describe('StackView — odd/even reporting signature', () => {
+  it('tags shadow captures as world-referential and ego captures as self-referential', () => {
+    render(<StackView />);
+    for (const l of [3, 5, 7, 9]) {
+      setLevel(l);
+      expect(screen.getByTestId('stack-odd-even')).toHaveTextContent(/the world changing/);
+    }
+    for (const l of [4, 6, 8]) {
+      setLevel(l);
+      expect(screen.getByTestId('stack-odd-even')).toHaveTextContent(/the self changing/);
+    }
+  });
+
+  it('omits the tag at level 1 and at level 2, which is identification not capture', () => {
+    render(<StackView />);
+    setLevel(1);
+    expect(screen.queryByTestId('stack-odd-even')).toBeNull();
+    setLevel(2);
+    expect(screen.queryByTestId('stack-odd-even')).toBeNull();
+  });
+});
+
 describe('StackView — deep links after mount', () => {
   const hashTo = (query) => {
     window.location.hash = `#/stack?${query}`;

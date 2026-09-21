@@ -2,29 +2,23 @@
  * shadow.js — Static content for the 8-position cognitive function model.
  * Positions 1–4: ego stack (Lead, Anchor, Refuge, Hunger)
  * Positions 5–8: shadow stack (Counter, Critic, Gamble, Flood)
+ *
+ * POSITIONS carries identity only. What a position DOES lives in ROLES in
+ * data/stack.js, which is sourced verbatim and provenance-tested; the `brief`
+ * strings that used to live here predated the consolidated document and
+ * contradicted it. Do not reintroduce a second, unsourced description here.
  */
 
 export const POSITIONS = [
-  { pos: 1, name: 'Lead',    arc: 'ego',    brief: 'Your most fluent, most trusted function.' },
-  { pos: 2, name: 'Anchor',  arc: 'ego',    brief: 'Supports and balances the Lead. Opposite attitude.' },
-  { pos: 3, name: 'Refuge',  arc: 'ego',    brief: 'Where you retreat for comfort under pressure.' },
-  { pos: 4, name: 'Hunger',  arc: 'ego',    brief: 'You want it but can\'t quite hold it. Most exposed.' },
-  { pos: 5, name: 'Counter', arc: 'shadow', brief: 'Fires reactively under duress, not fluidly.' },
-  { pos: 6, name: 'Critic',  arc: 'shadow', brief: 'Distorted — comes out as judgment, not skill.' },
-  { pos: 7, name: 'Gamble',  arc: 'shadow', brief: 'Present but unreliable. You can\'t tell when it\'s misfiring.' },
-  { pos: 8, name: 'Flood',   arc: 'shadow', brief: 'Involuntary. Surfaces only when everything else breaks.' },
+  { pos: 1, name: 'Lead',    arc: 'ego'    },
+  { pos: 2, name: 'Anchor',  arc: 'ego'    },
+  { pos: 3, name: 'Refuge',  arc: 'ego'    },
+  { pos: 4, name: 'Hunger',  arc: 'ego'    },
+  { pos: 5, name: 'Counter', arc: 'shadow' },
+  { pos: 6, name: 'Critic',  arc: 'shadow' },
+  { pos: 7, name: 'Gamble',  arc: 'shadow' },
+  { pos: 8, name: 'Flood',   arc: 'shadow' },
 ];
-
-/**
- * Shadow position description templates.
- * Use {fn} for function abbreviation and {fnName} for full function name.
- */
-export const SHADOW_TEMPLATES = {
-  5: 'You have real access to {fn}, but it tends to show up reactively rather than fluidly. When you use it, there\'s often a defensive or dug-in quality — it emerges most strongly when you\'re pushing back against something, not when you\'re openly exploring. You may find yourself most aware of this function when someone else uses it in a way that feels excessive or wrongheaded.',
-  6: 'You use {fn}, but there\'s a harsh judge attached to it. You have a low tolerance for inauthentic or poorly executed versions of it in others — and when you deploy it in a way that feels hollow or performative, the inner critic is swift and unforgiving. This isn\'t incompetence with the function. It\'s a charged relationship with it.',
-  7: '{fn} is available to you but unreliable in a specific way — you can\'t always tell when it\'s working and when it isn\'t. It fires intermittently, sometimes effectively, but your self-monitoring here is weaker than in your ego stack. The risk isn\'t absence. It\'s overconfidence in moments when the function is actually misfiring.',
-  8: 'Under ordinary conditions, {fn} is largely quiet — present but not prominent. Under significant stress or breakdown, it can emerge suddenly and in an unrefined form. This isn\'t a tool you\'re wielding. It\'s more like a pressure valve — involuntary, primitive, and often baffling to people around you who don\'t share your stack.',
-};
 
 /**
  * Position-crossing severity matrix for comparing two MBTI types.
@@ -66,12 +60,12 @@ export const CROSSING_MATRIX = {
   '1-7': {
     tier: 'high',
     label: 'Lead ↔ Gamble',
-    template: '{typeA}\'s Lead ({fnA}) maps to {typeB}\'s Gamble. {typeB} has access to this function but can\'t reliably gauge when it\'s working. Watching {typeA} deploy it with fluency can be illuminating or disorienting — {typeB} may believe they\'re following along effectively when they\'re actually misfiring. The gap is real but often invisible to {typeB}.',
+    template: '{typeA}\'s Lead ({fnA}) maps to {typeB}\'s Gamble. {typeB} does have this function, but only as an involuntary discrepancy detector — it surfaces on its own schedule and cannot be summoned, and its interrupts are easy to dismiss. Watching {typeA} direct it deliberately can be illuminating or disorienting: what {typeA} steers, {typeB} can only receive, and usually discounts when it arrives.',
   },
   '1-8': {
     tier: 'medium',
     label: 'Lead ↔ Flood',
-    template: '{typeA}\'s Lead ({fnA}) maps to {typeB}\'s Flood position — the most primitive, involuntary shadow expression. Under normal conditions this creates no particular friction; {typeB}\'s {fnA} is largely dormant. But under serious stress, {typeB} may produce an unrefined, pressurized version of what {typeA} does with ease, which can feel jarring to both.',
+    template: '{typeA}\'s Lead ({fnA}) maps to {typeB}\'s Flood — an always-on background channel {typeB} does not attend to or claim. It runs continuously rather than lying dormant, so {typeB} is taking in the same material {typeA} works with deliberately, without registering that they are. Under serious stress it can take over, and the result looks nothing like {typeB}\'s usual self while being unmistakably familiar to {typeA}.',
   },
   '2-4': {
     tier: 'medium',
@@ -81,7 +75,7 @@ export const CROSSING_MATRIX = {
   '2-7': {
     tier: 'medium',
     label: 'Anchor ↔ Gamble',
-    template: '{typeA}\'s Anchor ({fnA}) maps to {typeB}\'s Gamble. {typeA} leans on this function reliably; {typeB} uses it intermittently and can\'t always tell when it\'s accurate. This creates an asymmetry in confidence that may not be visible until a specific moment of misfire.',
+    template: '{typeA}\'s Anchor ({fnA}) maps to {typeB}\'s Gamble. {typeA} leans on this function as a steady standard; for {typeB} it is the lens an involuntary flash arrives through, credited or dismissed after the fact. The asymmetry is in directability, not accuracy — {typeB}\'s read can be perfectly good and still go unused.',
   },
   '3-4': {
     tier: 'medium',
@@ -96,12 +90,12 @@ export const CROSSING_MATRIX = {
   '4-8': {
     tier: 'high',
     label: 'Hunger ↔ Flood',
-    template: '{typeA}\'s Hunger ({fnA}) maps to {typeB}\'s Flood. What one consciously strains toward, the other expresses only under involuntary breakdown. The crossing is asymmetric: {typeA}\'s effortful reach toward {fnA} may occasionally look like {typeB}\'s stress-release of the same function, creating confusion about whether either is actually using it well.',
+    template: '{typeA}\'s Hunger ({fnA}) maps to {typeB}\'s Flood. What one consciously strains toward, the other runs continuously in the background and disowns. The crossing is asymmetric in an odd way: {typeB} already has a rich stream of exactly what {typeA} is reaching for, and has no access to it deliberately.',
   },
   '5-5': {
     tier: 'medium',
     label: 'Shared Counter',
-    template: 'Both {typeA} and {typeB} carry {fnA} as their Counter — reactive, defensive, not fully fluid. Neither has genuine ease with this function; both access it primarily under duress. This shared limitation can create mutual recognition, or it can mean two people pushing back with the same charged energy when the function gets activated.',
+    template: 'Both {typeA} and {typeB} carry {fnA} as their Counter — Strong but unvalued. Each has real proficiency here and neither identifies with it; it fires when motivated striving is blocked, completes, and recedes. That shared shape can create mutual recognition, or it can mean two people pushing back with the same competent, principled force when the function gets activated.',
   },
   '2-2': {
     tier: 'medium',
@@ -131,12 +125,15 @@ export const CROSSING_MATRIX = {
   '3-7': {
     tier: 'medium',
     label: 'Refuge ↔ Gamble',
-    template: '{typeA}\'s Refuge ({fnA}) maps to {typeB}\'s Gamble. What one uses as a reliable comfort zone, the other accesses intermittently and can\'t always gauge accurately. {typeB} may believe they\'re following {typeA}\'s retreat into this function when they\'re actually misfiring — an asymmetry that becomes visible only when precision matters.',
+    template: '{typeA}\'s Refuge ({fnA}) maps to {typeB}\'s Gamble — and this is the tightest of the shadow crossings, because Gamble evaluates through Refuge\'s function in the opposite attitude. {typeA} decompresses into the very lens {typeB}\'s flashes arrive through. When {typeA} is most unguarded, {typeB} is most likely to register something and least likely to be able to say where it came from.',
   },
 };
 
 /**
- * Narrative for types that are full shadow mirrors of each other —
+ * Narrative for types that are stack inverses of each other — one type's ego
+ * stack IS the other's shadow stack. Not a "mirror": the source reserves mirror
+ * for the nested partner (1-8, 2-7, 3-6, 4-5), and conflating the two pairings
+ * is the most common contamination error.
  * where one type's ego stack is the exact shadow stack of the other.
  */
-export const FULL_SHADOW_PAIR_NARRATIVE = 'Every ego function of one type maps to a shadow position of the other. They each operate fluently in the exact domains where the other is most reactive, most charged, or most primitive. The resonance comes from recognition — each sees their shadow modeled with skill. The friction comes from the same place — each triggers the other\'s most charged positions just by being themselves.';
+export const STACK_INVERSION_NARRATIVE = 'Every ego function of one type maps to a shadow position of the other. They each operate fluently in the exact domains where the other is most reactive, most charged, or most primitive. The resonance comes from recognition — each sees their shadow modeled with skill. The friction comes from the same place — each triggers the other\'s most charged positions just by being themselves.';

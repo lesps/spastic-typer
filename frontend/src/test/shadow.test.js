@@ -1,14 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { MBTI_TYPES } from '../data/mbti.js';
-import { POSITIONS, CROSSING_MATRIX, SHADOW_TEMPLATES } from '../data/shadow.js';
+import { MBTI_FUNCTION_DETAILS } from '../data/mbtiDetails.js';
+import { POSITIONS, CROSSING_MATRIX } from '../data/shadow.js';
+import { ROLES, CLASSIFICATION } from '../data/stack.js';
 import {
   flipAttitude,
   getShadowStack,
   getFullStack,
   getShadowType,
-  getShadowMirror,
+  getStackInverse,
   getPositionCrossings,
-  instantiateTemplate,
 } from '../utils/shadow.js';
 
 describe('shadow — position definitions', () => {
@@ -28,9 +29,6 @@ describe('shadow — position definitions', () => {
 
   it('has shadow templates for positions 5-8', () => {
     [5, 6, 7, 8].forEach(pos => {
-      expect(SHADOW_TEMPLATES[pos]).toBeDefined();
-      expect(typeof SHADOW_TEMPLATES[pos]).toBe('string');
-      expect(SHADOW_TEMPLATES[pos].length).toBeGreaterThan(50);
     });
   });
 });
@@ -115,35 +113,35 @@ describe('shadow — getShadowType', () => {
   });
 });
 
-describe('shadow — getShadowMirror', () => {
-  it('ENFP shadow mirror is INFJ', () => {
-    expect(getShadowMirror('ENFP')).toBe('INFJ');
+describe('shadow — getStackInverse', () => {
+  it('ENFP stack inverse is INFJ', () => {
+    expect(getStackInverse('ENFP')).toBe('INFJ');
   });
 
-  it('INFJ shadow mirror is ENFP', () => {
-    expect(getShadowMirror('INFJ')).toBe('ENFP');
+  it('INFJ stack inverse is ENFP', () => {
+    expect(getStackInverse('INFJ')).toBe('ENFP');
   });
 
-  it('shadow mirror is symmetric', () => {
+  it('stack inverse is symmetric', () => {
     Object.keys(MBTI_TYPES).forEach(code => {
-      const mirror = getShadowMirror(code);
-      expect(mirror).not.toBeNull();
-      expect(getShadowMirror(mirror)).toBe(code);
+      const inverse = getStackInverse(code);
+      expect(inverse).not.toBeNull();
+      expect(getStackInverse(inverse)).toBe(code);
     });
   });
 
   it('returns null for invalid type', () => {
-    expect(getShadowMirror('XXXX')).toBeNull();
+    expect(getStackInverse('XXXX')).toBeNull();
   });
 });
 
 describe('shadow — structural invariant', () => {
-  it('shadow stack of type A equals ego stack of shadow mirror of A', () => {
+  it('shadow stack of type A equals ego stack of the stack inverse of A', () => {
     Object.keys(MBTI_TYPES).forEach(code => {
       const shadowStack = getShadowStack(code);
-      const mirror = getShadowMirror(code);
-      const mirrorEgoStack = MBTI_TYPES[mirror].stack;
-      expect(shadowStack).toEqual(mirrorEgoStack);
+      const inverse = getStackInverse(code);
+      const inverseEgoStack = MBTI_TYPES[inverse].stack;
+      expect(shadowStack).toEqual(inverseEgoStack);
     });
   });
 });
@@ -151,14 +149,14 @@ describe('shadow — structural invariant', () => {
 describe('shadow — getPositionCrossings', () => {
   it('detects ENFP/INFJ as full shadow pair', () => {
     const result = getPositionCrossings('ENFP', 'INFJ');
-    expect(result.isFullShadowPair).toBe(true);
-    expect(result.shadowPairNarrative).toBeTruthy();
+    expect(result.isStackInverse).toBe(true);
+    expect(result.stackInversionNarrative).toBeTruthy();
   });
 
   it('ENFP/ISTJ is NOT a full shadow pair', () => {
     const result = getPositionCrossings('ENFP', 'ISTJ');
-    expect(result.isFullShadowPair).toBe(false);
-    expect(result.shadowPairNarrative).toBeNull();
+    expect(result.isStackInverse).toBe(false);
+    expect(result.stackInversionNarrative).toBeNull();
   });
 
   it('returns crossings sorted by tier severity', () => {
@@ -251,26 +249,25 @@ describe('getPositionCrossings — directionality', () => {
   });
 });
 
-describe('shadow — instantiateTemplate', () => {
-  it('replaces {fn} placeholder', () => {
-    const result = instantiateTemplate(5, 'Ni');
-    expect(result).toContain('Ni');
-    expect(result).not.toContain('{fn}');
+describe('shadow — position roles come from the sourced definition', () => {
+  it('gives every position a role and an Augusta class', () => {
+    for (const p of POSITIONS) {
+      expect(ROLES[p.pos], `role ${p.pos}`).toBeTruthy();
+      expect(CLASSIFICATION[p.pos], `class ${p.pos}`).toBeTruthy();
+    }
   });
 
-  it('replaces {fnName} placeholder', () => {
-    const result = instantiateTemplate(5, 'Ni');
-    expect(result).not.toContain('{fnName}');
+  it('keeps POSITIONS to identity only, with no second unsourced description', () => {
+    for (const p of POSITIONS) {
+      expect(Object.keys(p).sort()).toEqual(['arc', 'name', 'pos']);
+    }
   });
 
-  it('returns empty string for invalid position', () => {
-    expect(instantiateTemplate(99, 'Ne')).toBe('');
-  });
-
-  it('returns non-empty string for all shadow positions', () => {
-    [5, 6, 7, 8].forEach(pos => {
-      expect(instantiateTemplate(pos, 'Ne').length).toBeGreaterThan(0);
-    });
+  it('marks Counter and Critic Strong, so the shadow arc is unvalued rather than weak', () => {
+    expect(CLASSIFICATION[5]).toMatch(/^Strong/);
+    expect(CLASSIFICATION[6]).toMatch(/^Strong/);
+    expect(CLASSIFICATION[7]).toMatch(/^Weak/);
+    expect(CLASSIFICATION[8]).toMatch(/^Weak/);
   });
 });
 
@@ -294,5 +291,62 @@ describe('shadow — crossing matrix', () => {
 
   it('has at least 12 entries', () => {
     expect(Object.keys(CROSSING_MATRIX).length).toBeGreaterThanOrEqual(12);
+  });
+});
+
+describe('shadow — per-type shadow briefs follow the source', () => {
+  const POS_NAME = { 5: 'Counter', 6: 'Critic', 7: 'Gamble', 8: 'Flood' };
+
+  it('names that type\'s own function at each shadow position', () => {
+    for (const code of Object.keys(MBTI_TYPES)) {
+      const stack = getFullStack(code).map(p => p.fn);
+      for (const pos of [5, 6, 7, 8]) {
+        const entry = MBTI_FUNCTION_DETAILS[code][`shadow${pos}`];
+        expect(entry.function, `${code} shadow${pos}`).toBe(stack[pos - 1]);
+        expect(entry.brief.startsWith(`${stack[pos - 1]} at ${POS_NAME[pos]}`), `${code} shadow${pos}`).toBe(true);
+      }
+    }
+  });
+
+  /**
+   * Regression: the first generator pass matched shadow slots globally rather
+   * than per type, so types sharing a function at the same position overwrote
+   * each other's text. Every coupled function a brief names must be that type's.
+   */
+  it('names only functions that are actually in that type\'s stack', () => {
+    for (const code of Object.keys(MBTI_TYPES)) {
+      const stack = getFullStack(code).map(p => p.fn);
+      const [lead, , refuge, hunger, , , gamble, flood] = stack;
+      const b = MBTI_FUNCTION_DETAILS[code];
+      expect(b.shadow5.brief, code).toContain(`${hunger}-Hunger`);
+      expect(b.shadow5.brief, code).toContain(`${refuge}-Refuge`);
+      expect(b.shadow7.brief, code).toContain(`${flood}-Flood`);
+      expect(b.shadow7.brief, code).toContain(`${refuge}-Refuge`);
+      expect(b.shadow8.brief, code).toContain(`${lead}-Lead`);
+      expect(b.shadow8.brief, code).toContain(`${gamble}-Gamble`);
+    }
+  });
+
+  it('does not describe Flood as dormant or as surfacing only under breakdown', () => {
+    for (const code of Object.keys(MBTI_TYPES)) {
+      const brief = MBTI_FUNCTION_DETAILS[code].shadow8.brief;
+      expect(brief, code).toMatch(/it runs all the time/);
+      expect(brief, code).not.toMatch(/dormant|pressure valve|only when everything else/i);
+    }
+  });
+
+  it('does not describe Gamble as misfiring or unreliable', () => {
+    for (const code of Object.keys(MBTI_TYPES)) {
+      const brief = MBTI_FUNCTION_DETAILS[code].shadow7.brief;
+      expect(brief, code).toMatch(/The failure mode is not misfiring/);
+      expect(brief, code).not.toMatch(/available but unreliable/i);
+    }
+  });
+
+  it('keeps Counter proficient and Critic accurate', () => {
+    for (const code of Object.keys(MBTI_TYPES)) {
+      expect(MBTI_FUNCTION_DETAILS[code].shadow5.brief, code).toMatch(/real proficiency/);
+      expect(MBTI_FUNCTION_DETAILS[code].shadow6.brief, code).toMatch(/evaluations stay precise/);
+    }
   });
 });

@@ -10,6 +10,9 @@ const {
   SOURCE_DOCS, STAGE_BANDS, MECHANISM, NESTED_PAIRS, DOMAIN_PAIRS, PAIR_NOTES, ROLES,
   CAPTURE_ORDER, CLASSIFICATION, STAGES, PURPOSES, LEVEL_NARRATION, EQUILIBRIUM_CAVEAT,
   CORRESPONDENCE_NOTE, COUNTER_THREAT_OUTPUT, EDGES, ACTIVE_EDGES, LABEL_TEMPLATES,
+  UTILITY, UTILITY_DIAGNOSTIC, UTILITY_ANCHORS, THRESHOLDS, GAMBLE_PROPERTIES,
+  GAMBLE_SUMMONABILITY, ODD_EVEN, STRESS_EVENTS, COACHING_BANDS, DIAGNOSTIC,
+  ACTIVATIONS, CLINICAL_SEQUENCE, FAILURE_MODES, TYPING_ERRORS, TEST_SET,
 } = STACK;
 
 const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -54,7 +57,9 @@ describe('stack data — provenance (no authored framework prose)', () => {
     for (const [name, value] of Object.entries(STACK)) {
       if (EXEMPT.has(name)) continue;
       for (const s of collectStrings(value)) {
-        if (s.length < 12) continue; // enum-ish values: 'sharp', 'nested', 'Healthy'
+        // Prose has spaces; ids and enum values ('sharp', 'gateFlip', 'Healthy')
+        // do not. Checking everything else is stricter than a length cutoff.
+        if (!/\s/.test(s)) continue;
         if (!CORPUS.includes(normalize(s))) offenders.push(`${name}: ${s.slice(0, 90)}`);
       }
     }
@@ -382,6 +387,254 @@ describe('stack data — active edges per level', () => {
   it('uses every edge at some level except the structural gate, which is not a corruption edge', () => {
     const used = new Set(LEVELS.flatMap(l => ACTIVE_EDGES[l]));
     for (const e of EDGES) expect(used.has(e.id), e.id).toBe(true);
+  });
+});
+
+describe('stack data — fixation utility for Lead', () => {
+  it('offers exactly the three utility configurations', () => {
+    expect(Object.keys(UTILITY).sort()).toEqual(['high', 'low', 'mixed']);
+  });
+
+  it('maps each to the stakes the diagnostic reads off', () => {
+    expect(UTILITY_DIAGNOSTIC.rows.map(r => r.utility)).toEqual(['high', 'mixed', 'low']);
+    for (const row of UTILITY_DIAGNOSTIC.rows) {
+      expect(UTILITY[row.utility].stakes).toBe(row.stakes);
+    }
+    expect(UTILITY_DIAGNOSTIC.nowhere).toMatch(/extreme corruption or typing error/);
+  });
+
+  it('puts low-utility equilibrium at Reality-testing with Gamble intact', () => {
+    expect(UTILITY.low.detail.join(' ')).toMatch(/Equilibrium stabilizes at Reality-testing with Gamble intact/);
+  });
+
+  it('has high utility deploy Lead across all stakes rather than compressing it', () => {
+    expect(UTILITY.high.detail.join(' ')).toMatch(/deployed in fixation service across all stakes/);
+    expect(UTILITY.high.detail.join(' ')).toMatch(/Counter operation is minimal/);
+  });
+
+  it('predicts a wide 6→7 gap at high utility and a narrow one at low', () => {
+    expect(UTILITY.high.gap).toMatch(/gap is wide/);
+    expect(UTILITY.low.gap).toMatch(/gap is narrow/);
+    expect(UTILITY.mixed.gap).toBeNull();
+  });
+
+  it('stores only the five committed anchor cells and does not infer the rest', () => {
+    expect(UTILITY_ANCHORS).toHaveLength(5);
+    expect(UTILITY_ANCHORS.filter(a => a.utility === 'high').map(a => `${a.fn}x${a.type}`))
+      .toEqual(['Tex3', 'Nix4', 'Sex8']);
+    expect(UTILITY_ANCHORS.filter(a => a.utility === 'low').map(a => `${a.fn}x${a.type}`))
+      .toEqual(['Fix3', 'Sex5']);
+    // Every anchor is about the function at Lead; the source commits to no other position.
+    for (const a of UTILITY_ANCHORS) expect(a.position).toBe(1);
+  });
+});
+
+describe('stack data — the two thresholds on Anchor drift', () => {
+  it('is the gate flip at 6 and discrepancy inversion at 7, in that order', () => {
+    expect(THRESHOLDS.map(t => [t.name, t.level])).toEqual([
+      ['gate flip', 6], ['discrepancy inversion', 7],
+    ]);
+  });
+
+  it('explains why the second threshold is higher than the first', () => {
+    expect(THRESHOLDS[1].why).toMatch(/expensive to read as wrong/);
+  });
+
+  it('lands each threshold on the level whose position it captures', () => {
+    expect(CAPTURE_ORDER[THRESHOLDS[0].level].pos).toBe(2); // Anchor
+    expect(CAPTURE_ORDER[THRESHOLDS[1].level].pos).toBe(7); // Gamble
+  });
+});
+
+describe('stack data — Gamble\'s three properties', () => {
+  it('has exactly sensitivity, lens and polarity', () => {
+    expect(GAMBLE_PROPERTIES.map(p => p.id)).toEqual(['sensitivity', 'lens', 'polarity']);
+  });
+
+  it('degrades sensitivity and lens as gradients from level 4, polarity discretely at 7', () => {
+    const by = Object.fromEntries(GAMBLE_PROPERTIES.map(p => [p.id, p]));
+    expect([by.sensitivity.degrades, by.sensitivity.from]).toEqual(['gradient', 4]);
+    expect([by.lens.degrades, by.lens.from]).toEqual(['gradient', 4]);
+    expect([by.polarity.degrades, by.polarity.from]).toEqual(['discrete', 7]);
+  });
+
+  it('keeps the signal accurate even once the comparator has inverted', () => {
+    const polarity = GAMBLE_PROPERTIES.find(p => p.id === 'polarity');
+    expect(polarity.detail.join(' ')).toMatch(/still contains the accurate discrepancy/);
+    expect(polarity.detail.join(' ')).toMatch(/Someone else can/);
+  });
+
+  it('keeps sensitivity trainable while directability is not', () => {
+    const sensitivity = GAMBLE_PROPERTIES.find(p => p.id === 'sensitivity');
+    expect(sensitivity.trainable).toMatch(/trainable in both directions/);
+    expect(GAMBLE_SUMMONABILITY).toMatch(/the background channel cannot be queried/);
+  });
+});
+
+describe('stack data — the odd/even signature', () => {
+  it('splits shadow captures from ego captures', () => {
+    expect(ODD_EVEN.odd.levels).toEqual([3, 5, 7, 9]);
+    expect(ODD_EVEN.even.levels).toEqual([4, 6, 8]);
+    expect(ODD_EVEN.odd.arc).toBe('shadow');
+    expect(ODD_EVEN.even.arc).toBe('ego');
+  });
+
+  it('matches the arc each level actually captures', () => {
+    for (const l of ODD_EVEN.odd.levels) expect(arcOf(CAPTURE_ORDER[l].pos)).toBe('shadow');
+    for (const l of ODD_EVEN.even.levels) expect(arcOf(CAPTURE_ORDER[l].pos)).toBe('ego');
+  });
+
+  it('predicts world-referential narration for odd levels and self-referential for even', () => {
+    expect(ODD_EVEN.odd.reported).toBe('the world changing');
+    expect(ODD_EVEN.even.reported).toBe('the self changing');
+    expect(ODD_EVEN.falsifier).toMatch(/uniformly self-referential or uniformly world-referential/);
+  });
+
+  it('omits level 2, which is identification rather than a capture', () => {
+    expect([...ODD_EVEN.odd.levels, ...ODD_EVEN.even.levels]).not.toContain(2);
+  });
+});
+
+describe('stack data — the two stress events', () => {
+  it('separates Hunger Reaching from Flood forced-primary', () => {
+    expect(STRESS_EVENTS.map(e => [e.id, e.position, e.severity])).toEqual([
+      ['reaching', 4, 'moderate stress'],
+      ['floodPrimary', 8, 'extreme stress'],
+    ]);
+  });
+
+  it('places them on the two halves of one domain pair', () => {
+    const positions = STRESS_EVENTS.map(e => e.position).sort((a, b) => a - b);
+    expect(DOMAIN_PAIRS).toContainEqual(positions);
+  });
+
+  it('describes reaching as reaching and forced-primary as submersion', () => {
+    expect(STRESS_EVENTS[0].detail).toMatch(/without practiced capacity/);
+    expect(STRESS_EVENTS[1].detail).toMatch(/the person does not reach, they are submerged/);
+  });
+});
+
+describe('stack data — coaching bands', () => {
+  it('is an overlay on the stages that splits Reality-testing', () => {
+    expect(COACHING_BANDS.map(b => b.id)).toEqual(['boundary', 'maintenance', 'realityTesting', 'terminal']);
+    const rt = COACHING_BANDS.find(b => b.id === 'realityTesting');
+    const stage = STAGES.find(s => s.name === 'Reality-testing');
+    expect(rt.levels).toEqual([7]);
+    expect(stage.levels).toEqual([6, 7]);
+  });
+
+  it('covers every level from 1 to 9 exactly once', () => {
+    expect(COACHING_BANDS.flatMap(b => b.levels)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  });
+
+  it('names a real stage for each band', () => {
+    for (const b of COACHING_BANDS) {
+      expect(STAGES.map(s => s.name)).toContain(b.stage);
+    }
+  });
+
+  it('keeps level 6 coachable, since Lead still perceives independently there', () => {
+    const at6 = COACHING_BANDS.find(b => b.levels.includes(6));
+    expect(at6.id).toBe('maintenance');
+    expect(at6.state).toMatch(/Lead still perceives independently/);
+  });
+});
+
+describe('stack data — diagnostic table', () => {
+  it('has an observation, an inferred level and a confidence for every row', () => {
+    expect(DIAGNOSTIC.length).toBeGreaterThan(8);
+    for (const d of DIAGNOSTIC) {
+      expect(d.observation.length).toBeGreaterThan(20);
+      expect(d.level).toBeTruthy();
+      expect(d.confidence).toBeTruthy();
+    }
+  });
+
+  it('runs from the healthiest observation to the deepest', () => {
+    expect(DIAGNOSTIC[0].level).toBe('1–2');
+    expect(DIAGNOSTIC[DIAGNOSTIC.length - 1].level).toBe('9');
+  });
+});
+
+describe('stack data — activations, clinical sequence and failure modes', () => {
+  it('names a position for each of the three activations', () => {
+    expect(ACTIVATIONS.map(a => [a.id, a.position])).toEqual([
+      ['reaching', 4], ['gripping', 3], ['rejecting', 5],
+    ]);
+  });
+
+  it('numbers the clinical steps 1 to 4 with pressure reduction first', () => {
+    expect(CLINICAL_SEQUENCE.map(c => c.step)).toEqual([1, 2, 3, 4]);
+    expect(CLINICAL_SEQUENCE[0].name).toMatch(/Substrate pressure reduction/);
+  });
+
+  it('splits the failure modes at the polarity threshold', () => {
+    const byId = Object.fromEntries(FAILURE_MODES.map(f => [f.id, f]));
+    expect(byId.simulation.levels).toBe('7+');
+    expect(byId.nonRegistration.levels).toBe('4–6');
+    // Which failure mode you get is decided by whether polarity has inverted.
+    expect(byId.simulation.why).toMatch(/Polarity is inverted/);
+    expect(byId.nonRegistration.why).toMatch(/Polarity is native/);
+  });
+
+  it('pairs every predicted typing error with what to check instead', () => {
+    for (const t of TYPING_ERRORS) {
+      expect(t.error.length).toBeGreaterThan(20);
+      expect(t.check.length).toBeGreaterThan(10);
+    }
+  });
+});
+
+describe('stack data — the test set', () => {
+  it('carries all fourteen falsifiers, numbered in source order', () => {
+    expect(TEST_SET.map(t => t.n)).toEqual(Array.from({ length: 14 }, (_, i) => i + 1));
+    for (const t of TEST_SET) expect(t.claim.length).toBeGreaterThan(30);
+  });
+
+  it('includes the falsifiers for the claims the app itself renders', () => {
+    const names = TEST_SET.map(t => t.name);
+    expect(names).toContain('Ordinality');
+    expect(names).toContain('Two thresholds');
+    expect(names).toContain('Utility lag');
+    expect(names).toContain('Odd/even reporting');
+    expect(names).toContain('Flood direction');
+  });
+});
+
+describe('stack data — punctuation the templates supply', () => {
+  /**
+   * Strings the UI renders inside a sentence it punctuates itself must not
+   * carry their own terminal period, or the page shows a double stop. Strings
+   * rendered as standalone prose must carry one. Both directions are fixed by
+   * extending or trimming the source selection, never by editing wording.
+   */
+  it('keeps names and template-punctuated clauses free of a trailing period', () => {
+    for (const t of THRESHOLDS) expect(t.name, t.id).not.toMatch(/\.$/);
+    for (const u of Object.values(UTILITY)) {
+      if (u.gap) expect(u.gap, u.label).not.toMatch(/\.$/);
+      expect(u.label).not.toMatch(/\.$/);
+    }
+    for (const a of ACTIVATIONS) expect(a.name, a.id).not.toMatch(/\.$/);
+    for (const f of FAILURE_MODES) expect(f.correction, f.id).not.toMatch(/\.$/);
+    for (const t of TYPING_ERRORS) {
+      expect(t.error).not.toMatch(/\.$/);
+      expect(t.check).not.toMatch(/\.$/);
+    }
+  });
+
+  it('ends standalone prose with a full stop, so joined sentences do not run together', () => {
+    for (const g of GAMBLE_PROPERTIES) {
+      expect(g.what, `${g.id} what`).toMatch(/\.$/);
+      for (const d of g.detail) expect(d, `${g.id} detail`).toMatch(/[.!?]$/);
+    }
+    for (const t of THRESHOLDS) expect(t.detail, t.id).toMatch(/\.$/);
+    for (const k of Object.keys(STACK.SUBSTRATE)) {
+      expect(STACK.SUBSTRATE[k].register, k).toMatch(/\.$/);
+      expect(STACK.SUBSTRATE[k].reduction, k).toMatch(/\.$/);
+    }
+    for (const u of Object.values(UTILITY)) {
+      for (const d of u.detail) expect(d, u.label).toMatch(/[.!?]$/);
+    }
   });
 });
 

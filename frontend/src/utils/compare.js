@@ -1,6 +1,6 @@
 import { ENN_CENTER, ENN_ARROWS } from '../data/enneagram.js';
 import { MBTI_TYPES } from '../data/mbti.js';
-import { getFullStack, getShadowMirror } from './shadow.js';
+import { getFullStack, getStackInverse } from './shadow.js';
 
 // --- Communication Style Matrix ---
 
@@ -236,8 +236,8 @@ export function getCognitiveHarmony(mbtiA, mbtiB) {
   if (stackA[0] !== stackB[0]) strengthsAsTeam.push('Different dominant functions — one\'s strength is not the other\'s, reducing competition');
   if (stackA[3] === stackB[0] || stackB[3] === stackA[0]) strengthsAsTeam.push('One person\'s inferior is the other\'s dominant — profound growth potential if navigated with patience');
   if (fullA && fullB) {
-    const isFullShadowPair = getShadowMirror(mbtiA) === mbtiB || getShadowMirror(mbtiB) === mbtiA;
-    if (isFullShadowPair) {
+    const isStackInverse = getStackInverse(mbtiA) === mbtiB || getStackInverse(mbtiB) === mbtiA;
+    if (isStackInverse) {
       strengthsAsTeam.push('Full shadow pair — every ego function of one type is a shadow function of the other. Maximum growth potential with significant friction.');
     }
     if (fullA[0].fn === fullB[7].fn || fullB[0].fn === fullA[7].fn) {

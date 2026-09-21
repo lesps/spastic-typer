@@ -17,8 +17,9 @@ import { INSTINCT_PAIR_DYNAMICS, instinctPairKey } from '../data/instinctPairDyn
 import { ENN_MBTI_CORRELATION } from '../data/ennMbtiCorrelation.js';
 import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
 import { POSITIONS } from '../data/shadow.js';
+import { ROLES, CLASSIFICATION, STRESS_EVENTS, STRESS_EVENTS_NOTE, FIXATION, GROWTH_MECHANISM } from '../data/stack.js';
 import { SOP_STEPS, QUADRANTS } from '../data/sop.js';
-import { getShadowMirror, instantiateTemplate } from '../utils/shadow.js';
+import { getStackInverse } from '../utils/shadow.js';
 
 const INSTINCT_META = {
   sp: { label: 'Self-Preservation', desc: 'Focused on physical security, health, comfort, and resource management.' },
@@ -73,7 +74,12 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                 <span style={{ fontSize: 13, color: G.success }}>↗</span>
                 <p style={{ fontSize: 11, color: G.success }}>Growth → Type {arrows.growth} · {ENN_TYPES[arrows.growth].name}</p>
               </div>
-              <p style={{ ...S.body, fontSize: 13 }}>At their best, Type {n} moves toward Type {arrows.growth}'s qualities — oriented toward: {ENN_TYPES[arrows.growth].desire.toLowerCase()}.</p>
+              <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, marginBottom: 4 }}>Scarcity model</p>
+              <p style={{ ...S.body, fontSize: 13, marginBottom: 8 }}>{FIXATION[n].scarcity}</p>
+              <p style={{ ...S.mono, fontSize: 11, color: G.textFaint, marginBottom: 4 }}>What the defense says will not arrive</p>
+              <p style={{ ...S.body, fontSize: 13, marginBottom: 8 }}>{FIXATION[n].threat}</p>
+              <p style={{ ...S.mono, fontSize: 11, color: G.success, marginBottom: 4 }}>The growth direction is that prediction being falsified</p>
+              <p style={{ ...S.body, fontSize: 13 }}>{FIXATION[n].falsifies}</p>
             </div>
             <div style={{ background: alpha(G.warn, 0.06), border: `1px solid ${alpha(G.warn, 0.2)}`, borderRadius: 8, padding: '12px 14px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
@@ -83,6 +89,9 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
               <p style={{ ...S.body, fontSize: 13 }}>Under stress, Type {n} regresses toward Type {arrows.stress}'s patterns — driven by the fear: {ENN_TYPES[arrows.stress].fear.toLowerCase()}.</p>
             </div>
           </div>
+          <p data-testid="growth-caveat" style={{ fontSize: 12, color: G.textFaint, marginTop: 12 }}>
+            {GROWTH_MECHANISM[2]} {GROWTH_MECHANISM[3]} Growth-direction descriptions elsewhere in this app describe what the arrival looks like; they are not instructions for producing it.
+          </p>
         </div>
         <div style={S.card}>
           <h3 style={S.h3}>Wings</h3>
@@ -405,14 +414,14 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
               <div style={{ marginTop: 8 }}>
                 <p style={{ ...S.h3, color: G.textDim, marginBottom: 4 }}>Shadow Stack</p>
                 <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 12 }}>
-                  Positions 5–8 — functions present but less consciously developed, each with a characteristic charge.
+                  Positions 5–8 — every ego function's attitude flipped. Unvalued rather than weak: Counter and Critic are Strong, and what marks the arc is that its output is dismissed rather than that it is unavailable.
                 </p>
                 {(() => {
-                  const mirror = getShadowMirror(sel);
-                  return mirror ? (
+                  const inverse = getStackInverse(sel);
+                  return inverse ? (
                     <div style={{ ...S.card, background: alpha(POS[8], 0.12), border: `1px solid ${alpha(POS[6], 0.25)}`, marginBottom: 12, padding: '10px 14px' }}>
                       <p style={{ ...S.body, fontSize: 12 }}>
-                        Your shadow mirror is <strong style={{ color: G.gold }}>{mirror}</strong>. Their ego stack is your shadow stack — they operate fluently in the exact domains where you're most reactive.
+                        Your stack inverse is <strong style={{ color: G.gold }}>{inverse}</strong>. Their ego stack is your shadow stack — they operate fluently in the exact domains where you're least identified.
                       </p>
                     </div>
                   ) : null;
@@ -420,14 +429,14 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                 {shadows.map(({ key, pos, label, color }) => {
                   const sh = d[key];
                   if (!sh) return null;
-                  const template = instantiateTemplate(pos, sh.function);
+                  const role = ROLES[pos];
                   return (
                     <div key={key} style={{ marginBottom: 12, padding: '12px 14px', borderRadius: 10, background: G.bgHover, border: `1px solid ${color}33` }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                         <span style={{ fontSize: 10, color, fontFamily: "'DM Mono',monospace", width: 64, flexShrink: 0 }}>{label}</span>
                         <FnBadge fn={sh.function} />
                       </div>
-                      <p style={{ ...S.body, fontSize: 12, color: G.textDim, marginBottom: 6 }}>{template}</p>
+                      <p style={{ ...S.body, fontSize: 12, color: G.textDim, marginBottom: 6 }}>{role}</p>
                       <p style={{ ...S.body, fontSize: 12, color: G.textFaint }}>{sh.brief}</p>
                     </div>
                   );
@@ -464,7 +473,18 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
         {/* Stress & Flow Profile */}
         {MBTI_STRESS_FLOW[sel] && (
           <div style={S.card}>
-            <h3 style={{ ...S.h3, marginBottom: 12 }}>Stress & Flow Profile</h3>
+            <h3 style={{ ...S.h3, marginBottom: 6 }}>Stress & Flow Profile</h3>
+            <div data-testid="stress-events" style={{ padding: '10px 12px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}`, marginBottom: 12 }}>
+              <p style={{ fontSize: 11, color: G.textFaint, marginBottom: 6, fontFamily: "'DM Mono',monospace" }}>Two distinct stress events</p>
+              {STRESS_EVENTS.map(e => (
+                <p key={e.id} style={{ ...S.body, fontSize: 12, marginBottom: 4 }}>
+                  <strong style={{ color: G.text }}>{e.name}</strong> ({e.severity}) — {e.detail}
+                </p>
+              ))}
+              <p style={{ fontSize: 11, color: G.textFaint, marginTop: 6 }}>
+                {STRESS_EVENTS_NOTE} The grip profile below is Hunger Reaching.
+              </p>
+            </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 10 }}>
               {MBTI_STRESS_FLOW[sel].inFlow && (
                 <div style={{ background: alpha(G.success, 0.06), border: `1px solid ${alpha(G.success, 0.2)}`, borderRadius: 8, padding: '12px 10px' }}>
@@ -598,26 +618,26 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
           {showPositionRef && (
             <div style={S.card}>
               <h3 style={S.h3}>Ego Arc — Positions 1–4</h3>
-              <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 10 }}>The skill-development arc — fluent to vulnerable</p>
+              <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 10 }}>Valued — the functions the person identifies with</p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 20 }}>
                 {POSITIONS.filter(p => p.arc === 'ego').map(p => (
                   <div key={p.pos} style={{ padding: '10px 12px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}>
                     <p style={{ fontSize: 11, color: G.gold, fontFamily: "'DM Mono',monospace", marginBottom: 4 }}>
-                      {['①','②','③','④'][p.pos - 1]} {p.name}
+                      {['①','②','③','④'][p.pos - 1]} {p.name} · {CLASSIFICATION[p.pos]}
                     </p>
-                    <p style={{ ...S.body, fontSize: 12 }}>{p.brief}</p>
+                    <p style={{ ...S.body, fontSize: 12 }}>{ROLES[p.pos]}</p>
                   </div>
                 ))}
               </div>
               <h3 style={S.h3}>Shadow Arc — Positions 5–8</h3>
-              <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 10 }}>The loss-of-control arc — reactive to involuntary</p>
+              <p style={{ ...S.body, fontSize: 12, color: G.textFaint, marginBottom: 10 }}>Unvalued — the same base functions in opposing attitude, not identified with</p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
                 {POSITIONS.filter(p => p.arc === 'shadow').map(p => (
                   <div key={p.pos} style={{ padding: '10px 12px', borderRadius: 8, background: G.bg3, border: `1px solid ${G.border}` }}>
                     <p style={{ fontSize: 11, color: G.textDim, fontFamily: "'DM Mono',monospace", marginBottom: 4 }}>
-                      {['⑤','⑥','⑦','⑧'][p.pos - 5]} {p.name}
+                      {['⑤','⑥','⑦','⑧'][p.pos - 5]} {p.name} · {CLASSIFICATION[p.pos]}
                     </p>
-                    <p style={{ ...S.body, fontSize: 12 }}>{p.brief}</p>
+                    <p style={{ ...S.body, fontSize: 12 }}>{ROLES[p.pos]}</p>
                   </div>
                 ))}
               </div>

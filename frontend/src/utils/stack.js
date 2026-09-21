@@ -10,7 +10,7 @@ import { POSITIONS } from '../data/shadow.js';
 import { getFullStack } from './shadow.js';
 import {
   CAPTURE_ORDER, ACTIVE_EDGES, EDGES, COUNTER_THREAT_OUTPUT, LABEL_TEMPLATES,
-  STAGES, NESTED_PAIRS, DOMAIN_PAIRS,
+  STAGES, NESTED_PAIRS, DOMAIN_PAIRS, SUBSTRATE, FIXATION,
 } from '../data/stack.js';
 
 export const MIN_LEVEL = 1;
@@ -135,13 +135,40 @@ function readJSON(key) {
   }
 }
 
-/** Saved MBTI type and Enneagram core type from the Typer, or nulls. Never throws. */
+const INSTINCTS = ['sp', 'sx', 'so'];
+
+/**
+ * Saved MBTI type, Enneagram core type and first instinct from the Typer, or
+ * nulls. The first instinct comes from the standalone instinct result if there
+ * is one and from the Enneagram result otherwise, since either may be present.
+ * Never throws.
+ */
 export function readSavedTypes() {
   const mbti = readJSON('typer_mbti');
   const enn = readJSON('typer_enn');
+  const inst = readJSON('typer_inst');
   const type = typeof mbti?.result === 'string' && MBTI_TYPES[mbti.result] ? mbti.result : null;
   const core = Number(enn?.coreType);
-  return { mbti: type, enn: Number.isInteger(core) && core >= 1 && core <= 9 ? core : null };
+  const firstOf = (v) => (Array.isArray(v) && typeof v[0] === 'string' && INSTINCTS.includes(v[0].toLowerCase())
+    ? v[0].toLowerCase()
+    : null);
+  return {
+    mbti: type,
+    enn: Number.isInteger(core) && core >= 1 && core <= 9 ? core : null,
+    inst: firstOf(inst?.instinctStack) ?? firstOf(enn?.instinctStack),
+  };
+}
+
+/** Substrate pressure profile for a first instinct, or null. */
+export function substrateFor(instinct) {
+  const key = typeof instinct === 'string' ? instinct.toLowerCase() : null;
+  return (key && SUBSTRATE[key]) ? { instinct: key, ...SUBSTRATE[key] } : null;
+}
+
+/** Scarcity model, threat orientation and growth direction for an Enneagram type, or null. */
+export function fixationFor(type) {
+  const n = Number(type);
+  return Number.isInteger(n) && FIXATION[n] ? { type: n, ...FIXATION[n] } : null;
 }
 
 /**

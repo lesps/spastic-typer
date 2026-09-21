@@ -4,7 +4,7 @@
 
 import { MBTI_TYPES } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
-import { POSITIONS, CROSSING_MATRIX, SHADOW_TEMPLATES, FULL_SHADOW_PAIR_NARRATIVE } from '../data/shadow.js';
+import { POSITIONS, CROSSING_MATRIX, STACK_INVERSION_NARRATIVE } from '../data/shadow.js';
 
 const FLIP = { e: 'i', i: 'e' };
 
@@ -53,10 +53,15 @@ export function getShadowType(mbtiType) {
 }
 
 /**
- * Returns the type whose ego stack IS this type's shadow stack.
- * ENFP → INFJ (because INFJ's ego [Ni,Fe,Ti,Se] = ENFP's shadow).
+ * Returns the type whose ego stack IS this type's shadow stack — the attitude
+ * inverse of the whole stack. ENFP → INFJ (because INFJ's ego [Ni,Fe,Ti,Se] =
+ * ENFP's shadow).
+ *
+ * Deliberately not called a "mirror": that word is reserved for the nested
+ * partner (Lead/Flood, Anchor/Gamble, Refuge/Critic, Hunger/Counter). See the
+ * two-pairings table in CLAUDE.md.
  */
-export function getShadowMirror(mbtiType) {
+export function getStackInverse(mbtiType) {
   const shadow = getShadowStack(mbtiType);
   if (!shadow) return null;
   return Object.keys(MBTI_TYPES).find(
@@ -65,18 +70,8 @@ export function getShadowMirror(mbtiType) {
 }
 
 /**
- * Instantiate a shadow position description template for a specific function.
- */
-export function instantiateTemplate(positionNum, fn) {
-  const tmpl = SHADOW_TEMPLATES[positionNum];
-  if (!tmpl) return '';
-  const fnName = COG_FUNCTIONS[fn]?.name || fn;
-  return tmpl.replace(/\{fn\}/g, fn).replace(/\{fnName\}/g, fnName);
-}
-
-/**
  * Compute all meaningful position crossings between two MBTI types.
- * Returns { crossings, isFullShadowPair, shadowPairNarrative } or null for invalid types.
+ * Returns { crossings, isStackInverse, stackInversionNarrative } or null for invalid types.
  *
  * Each crossing: { posA, posB, nameA, nameB, fnA, fnB, tier, label, description }
  * Sorted by tier (highest first).
@@ -86,7 +81,7 @@ export function getPositionCrossings(typeA, typeB) {
   const fullB = getFullStack(typeB);
   if (!fullA || !fullB) return null;
 
-  const isFullShadowPair = getShadowMirror(typeA) === typeB;
+  const isStackInverse = getStackInverse(typeA) === typeB;
 
   const crossings = [];
   const tierOrder = { highest: 0, high: 1, medium: 2 };
@@ -134,7 +129,7 @@ export function getPositionCrossings(typeA, typeB) {
 
   return {
     crossings,
-    isFullShadowPair,
-    shadowPairNarrative: isFullShadowPair ? FULL_SHADOW_PAIR_NARRATIVE : null,
+    isStackInverse,
+    stackInversionNarrative: isStackInverse ? STACK_INVERSION_NARRATIVE : null,
   };
 }

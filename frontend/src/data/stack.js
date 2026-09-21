@@ -24,7 +24,7 @@ export const STAGE_BANDS = ['Boundary', 'Maintenance', 'Reality-testing', 'Termi
 
 // The unified mechanism. Part II §1.
 export const MECHANISM = {
-  statement: "a shadow position's corrupted output becomes an ego position's input, and sustained corrupted input recalibrates the receiver",
+  statement: "a shadow position's corrupted output becomes an ego position's input, and sustained corrupted input recalibrates the receiver.",
   egoToShadow: 'Each ego position corrupts its nested partner: Hunger→Counter, Refuge→Critic, Anchor→Gamble, Lead→Flood.',
   shadowToEgo: 'Each shadow position corrupts the ego position one step outward from its nested partner: Counter(5)→Refuge(3), Critic(6)→Anchor(2), Gamble(7)→Lead(1).',
   closure: "Flood's outward target would be position 0, which does not exist.",
@@ -375,3 +375,372 @@ export const LABEL_TEMPLATES = {
   levelLine:     'Level {level} · {rh} · {band}',
   stageLine:     '{name} stage · {pair} · Levels {levels}',
 };
+
+/**
+ * Fixation utility for Lead — the single surface modulator. Whether Lead's
+ * native output serves or conflicts with the fixation's strategy determines the
+ * surface presentation and the equilibrium depth, running on the same mechanism.
+ *
+ * `anchors` are the ONLY committed function × type cells in the source. The
+ * remaining cells do not exist; do not infer them. Utility is offered as a
+ * property the user reads off their own behaviour with the stakes-distribution
+ * diagnostic, which is how the source says to determine it.
+ */
+export const UTILITY = {
+  high: {
+    label: 'High utility',
+    stakes: 'Across all stakes',
+    summary: "Lead's native output directly serves the fixation",
+    detail: [
+      'Lead passes the corrupted gate and is deployed in fixation service across all stakes.',
+      'Integrated, ego-syntonic, recognizable as the type-fixation archetype; the fixation is visible in Lead operation.',
+      'Counter operation is minimal because Lead is doing the work.',
+    ],
+    gap: 'in high-utility configurations the gate flips early, so the 6→7 gap is wide',
+  },
+  mixed: {
+    label: 'Mixed utility',
+    stakes: 'Moderate stakes only',
+    summary: 'context-dependent operation revealing the utility seam',
+    detail: ['context-dependent operation revealing the utility seam.'],
+    gap: null,
+  },
+  low: {
+    label: 'Low utility',
+    stakes: 'Low stakes only',
+    summary: "Lead's native output structurally conflicts with the fixation",
+    detail: [
+      'Lead fails validation in fixation-evaluation-hot contexts and operates only where the gate relaxes — private reflection, intimate trusted contexts, leisure, specific creative outlets.',
+      'Counter handles high-stakes load through its existing Strong + Unvalued proficiency.',
+      'Compressed, ego-dystonic, often mistyped because Counter-dominant operation resembles another type; the person senses the gap and seeks help.',
+      'Equilibrium stabilizes at Reality-testing with Gamble intact because further colonization adds no marginal utility.',
+    ],
+    gap: 'in low-utility configurations the gate flip already required deep drift, so the gap is narrow',
+  },
+};
+
+export const UTILITY_DIAGNOSTIC = {
+  question: 'where does the typed Lead actually operate natively?',
+  rows: [
+    { stakes: 'Across all stakes', utility: 'high' },
+    { stakes: 'Moderate stakes only', utility: 'mixed' },
+    { stakes: 'Low stakes only', utility: 'low' },
+  ],
+  nowhere: 'Nowhere observable → extreme corruption or typing error.',
+};
+
+// The only committed utility cells in the source. Everything else is unknown.
+export const UTILITY_ANCHORS = [
+  { fn: 'Te', position: 1, type: 3, utility: 'high' },
+  { fn: 'Ni', position: 1, type: 4, utility: 'high' },
+  { fn: 'Se', position: 1, type: 8, utility: 'high' },
+  { fn: 'Fi', position: 1, type: 3, utility: 'low' },
+  { fn: 'Se', position: 1, type: 5, utility: 'low' },
+];
+
+/**
+ * The two thresholds on Anchor's drift. Anchor's standard drifts continuously
+ * under corrupted write-back; these are the two discrete crossings on it, which
+ * is why Levels 6 and 7 are distinct levels rather than one event.
+ */
+export const THRESHOLDS = [
+  {
+    id: 'gateFlip',
+    name: 'gate flip',
+    level: 6,
+    detail: "the fixation-shaped standard validates the majority of Lead's outputs.",
+    why: "reading corrupted output as acceptable takes less drift than reading clean input as wrong.",
+  },
+  {
+    id: 'discrepancyInversion',
+    name: 'discrepancy inversion',
+    level: 7,
+    detail: "the standard is corrupt enough that Flood's clean data reads as deviant.",
+    why: "It is higher than the gate flip because Lead's outputs are already partly fixation-shaped by Level 5 and are cheap to validate, whereas Flood's data is raw until Terminal and is expensive to read as wrong",
+  },
+];
+
+/**
+ * Gamble's three properties, and how each degrades. Only polarity is discrete;
+ * sensitivity and lens are gradients that start at Level 4, which is why
+ * surprise becomes rare before it becomes absent.
+ */
+export const GAMBLE_PROPERTIES = [
+  {
+    id: 'sensitivity',
+    name: 'Sensitivity',
+    what: 'the threshold a background signal must cross to surface.',
+    degrades: 'gradient',
+    from: 4,
+    detail: [
+      'Feedback-modulated: Gamble is Unvalued, its interrupts are dismissed, and repeated dismissal raises the threshold.',
+      'A gradient at Gamble from Level 4, independent of Anchor; why surprise becomes rare (5–6) before it becomes absent (7+).',
+    ],
+    trainable: 'sensitivity is trainable in both directions, so hit rate and credited fraction can improve even though directability cannot.',
+  },
+  {
+    id: 'lens',
+    name: 'Lens',
+    what: "the function Gamble evaluates through, Refuge's in opposing attitude.",
+    degrades: 'gradient',
+    from: 4,
+    detail: [
+      "from Level 4 the shared function is run fixation-shaped most of the day at Refuge, and the vocabulary Gamble surfaces in leaks toward the fixation's.",
+      "The flash still catches what is wrong and still reads it as wrong; the frame is increasingly the captured engine's.",
+    ],
+    trainable: null,
+  },
+  {
+    id: 'polarity',
+    name: 'Polarity',
+    what: "the comparator, Anchor's standard.",
+    degrades: 'discrete',
+    from: 7,
+    detail: [
+      'Because polarity corruption is in the comparator and not the signal, a surfacing at Level 7 or 8 still contains the accurate discrepancy.',
+      'The person cannot read it.',
+      'Someone else can.',
+    ],
+    trainable: null,
+  },
+];
+
+export const GAMBLE_SUMMONABILITY = 'Unsummonable stands: the background channel cannot be queried.';
+
+/**
+ * Odd levels are shadow captures, whose output is Unvalued and dismissed; even
+ * levels are ego captures, experienced as self. The source predicts the two are
+ * narrated differently, which is a check a user can run on their own memory.
+ */
+export const ODD_EVEN = {
+  odd: {
+    arc: 'shadow',
+    levels: [3, 5, 7, 9],
+    reported: 'the world changing',
+    example: 'people got more hostile, more careless, more dangerous',
+  },
+  even: {
+    arc: 'ego',
+    levels: [4, 6, 8],
+    reported: 'the self changing',
+    example: "I've been different, I can't relax the way I used to",
+  },
+  consequence: "only what the person can perceive as theirs is addressable, which is even-level positions and Gamble's registration",
+  falsifier: 'if descent narratives are uniformly self-referential or uniformly world-referential, the alternation is an artifact of the position model.',
+};
+
+/**
+ * Scarcity model, Counter's threat orientation, and the growth direction, by
+ * Enneagram type. Appendix C. `growth` is the arrow target and `falsifies` is
+ * the experience Counter's threat output declares will not arrive — the growth
+ * direction is that falsification, not an aspirational quality or a practice.
+ */
+export const FIXATION = {
+  1: { scarcity: 'Nothing is sufficiently correct; error is always possible and serious', threat: 'Relaxing the standard produces irreversible damage', growth: 7, falsifies: 'satisfaction in something as it is, arriving without correction' },
+  2: { scarcity: 'Worth is produced by being needed; without giving I will be abandoned', threat: 'Without providing, no one will want me for what I am', growth: 4, falsifies: 'being sought for interiority rather than utility' },
+  3: { scarcity: 'Worth is produced only by performance; without achievement I am nothing', threat: 'Non-performance cascades to material and relational collapse', growth: 6, falsifies: 'support arriving without performing for it; structures holding during non-performance' },
+  4: { scarcity: 'Something essential is missing in me; I am too deficient to function normally', threat: 'I am too broken to sustain ordinary commitments', growth: 1, falsifies: 'consistent principled functioning available while the deficiency feeling persists' },
+  5: { scarcity: 'Internal resources are insufficient; demands exceed what I can meet', threat: 'Engagement will drain me to nothing', growth: 8, falsifies: 'direct engagement generating rather than depleting energy' },
+  6: { scarcity: 'The world is dangerous; support is unreliable; vigilance is the only defense', threat: 'Relaxing monitoring lets catastrophe arrive undetected', growth: 9, falsifies: 'rest with vigilance suspended; things hold without monitoring' },
+  7: { scarcity: 'Slowing down traps me in pain; depth means being stuck with the unbearable', threat: 'Committing to one thing exhausts all exits', growth: 5, falsifies: 'depth that is spacious rather than trapping' },
+  8: { scarcity: 'Vulnerability is exploitable; only force ensures safety', threat: 'Tenderness will be weaponized against me', growth: 2, falsifies: 'care given returning as care rather than leverage' },
+  9: { scarcity: 'My presence is disruptive; assertion destroys connection', threat: 'Asserting myself damages the field beyond repair', growth: 3, falsifies: 'assertion deepening connection; mattering welcomed' },
+};
+
+/** Structure is inborn; only calibration is revisable, and calibration is what drives level. */
+export const FIXATION_NOTES = {
+  structure: 'Its structure — the basic fear/desire architecture — is inborn.',
+  calibration: 'Its calibration — the scarcity model: how bad, how likely, how soon, in which domain — is learned.',
+  revision: "Counter's threat output is constitutional structure running on learned parameters; growth work revises the parameters, never the structure.",
+  invariance: 'Type does not change over a lifetime; level does.',
+};
+
+/**
+ * Substrate pressure by first instinct. The first instinct's territory is where
+ * IV-domain threat arises; that threat sets the amplitude of the fixation signal
+ * at Hunger and is therefore the rate term on every accumulation capture.
+ */
+export const SUBSTRATE = {
+  sp: {
+    drive: 'CARE',
+    territory: 'material stability for SP-first',
+    register: 'what is actually stable or real; worst case is losing the job, the money, the health, the roof.',
+    reduction: 'stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
+  },
+  so: {
+    drive: 'PLAY',
+    territory: 'group standing for SO-first',
+    register: 'what happened in front of the room; worst case is public dismissal.',
+    reduction: "stabilize standing — a group, a role, a place at the table that does not depend on the fixation's performance.",
+  },
+  sx: {
+    drive: 'LUST',
+    territory: 'dyadic intensity for SX-first',
+    register: 'the specific person; worst case is bond rupture.',
+    reduction: "stabilize the dyad — one reliable intense connection whose continuity does not track the fixation's strategy.",
+  },
+};
+
+export const SUBSTRATE_ROLES = [
+  'Rate term on every accumulation capture, via Hunger signal → Counter threat output → downstream.',
+  'Co-condition at Lead, where it consumes deliberate direction.',
+  "Exceedance-frequency driver at Flood and at Gamble's firing rate",
+];
+
+export const SUBSTRATE_NOTE = 'It is not the fixation and it is not the level; it is what drives the level.';
+export const SUBSTRATE_TARGET = "In each case the target is not comfort but the removal of the specific threat the first instinct is monitoring, so that Hunger's signal amplitude drops and everything downstream runs at a lower rate.";
+
+/**
+ * Growth as falsification. Sourcing must be external and registration runs
+ * through Gamble; performing the growth direction deliberately is the fixation
+ * operating, which is why the app describes it rather than prescribing it.
+ */
+export const GROWTH_MECHANISM = [
+  "The growth direction is the specific experience Counter's threat output declares will not arrive — not a better quality, not an aspirational practice, the exact outcome Counter identifies as the consequence of the fixation failing",
+  "Each genuine growth-direction experience contradicts Counter's signal by delivering what it said was impossible, and revises the scarcity model's parameters — how bad, how likely, how soon — by one data point.",
+  'Sourcing must be external.',
+  "Counter's threat output is oriented precisely toward what the growth direction delivers, so approaching it deliberately activates the defense; performing the growth direction is the fixation operating.",
+  'Registration is internal and runs through Gamble, the discrepancy detector.',
+];
+
+/**
+ * The two stress events, which the app previously ran together. Both use the
+ * Hunger/Flood domain pair, so they look alike from outside and are told apart
+ * by direction, quality and severity rather than by content.
+ */
+export const STRESS_EVENTS = [
+  {
+    id: 'reaching',
+    name: 'Hunger Reaching',
+    severity: 'moderate stress',
+    position: 4,
+    detail: 'the inferior function attempts to operate without practiced capacity — exaggerated, unskilled, recognizable as the "inferior grip."',
+  },
+  {
+    id: 'floodPrimary',
+    name: 'Flood forced-primary',
+    severity: 'extreme stress',
+    position: 8,
+    detail: 'the background channel becomes the only input; the person does not reach, they are submerged.',
+  },
+];
+
+export const STRESS_EVENTS_NOTE = 'Same base function, opposing attitudes, distinguishable by direction, quality, and severity.';
+
+/**
+ * Coaching bands. An overlay on the four stages that tracks Lead's status,
+ * which is why Reality-testing splits into two bands where the stage is one.
+ */
+export const COACHING_BANDS = [
+  {
+    id: 'boundary', name: 'Boundary', levels: [1, 2, 3], stage: 'Boundary',
+    state: 'Recovery, stabilization, and perception are sovereign.',
+    approach: 'Coaching works directly: name what you see and they can hear it.',
+    detail: ['The person can observe their own patterns.', 'Golden rule applies; pushback is principled and they recover.'],
+  },
+  {
+    id: 'maintenance', name: 'Maintenance', levels: [4, 5, 6], stage: 'Maintenance',
+    state: 'Refuge through Anchor captured; Lead still perceives independently.',
+    approach: "Coaching works indirectly — naming the fixation directly gets reframed by the maintenance layer; work through Lead's domain instead.",
+    detail: ['Gamble surprise becomes rare across this band as sensitivity is suppressed; polarity is still native.'],
+  },
+  {
+    id: 'realityTesting', name: 'Reality-testing', levels: [7], stage: 'Reality-testing',
+    state: 'Gamble inverted; Lead still perceives independently.',
+    approach: "Intervention is external registration: reread the person's own Gamble surfacings for them — the data is accurate, the reading is not.",
+    detail: ['Coaching through Lead reaches perception, but the person cannot register discrepancy internally.', 'Not yet a management problem.'],
+  },
+  {
+    id: 'terminal', name: 'Terminal', levels: [8, 9], stage: 'Terminal',
+    state: 'Lead and Flood captured.',
+    approach: 'Management problem: protect the team, set hard boundaries, escalate.',
+    detail: ['No reality-contact channel is independent.', "Coaching doesn't work."],
+  },
+];
+
+/** Observation → inferred level. Read depth from which positions are captured. */
+export const DIAGNOSTIC = [
+  { observation: 'Self-aware humor about own patterns; feedback lands without defensiveness', level: '1–2', confidence: 'High' },
+  { observation: 'Pushback at fixation territory but recovers; decompresses cleanly; golden rule', level: '3', confidence: 'High' },
+  { observation: 'Output up, sourced from downtime; restoration intact', level: '3', confidence: 'Medium — distinguishes from 4 by restoration' },
+  { observation: '"Off mode" looks like "on mode" at lower intensity; no fixation-free gear', level: '4+', confidence: 'Medium — need Critic/Anchor data' },
+  { observation: 'Consistent Critic targets mapping to fixation concerns', level: '5+', confidence: 'High for fixation ID; medium for level' },
+  { observation: 'Surprise competence and Gamble surprise rare but present; person dismisses own hunches', level: '5–6', confidence: 'Medium — polarity native: hunches still read as anomalies when they occur' },
+  { observation: 'Stabilizer behavior rigid and fixation-shaped; leaden rule; stability serves the fixation', level: '6', confidence: 'High' },
+  { observation: 'Native Lead operating only at low stakes; Counter carrying high stakes', level: '6+, low utility', confidence: 'High for utility; medium for level' },
+  { observation: 'Cannot be surprised by counter-evidence; Gamble surprise absent; hunches confirm the fixation', level: '7', confidence: 'High' },
+  { observation: "Attention narrows to fixation-strategy cues in low-stakes contexts; doesn't register disconfirming input", level: '8', confidence: 'High' },
+  { observation: 'Dysregulation is fixation-shaped; override runs toward the fixation rather than away from danger', level: '9', confidence: 'High — also highest-fidelity stack read' },
+];
+
+export const DIAGNOSTIC_NOTES = [
+  'Operating level is a state, not a trait.',
+  'Read depth from which positions are captured, not from how bad the day is.',
+  'Every observation is of output.',
+  'For introverts the visible output is Anchor-shaped; for extraverts it is Lead-shaped.',
+];
+
+/** Three activations visible in conversation, each naming a position. */
+export const ACTIVATIONS = [
+  { id: 'reaching', name: 'Reaching', position: 4, what: 'Hunger acute activation, Counter co-active.', advice: "Don't satisfy the reach; don't deploy growth-direction content." },
+  { id: 'gripping', name: 'Gripping', position: 3, what: 'Refuge active under fixation load.', advice: 'The goal is clean Refuge output, not just decompression; reduce fixation pressure.' },
+  { id: 'rejecting', name: 'Rejecting', position: 5, what: 'Counter active.', advice: "Don't engage the Counter directly; reach past it privately." },
+];
+
+/** The clinical sequence. Order is load-bearing, not a menu. */
+export const CLINICAL_SEQUENCE = [
+  { step: 1, name: 'Substrate pressure reduction', detail: "Identify the first instinct's territory and reduce the threat in it.", note: 'This is a direct intervention on write-back rate and precedes everything.' },
+  { step: 2, name: 'Gamble re-sensitization', detail: 'Get the person crediting the interrupts they already receive before supplying new experiences: treat hunches, surprise competence, and off-pattern flashes as data rather than dismissing them.', note: 'Trains hit rate and credited fraction; does not and cannot train directability.' },
+  { step: 3, name: 'Growth introduction, externally sourced and repeated', detail: 'Arrange conditions under which the growth direction can arrive; do not instruct the person to perform it.', note: 'At Level 7+ pair every experience with an external reading.' },
+  { step: 4, name: 'Anchor recalibration', detail: 'proceeds on its own once clean Refuge data accumulates', note: "the practitioner's job is to keep steps 1–3 running and to not mistake fixation-filtered Lead return for the end" },
+];
+
+export const CLINICAL_ORDER = 'Substrate pressure reduction before growth introduction; re-sensitization between them; externally sourced first experience; never self-performed.';
+
+/** Two failure modes of premature growth work, which take different corrections. */
+export const FAILURE_MODES = [
+  {
+    id: 'simulation', name: 'Fixation simulation', levels: '7+',
+    why: 'Polarity is inverted and the fixation is running at depth.',
+    detail: "the fixation reads the growth direction as a resource and runs its native strategy on the growth direction's content — the 3 performs supported non-performance, the 6 makes vigilance out of rest, the 1 perfects pleasure",
+    correction: 'stop, reduce substrate pressure',
+  },
+  {
+    id: 'nonRegistration', name: 'Non-registration', levels: '4–6',
+    why: 'Polarity is native but sensitivity is suppressed.',
+    detail: 'The falsification arrives and simply does not register: inert, no simulation, no harm, no effect.',
+    correction: 're-sensitize, then try again',
+  },
+];
+
+/** Typing errors the mechanism predicts, with what to check instead. */
+export const TYPING_ERRORS = [
+  { error: 'Low-utility configurations are mistyped as the type whose ego stack their Counter-dominant operation resembles', check: 'check where native Lead operates at low stakes' },
+  { error: 'Introverts are typed from Anchor-shaped output', check: 'use Counter and Critic to reach Lead' },
+  { error: 'Flood is misattributed to Lead when the two share attitude', check: 'the Flood signature is unattended and disowned' },
+  { error: "Aspirational self-typing selects the growth direction's type", check: 'the tell is that the claimed Lead never appears under load' },
+];
+
+/**
+ * The test set. Each is stated so one clean observation decides it. Carried in
+ * the app because the source's own posture is that none of this is verified,
+ * and a framework that hides its falsifiers is being sold rather than tested.
+ */
+export const TEST_SET = [
+  { n: 1, name: 'Ordinality', claim: 'Any position captured out of sequence falsifies adjacency corruption.' },
+  { n: 2, name: 'Read/sample profile', claim: 'Levels 3 and 7 abrupt, 5 and 9 gradual; the reverse falsifies the immediate/accumulation distinction.' },
+  { n: 3, name: 'Two thresholds', claim: 'Gamble surprise vanishing simultaneously with leaden-rule onset in all configurations collapses Levels 6 and 7.' },
+  { n: 4, name: 'Utility lag', claim: 'The 6→7 gap should be wide in integrated (high-utility) presentations and narrow in compressed (low-utility) ones.' },
+  { n: 5, name: 'Level 3 sourcing', claim: 'Level 3 output gain comes from downtime, not efficiency; Level 2 shows lower output with cleaner restoration.' },
+  { n: 6, name: 'Odd/even reporting', claim: 'Odd-level transitions narrated as the world changing, even-level as the self changing; uniform narration falsifies the alternation.' },
+  { n: 7, name: 'Sensitivity', claim: 'Crediting hunches raises Gamble firing frequency at Levels 5–6.' },
+  { n: 8, name: 'Lens', claim: "Framing of Gamble surfacings shifts toward the fixation's vocabulary between Levels 4 and 7." },
+  { n: 9, name: 'Failure modes', claim: 'Premature growth work at 4–6 is inert; at 7+ it simulates. Simulation at 4–6 collapses the three properties to one.' },
+  { n: 10, name: 'Lead entrainment tell', claim: 'Fixation-strategy attentional narrowing appears in low-stakes contexts at Level 8; IV-domain narrowing alone is substrate stress.' },
+  { n: 11, name: 'Flood direction', claim: 'Level 9 override runs toward the fixation; away-from-danger dysregulation at 9 falsifies the Lead→Flood edge.' },
+  { n: 12, name: 'Utility modulator', claim: 'High-utility Lead presenting compressed, or low-utility presenting integrated, at matched depth.' },
+  { n: 13, name: 'Structure inborn', claim: 'MZ-apart concordance on type position and wing exceeds DZ; otherwise the structural claim fails.' },
+  { n: 14, name: 'Stack constitutional', claim: 'Dominant function shows cross-situational consistency and MZ-apart concordance; high within-person variance in processing preference falsifies it.' },
+];
+
+export const TEST_SET_NOTE = 'Nothing above has been verified against observation; Appendix F is the order of work.';
