@@ -36,7 +36,9 @@ spastic-typer/
 │   ├── vite.config.js
 │   └── package.json
 ├── scripts/
-│   └── generatePairs.mjs   # One-off script — regenerates pairLookup.js
+│   ├── generatePairs.mjs       # Regenerates pairLookup.js
+│   ├── generateCombinations.mjs # Regenerates combinationProfiles.js
+│   └── splitCombinations.mjs    # Splits it into data/combinations/*.js for lazy loading
 ├── docs/
 │   ├── specs/              # Owner-supplied feature specs, checked in verbatim (stack-view.md)
 │   └── plans/              # Session-by-session implementation plans (stack-view-sessions.md)
@@ -98,7 +100,7 @@ spastic-typer/
 | `group.js` | `analyzeGroup` (patterns for 3+ people) |
 | `shadow.js` | `flipAttitude`, `getShadowStack`, `getFullStack`, `getShadowType`, `getStackInverse`, `getPositionCrossings` |
 | `route.js` | `parseHash`, `buildHash`, `VIEWS` (`typer`, `explorer`, `compare`, `stack`), `DEFAULT_VIEW` — URL-hash ↔ view mapping (accepts legacy `#p1=…` links; `#/model` → Explorer) |
-| `stack.js` | `captureState(level)`, `capturedAt`, `captureLevelOf`, `isCaptured`, `tierForLevel`, `stageForLevel`, `sealedStages`, `nestedPartner`, `domainPartner`, `substrateFor`, `fixationFor`, `fillTemplate`, `positionLabel(pos, level?)`, `fnAtPositionLabel`, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, `stackLayout()`, `bezierPoint`, `MIN_LEVEL` / `MAX_LEVEL` — pure Stack-view logic and diagram geometry |
+| `stack.js` | `captureState(level)`, `capturedAt`, `captureLevelOf`, `isCaptured`, `tierForLevel`, `stageForLevel`, `sealedStages`, `nestedPartner`, `domainPartner`, `substrateFor`, `fixationFor`, `growthPathFor`, `fillTemplate`, `positionLabel(pos, level?)`, `fnAtPositionLabel`, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, `stackLayout()`, `bezierPoint`, `MIN_LEVEL` / `MAX_LEVEL` — pure Stack-view logic and diagram geometry |
 | `compare.js`, `share.js` | Compare-page analyses (`getCognitiveHarmony`, …) and profile-code encode/decode |
 | `scroll.js` | `scrollToTop`, `useScrollToTop(...deps)` — resets scroll when a view, tab, or detail selection changes |
 
@@ -165,6 +167,8 @@ All tests live in `frontend/src/test/`:
 | `stack-view.test.jsx` | Stack page: type selection and deep links (on mount **and** on `hashchange`), diagram `data-` state per level, scrubber label/caveat/narration/More/falsifier/capture kind, tap and keyboard selection, purpose panel inert/active and both pairings, Replay with fake timers and reduced motion, personalization (fixation + substrate) and malformed storage, the utility selector, both Anchor thresholds, Gamble's three properties, the odd/even tag |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js` | Compare-page analyses: `getCognitiveHarmony`, `analyzeGroup`, distribution helpers |
 | `combinations.test.js`, `subtypes.test.js` | Combined-profile loading and subtype data integrity |
+| `growth-direction.test.js` | `growthPathFor` across every type × wing × MBTI × instinct stack; that the direction comes from the fixation, is wing-invariant, names the Gamble function and the first instinct's substrate; that nothing stores what is derivable; and that no growth copy is instruction-shaped |
+| `combined-growth.test.jsx` | The combined profile renders the derived growth path and varies it by stack and instinct; the repressed instinct stays separate from the growth direction |
 
 ### Exported Test Helpers (from `GuidedTyper.jsx`)
 
@@ -266,6 +270,12 @@ The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (
 
 **"Mirror" is reserved for the nested partner.** The type whose ego stack *is* another type's shadow stack is the **stack inverse** (`getStackInverse`, `STACK_INVERSION_NARRATIVE`, Compare's "Full Stack Inversion"). Calling that a mirror is the domain/nested confusion above.
 
+**"Growth" has exactly one meaning.** The growth direction is the experience Counter's threat output says will not arrive (`FIXATION[type].falsifies`, Appendix C). It is set by the fixation alone, cannot be self-performed, and is registered rather than produced. Nothing else in the app may use the word:
+
+- `growthPathFor(ennType, wing, mbtiType, instStack)` in `utils/stack.js` composes the per-cell text from three sourced axes — the fixation, the function at Gamble (registration channel), and the first instinct (substrate pressure). **It is derived, never stored.** `combinationProfiles.js` deliberately has no `growthPath` field: storing it meant 1,728 copies of 216 distinct strings and a second place to drift.
+- Wing does not change the direction. The source calls wing the angular precision of a point on the circle, not a separate variable, so both wings of a type share one `growthSummary` in `ennBase.js` (18 entries, 9 distinct).
+- The least-attended instinct is `underdeveloped` in `instinctStackProfiles.js`, not `growth`. It is the app's own instinctual-variant layer; the source says nothing about developing a repressed instinct, so it is not presented as a growth path.
+
 **Two stress events, not one.** `STRESS_EVENTS` keeps them apart: Hunger Reaching at moderate stress is the inferior grip; Flood forced-primary at extreme stress is the background channel becoming the only input. Same domain pair, different events. Copy describing one must say which.
 
 ### Stack Terminology Guard
@@ -322,6 +332,19 @@ Profile data is encoded as the query part of the Compare view's hash:
 ```
 
 Legacy links without the view prefix (`#p1=…&p2=…`) still route to Compare. Person encoding/decoding lives in `ComparePage.jsx`; view/query splitting lives in `utils/route.js`.
+
+### Generated Combination Data
+
+`combinationProfiles.js` and `data/combinations/*.js` are both machine-generated and hold the same 1,728 profiles — the monolith and its lazy-loaded per-wing split. Regenerate both, in order, after changing `ennBase.js`, the modifiers, or the cross rules:
+
+```bash
+node scripts/generateCombinations.mjs
+node scripts/splitCombinations.mjs
+```
+
+The wing files were previously checked in as "auto-generated" with no generator in the repo, so they could not be kept in step; `splitCombinations.mjs` is that missing generator. Do not hand-edit either store.
+
+`CombinedProfile.jsx` still imports the 5 MB monolith statically while `GuidedTyper.jsx` lazy-loads the split — so the split does not currently save anything on the main bundle. Untouched here, but worth fixing.
 
 ### Pre-computed Pair Data
 
@@ -424,6 +447,9 @@ Entry method (URL hash | file upload | manual form)
 - **Per-type content generated across all 16 stacks must be scoped per type.** The shadow briefs in `mbtiDetails.js` are generated by applying the source's per-position account to each type's stack. A generator that matches `shadow7: { function: 'Te'` globally will overwrite every type sharing that function at that position. `shadow.test.js` asserts every function a brief names belongs to that type's stack; keep it.
 - **Prose strings must carry exactly the punctuation the source gives them.** Truncating a sentence just before its period makes joined sentences run together on the page; adding a period to a string the JSX already punctuates shows a double stop. Fix by extending or trimming the *selection*, never by editing wording. `stack-data.test.js` asserts both directions.
 - **New edges need a `ROUTES` entry and non-colliding label coordinates.** The eight edges share a narrow channel between the two columns; two geometry tests guard it, one for node bodies and one for label legibility. Verify in a browser as well — the label collision that shipped in 1.6.0 passed every test that existed at the time.
+- **`guided-typer.test.jsx` is flaky, and it is almost certainly not your change.** The quiz builds its sequence with unseeded `shuffleArray`, so question order differs per run and the adaptive confidence check exits at different points. Between three and six Enneagram-flow tests fail per run, mostly on the 15s timeout. Reproducible on a clean checkout several commits back. Re-run before assuming a change caused it.
+
+  Seeding `Math.random` in the suite does make it deterministic — and then it fails *every* run, because some tests assume the quiz does not exit early and the adaptive exit legitimately fires before question 2. So the real defect is in the tests' assumptions, not only in the ordering. Fixing it means reworking those assertions to tolerate an early exit, plus a longer timeout for the flows that walk all 70 questions (the file takes ~3 minutes). Do not paper over it by hunting for a seed that happens to pass.
 - **Nav tests select by `data-view`.** Tab labels also appear as page headings, so tests find nav buttons via `button[data-view="…"]` inside the `Primary` navigation landmark rather than by text.
 - **Wing wrap-around.** Type 1's wings are 9 and 2; type 9's wings are 8 and 1. See the wing wrap tests in `scoring.test.js`.
 - **Disambiguation.** When top-2 Enneagram types are within threshold after bank exhaustion, a `branchKey` (e.g. `'4-5'`) triggers additional clarifying questions. This path is covered in tests — preserve it.
@@ -477,11 +503,7 @@ Version numbering guidance:
 
 ### Known documentation and content drift
 
-As of 3.0.0 the whole app follows `ct-consolidated.md`; the drift table that stood here at 2.0.0 is cleared. What remains is one deliberate exception, recorded so it is not mistaken for an oversight:
-
-| Surface | Status |
-|---|---|
-| `data/combinationProfiles.js` (~1,700 strings), `data/combinations/`, `data/ennBase.js`, `data/subtypes.js` | Growth copy is generated and instruction-shaped. Not rewritten: the source supplies one growth line per type (Appendix C), not per type-wing-instinct cell, so a faithful rewrite needs content that does not exist. Explorer carries Appendix C and a caveat stating what the generated copy is — descriptions of what the arrival looks like, not instructions for producing it. Revisit only with owner-supplied per-cell content, via `scripts/`. |
+None. As of 3.1.0 every growth string in the app is composed from the source document rather than authored, so there is nothing left on this list. If something lands here again, record what is stale and what would be needed to fix it, rather than leaving it to be rediscovered.
 
 ### When to update `CLAUDE.md`
 

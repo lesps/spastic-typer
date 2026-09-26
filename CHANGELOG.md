@@ -16,47 +16,25 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ---
 
+## [3.1]
+
+### 3.1.0 — 2026-09-26
+
+Closes the one exception 3.0.0 recorded. Every growth string in the app is now composed from the source document instead of authored, and "growth" has exactly one meaning.
+
+- Changed: **the growth direction is derived, not stored.** `growthPathFor(ennType, wing, mbtiType, instStack)` in `utils/stack.js` composes it from three sourced axes: the fixation (Appendix C) sets the direction, the function at Gamble sets the registration channel, and the first instinct sets which substrate pressure has to come down first. The previous copy said growth comes from doing something; the source says it is a prediction being falsified, cannot be self-performed, and is registered rather than produced.
+- Removed: `growthPath` from `combinationProfiles.js` and the per-wing files. It was 1,728 stored copies of 216 distinct strings and a second place for the growth copy to drift. `CombinedProfile` computes it at render. The monolith is 243 KB smaller than before this change rather than 847 KB larger, which is what storing the richer text would have cost.
+- Changed: `ennBase.growthSummary` regenerated from Appendix C — 18 entries, 9 distinct, because the source calls wing the angular precision of a point on the circle rather than a separate variable, so it cannot change the direction.
+- Changed: all 27 `subtypes.growthPath` entries regenerated as the fixation crossed with that instinct's substrate reduction.
+- Changed: `instinctStackProfiles` `growth` → `underdeveloped`. The content stays — the least-attended instinct is standard instinctual-variant material and the app's own layer — but the source says nothing about developing a repressed instinct, so it is no longer presented as a growth path. Explorer labels it "Least attended"; the combined profile now says explicitly that it is distinct from the growth direction.
+- Added: `scripts/splitCombinations.mjs`. The per-wing files were checked in as "auto-generated" with no generator in the repo, so they could not be kept in step with the monolith. This is that generator; run it after `generateCombinations.mjs`.
+- Tests: `growth-direction.test.js` covers every type × wing × MBTI × instinct combination and asserts the direction is wing-invariant, names the right Gamble function and the first instinct's substrate, never the second's, and that no growth copy is instruction-shaped. `combined-growth.test.jsx` covers the rendered path.
+- Known issue, pre-existing and not fixed here: `guided-typer.test.jsx` is flaky — three to six Enneagram-flow tests fail per run, mostly on the 15s timeout. The quiz sequence is built with unseeded `shuffleArray`, so the adaptive exit fires at different points each run. Reproducible on a clean checkout several commits back, so not introduced here. Seeding the order was tried and rejected: it makes the suite deterministic and then red every run, because some tests assume the quiz does not exit early. The real fix is to rework those assertions, which does not belong in a content change. Characterised in CLAUDE.md.
+- Known issue, pre-existing and untouched: `CombinedProfile.jsx` statically imports the 5 MB combination monolith while `GuidedTyper.jsx` lazy-loads the per-wing split, so the split currently saves nothing on the main bundle.
+
 ## [3.0]
 
-### 3.0.0 — 2026-09-20
-
-Major: the rest of the app joins the Stack view on `docs/specs/ct-consolidated.md`, and the Stack view gains the surface modulator and the reading half. 2.0.0 aligned one view and recorded what had not caught up; this clears that list and adds what the old spec had to leave out.
-
-**The surface modulator and the two thresholds**
-
-- Added: **fixation utility for Lead** as a three-way selector. The old spec forbade inferring an 8 × 9 matrix, and the consolidated document makes that unnecessary: utility is read off behaviour with the stakes-distribution diagnostic, so the user answers where their Lead actually operates and gets the matching configuration. Only the five committed anchor cells are stored.
-- Added: **Anchor drift** with both discrete crossings marked as the scrubber passes them — the gate flip at 6 and discrepancy inversion at 7 — and the source's reason the second is higher than the first.
-- Added: **Gamble as three properties** degrading at different rates. Sensitivity and lens are gradients from Level 4; polarity is discrete at 7. This is what makes surprise rare before it is absent, and it keeps visible the corrected claim that the surfacing stays accurate while only the comparator fails.
-- Added: the **odd/even reporting signature** beside each level. Shadow captures are reported as the world changing, ego captures as the self changing; level 2 is excluded because it is identification rather than a capture.
-
-**Personalization**
-
-- Added: **Appendix C per type** — the scarcity model, what Counter's threat output is oriented toward, and the growth direction stated as the falsification of that threat. A test cross-checks all nine growth targets against the app's existing `ENN_ARROWS`; they agree.
-- Added: **substrate pressure** from the saved first instinct — its threat register, its three roles in the mechanism, and the pressure reduction the source prescribes. `readSavedTypes` now reads `typer_inst`, falling back to the instinct stack on the Enneagram result.
-
-**The rest of the app**
-
-- Changed: `getShadowMirror` → `getStackInverse`, `FULL_SHADOW_PAIR_NARRATIVE` → `STACK_INVERSION_NARRATIVE`, Compare's "Full Shadow Pair" → "Full Stack Inversion". The source reserves "mirror" for the nested partner, and calling the attitude inverse of a whole stack a mirror is the domain/nested confusion it names as the most common contamination error.
-- Changed: all **64 per-type shadow briefs** regenerated by applying the source's per-position account to each type's own stack row. Flood is an always-on channel rather than a dormant pressure valve; Gamble's failure mode is dismissal rather than misfiring; Counter is real proficiency; Critic's evaluations stay precise while only its targets move. Each brief names that type's coupled functions, so the Counter entry carries its own Appendix B texture and contamination.
-- Removed: `POSITIONS[].brief` and `SHADOW_TEMPLATES`, two unsourced stores of position meaning that both predated the consolidated document and contradicted it. `ROLES` in `data/stack.js` is now the single sourced definition, used by Explorer and the Stack view alike. `instantiateTemplate` went with the templates it read.
-- Changed: six **crossing templates** corrected, editing only the clauses that contradict the source. Refuge/Gamble gained the detail that makes it the tightest shadow crossing: Gamble evaluates through Refuge's own function in the opposite attitude.
-- Added: the **two stress events** separated. Hunger Reaching at moderate stress is the inferior grip the profile describes; Flood forced-primary at extreme stress is a different event in the same domain pair. Explorer names both and says which one the card is; the export note does the same.
-- Changed: Explorer's **growth card** now carries Appendix C with the caveat that sourcing must be external and that performing the direction deliberately is the fixation operating.
-
-**The reading half**
-
-- Added: a **Reading tab** on the Stack view carrying coaching bands (highlighted against the current level), the diagnostic table with its confidence qualifiers, the three conversational activations, the predicted typing errors, the clinical sequence, and the two failure modes of premature growth work split by whether polarity has inverted.
-- Added: **all fourteen falsifiers** under "How this could be wrong", with the source's note that none of it has been verified against observation.
-
-**Fixes found by looking at the page rather than the tests**
-
-- Fixed: level spans rendered as "Levels 1-2-3" instead of a range.
-- Fixed: several prose strings were truncated just before the period the source gives them, so joined sentences ran together. Extended to include it, which keeps them verbatim. A guard test now asserts punctuation in both directions.
-- Fixed: a generator bug that matched shadow slots globally, so types sharing a function at the same position overwrote each other's text. Caught by reading the output; now covered by a test.
-
-**Not aligned, deliberately**
-
-- The ~1,700 generated growth strings in `combinationProfiles.js` and friends are unchanged. The source supplies one growth line per type, not per type-wing-instinct cell, so a faithful rewrite needs content that does not exist. Explorer's caveat states what the generated copy is. See CLAUDE.md.
+- 3.0.0: the whole app brought onto `docs/specs/ct-consolidated.md`. Added the fixation-utility modulator, both thresholds on Anchor's drift, Gamble's three properties, the odd/even reporting signature, Appendix C personalization and substrate pressure, and a Reading tab carrying the coaching bands, diagnostic table, clinical sequence, failure modes and all fourteen falsifiers. Renamed the stack-inverse concept off "mirror", regenerated all 64 per-type shadow briefs, removed two unsourced stores of position meaning, corrected six crossing templates, and split Hunger Reaching from Flood forced-primary.
 
 ## [2.0]
 

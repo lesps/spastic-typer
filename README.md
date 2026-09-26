@@ -73,7 +73,7 @@ An interactive model of the eight cognitive-function positions — Lead, Anchor,
 
 The app follows **The Cognitive Thumbprint** (`docs/specs/ct-consolidated.md`). The mechanism is adjacency corruption: a shadow position's corrupted output becomes an ego position's input, and sustained corrupted input recalibrates the receiver. Critic write-back is one instance of it.
 
-Content lives in `frontend/src/data/stack.js` and is sourced verbatim — a test asserts that every prose string is a substring of a checked-in source document, so the framework prose cannot drift into paraphrase. As of 3.0.0 Explorer and Compare follow the same document; the one deliberate exception is the generated growth copy, which CLAUDE.md records.
+Content lives in `frontend/src/data/stack.js` and is sourced verbatim — a test asserts that every prose string is a substring of a checked-in source document, so the framework prose cannot drift into paraphrase. Explorer and Compare follow the same document. Growth copy is composed rather than authored: the growth direction is the experience the fixation's own defense says will not arrive, so it is derived per person from the type, the function at Gamble and the first instinct rather than stored.
 
 ---
 
@@ -164,6 +164,8 @@ Expected output:
 | `stack-logic.test.js` | Capture state across levels 1–9, stage and pair helpers, query parsing, diagram geometry |
 | `stack-view.test.jsx` | Stack page behaviour: diagram state, scrubber, selection, purpose panel, replay, personalization, utility, thresholds, Gamble |
 | `stack-reading.test.jsx` | Reading tab: tab switching, coaching bands tracking the level, diagnostics, clinical sequence, test set |
+| `growth-direction.test.js` | Growth paths across every type × wing × MBTI × instinct stack, and that none of the copy is instruction-shaped |
+| `combined-growth.test.jsx` | The combined profile's derived growth path |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js`, `combinations.test.js`, `subtypes.test.js` | Compare analyses, group patterns, combined-profile data |
 
 All tests must pass before merging. Fix root causes — do not skip or suppress tests.
@@ -221,7 +223,9 @@ spastic-typer/
 │   ├── vite.config.js            # Base path: /spastic-typer/
 │   └── package.json
 ├── scripts/
-│   └── generatePairs.mjs         # Regenerates pairLookup.js — run after changing dynamics logic
+│   ├── generatePairs.mjs         # Regenerates pairLookup.js — run after changing dynamics logic
+│   ├── generateCombinations.mjs  # Regenerates combinationProfiles.js from ennBase + modifiers
+│   └── splitCombinations.mjs     # Splits it into data/combinations/*.js for lazy loading
 ├── docs/
 │   ├── specs/                    # Source documents checked in verbatim (ct-consolidated.md, stack-view.md)
 │   └── plans/                    # Implementation plans (stack-view-sessions.md)

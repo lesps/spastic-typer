@@ -1,3 +1,13 @@
+
+
+/**
+ * `underdeveloped` is the least-attended instinct for this stack — standard
+ * instinctual-variant material, and the app's own layer. It is deliberately NOT
+ * called growth: in this app the growth direction has one precise meaning, the
+ * experience Counter's threat output says will not arrive. The source document
+ * says nothing about developing a repressed instinct, so this is not presented
+ * as one.
+ */
 export const INSTINCT_STACK_PROFILES = {
   'SP/SX/SO': {
     name: 'The Passionate Survivor',
@@ -11,7 +21,7 @@ export const INSTINCT_STACK_PROFILES = {
       'Pragmatic and self-reliant. Prefers mastery-based roles with some passion component. May resist networking, office politics, or public visibility.',
     blindSpot:
       "Can become isolated in a \"bunker for two\" — neglecting community, reputation, and broader social responsibilities. May be oblivious to how they're perceived by groups.",
-    growth:
+    underdeveloped:
       'Deliberately practice social engagement. Join a community. Allow yourself to care about belonging, not just surviving and connecting.',
   },
   'SP/SO/SX': {
@@ -26,7 +36,7 @@ export const INSTINCT_STACK_PROFILES = {
       'Excellent at building sustainable systems and teams. Natural project manager or operations lead. Valued for dependability.',
     blindSpot:
       'Relationships may feel transactional or shallow despite good intentions. Can prioritize "the group" over the intimate partner. Avoids emotional depth.',
-    growth:
+    underdeveloped:
       'Lean into vulnerable, intense 1-on-1 moments. Let someone see you without your competence shield.',
   },
   'SX/SP/SO': {
@@ -41,7 +51,7 @@ export const INSTINCT_STACK_PROFILES = {
       'Needs work to feel meaningful and engaging. Bored by routine, energized by challenge and chemistry with colleagues. May resist team norms or corporate culture.',
     blindSpot:
       'Can burn through relationships with excessive intensity. May neglect community ties and broader social responsibilities. The "bunker for two" tendency is even stronger here.',
-    growth:
+    underdeveloped:
       'Build sustainable social connections. Learn that not every interaction needs to be transformative. Community can be a source of meaning too.',
   },
   'SX/SO/SP': {
@@ -56,7 +66,7 @@ export const INSTINCT_STACK_PROFILES = {
       'Natural leader or influencer. Thrives in roles combining personal charisma with group impact — sales, ministry, activism, performing arts.',
     blindSpot:
       "Neglects physical health, finances, and material stability. Can overcommit to relationships and causes until burnout. May not notice their own exhaustion until collapse.",
-    growth:
+    underdeveloped:
       "Invest in self-preservation basics: sleep, savings, physical health. Your passion serves no one if you're depleted.",
   },
   'SO/SP/SX': {
@@ -71,7 +81,7 @@ export const INSTINCT_STACK_PROFILES = {
       'Exceptional team player and institution-builder. Reads group dynamics instinctively. May over-index on consensus and approval.',
     blindSpot:
       'Intimate relationships may lack passion or depth. Can substitute social belonging for genuine vulnerability. May not know what they personally desire outside of group roles.',
-    growth:
+    underdeveloped:
       'Practice being alone with one person with nowhere to hide. Let yourself want something that has nothing to do with the group.',
   },
   'SO/SX/SP': {
@@ -86,7 +96,7 @@ export const INSTINCT_STACK_PROFILES = {
       'Visionary community builder, activist, cultural leader. Thrives where social impact meets personal passion. May struggle with administrative details or financial management.',
     blindSpot:
       "Same as SX/SO/SP but inverted emphasis: neglects personal stability even more. Can become a \"burnt-out activist\" who inspires everyone but can't pay rent.",
-    growth:
+    underdeveloped:
       'Build a personal foundation. Your social mission needs you healthy and solvent. Learn to rest without guilt.',
   },
 };
