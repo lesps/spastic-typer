@@ -144,8 +144,9 @@ Expected output:
  ✓ src/test/guided-typer.test.jsx
  ✓ src/test/compare-page.test.jsx
  ✓ src/test/navigation.test.jsx
+ …
 
- Test Files  4 passed (4)
+ Test Files  19 passed (19)
 ```
 
 ### Test files
@@ -153,7 +154,7 @@ Expected output:
 | File | What it covers |
 |------|----------------|
 | `scoring.test.js` | All three scoring algorithms, `buildFairSequence`, `shuffleArray`, question bank data integrity (~140 assertions) |
-| `guided-typer.test.jsx` | Quiz flows, choose screen, share/export gating, localStorage persistence, retake, disambiguation |
+| `guided-typer.test.jsx` | Quiz flows, choose screen, share/export gating, localStorage persistence, retake, disambiguation, and a harness test that an abandoned answer loop cannot reach the next test |
 | `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button |
 | `navigation.test.jsx` | Nav landmark/labels, `aria-current`, hash routing, scroll reset |
 | `route.test.js` | URL-hash parsing and building |
@@ -257,7 +258,7 @@ App.jsx
 User selects quiz (enn | mbti | inst)
   → buildFairSequence(bank, keyFn)   — interleaved shuffle, one question per category per round
   → user answers stored in answers{} map: { questionIndex: likertValue }
-  → after each answer: confidence check
+  → after each answer, once three full rounds have been presented: confidence check
       → if confident: show result immediately (early exit)
       → if bank exhausted (Enneagram): run disambiguation branch if top-2 within threshold
       → otherwise: advance to next question
