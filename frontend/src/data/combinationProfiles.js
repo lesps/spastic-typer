@@ -14,7 +14,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -40,7 +40,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -64,7 +64,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -90,7 +90,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -114,7 +114,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -141,7 +141,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -165,7 +165,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -191,7 +191,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -215,7 +215,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -241,7 +241,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -265,7 +265,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -291,7 +291,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -317,7 +317,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -344,7 +344,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -368,7 +368,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -392,7 +392,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -416,7 +416,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -442,7 +442,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -466,7 +466,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -493,7 +493,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -519,7 +519,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -546,7 +546,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -572,7 +572,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -600,7 +600,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -626,7 +626,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -652,7 +652,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -676,7 +676,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -700,7 +700,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -724,7 +724,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -750,7 +750,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -776,7 +776,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -803,7 +803,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -829,7 +829,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -855,7 +855,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -881,7 +881,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -909,7 +909,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -935,7 +935,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -961,7 +961,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -987,7 +987,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1011,7 +1011,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1037,7 +1037,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1063,7 +1063,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1087,7 +1087,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1113,7 +1113,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1139,7 +1139,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1163,7 +1163,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1187,7 +1187,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1213,7 +1213,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1237,7 +1237,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1263,7 +1263,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1287,7 +1287,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1313,7 +1313,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1337,7 +1337,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1363,7 +1363,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1387,7 +1387,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1413,7 +1413,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1437,7 +1437,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1461,7 +1461,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1487,7 +1487,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1514,7 +1514,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1538,7 +1538,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1565,7 +1565,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1589,7 +1589,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1613,7 +1613,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1637,7 +1637,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1663,7 +1663,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1687,7 +1687,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1714,7 +1714,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1741,7 +1741,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1767,7 +1767,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1793,7 +1793,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1820,7 +1820,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1846,7 +1846,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1872,7 +1872,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1896,7 +1896,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1920,7 +1920,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1946,7 +1946,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1972,7 +1972,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -1996,7 +1996,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2022,7 +2022,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2046,7 +2046,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2070,7 +2070,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2094,7 +2094,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2120,7 +2120,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2146,7 +2146,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2173,7 +2173,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2197,7 +2197,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2221,7 +2221,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2245,7 +2245,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2271,7 +2271,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2295,7 +2295,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2322,7 +2322,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2348,7 +2348,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2374,7 +2374,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2400,7 +2400,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2428,7 +2428,7 @@ export const COMBINATION_PROFILES = {
       "self-disciplined",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "difficulty relaxing standards",
       "suppressed resentment",
       "emotional detachment",
@@ -2454,7 +2454,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2480,7 +2480,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2504,7 +2504,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2530,7 +2530,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2554,7 +2554,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2581,7 +2581,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2605,7 +2605,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2631,7 +2631,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2655,7 +2655,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2681,7 +2681,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2705,7 +2705,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2731,7 +2731,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2757,7 +2757,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2784,7 +2784,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2808,7 +2808,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2832,7 +2832,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2856,7 +2856,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2882,7 +2882,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2906,7 +2906,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2933,7 +2933,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2959,7 +2959,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -2986,7 +2986,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3012,7 +3012,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3040,7 +3040,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3066,7 +3066,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3092,7 +3092,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3116,7 +3116,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3140,7 +3140,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3164,7 +3164,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3190,7 +3190,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3216,7 +3216,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3243,7 +3243,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3269,7 +3269,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3295,7 +3295,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3321,7 +3321,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3349,7 +3349,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3375,7 +3375,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3401,7 +3401,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3427,7 +3427,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3451,7 +3451,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3477,7 +3477,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3503,7 +3503,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3527,7 +3527,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3553,7 +3553,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3579,7 +3579,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3603,7 +3603,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3627,7 +3627,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3653,7 +3653,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3677,7 +3677,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3703,7 +3703,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3727,7 +3727,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3753,7 +3753,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3777,7 +3777,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3803,7 +3803,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3827,7 +3827,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3853,7 +3853,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3877,7 +3877,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3901,7 +3901,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3927,7 +3927,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3954,7 +3954,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -3978,7 +3978,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4005,7 +4005,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4029,7 +4029,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4053,7 +4053,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4077,7 +4077,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4103,7 +4103,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4127,7 +4127,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4154,7 +4154,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4181,7 +4181,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4207,7 +4207,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4233,7 +4233,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4260,7 +4260,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4286,7 +4286,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4312,7 +4312,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4336,7 +4336,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4360,7 +4360,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4386,7 +4386,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4412,7 +4412,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4436,7 +4436,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4462,7 +4462,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4486,7 +4486,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4510,7 +4510,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4534,7 +4534,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4560,7 +4560,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4586,7 +4586,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4613,7 +4613,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4637,7 +4637,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4661,7 +4661,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4685,7 +4685,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4711,7 +4711,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4735,7 +4735,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4762,7 +4762,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4788,7 +4788,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4814,7 +4814,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4840,7 +4840,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4868,7 +4868,7 @@ export const COMBINATION_PROFILES = {
       "conscientious",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "self-righteousness",
       "burning out from over-helping",
       "difficulty receiving criticism",
@@ -4894,7 +4894,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -4918,7 +4918,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -4944,7 +4944,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -4971,7 +4971,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -4995,7 +4995,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5021,7 +5021,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5047,7 +5047,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5073,7 +5073,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5100,7 +5100,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5128,7 +5128,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5154,7 +5154,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5180,7 +5180,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5208,7 +5208,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5234,7 +5234,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5260,7 +5260,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5286,7 +5286,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5310,7 +5310,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5334,7 +5334,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5360,7 +5360,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5384,7 +5384,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5410,7 +5410,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5437,7 +5437,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5461,7 +5461,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5487,7 +5487,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5513,7 +5513,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5537,7 +5537,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5563,7 +5563,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5589,7 +5589,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5613,7 +5613,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5637,7 +5637,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5664,7 +5664,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5690,7 +5690,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5717,7 +5717,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5744,7 +5744,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5770,7 +5770,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5797,7 +5797,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5824,7 +5824,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5848,7 +5848,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5875,7 +5875,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5901,7 +5901,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5927,7 +5927,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5951,7 +5951,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -5977,7 +5977,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6001,7 +6001,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6028,7 +6028,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6054,7 +6054,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6078,7 +6078,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6102,7 +6102,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6128,7 +6128,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6152,7 +6152,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6178,7 +6178,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6205,7 +6205,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6229,7 +6229,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6253,7 +6253,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6279,7 +6279,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6303,7 +6303,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6329,7 +6329,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6355,7 +6355,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6381,7 +6381,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6407,7 +6407,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6433,7 +6433,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6459,7 +6459,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6485,7 +6485,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6511,7 +6511,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6535,7 +6535,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6559,7 +6559,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6585,7 +6585,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6609,7 +6609,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6636,7 +6636,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6662,7 +6662,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6686,7 +6686,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6710,7 +6710,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6736,7 +6736,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6760,7 +6760,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6786,7 +6786,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6812,7 +6812,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6838,7 +6838,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6862,7 +6862,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6888,7 +6888,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6914,7 +6914,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6941,7 +6941,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6968,7 +6968,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -6994,7 +6994,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7020,7 +7020,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7048,7 +7048,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7074,7 +7074,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7100,7 +7100,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7126,7 +7126,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7150,7 +7150,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7174,7 +7174,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7200,7 +7200,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7224,7 +7224,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7250,7 +7250,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7276,7 +7276,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7300,7 +7300,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7326,7 +7326,7 @@ export const COMBINATION_PROFILES = {
       "empathetic",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed needs",
       "critical undertone",
       "difficulty receiving care",
@@ -7352,7 +7352,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7376,7 +7376,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7402,7 +7402,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7429,7 +7429,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7453,7 +7453,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7479,7 +7479,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7505,7 +7505,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7531,7 +7531,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7558,7 +7558,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7586,7 +7586,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7612,7 +7612,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7638,7 +7638,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7666,7 +7666,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7692,7 +7692,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7718,7 +7718,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7744,7 +7744,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7768,7 +7768,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7792,7 +7792,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7818,7 +7818,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7842,7 +7842,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7868,7 +7868,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7895,7 +7895,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7919,7 +7919,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7945,7 +7945,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7971,7 +7971,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -7995,7 +7995,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8021,7 +8021,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8047,7 +8047,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8071,7 +8071,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8095,7 +8095,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8122,7 +8122,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8148,7 +8148,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8175,7 +8175,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8202,7 +8202,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8228,7 +8228,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8255,7 +8255,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8282,7 +8282,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8306,7 +8306,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8333,7 +8333,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8359,7 +8359,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8385,7 +8385,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8409,7 +8409,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8435,7 +8435,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8459,7 +8459,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8486,7 +8486,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8512,7 +8512,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8536,7 +8536,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8560,7 +8560,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8586,7 +8586,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8610,7 +8610,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8636,7 +8636,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8663,7 +8663,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8687,7 +8687,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8711,7 +8711,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8737,7 +8737,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8761,7 +8761,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8787,7 +8787,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8813,7 +8813,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8839,7 +8839,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8865,7 +8865,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8891,7 +8891,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8917,7 +8917,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8943,7 +8943,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8969,7 +8969,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -8993,7 +8993,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9017,7 +9017,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9043,7 +9043,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9067,7 +9067,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9094,7 +9094,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9120,7 +9120,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9144,7 +9144,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9168,7 +9168,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9194,7 +9194,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9218,7 +9218,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9244,7 +9244,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9270,7 +9270,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9296,7 +9296,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9320,7 +9320,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9346,7 +9346,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9372,7 +9372,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9399,7 +9399,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9426,7 +9426,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9452,7 +9452,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9478,7 +9478,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9506,7 +9506,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9532,7 +9532,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9558,7 +9558,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9584,7 +9584,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9608,7 +9608,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9632,7 +9632,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9658,7 +9658,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9682,7 +9682,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9708,7 +9708,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9734,7 +9734,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9758,7 +9758,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9784,7 +9784,7 @@ export const COMBINATION_PROFILES = {
       "motivated",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "attention-seeking",
       "people-pleasing",
       "identity tied to usefulness",
@@ -9810,7 +9810,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -9834,7 +9834,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -9858,7 +9858,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -9885,7 +9885,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -9909,7 +9909,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -9936,7 +9936,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -9960,7 +9960,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -9984,7 +9984,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10008,7 +10008,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10035,7 +10035,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10059,7 +10059,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10085,7 +10085,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10111,7 +10111,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10137,7 +10137,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10161,7 +10161,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10187,7 +10187,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10211,7 +10211,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10237,7 +10237,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10261,7 +10261,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10285,7 +10285,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10309,7 +10309,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10336,7 +10336,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10360,7 +10360,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10387,7 +10387,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10411,7 +10411,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10435,7 +10435,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10459,7 +10459,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10485,7 +10485,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10509,7 +10509,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10535,7 +10535,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10561,7 +10561,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10587,7 +10587,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10613,7 +10613,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10640,7 +10640,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10666,7 +10666,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10694,7 +10694,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10720,7 +10720,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10744,7 +10744,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10770,7 +10770,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10796,7 +10796,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10822,7 +10822,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10848,7 +10848,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10872,7 +10872,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10898,7 +10898,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10925,7 +10925,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10952,7 +10952,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -10978,7 +10978,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11005,7 +11005,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11031,7 +11031,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11055,7 +11055,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11079,7 +11079,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11106,7 +11106,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11130,7 +11130,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11156,7 +11156,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11180,7 +11180,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11204,7 +11204,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11228,7 +11228,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11254,7 +11254,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11280,7 +11280,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11307,7 +11307,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11331,7 +11331,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11358,7 +11358,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11384,7 +11384,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11411,7 +11411,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11437,7 +11437,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11464,7 +11464,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11490,7 +11490,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11514,7 +11514,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11540,7 +11540,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11566,7 +11566,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11590,7 +11590,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11616,7 +11616,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11640,7 +11640,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11664,7 +11664,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11688,7 +11688,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11714,7 +11714,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11740,7 +11740,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11766,7 +11766,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11790,7 +11790,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11814,7 +11814,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11838,7 +11838,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11864,7 +11864,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11888,7 +11888,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11914,7 +11914,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11940,7 +11940,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11967,7 +11967,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -11993,7 +11993,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12020,7 +12020,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12046,7 +12046,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12073,7 +12073,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12099,7 +12099,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12123,7 +12123,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12147,7 +12147,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12173,7 +12173,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12197,7 +12197,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12224,7 +12224,7 @@ export const COMBINATION_PROFILES = {
       "adaptable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "image management",
       "difficulty with vulnerability",
       "conflating love with performance",
@@ -12248,7 +12248,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12272,7 +12272,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12296,7 +12296,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12323,7 +12323,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12347,7 +12347,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12374,7 +12374,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12398,7 +12398,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12422,7 +12422,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12446,7 +12446,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12473,7 +12473,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12497,7 +12497,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12523,7 +12523,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12549,7 +12549,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12575,7 +12575,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12599,7 +12599,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12625,7 +12625,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12649,7 +12649,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12675,7 +12675,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12699,7 +12699,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12723,7 +12723,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12747,7 +12747,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12774,7 +12774,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12798,7 +12798,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12825,7 +12825,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12849,7 +12849,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12873,7 +12873,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12897,7 +12897,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12923,7 +12923,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12947,7 +12947,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12973,7 +12973,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -12999,7 +12999,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13025,7 +13025,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13051,7 +13051,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13078,7 +13078,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13104,7 +13104,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13132,7 +13132,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13158,7 +13158,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13182,7 +13182,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13208,7 +13208,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13234,7 +13234,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13260,7 +13260,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13286,7 +13286,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13310,7 +13310,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13336,7 +13336,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13363,7 +13363,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13390,7 +13390,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13416,7 +13416,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13443,7 +13443,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13469,7 +13469,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13493,7 +13493,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13517,7 +13517,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13544,7 +13544,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13568,7 +13568,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13594,7 +13594,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13618,7 +13618,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13642,7 +13642,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13666,7 +13666,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13692,7 +13692,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13718,7 +13718,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13745,7 +13745,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13769,7 +13769,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13796,7 +13796,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13822,7 +13822,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13849,7 +13849,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13875,7 +13875,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13902,7 +13902,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13928,7 +13928,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13952,7 +13952,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -13978,7 +13978,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14004,7 +14004,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14028,7 +14028,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14054,7 +14054,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14078,7 +14078,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14102,7 +14102,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14126,7 +14126,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14152,7 +14152,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14178,7 +14178,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14204,7 +14204,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14228,7 +14228,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14252,7 +14252,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14276,7 +14276,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14302,7 +14302,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14326,7 +14326,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14352,7 +14352,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14378,7 +14378,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14405,7 +14405,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14431,7 +14431,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14458,7 +14458,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14484,7 +14484,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14511,7 +14511,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14537,7 +14537,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14561,7 +14561,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14585,7 +14585,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14611,7 +14611,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14635,7 +14635,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14662,7 +14662,7 @@ export const COMBINATION_PROFILES = {
       "original",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "shame-sensitivity",
       "comparing themselves to others",
       "oscillating between confidence and self-doubt",
@@ -14686,7 +14686,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14712,7 +14712,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14738,7 +14738,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14766,7 +14766,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14792,7 +14792,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14819,7 +14819,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14846,7 +14846,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14872,7 +14872,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14898,7 +14898,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14926,7 +14926,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14952,7 +14952,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -14978,7 +14978,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15006,7 +15006,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15032,7 +15032,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15056,7 +15056,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15082,7 +15082,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15106,7 +15106,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15130,7 +15130,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15156,7 +15156,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15180,7 +15180,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15204,7 +15204,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15231,7 +15231,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15255,7 +15255,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15281,7 +15281,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15307,7 +15307,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15333,7 +15333,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15359,7 +15359,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15386,7 +15386,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15412,7 +15412,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15438,7 +15438,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15466,7 +15466,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15490,7 +15490,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15514,7 +15514,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15540,7 +15540,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15564,7 +15564,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15590,7 +15590,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15616,7 +15616,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15640,7 +15640,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15666,7 +15666,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15692,7 +15692,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15718,7 +15718,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15742,7 +15742,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15768,7 +15768,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15792,7 +15792,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15818,7 +15818,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15844,7 +15844,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15868,7 +15868,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15892,7 +15892,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15918,7 +15918,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15944,7 +15944,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15970,7 +15970,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -15998,7 +15998,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16024,7 +16024,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16050,7 +16050,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16077,7 +16077,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16101,7 +16101,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16125,7 +16125,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16151,7 +16151,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16177,7 +16177,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16203,7 +16203,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16229,7 +16229,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16255,7 +16255,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16279,7 +16279,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16305,7 +16305,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16329,7 +16329,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16353,7 +16353,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16379,7 +16379,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16403,7 +16403,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16429,7 +16429,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16455,7 +16455,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16479,7 +16479,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16503,7 +16503,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16529,7 +16529,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16553,7 +16553,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16577,7 +16577,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16603,7 +16603,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16629,7 +16629,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16653,7 +16653,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16679,7 +16679,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16703,7 +16703,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16727,7 +16727,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16753,7 +16753,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16777,7 +16777,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16801,7 +16801,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16828,7 +16828,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16854,7 +16854,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16878,7 +16878,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16904,7 +16904,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16928,7 +16928,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16952,7 +16952,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -16978,7 +16978,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -17002,7 +17002,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -17026,7 +17026,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -17052,7 +17052,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -17076,7 +17076,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -17102,7 +17102,7 @@ export const COMBINATION_PROFILES = {
       "creative",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "envy and comparison",
       "identity fragility under criticism",
       "performing depth",
@@ -17128,7 +17128,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17154,7 +17154,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17180,7 +17180,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17208,7 +17208,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17234,7 +17234,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17261,7 +17261,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17288,7 +17288,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17314,7 +17314,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17340,7 +17340,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17368,7 +17368,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17394,7 +17394,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17420,7 +17420,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17448,7 +17448,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17474,7 +17474,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17498,7 +17498,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17524,7 +17524,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17548,7 +17548,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17572,7 +17572,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17598,7 +17598,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17622,7 +17622,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17646,7 +17646,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17673,7 +17673,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17697,7 +17697,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17723,7 +17723,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17749,7 +17749,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17775,7 +17775,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17801,7 +17801,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17828,7 +17828,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17854,7 +17854,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17880,7 +17880,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17908,7 +17908,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17932,7 +17932,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17956,7 +17956,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -17982,7 +17982,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18006,7 +18006,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18032,7 +18032,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18058,7 +18058,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18082,7 +18082,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18108,7 +18108,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18134,7 +18134,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18160,7 +18160,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18184,7 +18184,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18210,7 +18210,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18234,7 +18234,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18260,7 +18260,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18286,7 +18286,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18310,7 +18310,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18334,7 +18334,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18360,7 +18360,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18386,7 +18386,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18412,7 +18412,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18440,7 +18440,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18466,7 +18466,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18492,7 +18492,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18519,7 +18519,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18543,7 +18543,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18567,7 +18567,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18593,7 +18593,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18619,7 +18619,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18645,7 +18645,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18671,7 +18671,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18697,7 +18697,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18721,7 +18721,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18747,7 +18747,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18771,7 +18771,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18795,7 +18795,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18821,7 +18821,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18845,7 +18845,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18871,7 +18871,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18897,7 +18897,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18921,7 +18921,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18945,7 +18945,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18971,7 +18971,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -18995,7 +18995,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19019,7 +19019,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19045,7 +19045,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19071,7 +19071,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19095,7 +19095,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19121,7 +19121,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19145,7 +19145,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19169,7 +19169,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19195,7 +19195,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19219,7 +19219,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19243,7 +19243,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19270,7 +19270,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19296,7 +19296,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19320,7 +19320,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19346,7 +19346,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19370,7 +19370,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19394,7 +19394,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19420,7 +19420,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19444,7 +19444,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19468,7 +19468,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19494,7 +19494,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19518,7 +19518,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19544,7 +19544,7 @@ export const COMBINATION_PROFILES = {
       "self-sufficient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "withdrawal and isolation",
       "melancholic rumination",
       "difficulty engaging practically",
@@ -19570,7 +19570,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19597,7 +19597,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19623,7 +19623,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19651,7 +19651,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19677,7 +19677,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19704,7 +19704,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19730,7 +19730,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19756,7 +19756,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19780,7 +19780,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19807,7 +19807,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19831,7 +19831,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19855,7 +19855,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19881,7 +19881,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19909,7 +19909,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19935,7 +19935,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19962,7 +19962,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -19988,7 +19988,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20014,7 +20014,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20040,7 +20040,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20067,7 +20067,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20093,7 +20093,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20121,7 +20121,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20147,7 +20147,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20174,7 +20174,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20200,7 +20200,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20226,7 +20226,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20250,7 +20250,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20276,7 +20276,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20300,7 +20300,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20324,7 +20324,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20350,7 +20350,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20376,7 +20376,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20400,7 +20400,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20426,7 +20426,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20450,7 +20450,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20476,7 +20476,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20500,7 +20500,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20526,7 +20526,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20552,7 +20552,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20578,7 +20578,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20604,7 +20604,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20628,7 +20628,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20652,7 +20652,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20678,7 +20678,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20704,7 +20704,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20730,7 +20730,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20754,7 +20754,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20778,7 +20778,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20802,7 +20802,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20828,7 +20828,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20852,7 +20852,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20879,7 +20879,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20903,7 +20903,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20927,7 +20927,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20951,7 +20951,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -20977,7 +20977,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21001,7 +21001,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21027,7 +21027,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21053,7 +21053,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21079,7 +21079,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21103,7 +21103,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21130,7 +21130,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21154,7 +21154,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21180,7 +21180,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21204,7 +21204,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21228,7 +21228,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21252,7 +21252,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21278,7 +21278,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21304,7 +21304,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21330,7 +21330,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21354,7 +21354,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21378,7 +21378,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21402,7 +21402,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21428,7 +21428,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21452,7 +21452,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21478,7 +21478,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21504,7 +21504,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21528,7 +21528,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21552,7 +21552,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21578,7 +21578,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21602,7 +21602,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21628,7 +21628,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21652,7 +21652,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21676,7 +21676,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21702,7 +21702,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21729,7 +21729,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21753,7 +21753,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21779,7 +21779,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21803,7 +21803,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21827,7 +21827,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21851,7 +21851,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21877,7 +21877,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21901,7 +21901,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21927,7 +21927,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21951,7 +21951,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -21977,7 +21977,7 @@ export const COMBINATION_PROFILES = {
       "independent",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "emotional withholding",
       "romanticizing isolation",
       "difficulty with ordinary life",
@@ -22001,7 +22001,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22028,7 +22028,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22054,7 +22054,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22082,7 +22082,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22108,7 +22108,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22135,7 +22135,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22161,7 +22161,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22187,7 +22187,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22211,7 +22211,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22238,7 +22238,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22262,7 +22262,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22286,7 +22286,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22312,7 +22312,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22340,7 +22340,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22366,7 +22366,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22393,7 +22393,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22419,7 +22419,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22445,7 +22445,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22471,7 +22471,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22498,7 +22498,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22524,7 +22524,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22552,7 +22552,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22578,7 +22578,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22605,7 +22605,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22631,7 +22631,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22657,7 +22657,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22681,7 +22681,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22707,7 +22707,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22731,7 +22731,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22755,7 +22755,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22781,7 +22781,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22807,7 +22807,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22831,7 +22831,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22857,7 +22857,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22881,7 +22881,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22907,7 +22907,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22931,7 +22931,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22957,7 +22957,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -22983,7 +22983,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23009,7 +23009,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23035,7 +23035,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23059,7 +23059,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23083,7 +23083,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23109,7 +23109,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23135,7 +23135,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23161,7 +23161,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23185,7 +23185,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23209,7 +23209,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23233,7 +23233,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23259,7 +23259,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23283,7 +23283,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23310,7 +23310,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23334,7 +23334,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23358,7 +23358,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23382,7 +23382,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23408,7 +23408,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23432,7 +23432,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23458,7 +23458,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23484,7 +23484,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23510,7 +23510,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23534,7 +23534,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23561,7 +23561,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23585,7 +23585,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23611,7 +23611,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23635,7 +23635,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23659,7 +23659,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23683,7 +23683,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23709,7 +23709,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23735,7 +23735,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23761,7 +23761,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23785,7 +23785,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23809,7 +23809,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23833,7 +23833,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23859,7 +23859,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23883,7 +23883,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23909,7 +23909,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23935,7 +23935,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23959,7 +23959,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -23983,7 +23983,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24009,7 +24009,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24033,7 +24033,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24059,7 +24059,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24083,7 +24083,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24107,7 +24107,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24133,7 +24133,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24160,7 +24160,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24184,7 +24184,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24210,7 +24210,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24234,7 +24234,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24258,7 +24258,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24282,7 +24282,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24308,7 +24308,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24332,7 +24332,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24358,7 +24358,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24382,7 +24382,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24408,7 +24408,7 @@ export const COMBINATION_PROFILES = {
       "dependable",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "analysis paralysis",
       "anxiety about competence gaps",
       "difficulty with spontaneity",
@@ -24432,7 +24432,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24458,7 +24458,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24482,7 +24482,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24508,7 +24508,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24534,7 +24534,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24561,7 +24561,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24585,7 +24585,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24611,7 +24611,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24635,7 +24635,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24661,7 +24661,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24687,7 +24687,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24713,7 +24713,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24739,7 +24739,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24767,7 +24767,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24793,7 +24793,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24819,7 +24819,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24846,7 +24846,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24873,7 +24873,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24899,7 +24899,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24925,7 +24925,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24949,7 +24949,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -24975,7 +24975,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25001,7 +25001,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25028,7 +25028,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25052,7 +25052,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25078,7 +25078,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25102,7 +25102,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25126,7 +25126,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25152,7 +25152,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25178,7 +25178,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25204,7 +25204,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25231,7 +25231,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25257,7 +25257,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25283,7 +25283,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25310,7 +25310,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25338,7 +25338,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25364,7 +25364,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25390,7 +25390,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25416,7 +25416,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25440,7 +25440,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25467,7 +25467,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25493,7 +25493,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25517,7 +25517,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25543,7 +25543,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25569,7 +25569,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25593,7 +25593,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25619,7 +25619,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25645,7 +25645,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25669,7 +25669,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25695,7 +25695,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25719,7 +25719,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25745,7 +25745,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25771,7 +25771,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25797,7 +25797,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25821,7 +25821,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25848,7 +25848,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25874,7 +25874,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25900,7 +25900,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25928,7 +25928,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25956,7 +25956,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -25982,7 +25982,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26009,7 +26009,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26033,7 +26033,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26057,7 +26057,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26083,7 +26083,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26109,7 +26109,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26133,7 +26133,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26159,7 +26159,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26185,7 +26185,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26209,7 +26209,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26235,7 +26235,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26261,7 +26261,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26285,7 +26285,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26311,7 +26311,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26335,7 +26335,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26359,7 +26359,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26386,7 +26386,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26412,7 +26412,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26436,7 +26436,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26462,7 +26462,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26486,7 +26486,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26510,7 +26510,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26536,7 +26536,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26562,7 +26562,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26588,7 +26588,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26615,7 +26615,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26639,7 +26639,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26663,7 +26663,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26689,7 +26689,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26715,7 +26715,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26739,7 +26739,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26766,7 +26766,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26792,7 +26792,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26818,7 +26818,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26845,7 +26845,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26873,7 +26873,7 @@ export const COMBINATION_PROFILES = {
       "intellectually rigorous",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "chronic doubt",
       "difficulty trusting without proof",
       "social guardedness",
@@ -26899,7 +26899,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -26925,7 +26925,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -26949,7 +26949,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -26975,7 +26975,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27001,7 +27001,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27028,7 +27028,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27052,7 +27052,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27078,7 +27078,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27102,7 +27102,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27128,7 +27128,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27154,7 +27154,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27180,7 +27180,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27206,7 +27206,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27234,7 +27234,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27260,7 +27260,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27286,7 +27286,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27313,7 +27313,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27340,7 +27340,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27366,7 +27366,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27392,7 +27392,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27416,7 +27416,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27442,7 +27442,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27468,7 +27468,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27495,7 +27495,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27519,7 +27519,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27545,7 +27545,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27569,7 +27569,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27593,7 +27593,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27619,7 +27619,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27645,7 +27645,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27671,7 +27671,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27698,7 +27698,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27724,7 +27724,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27750,7 +27750,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27777,7 +27777,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27805,7 +27805,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27831,7 +27831,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27857,7 +27857,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27883,7 +27883,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27907,7 +27907,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27934,7 +27934,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27960,7 +27960,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -27984,7 +27984,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28010,7 +28010,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28036,7 +28036,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28060,7 +28060,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28086,7 +28086,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28112,7 +28112,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28136,7 +28136,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28162,7 +28162,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28186,7 +28186,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28212,7 +28212,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28238,7 +28238,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28264,7 +28264,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28288,7 +28288,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28315,7 +28315,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28341,7 +28341,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28367,7 +28367,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28395,7 +28395,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28423,7 +28423,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28449,7 +28449,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28476,7 +28476,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28500,7 +28500,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28524,7 +28524,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28550,7 +28550,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28576,7 +28576,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28600,7 +28600,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28626,7 +28626,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28652,7 +28652,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28676,7 +28676,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28702,7 +28702,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28728,7 +28728,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28752,7 +28752,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28778,7 +28778,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28802,7 +28802,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28826,7 +28826,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28853,7 +28853,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28879,7 +28879,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28903,7 +28903,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28929,7 +28929,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28953,7 +28953,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -28977,7 +28977,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29003,7 +29003,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29029,7 +29029,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29055,7 +29055,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29082,7 +29082,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29106,7 +29106,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29130,7 +29130,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29156,7 +29156,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29182,7 +29182,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29206,7 +29206,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29233,7 +29233,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29259,7 +29259,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29285,7 +29285,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29312,7 +29312,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29340,7 +29340,7 @@ export const COMBINATION_PROFILES = {
       "resourceful",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "avoidance through humor",
       "difficulty sitting with anxiety",
       "scattered attention",
@@ -29366,7 +29366,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29392,7 +29392,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29416,7 +29416,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29442,7 +29442,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29468,7 +29468,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29494,7 +29494,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29518,7 +29518,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29544,7 +29544,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29568,7 +29568,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29594,7 +29594,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29620,7 +29620,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29644,7 +29644,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29670,7 +29670,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29697,7 +29697,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29721,7 +29721,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29745,7 +29745,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29771,7 +29771,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29795,7 +29795,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29819,7 +29819,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29845,7 +29845,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29869,7 +29869,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29895,7 +29895,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29921,7 +29921,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29947,7 +29947,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29971,7 +29971,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -29998,7 +29998,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30024,7 +30024,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30050,7 +30050,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30077,7 +30077,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30103,7 +30103,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30130,7 +30130,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30156,7 +30156,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30180,7 +30180,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30204,7 +30204,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30230,7 +30230,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30256,7 +30256,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30280,7 +30280,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30307,7 +30307,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30334,7 +30334,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30360,7 +30360,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30388,7 +30388,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30414,7 +30414,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30440,7 +30440,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30466,7 +30466,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30492,7 +30492,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30516,7 +30516,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30542,7 +30542,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30566,7 +30566,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30590,7 +30590,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30616,7 +30616,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30640,7 +30640,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30666,7 +30666,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30692,7 +30692,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30716,7 +30716,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30740,7 +30740,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30766,7 +30766,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30790,7 +30790,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30814,7 +30814,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30841,7 +30841,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30867,7 +30867,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30891,7 +30891,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30918,7 +30918,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30942,7 +30942,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30966,7 +30966,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -30992,7 +30992,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31016,7 +31016,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31040,7 +31040,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31066,7 +31066,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31092,7 +31092,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31116,7 +31116,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31142,7 +31142,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31166,7 +31166,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31190,7 +31190,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31217,7 +31217,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31243,7 +31243,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31269,7 +31269,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31297,7 +31297,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31323,7 +31323,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31349,7 +31349,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31375,7 +31375,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31399,7 +31399,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31423,7 +31423,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31449,7 +31449,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31473,7 +31473,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31499,7 +31499,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31526,7 +31526,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31550,7 +31550,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31574,7 +31574,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31600,7 +31600,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31624,7 +31624,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31648,7 +31648,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31674,7 +31674,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31698,7 +31698,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31722,7 +31722,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31748,7 +31748,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31774,7 +31774,7 @@ export const COMBINATION_PROFILES = {
       "socially engaging",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "fear of missing out",
       "anxiety about commitment",
       "difficulty with endings",
@@ -31798,7 +31798,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -31824,7 +31824,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -31848,7 +31848,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -31874,7 +31874,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -31900,7 +31900,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -31926,7 +31926,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -31950,7 +31950,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -31976,7 +31976,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32000,7 +32000,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32026,7 +32026,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32052,7 +32052,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32076,7 +32076,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32102,7 +32102,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32129,7 +32129,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32153,7 +32153,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32177,7 +32177,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32203,7 +32203,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32227,7 +32227,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32251,7 +32251,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32277,7 +32277,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32301,7 +32301,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32327,7 +32327,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32353,7 +32353,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32379,7 +32379,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32403,7 +32403,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32430,7 +32430,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32456,7 +32456,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32482,7 +32482,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32509,7 +32509,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32535,7 +32535,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32562,7 +32562,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32588,7 +32588,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32612,7 +32612,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32636,7 +32636,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32662,7 +32662,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32688,7 +32688,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32712,7 +32712,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32739,7 +32739,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32766,7 +32766,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32792,7 +32792,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32820,7 +32820,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32846,7 +32846,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32872,7 +32872,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32898,7 +32898,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32924,7 +32924,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32948,7 +32948,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32974,7 +32974,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -32998,7 +32998,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33022,7 +33022,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33048,7 +33048,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33072,7 +33072,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33098,7 +33098,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33124,7 +33124,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33148,7 +33148,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33172,7 +33172,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33198,7 +33198,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33222,7 +33222,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33246,7 +33246,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33273,7 +33273,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33299,7 +33299,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33323,7 +33323,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33350,7 +33350,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33374,7 +33374,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33398,7 +33398,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33424,7 +33424,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33448,7 +33448,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33472,7 +33472,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33498,7 +33498,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33524,7 +33524,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33548,7 +33548,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33574,7 +33574,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33598,7 +33598,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33622,7 +33622,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33649,7 +33649,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33675,7 +33675,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33701,7 +33701,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33729,7 +33729,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33755,7 +33755,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33781,7 +33781,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33807,7 +33807,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33831,7 +33831,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33855,7 +33855,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33881,7 +33881,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33905,7 +33905,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33931,7 +33931,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33958,7 +33958,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -33982,7 +33982,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34006,7 +34006,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34032,7 +34032,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34056,7 +34056,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34080,7 +34080,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34106,7 +34106,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34130,7 +34130,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34154,7 +34154,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34180,7 +34180,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34206,7 +34206,7 @@ export const COMBINATION_PROFILES = {
       "resilient",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "excess and overreach",
       "difficulty tolerating limits",
       "bulldozing others",
@@ -34230,7 +34230,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34254,7 +34254,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34278,7 +34278,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34305,7 +34305,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34329,7 +34329,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34356,7 +34356,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34380,7 +34380,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34404,7 +34404,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34428,7 +34428,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34455,7 +34455,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34479,7 +34479,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34505,7 +34505,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34531,7 +34531,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34557,7 +34557,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34581,7 +34581,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34607,7 +34607,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34631,7 +34631,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34657,7 +34657,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34681,7 +34681,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34707,7 +34707,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34733,7 +34733,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34761,7 +34761,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34787,7 +34787,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34815,7 +34815,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34841,7 +34841,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34865,7 +34865,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34889,7 +34889,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34915,7 +34915,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34939,7 +34939,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34965,7 +34965,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -34991,7 +34991,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35015,7 +35015,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35039,7 +35039,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35065,7 +35065,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35089,7 +35089,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35116,7 +35116,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35140,7 +35140,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35164,7 +35164,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35190,7 +35190,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35216,7 +35216,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35242,7 +35242,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35268,7 +35268,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35292,7 +35292,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35318,7 +35318,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35345,7 +35345,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35372,7 +35372,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35398,7 +35398,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35425,7 +35425,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35451,7 +35451,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35475,7 +35475,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35499,7 +35499,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35526,7 +35526,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35550,7 +35550,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35576,7 +35576,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35600,7 +35600,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35624,7 +35624,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35648,7 +35648,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35674,7 +35674,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35700,7 +35700,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35727,7 +35727,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35751,7 +35751,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35777,7 +35777,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35801,7 +35801,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35827,7 +35827,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35851,7 +35851,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35877,7 +35877,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35901,7 +35901,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35925,7 +35925,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35951,7 +35951,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -35977,7 +35977,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36001,7 +36001,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36027,7 +36027,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36051,7 +36051,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36075,7 +36075,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36099,7 +36099,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36125,7 +36125,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36151,7 +36151,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36177,7 +36177,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36201,7 +36201,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36225,7 +36225,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36249,7 +36249,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36275,7 +36275,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36299,7 +36299,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36325,7 +36325,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36351,7 +36351,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36378,7 +36378,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36404,7 +36404,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36431,7 +36431,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36457,7 +36457,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36484,7 +36484,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36510,7 +36510,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36534,7 +36534,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36558,7 +36558,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36584,7 +36584,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36608,7 +36608,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36635,7 +36635,7 @@ export const COMBINATION_PROFILES = {
       "decisive",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "impatience with limits",
       "difficulty in vulnerability",
       "excess as avoidance",
@@ -36659,7 +36659,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36683,7 +36683,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36707,7 +36707,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36734,7 +36734,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36758,7 +36758,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36785,7 +36785,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36809,7 +36809,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36833,7 +36833,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36857,7 +36857,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36884,7 +36884,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36908,7 +36908,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36934,7 +36934,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36960,7 +36960,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -36986,7 +36986,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37010,7 +37010,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37036,7 +37036,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37060,7 +37060,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37086,7 +37086,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37110,7 +37110,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37136,7 +37136,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37162,7 +37162,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37190,7 +37190,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37216,7 +37216,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37244,7 +37244,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37270,7 +37270,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37294,7 +37294,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37318,7 +37318,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37344,7 +37344,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37368,7 +37368,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37394,7 +37394,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37420,7 +37420,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37444,7 +37444,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37468,7 +37468,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37494,7 +37494,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37518,7 +37518,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37545,7 +37545,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37569,7 +37569,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37593,7 +37593,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37619,7 +37619,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37645,7 +37645,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37671,7 +37671,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37697,7 +37697,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37721,7 +37721,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37747,7 +37747,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37774,7 +37774,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37801,7 +37801,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37827,7 +37827,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37854,7 +37854,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37880,7 +37880,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37904,7 +37904,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37928,7 +37928,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37955,7 +37955,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -37979,7 +37979,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38005,7 +38005,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38029,7 +38029,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38053,7 +38053,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38077,7 +38077,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38103,7 +38103,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38129,7 +38129,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38156,7 +38156,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38180,7 +38180,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38206,7 +38206,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38230,7 +38230,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38256,7 +38256,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38280,7 +38280,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38306,7 +38306,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38330,7 +38330,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38354,7 +38354,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38380,7 +38380,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38406,7 +38406,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38430,7 +38430,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38456,7 +38456,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38480,7 +38480,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38504,7 +38504,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38528,7 +38528,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38554,7 +38554,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38580,7 +38580,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38606,7 +38606,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38630,7 +38630,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38654,7 +38654,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38678,7 +38678,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38704,7 +38704,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38728,7 +38728,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38754,7 +38754,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38780,7 +38780,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38807,7 +38807,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38833,7 +38833,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38860,7 +38860,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38886,7 +38886,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38913,7 +38913,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38939,7 +38939,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38963,7 +38963,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -38987,7 +38987,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -39013,7 +39013,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -39037,7 +39037,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -39064,7 +39064,7 @@ export const COMBINATION_PROFILES = {
       "calm under pressure",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "stubbornness",
       "passive accumulation of resentment",
       "difficulty with introspection",
@@ -39088,7 +39088,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39114,7 +39114,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39141,7 +39141,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39168,7 +39168,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39195,7 +39195,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39222,7 +39222,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39248,7 +39248,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39272,7 +39272,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39298,7 +39298,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39324,7 +39324,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39350,7 +39350,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39374,7 +39374,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39400,7 +39400,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39426,7 +39426,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39452,7 +39452,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39476,7 +39476,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39502,7 +39502,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39526,7 +39526,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39550,7 +39550,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39574,7 +39574,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39600,7 +39600,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39626,7 +39626,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39652,7 +39652,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39678,7 +39678,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39702,7 +39702,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39726,7 +39726,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39752,7 +39752,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39776,7 +39776,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39802,7 +39802,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39826,7 +39826,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39852,7 +39852,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39876,7 +39876,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39902,7 +39902,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39926,7 +39926,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39952,7 +39952,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -39978,7 +39978,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40002,7 +40002,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40026,7 +40026,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40053,7 +40053,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40077,7 +40077,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40104,7 +40104,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40128,7 +40128,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40152,7 +40152,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40176,7 +40176,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40203,7 +40203,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40227,7 +40227,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40253,7 +40253,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40277,7 +40277,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40301,7 +40301,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40327,7 +40327,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40354,7 +40354,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40381,7 +40381,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40408,7 +40408,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40434,7 +40434,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40460,7 +40460,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40484,7 +40484,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40510,7 +40510,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40534,7 +40534,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40561,7 +40561,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40587,7 +40587,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40611,7 +40611,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40638,7 +40638,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40665,7 +40665,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40691,7 +40691,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40718,7 +40718,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40744,7 +40744,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40770,7 +40770,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40794,7 +40794,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40821,7 +40821,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40845,7 +40845,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40871,7 +40871,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40895,7 +40895,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40919,7 +40919,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40943,7 +40943,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40969,7 +40969,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -40993,7 +40993,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41020,7 +41020,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41044,7 +41044,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41068,7 +41068,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41092,7 +41092,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41118,7 +41118,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41142,7 +41142,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41168,7 +41168,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41192,7 +41192,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41218,7 +41218,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41244,7 +41244,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41270,7 +41270,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41294,7 +41294,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41320,7 +41320,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41344,7 +41344,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41368,7 +41368,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41392,7 +41392,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41418,7 +41418,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41442,7 +41442,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41468,7 +41468,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41494,7 +41494,7 @@ export const COMBINATION_PROFILES = {
       "mediating",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "passive-aggressive expression",
       "difficulty initiating",
       "inertia despite capability",
@@ -41518,7 +41518,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41544,7 +41544,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41571,7 +41571,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41598,7 +41598,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41625,7 +41625,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41652,7 +41652,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with autonomy and purpose, needing to feel that their efforts align with something meaningful"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41678,7 +41678,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41702,7 +41702,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41728,7 +41728,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41754,7 +41754,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41780,7 +41780,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41804,7 +41804,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They prefer to work on problems with long-term significance, bringing vision and quiet persistence rather than quick pivots"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41830,7 +41830,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41856,7 +41856,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41882,7 +41882,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41906,7 +41906,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41932,7 +41932,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41956,7 +41956,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel at independent analysis and thrive when given complex problems with room to explore unconventional solutions"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -41980,7 +41980,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42004,7 +42004,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42030,7 +42030,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42056,7 +42056,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42082,7 +42082,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42108,7 +42108,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best with high autonomy and clearly defined objectives, applying systematic effort toward outcomes they have personally committed to"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42132,7 +42132,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42156,7 +42156,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42182,7 +42182,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42206,7 +42206,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42232,7 +42232,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42256,7 +42256,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in dynamic environments where they can brainstorm, champion ideas, and connect people around shared possibilities"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42282,7 +42282,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42306,7 +42306,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42332,7 +42332,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42356,7 +42356,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42382,7 +42382,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42408,7 +42408,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in roles where they can develop people, facilitate alignment, and pursue meaningful collective goals"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42432,7 +42432,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42456,7 +42456,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42483,7 +42483,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42507,7 +42507,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42534,7 +42534,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42558,7 +42558,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in environments that reward creative problem-solving, tolerate unfinished experiments, and move quickly enough to keep them from getting bored"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42582,7 +42582,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42606,7 +42606,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42633,7 +42633,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42657,7 +42657,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42683,7 +42683,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42707,7 +42707,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They perform best in leadership or high-agency roles where they can design systems, set direction, and hold others accountable to results"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42731,7 +42731,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42757,7 +42757,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42784,7 +42784,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42811,7 +42811,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42838,7 +42838,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42864,7 +42864,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They work best in hands-on, creative environments that allow personal expression and real-time problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42890,7 +42890,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42914,7 +42914,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42940,7 +42940,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42964,7 +42964,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -42991,7 +42991,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43017,7 +43017,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in stable, service-oriented environments where reliability, attention to detail, and care for individuals are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43041,7 +43041,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43068,7 +43068,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43095,7 +43095,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43121,7 +43121,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43148,7 +43148,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43174,7 +43174,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive with real problems that require technical mastery, tactical thinking, and hands-on engagement"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43200,7 +43200,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43224,7 +43224,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43251,7 +43251,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43275,7 +43275,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43301,7 +43301,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43325,7 +43325,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in structured environments where clear expectations, consistent processes, and concrete outcomes are valued"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43349,7 +43349,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43373,7 +43373,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43399,7 +43399,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43423,7 +43423,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43450,7 +43450,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43474,7 +43474,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They flourish in dynamic, people-centered environments where they can entertain, engage, and respond to real-time needs"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43498,7 +43498,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43522,7 +43522,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43548,7 +43548,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43572,7 +43572,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43598,7 +43598,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43622,7 +43622,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in collaborative, people-focused environments where they can coordinate, support, and create a sense of shared belonging"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43648,7 +43648,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43674,7 +43674,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43700,7 +43700,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43724,7 +43724,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43750,7 +43750,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43774,7 +43774,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They thrive in fast-moving environments that reward improvisation, salesmanship, and physical or logistical problem-solving"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43798,7 +43798,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43822,7 +43822,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43848,7 +43848,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43872,7 +43872,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43898,7 +43898,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",
@@ -43924,7 +43924,7 @@ export const COMBINATION_PROFILES = {
       "steady",
       "They excel in leadership roles where they can establish order, enforce accountability, and move quickly from plan to execution"
     ],
-    "growthEdges": [
+    "challenges": [
       "suppressed opinion",
       "conflict avoidance masking judgment",
       "difficulty asserting priorities",

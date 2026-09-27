@@ -1,6 +1,7 @@
 import { ENN_TYPES, ENN_ARROWS, ENN_CENTER } from '../data/enneagram.js';
 import { MBTI_TYPES } from '../data/mbti.js';
 import { COG_FUNCTIONS } from '../data/cognitive.js';
+import { FIXATION, CLINICAL_SEQUENCE } from '../data/stack.js';
 
 // ─── Shared directive builder ──────────────────────────────────────────────
 
@@ -74,12 +75,13 @@ function buildPersonDirectives(ennType, wing, mbtiCode, instStack) {
     out += `${stressResponse}\n\n`;
   }
 
-  // § Growth Edge
-  if (arrows && ennT) {
+  // § Growth Direction
+  if (arrows && ennT && FIXATION[ennType]) {
     const growthT = ENN_TYPES[arrows.growth];
-    out += `### Growth Edge\n\n`;
-    out += `Growth arrow moves toward **Type ${arrows.growth} (${growthT.name})** qualities: ${growthT.desire.toLowerCase()}.\n\n`;
-    out += `Gently encourage ${growthT.name} strengths when appropriate — don't force it, but create openings for it.\n\n`;
+    const fix = FIXATION[ennType];
+    out += `### Growth Direction\n\n`;
+    out += `Growth arrow → **Type ${arrows.growth} (${growthT.name})**. Their defense predicts: ${fix.threat}. The growth direction is that prediction being falsified — ${fix.falsifies}.\n\n`;
+    out += `${CLINICAL_SEQUENCE[2].detail} Performing it deliberately is the fixation operating, so do not coach them toward Type ${arrows.growth} qualities.\n\n`;
   }
 
   // § Instinctual Priorities

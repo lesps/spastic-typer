@@ -11,8 +11,8 @@ export function getMBTIInteraction(type1, type2) {
   if (s1[0] === s2[0]) insights.push({ label: 'Shared Dominant Function', desc: `Both lead with ${s1[0]} (${COG_FUNCTIONS[s1[0]].name}) — instant alignment in how they perceive and process. Communication feels natural and frictionless.`, color: '#50c878' });
   else if (s1[0][0] === s2[0][0]) insights.push({ label: `Same Axis: ${s1[0]} vs ${s2[0]}`, desc: `Both lead with the same cognitive axis (${s1[0][0] === 'N' ? 'Intuition' : 'Sensing'}) but in opposite orientations — one inward, one outward. Similar vocabulary, different processing style.`, color: G.gold });
 
-  if (s1[0] === s2[3]) insights.push({ label: `${type1}'s Strength = ${type2}'s Growth Edge`, desc: `${type1}'s dominant function (${s1[0]}) is ${type2}'s inferior — what comes naturally to ${type1} is ${type2}'s area of growth and potential stress.`, color: '#e88050' });
-  if (s2[0] === s1[3]) insights.push({ label: `${type2}'s Strength = ${type1}'s Growth Edge`, desc: `${type2}'s dominant function (${s2[0]}) is ${type1}'s inferior — what comes naturally to ${type2} is ${type1}'s area of growth and potential stress.`, color: '#e88050' });
+  if (s1[0] === s2[3]) insights.push({ label: `${type1}'s Lead = ${type2}'s Hunger`, desc: `${type1}'s dominant function (${s1[0]}) is ${type2}'s inferior, at Hunger — what comes naturally to ${type1} is where ${type2} reaches without practiced capacity, and where their fixation sits.`, color: '#e88050' });
+  if (s2[0] === s1[3]) insights.push({ label: `${type2}'s Lead = ${type1}'s Hunger`, desc: `${type2}'s dominant function (${s2[0]}) is ${type1}'s inferior, at Hunger — what comes naturally to ${type2} is where ${type1} reaches without practiced capacity, and where their fixation sits.`, color: '#e88050' });
 
   const temp1 = type1[1] + type1[2], temp2 = type2[1] + type2[2];
   if (temp1 === temp2) insights.push({ label: `Same Temperament: ${temp1}`, desc: 'Similar values, communication style, and life orientation. These types often feel like they speak the same language, even if their specific functions differ.', color: '#30a888' });

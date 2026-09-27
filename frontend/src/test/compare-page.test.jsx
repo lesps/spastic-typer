@@ -411,17 +411,17 @@ describe('ComparePage — name substitution', () => {
   });
 
   it('replaces bare A/B in growthStress narratives with person names', () => {
-    // pA type 3 grows toward type 6; pB is type 6 → "When A grows toward Type 6..."
-    // must become "When Alice grows toward Type 6..."
+    // pA is type 3, whose growth arrow points to type 6; pB is type 6. The
+    // narrative must name the people, never a bare A or B.
     // mbti required for isPersonComplete so PairResults renders
     localStorage.setItem('compare_persons', JSON.stringify([
       { label: 'Alice', ennType: 3, ennWing: 2, ennWingStrength: 1, instinctStack: ['sp', 'so', 'sx'], mbti: 'ESTJ', ennScores: null },
       { label: 'Bob',   ennType: 6, ennWing: 7, ennWingStrength: 2, instinctStack: ['so', 'sp', 'sx'], mbti: 'ISFJ', ennScores: null },
     ]));
     render(<ComparePage />);
-    expect(screen.queryByText(/When A grows/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/^A's growth arrow/)).not.toBeInTheDocument();
     expect(screen.queryByText(/When A is stressed/)).not.toBeInTheDocument();
-    expect(screen.queryByText(/When Alice grows/)).toBeInTheDocument();
+    expect(screen.queryByText(/Alice's growth arrow points at Bob's type/)).toBeInTheDocument();
   });
 });
 

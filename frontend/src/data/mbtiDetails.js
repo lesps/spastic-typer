@@ -240,7 +240,7 @@ export const MBTI_FUNCTION_DETAILS = {
     inferior: {
       function: 'Fe',
       title: 'Extraverted Feeling (Inferior)',
-      inThisType: 'Fe is the ISTP\'s chronic blind spot and growth edge. They may feel genuinely lost in social emotional territory, unsure how to offer comfort, read relational cues, or express care in ways others will register. Under stress, inferior Fe erupts as acute sensitivity to social rejection, sudden emotionality, or overblown people-pleasing that feels foreign even to themselves.',
+      inThisType: 'Fe is the ISTP\'s chronic blind spot — the function at Hunger. They may feel genuinely lost in social emotional territory, unsure how to offer comfort, read relational cues, or express care in ways others will register. Under stress, inferior Fe erupts as acute sensitivity to social rejection, sudden emotionality, or overblown people-pleasing that feels foreign even to themselves.',
       healthyExpression: 'Genuine warmth that\'s all the more powerful for being rare, ability to connect through shared activity rather than words.',
       unhealthyExpression: 'Sudden acute sensitivity to criticism or rejection. Overcompensating people-pleasing. Clumsiness in emotional situations that usually resolves in physical competence.',
     },

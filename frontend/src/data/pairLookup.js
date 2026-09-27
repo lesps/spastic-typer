@@ -42,7 +42,7 @@ export const ENN_DYNAMICS = {
     {
       "icon": "↗",
       "label": "Growth Arrow Connection",
-      "desc": "One type's growth direction points toward the other — Type 4 grows toward Type 1. At their best, one partner naturally models what the other is working toward.",
+      "desc": "One type's growth direction points toward the other — Type 4's growth arrow points to Type 1. At their best, one partner naturally models what the other is working toward.",
       "color": "#50c878"
     },
     {
@@ -96,7 +96,7 @@ export const ENN_DYNAMICS = {
     {
       "icon": "↗",
       "label": "Growth Arrow Connection",
-      "desc": "One type's growth direction points toward the other — Type 1 grows toward Type 7. At their best, one partner naturally models what the other is working toward.",
+      "desc": "One type's growth direction points toward the other — Type 1's growth arrow points to Type 7. At their best, one partner naturally models what the other is working toward.",
       "color": "#50c878"
     },
     {
@@ -178,7 +178,7 @@ export const ENN_DYNAMICS = {
     {
       "icon": "↗",
       "label": "Growth Arrow Connection",
-      "desc": "One type's growth direction points toward the other — Type 2 grows toward Type 4. At their best, one partner naturally models what the other is working toward.",
+      "desc": "One type's growth direction points toward the other — Type 2's growth arrow points to Type 4. At their best, one partner naturally models what the other is working toward.",
       "color": "#50c878"
     },
     {
@@ -240,7 +240,7 @@ export const ENN_DYNAMICS = {
     {
       "icon": "↗",
       "label": "Growth Arrow Connection",
-      "desc": "One type's growth direction points toward the other — Type 8 grows toward Type 2. At their best, one partner naturally models what the other is working toward.",
+      "desc": "One type's growth direction points toward the other — Type 8's growth arrow points to Type 2. At their best, one partner naturally models what the other is working toward.",
       "color": "#50c878"
     },
     {
@@ -316,7 +316,7 @@ export const ENN_DYNAMICS = {
     {
       "icon": "↗",
       "label": "Growth Arrow Connection",
-      "desc": "One type's growth direction points toward the other — Type 3 grows toward Type 6. At their best, one partner naturally models what the other is working toward.",
+      "desc": "One type's growth direction points toward the other — Type 3's growth arrow points to Type 6. At their best, one partner naturally models what the other is working toward.",
       "color": "#50c878"
     },
     {
@@ -370,7 +370,7 @@ export const ENN_DYNAMICS = {
     {
       "icon": "↗",
       "label": "Growth Arrow Connection",
-      "desc": "One type's growth direction points toward the other — Type 9 grows toward Type 3. At their best, one partner naturally models what the other is working toward.",
+      "desc": "One type's growth direction points toward the other — Type 9's growth arrow points to Type 3. At their best, one partner naturally models what the other is working toward.",
       "color": "#50c878"
     },
     {
@@ -502,7 +502,7 @@ export const ENN_DYNAMICS = {
     {
       "icon": "↗",
       "label": "Growth Arrow Connection",
-      "desc": "One type's growth direction points toward the other — Type 7 grows toward Type 5. At their best, one partner naturally models what the other is working toward.",
+      "desc": "One type's growth direction points toward the other — Type 7's growth arrow points to Type 5. At their best, one partner naturally models what the other is working toward.",
       "color": "#50c878"
     },
     {
@@ -522,7 +522,7 @@ export const ENN_DYNAMICS = {
     {
       "icon": "↗",
       "label": "Growth Arrow Connection",
-      "desc": "One type's growth direction points toward the other — Type 5 grows toward Type 8. At their best, one partner naturally models what the other is working toward.",
+      "desc": "One type's growth direction points toward the other — Type 5's growth arrow points to Type 8. At their best, one partner naturally models what the other is working toward.",
       "color": "#50c878"
     },
     {
@@ -598,7 +598,7 @@ export const ENN_DYNAMICS = {
     {
       "icon": "↗",
       "label": "Growth Arrow Connection",
-      "desc": "One type's growth direction points toward the other — Type 6 grows toward Type 9. At their best, one partner naturally models what the other is working toward.",
+      "desc": "One type's growth direction points toward the other — Type 6's growth arrow points to Type 9. At their best, one partner naturally models what the other is working toward.",
       "color": "#50c878"
     },
     {
@@ -697,7 +697,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -707,7 +707,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -719,7 +719,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -729,7 +729,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -741,7 +741,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -751,7 +751,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -763,7 +763,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -773,7 +773,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -785,7 +785,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -795,7 +795,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -807,7 +807,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -817,7 +817,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -829,7 +829,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -839,7 +839,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -851,7 +851,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -861,7 +861,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -873,7 +873,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -883,7 +883,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being corrupt or defective\" — avoid framing that triggers it.",
         "They need to be good and have integrity.",
         "Under stress they move toward Type 4 patterns — Individualist.",
-        "Their growth edge is Type 7 qualities — Enthusiast."
+        "Their growth direction (→ Type 7) is satisfaction in something as it is, arriving without correction — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -895,7 +895,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -905,7 +905,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -917,7 +917,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -927,7 +927,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -939,7 +939,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -949,7 +949,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -961,7 +961,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -971,7 +971,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -983,7 +983,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -993,7 +993,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1005,7 +1005,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1015,7 +1015,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1027,7 +1027,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1037,7 +1037,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1049,7 +1049,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1059,7 +1059,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being unwanted or unworthy of love\" — avoid framing that triggers it.",
         "They need to feel loved and needed.",
         "Under stress they move toward Type 8 patterns — Challenger.",
-        "Their growth edge is Type 4 qualities — Individualist."
+        "Their growth direction (→ Type 4) is being sought for interiority rather than utility — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1071,7 +1071,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1081,7 +1081,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1093,7 +1093,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1103,7 +1103,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1115,7 +1115,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1125,7 +1125,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1137,7 +1137,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1147,7 +1147,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1159,7 +1159,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1169,7 +1169,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1181,7 +1181,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1191,7 +1191,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1203,7 +1203,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1213,7 +1213,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being worthless or without value\" — avoid framing that triggers it.",
         "They need to feel valuable and worthwhile.",
         "Under stress they move toward Type 9 patterns — Peacemaker.",
-        "Their growth edge is Type 6 qualities — Loyalist."
+        "Their growth direction (→ Type 6) is support arriving without performing for it; structures holding during non-performance — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1225,7 +1225,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1235,7 +1235,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1247,7 +1247,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1257,7 +1257,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1269,7 +1269,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1279,7 +1279,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1291,7 +1291,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1301,7 +1301,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1313,7 +1313,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1323,7 +1323,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1335,7 +1335,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1345,7 +1345,7 @@ export const ENN_TIPS = {
         "Their core fear is \"having no identity or personal significance\" — avoid framing that triggers it.",
         "They need to find themselves and their significance.",
         "Under stress they move toward Type 2 patterns — Helper.",
-        "Their growth edge is Type 1 qualities — Reformer."
+        "Their growth direction (→ Type 1) is consistent principled functioning available while the deficiency feeling persists — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1357,7 +1357,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1367,7 +1367,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1379,7 +1379,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1389,7 +1389,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1401,7 +1401,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1411,7 +1411,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1423,7 +1423,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1433,7 +1433,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1445,7 +1445,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1455,7 +1455,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being useless or incapable\" — avoid framing that triggers it.",
         "They need to be capable and competent.",
         "Under stress they move toward Type 7 patterns — Enthusiast.",
-        "Their growth edge is Type 8 qualities — Challenger."
+        "Their growth direction (→ Type 8) is direct engagement generating rather than depleting energy — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1467,7 +1467,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1477,7 +1477,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1489,7 +1489,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1499,7 +1499,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1511,7 +1511,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1521,7 +1521,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1533,7 +1533,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1543,7 +1543,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being without support or guidance\" — avoid framing that triggers it.",
         "They need to have security and support.",
         "Under stress they move toward Type 3 patterns — Achiever.",
-        "Their growth edge is Type 9 qualities — Peacemaker."
+        "Their growth direction (→ Type 9) is rest with vigilance suspended; things hold without monitoring — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1555,7 +1555,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1565,7 +1565,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1577,7 +1577,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1587,7 +1587,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1599,7 +1599,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1609,7 +1609,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being deprived or in pain\" — avoid framing that triggers it.",
         "They need to be satisfied and content.",
         "Under stress they move toward Type 1 patterns — Reformer.",
-        "Their growth edge is Type 5 qualities — Investigator."
+        "Their growth direction (→ Type 5) is depth that is spacious rather than trapping — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1621,7 +1621,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1631,7 +1631,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1643,7 +1643,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1653,7 +1653,7 @@ export const ENN_TIPS = {
         "Their core fear is \"being controlled or harmed by others\" — avoid framing that triggers it.",
         "They need to protect themselves and be in control.",
         "Under stress they move toward Type 5 patterns — Investigator.",
-        "Their growth edge is Type 2 qualities — Helper."
+        "Their growth direction (→ Type 2) is care given returning as care rather than leverage — it has to arrive from outside rather than be performed."
       ]
     }
   ],
@@ -1665,7 +1665,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     },
     {
@@ -1675,7 +1675,7 @@ export const ENN_TIPS = {
         "Their core fear is \"loss and separation, of fragmentation\" — avoid framing that triggers it.",
         "They need to have inner stability and peace of mind.",
         "Under stress they move toward Type 6 patterns — Loyalist.",
-        "Their growth edge is Type 3 qualities — Achiever."
+        "Their growth direction (→ Type 3) is assertion deepening connection; mattering welcomed — it has to arrive from outside rather than be performed."
       ]
     }
   ]
@@ -1917,13 +1917,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ESTP-INTJ": [
     {
-      "label": "INTJ's Strength = ESTP's Growth Edge",
-      "desc": "INTJ's dominant function (Ni) is ESTP's inferior — what comes naturally to INTJ is ESTP's area of growth and potential stress.",
+      "label": "INTJ's Lead = ESTP's Hunger",
+      "desc": "INTJ's dominant function (Ni) is ESTP's inferior, at Hunger — what comes naturally to INTJ is where ESTP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ESTP's Strength = INTJ's Growth Edge",
-      "desc": "ESTP's dominant function (Se) is INTJ's inferior — what comes naturally to ESTP is INTJ's area of growth and potential stress.",
+      "label": "ESTP's Lead = INTJ's Hunger",
+      "desc": "ESTP's dominant function (Se) is INTJ's inferior, at Hunger — what comes naturally to ESTP is where INTJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -1944,13 +1944,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ESFP-INTJ": [
     {
-      "label": "INTJ's Strength = ESFP's Growth Edge",
-      "desc": "INTJ's dominant function (Ni) is ESFP's inferior — what comes naturally to INTJ is ESFP's area of growth and potential stress.",
+      "label": "INTJ's Lead = ESFP's Hunger",
+      "desc": "INTJ's dominant function (Ni) is ESFP's inferior, at Hunger — what comes naturally to INTJ is where ESFP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ESFP's Strength = INTJ's Growth Edge",
-      "desc": "ESFP's dominant function (Se) is INTJ's inferior — what comes naturally to ESFP is INTJ's area of growth and potential stress.",
+      "label": "ESFP's Lead = INTJ's Hunger",
+      "desc": "ESFP's dominant function (Se) is INTJ's inferior, at Hunger — what comes naturally to ESFP is where INTJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -2056,13 +2056,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ENFJ-INTP": [
     {
-      "label": "INTP's Strength = ENFJ's Growth Edge",
-      "desc": "INTP's dominant function (Ti) is ENFJ's inferior — what comes naturally to INTP is ENFJ's area of growth and potential stress.",
+      "label": "INTP's Lead = ENFJ's Hunger",
+      "desc": "INTP's dominant function (Ti) is ENFJ's inferior, at Hunger — what comes naturally to INTP is where ENFJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ENFJ's Strength = INTP's Growth Edge",
-      "desc": "ENFJ's dominant function (Fe) is INTP's inferior — what comes naturally to ENFJ is INTP's area of growth and potential stress.",
+      "label": "ENFJ's Lead = INTP's Hunger",
+      "desc": "ENFJ's dominant function (Fe) is INTP's inferior, at Hunger — what comes naturally to ENFJ is where INTP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -2156,13 +2156,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ESFJ-INTP": [
     {
-      "label": "INTP's Strength = ESFJ's Growth Edge",
-      "desc": "INTP's dominant function (Ti) is ESFJ's inferior — what comes naturally to INTP is ESFJ's area of growth and potential stress.",
+      "label": "INTP's Lead = ESFJ's Hunger",
+      "desc": "INTP's dominant function (Ti) is ESFJ's inferior, at Hunger — what comes naturally to INTP is where ESFJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ESFJ's Strength = INTP's Growth Edge",
-      "desc": "ESFJ's dominant function (Fe) is INTP's inferior — what comes naturally to ESFJ is INTP's area of growth and potential stress.",
+      "label": "ESFJ's Lead = INTP's Hunger",
+      "desc": "ESFJ's dominant function (Fe) is INTP's inferior, at Hunger — what comes naturally to ESFJ is where INTP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -2287,13 +2287,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ENTJ-INFP": [
     {
-      "label": "ENTJ's Strength = INFP's Growth Edge",
-      "desc": "ENTJ's dominant function (Te) is INFP's inferior — what comes naturally to ENTJ is INFP's area of growth and potential stress.",
+      "label": "ENTJ's Lead = INFP's Hunger",
+      "desc": "ENTJ's dominant function (Te) is INFP's inferior, at Hunger — what comes naturally to ENTJ is where INFP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "INFP's Strength = ENTJ's Growth Edge",
-      "desc": "INFP's dominant function (Fi) is ENTJ's inferior — what comes naturally to INFP is ENTJ's area of growth and potential stress.",
+      "label": "INFP's Lead = ENTJ's Hunger",
+      "desc": "INFP's dominant function (Fi) is ENTJ's inferior, at Hunger — what comes naturally to INFP is where ENTJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -2408,13 +2408,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ENTJ-ISFP": [
     {
-      "label": "ENTJ's Strength = ISFP's Growth Edge",
-      "desc": "ENTJ's dominant function (Te) is ISFP's inferior — what comes naturally to ENTJ is ISFP's area of growth and potential stress.",
+      "label": "ENTJ's Lead = ISFP's Hunger",
+      "desc": "ENTJ's dominant function (Te) is ISFP's inferior, at Hunger — what comes naturally to ENTJ is where ISFP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ISFP's Strength = ENTJ's Growth Edge",
-      "desc": "ISFP's dominant function (Fi) is ENTJ's inferior — what comes naturally to ISFP is ENTJ's area of growth and potential stress.",
+      "label": "ISFP's Lead = ENTJ's Hunger",
+      "desc": "ISFP's dominant function (Fi) is ENTJ's inferior, at Hunger — what comes naturally to ISFP is where ENTJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -2539,13 +2539,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ENTP-ISTJ": [
     {
-      "label": "ENTP's Strength = ISTJ's Growth Edge",
-      "desc": "ENTP's dominant function (Ne) is ISTJ's inferior — what comes naturally to ENTP is ISTJ's area of growth and potential stress.",
+      "label": "ENTP's Lead = ISTJ's Hunger",
+      "desc": "ENTP's dominant function (Ne) is ISTJ's inferior, at Hunger — what comes naturally to ENTP is where ISTJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ISTJ's Strength = ENTP's Growth Edge",
-      "desc": "ISTJ's dominant function (Si) is ENTP's inferior — what comes naturally to ISTJ is ENTP's area of growth and potential stress.",
+      "label": "ISTJ's Lead = ENTP's Hunger",
+      "desc": "ISTJ's dominant function (Si) is ENTP's inferior, at Hunger — what comes naturally to ISTJ is where ENTP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -2566,13 +2566,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ENTP-ISFJ": [
     {
-      "label": "ENTP's Strength = ISFJ's Growth Edge",
-      "desc": "ENTP's dominant function (Ne) is ISFJ's inferior — what comes naturally to ENTP is ISFJ's area of growth and potential stress.",
+      "label": "ENTP's Lead = ISFJ's Hunger",
+      "desc": "ENTP's dominant function (Ne) is ISFJ's inferior, at Hunger — what comes naturally to ENTP is where ISFJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ISFJ's Strength = ENTP's Growth Edge",
-      "desc": "ISFJ's dominant function (Si) is ENTP's inferior — what comes naturally to ISFJ is ENTP's area of growth and potential stress.",
+      "label": "ISFJ's Lead = ENTP's Hunger",
+      "desc": "ISFJ's dominant function (Si) is ENTP's inferior, at Hunger — what comes naturally to ISFJ is where ENTP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -2840,13 +2840,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ESTP-INFJ": [
     {
-      "label": "INFJ's Strength = ESTP's Growth Edge",
-      "desc": "INFJ's dominant function (Ni) is ESTP's inferior — what comes naturally to INFJ is ESTP's area of growth and potential stress.",
+      "label": "INFJ's Lead = ESTP's Hunger",
+      "desc": "INFJ's dominant function (Ni) is ESTP's inferior, at Hunger — what comes naturally to INFJ is where ESTP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ESTP's Strength = INFJ's Growth Edge",
-      "desc": "ESTP's dominant function (Se) is INFJ's inferior — what comes naturally to ESTP is INFJ's area of growth and potential stress.",
+      "label": "ESTP's Lead = INFJ's Hunger",
+      "desc": "ESTP's dominant function (Se) is INFJ's inferior, at Hunger — what comes naturally to ESTP is where INFJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -2872,13 +2872,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ESFP-INFJ": [
     {
-      "label": "INFJ's Strength = ESFP's Growth Edge",
-      "desc": "INFJ's dominant function (Ni) is ESFP's inferior — what comes naturally to INFJ is ESFP's area of growth and potential stress.",
+      "label": "INFJ's Lead = ESFP's Hunger",
+      "desc": "INFJ's dominant function (Ni) is ESFP's inferior, at Hunger — what comes naturally to INFJ is where ESFP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ESFP's Strength = INFJ's Growth Edge",
-      "desc": "ESFP's dominant function (Se) is INFJ's inferior — what comes naturally to ESFP is INFJ's area of growth and potential stress.",
+      "label": "ESFP's Lead = INFJ's Hunger",
+      "desc": "ESFP's dominant function (Se) is INFJ's inferior, at Hunger — what comes naturally to ESFP is where INFJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -2989,13 +2989,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ESTJ-INFP": [
     {
-      "label": "INFP's Strength = ESTJ's Growth Edge",
-      "desc": "INFP's dominant function (Fi) is ESTJ's inferior — what comes naturally to INFP is ESTJ's area of growth and potential stress.",
+      "label": "INFP's Lead = ESTJ's Hunger",
+      "desc": "INFP's dominant function (Fi) is ESTJ's inferior, at Hunger — what comes naturally to INFP is where ESTJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ESTJ's Strength = INFP's Growth Edge",
-      "desc": "ESTJ's dominant function (Te) is INFP's inferior — what comes naturally to ESTJ is INFP's area of growth and potential stress.",
+      "label": "ESTJ's Lead = INFP's Hunger",
+      "desc": "ESTJ's dominant function (Te) is INFP's inferior, at Hunger — what comes naturally to ESTJ is where INFP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -3183,13 +3183,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ENFJ-ISTP": [
     {
-      "label": "ENFJ's Strength = ISTP's Growth Edge",
-      "desc": "ENFJ's dominant function (Fe) is ISTP's inferior — what comes naturally to ENFJ is ISTP's area of growth and potential stress.",
+      "label": "ENFJ's Lead = ISTP's Hunger",
+      "desc": "ENFJ's dominant function (Fe) is ISTP's inferior, at Hunger — what comes naturally to ENFJ is where ISTP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ISTP's Strength = ENFJ's Growth Edge",
-      "desc": "ISTP's dominant function (Ti) is ENFJ's inferior — what comes naturally to ISTP is ENFJ's area of growth and potential stress.",
+      "label": "ISTP's Lead = ENFJ's Hunger",
+      "desc": "ISTP's dominant function (Ti) is ENFJ's inferior, at Hunger — what comes naturally to ISTP is where ENFJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -3278,13 +3278,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ENFP-ISTJ": [
     {
-      "label": "ENFP's Strength = ISTJ's Growth Edge",
-      "desc": "ENFP's dominant function (Ne) is ISTJ's inferior — what comes naturally to ENFP is ISTJ's area of growth and potential stress.",
+      "label": "ENFP's Lead = ISTJ's Hunger",
+      "desc": "ENFP's dominant function (Ne) is ISTJ's inferior, at Hunger — what comes naturally to ENFP is where ISTJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ISTJ's Strength = ENFP's Growth Edge",
-      "desc": "ISTJ's dominant function (Si) is ENFP's inferior — what comes naturally to ISTJ is ENFP's area of growth and potential stress.",
+      "label": "ISTJ's Lead = ENFP's Hunger",
+      "desc": "ISTJ's dominant function (Si) is ENFP's inferior, at Hunger — what comes naturally to ISTJ is where ENFP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -3310,13 +3310,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ENFP-ISFJ": [
     {
-      "label": "ENFP's Strength = ISFJ's Growth Edge",
-      "desc": "ENFP's dominant function (Ne) is ISFJ's inferior — what comes naturally to ENFP is ISFJ's area of growth and potential stress.",
+      "label": "ENFP's Lead = ISFJ's Hunger",
+      "desc": "ENFP's dominant function (Ne) is ISFJ's inferior, at Hunger — what comes naturally to ENFP is where ISFJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ISFJ's Strength = ENFP's Growth Edge",
-      "desc": "ISFJ's dominant function (Si) is ENFP's inferior — what comes naturally to ISFJ is ENFP's area of growth and potential stress.",
+      "label": "ISFJ's Lead = ENFP's Hunger",
+      "desc": "ISFJ's dominant function (Si) is ENFP's inferior, at Hunger — what comes naturally to ISFJ is where ENFP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -3710,13 +3710,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ESTJ-ISFP": [
     {
-      "label": "ESTJ's Strength = ISFP's Growth Edge",
-      "desc": "ESTJ's dominant function (Te) is ISFP's inferior — what comes naturally to ESTJ is ISFP's area of growth and potential stress.",
+      "label": "ESTJ's Lead = ISFP's Hunger",
+      "desc": "ESTJ's dominant function (Te) is ISFP's inferior, at Hunger — what comes naturally to ESTJ is where ISFP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ISFP's Strength = ESTJ's Growth Edge",
-      "desc": "ISFP's dominant function (Fi) is ESTJ's inferior — what comes naturally to ISFP is ESTJ's area of growth and potential stress.",
+      "label": "ISFP's Lead = ESTJ's Hunger",
+      "desc": "ISFP's dominant function (Fi) is ESTJ's inferior, at Hunger — what comes naturally to ISFP is where ESTJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
@@ -3773,13 +3773,13 @@ export const MBTI_INSIGHTS = {
   ],
   "ESFJ-ISTP": [
     {
-      "label": "ESFJ's Strength = ISTP's Growth Edge",
-      "desc": "ESFJ's dominant function (Fe) is ISTP's inferior — what comes naturally to ESFJ is ISTP's area of growth and potential stress.",
+      "label": "ESFJ's Lead = ISTP's Hunger",
+      "desc": "ESFJ's dominant function (Fe) is ISTP's inferior, at Hunger — what comes naturally to ESFJ is where ISTP reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {
-      "label": "ISTP's Strength = ESFJ's Growth Edge",
-      "desc": "ISTP's dominant function (Ti) is ESFJ's inferior — what comes naturally to ISTP is ESFJ's area of growth and potential stress.",
+      "label": "ISTP's Lead = ESFJ's Hunger",
+      "desc": "ISTP's dominant function (Ti) is ESFJ's inferior, at Hunger — what comes naturally to ISTP is where ESFJ reaches without practiced capacity, and where their fixation sits.",
       "color": "#e88050"
     },
     {

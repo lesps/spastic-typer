@@ -59,7 +59,7 @@ describe('getCombinationProfile — async loading', () => {
     expect(profile).not.toBeNull();
     expect(typeof profile.portrait).toBe('string');
     expect(Array.isArray(profile.strengths)).toBe(true);
-    expect(Array.isArray(profile.growthEdges)).toBe(true);
+    expect(Array.isArray(profile.challenges)).toBe(true);
     expect(typeof profile.atWork).toBe('string');
   });
 
@@ -71,7 +71,7 @@ describe('getCombinationProfile — async loading', () => {
 
   it('all 1,728 profiles exist and have required fields', async () => {
     const { getCombinationProfile } = await import('../data/combinations/index.js');
-    const REQUIRED_FIELDS = ['ennType', 'wing', 'mbtiType', 'instStack', 'portrait', 'strengths', 'growthEdges'];
+    const REQUIRED_FIELDS = ['ennType', 'wing', 'mbtiType', 'instStack', 'portrait', 'strengths', 'challenges'];
     // Spot-check a sample of profiles (1 per wing to keep test fast)
     const samples = [
       [1, 9, 'INTJ', 'SP/SX/SO'],

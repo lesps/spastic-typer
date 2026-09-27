@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { growthPathFor } from '../utils/stack.js';
 import { FIXATION, SUBSTRATE } from '../data/stack.js';
 import { ENN_BASE } from '../data/ennBase.js';
@@ -7,6 +9,7 @@ import { INSTINCT_STACK_PROFILES } from '../data/instinctStackProfiles.js';
 import { COMBINATION_PROFILES } from '../data/combinationProfiles.js';
 import { MBTI_TYPES } from '../data/mbti.js';
 import { getFullStack } from '../utils/shadow.js';
+import { generateSystemPrompt } from '../utils/export.js';
 
 const TYPES = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const INSTINCTS = ['SP', 'SX', 'SO'];
@@ -136,5 +139,74 @@ describe('growth direction — the word has one meaning', () => {
     for (const [k, v] of Object.entries(SUBTYPES)) {
       expect(v.growthPath, k).not.toMatch(instructionish);
     }
+  });
+});
+
+/**
+ * "Growth" as a label or a term names only the growth direction, and the
+ * direction is never framed as a quality to acquire or a practice to perform.
+ * Ordinary prose ("growth potential" of a pairing) is not a term and is not
+ * policed. Each pattern below is a phrasing this app actually shipped.
+ */
+describe('growth direction — retired labels and framings stay retired', () => {
+  const SRC = join(__dirname, '..');
+  const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
+    const full = join(dir, d.name);
+    if (d.isDirectory()) return d.name === 'test' ? [] : walk(full);
+    return /\.(js|jsx)$/.test(d.name) ? [full] : [];
+  });
+  const RETIRED = [
+    [/growth ?edges?/i, 'challenges or the inferior function, labelled as growth'],
+    [/area of growth/i, 'the inferior function, labelled as growth'],
+    [/working toward type/i, 'the direction as a practice'],
+    [/supports this direction/i, 'an unsourced claim that developing a function drives growth'],
+    [/gently encourage/i, 'coaching someone to perform the direction'],
+    [/grows toward type/i, 'the direction as acquiring the arrow type'],
+    [/becoming more [a-z-]+, [a-z-]+,? and [a-z-]+ \(toward \d\)/i, 'the direction as acquiring qualities'],
+  ];
+
+  it('appears nowhere in application code or data, generated stores included', () => {
+    const offenders = [];
+    for (const file of walk(SRC)) {
+      const text = readFileSync(file, 'utf8');
+      for (const [rx, why] of RETIRED) {
+        const m = text.match(rx);
+        if (m) offenders.push(`${file.slice(SRC.length + 1)}: "${m[0]}" (${why})`);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  it('calls the combination profile\'s difficulties challenges', () => {
+    for (const [k, p] of Object.entries(COMBINATION_PROFILES)) {
+      expect(Array.isArray(p.challenges), k).toBe(true);
+      expect(p.challenges.length, k).toBeGreaterThan(0);
+    }
+    for (const [k, b] of Object.entries(ENN_BASE)) {
+      expect(Array.isArray(b.challenges), k).toBe(true);
+    }
+  });
+});
+
+describe('growth direction — the AI-context export', () => {
+  const prompt = (coreType) => generateSystemPrompt(
+    { coreType, wing: Object.keys(ENN_BASE).find(k => k.startsWith(`${coreType}w`)).split('w')[1], instinctStack: ['so', 'sx', 'sp'], display: '' },
+    { result: 'ENFP' },
+  );
+
+  it('states the direction as the falsification of the defense, for every type', () => {
+    for (let t = 1; t <= 9; t++) {
+      const md = prompt(t);
+      expect(md, `type ${t}`).toContain('### Growth Direction');
+      expect(md, `type ${t}`).toContain(FIXATION[t].threat);
+      expect(md, `type ${t}`).toContain(FIXATION[t].falsifies);
+    }
+  });
+
+  it('tells the reader not to coach the direction rather than to encourage it', () => {
+    const md = prompt(3);
+    expect(md).toMatch(/do not instruct the person to perform it/);
+    expect(md).not.toMatch(/encourage/i);
+    expect(md).not.toMatch(/Growth Edge/);
   });
 });
