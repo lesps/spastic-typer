@@ -12,6 +12,7 @@ import {
   CAPTURE_ORDER, ACTIVE_EDGES, EDGES, COUNTER_THREAT_OUTPUT, LABEL_TEMPLATES,
   STAGES, NESTED_PAIRS, DOMAIN_PAIRS, SUBSTRATE, FIXATION,
 } from '../data/stack.js';
+import { ENN_BASE } from '../data/ennBase.js';
 
 export const MIN_LEVEL = 1;
 export const MAX_LEVEL = 9;
@@ -163,6 +164,32 @@ export function readSavedTypes() {
 export function substrateFor(instinct) {
   const key = typeof instinct === 'string' ? instinct.toLowerCase() : null;
   return (key && SUBSTRATE[key]) ? { instinct: key, ...SUBSTRATE[key] } : null;
+}
+
+/**
+ * The growth path for one Enneagram type × MBTI type × instinct stack.
+ *
+ * Derived, never stored. The direction itself is set by the fixation and does
+ * not vary by stack or instinct; what varies is the channel a falsification
+ * gets registered through — the function at Gamble — and which substrate
+ * pressure has to come down before one can be arranged at all. Both axes are
+ * sourced, so composing beats storing 1,728 copies of 216 distinct strings.
+ */
+export function growthPathFor(ennType, wing, mbtiType, instStack) {
+  const direction = ENN_BASE[`${ennType}w${wing}`]?.growthSummary;
+  if (!direction) return '';
+  const parts = [direction];
+  const gamble = mbtiType ? getFullStack(mbtiType)?.[6]?.fn : null;
+  if (gamble) {
+    parts.push(`Registration runs through ${gamble} at Gamble, so it arrives as a ${gamble} flash you did not summon and will be inclined to dismiss.`);
+  }
+  const first = typeof instStack === 'string' ? instStack.split('/')[0] : null;
+  const substrate = substrateFor(first);
+  if (substrate) {
+    const domain = substrate.territory.replace(/ for [A-Za-z]+-first$/, '');
+    parts.push(`Sourcing must be external — performing the direction deliberately is the fixation operating — and with ${first.toUpperCase()} first, the substrate pressure to reduce first sits in ${domain}: ${substrate.register}`);
+  }
+  return parts.join(' ');
 }
 
 /** Scarcity model, threat orientation and growth direction for an Enneagram type, or null. */

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent, act, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import GuidedTyper from '../views/GuidedTyper.jsx';
@@ -14,10 +14,26 @@ beforeEach(() => {
 /**
  * Answer up to `max` Likert questions, stopping automatically when the
  * Likert button is no longer present (quiz ended early or bank exhausted).
+ *
+ * Two properties matter here, and both were the cause of this file's flakiness:
+ *
+ * - It queries by text, not by role. A Likert button's accessible name is its
+ *   text, so the match is identical, but `*ByRole` computes accessible names
+ *   across the whole DOM on every call. Over 70 iterations that took a full
+ *   Enneagram run to ~11.6s of a 15s budget; by text it is ~0.7s.
+ * - It is bound to the render it started on, and stops once that render is
+ *   detached. When a test times out, Vitest moves on but this loop keeps
+ *   running; querying the global `screen` let it click the NEXT test's
+ *   buttons and fail that test too. See the harness regression test below.
  */
 async function answerUpTo(max, value = '0') {
+  const likert = (root) => within(root).queryByText(value, { selector: 'button' });
+  const first = likert(document.body);
+  if (!first) return;
+  const root = first.closest('body > div') ?? document.body;
   for (let i = 0; i < max; i++) {
-    const btn = screen.queryByRole('button', { name: value });
+    if (!root.isConnected) break;
+    const btn = likert(root);
     if (!btn) break;
     fireEvent.click(btn);
     await act(async () => { vi.advanceTimersByTime(200); });
@@ -849,5 +865,49 @@ describe('GuidedTyper — combined profile phase', () => {
     ALL_THREE_LS();
     render(<GuidedTyper />);
     expect(screen.queryByText(/mental model/i)).not.toBeInTheDocument();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Test-harness regression: a loop abandoned by a timed-out test
+// ---------------------------------------------------------------------------
+
+/**
+ * When a test times out, Vitest moves on but the test's async work keeps
+ * running. answerUpTo used to query the global `screen`, so an abandoned loop
+ * found the NEXT test's Likert buttons and clicked them. That is how
+ * "advances to question 2 after answering question 1" failed in ~450ms right
+ * after "can skip disambiguation" timed out: something else had already
+ * clicked its button. This reproduces the mechanism deterministically, with a
+ * plain DOM button standing in for the next test's Likert. It fails on the old
+ * helper with 69 stray clicks — the loop's remaining iterations.
+ */
+describe('GuidedTyper — test harness isolation (regression)', () => {
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
+
+  it('stops an abandoned loop instead of letting it click into the next render', async () => {
+    const view = render(<GuidedTyper />);
+    fireEvent.click(screen.getByText('Core Type + Wing').closest('[style]'));
+
+    // Start the loop and abandon it mid-flight, exactly as a timed-out test
+    // does. Its first iteration runs synchronously, then it awaits act().
+    const abandoned = answerUpTo(70);
+
+    // Between tests RTL detaches the old container; the next test then puts
+    // its own Likert buttons in document.body. A plain button stands in for
+    // them so this checks the harness alone, with no React re-entrancy.
+    view.container.remove();
+    let strayClicks = 0;
+    const decoy = document.createElement('button');
+    decoy.textContent = '0';
+    decoy.addEventListener('click', () => { strayClicks += 1; });
+    document.body.appendChild(decoy);
+
+    await abandoned;
+
+    expect(strayClicks).toBe(0);
+    decoy.remove();
+    view.unmount();
   });
 });

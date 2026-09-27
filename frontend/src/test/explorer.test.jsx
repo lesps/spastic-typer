@@ -72,9 +72,12 @@ describe('Explorer — growth direction as falsification', () => {
   it('states the scarcity model and what the defense predicts, not an instruction', () => {
     render(<Explorer />);
     fireEvent.click(screen.getByRole('button', { name: /The Achiever/i }));
-    expect(screen.getByText(/Worth is produced only by performance/)).toBeInTheDocument();
-    expect(screen.getByText(/Non-performance cascades to material and relational collapse/)).toBeInTheDocument();
-    expect(screen.getByText(/support arriving without performing for it/)).toBeInTheDocument();
+    // Scoped: the same threat line now also appears on each subtype card, which
+    // is the point — the subtype paths cross this fixation with an instinct.
+    const card = screen.getByTestId('growth-direction');
+    expect(card).toHaveTextContent(/Worth is produced only by performance/);
+    expect(card).toHaveTextContent(/Non-performance cascades to material and relational collapse/);
+    expect(card).toHaveTextContent(/support arriving without performing for it/);
   });
 
   it('carries the caveat that the direction cannot be self-performed', () => {

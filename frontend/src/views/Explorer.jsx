@@ -66,7 +66,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
           <h3 style={S.h3}>Core Desire</h3>
           <p style={S.body}>{t.desire}</p>
         </div>
-        <div style={S.card}>
+        <div style={S.card} data-testid="growth-direction">
           <h3 style={S.h3}>Movement Lines</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
             <div style={{ background: alpha(G.success, 0.06), border: `1px solid ${alpha(G.success, 0.2)}`, borderRadius: 8, padding: '12px 14px' }}>
@@ -90,7 +90,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
             </div>
           </div>
           <p data-testid="growth-caveat" style={{ fontSize: 12, color: G.textFaint, marginTop: 12 }}>
-            {GROWTH_MECHANISM[2]} {GROWTH_MECHANISM[3]} Growth-direction descriptions elsewhere in this app describe what the arrival looks like; they are not instructions for producing it.
+            {GROWTH_MECHANISM[2]} {GROWTH_MECHANISM[3]} Every growth-direction description in this app is composed from this fixation's own row, so it names an arrival rather than an instruction.
           </p>
         </div>
         <div style={S.card}>
@@ -125,7 +125,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                     </div>
                   )}
                   {sub.blindSpot && <p style={{ ...S.body, fontSize: 12, color: G.warn, marginBottom: 4 }}>Blind spot: {sub.blindSpot}</p>}
-                  {sub.growthPath && <p style={{ ...S.body, fontSize: 12, color: G.success }}>Growth: {sub.growthPath}</p>}
+                  {sub.growthPath && <p style={{ ...S.body, fontSize: 12, color: G.success }}>Growth direction: {sub.growthPath}</p>}
                 </div>
               );
             })}
@@ -232,7 +232,7 @@ export default function Explorer({ initialTab = 'enneagram', initialSel = null }
                     {profile.inRelationships && <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}><strong style={{ color: G.text }}>In relationships:</strong> {profile.inRelationships}</p>}
                     {profile.atWork && <p style={{ ...S.body, fontSize: 13, marginBottom: 6 }}><strong style={{ color: G.text }}>At work:</strong> {profile.atWork}</p>}
                     {profile.blindSpot && <p style={{ ...S.body, fontSize: 12, color: G.warn, marginBottom: 4 }}>Blind spot: {profile.blindSpot}</p>}
-                    {profile.growth && <p style={{ ...S.body, fontSize: 12, color: G.success }}>Growth: {profile.growth}</p>}
+                    {profile.underdeveloped && <p style={{ ...S.body, fontSize: 12, color: G.textDim }}>Least attended: {profile.underdeveloped}</p>}
                   </div>
                 );
               })}

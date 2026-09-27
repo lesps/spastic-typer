@@ -12,7 +12,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'May over-control personal habits while neglecting emotional needs. Can appear rigid or anxious to others who don\'t share their standards.',
-    growthPath: 'Learning that imperfection in daily life is not a moral failing. Allowing spontaneity and mess.',
+    growthPath: 'Counter says: Relaxing the standard produces irreversible damage. What falsifies it is satisfaction in something as it is, arriving without correction — arranged from outside, never performed, and registered as a flash you did not summon. With SP first the substrate pressure runs in material stability, so the reduction that comes first is this: stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
     commonMistype: '6 (shared anxiety pattern), 3 (shared self-improvement drive)',
   },
   '1_SX': {
@@ -28,8 +28,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       "Projects their inner critic onto partners. 'I'm not controlling, I'm helping you be your best self.'",
-    growthPath:
-      'Accepting partners as they are. Redirecting reform energy from others to self-awareness.',
+    growthPath: 'Counter says: Relaxing the standard produces irreversible damage. What falsifies it is satisfaction in something as it is, arriving without correction — arranged from outside, never performed, and registered as a flash you did not summon. With SX first the substrate pressure runs in dyadic intensity, so the reduction that comes first is this: stabilize the dyad — one reliable intense connection whose continuity does not track the fixation\'s strategy.',
     commonMistype: '4 (intensity), 8 (anger), 6 (counter-phobic energy)',
   },
   '1_SO': {
@@ -44,8 +43,7 @@ export const SUBTYPES = {
       'Focus on collective standards',
     ],
     blindSpot: 'Self-righteousness masked as principle. Can alienate others with moral rigidity.',
-    growthPath:
-      'Distinguishing between personal standards and universal truths. Listening before correcting.',
+    growthPath: 'Counter says: Relaxing the standard produces irreversible damage. What falsifies it is satisfaction in something as it is, arriving without correction — arranged from outside, never performed, and registered as a flash you did not summon. With SO first the substrate pressure runs in group standing, so the reduction that comes first is this: stabilize standing — a group, a role, a place at the table that does not depend on the fixation\'s performance.',
     commonMistype: '8 (authority), 2 (helping orientation), 6 (rule-following)',
   },
 
@@ -62,8 +60,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'May not recognize their own need-seeking behavior because it looks like confidence rather than neediness.',
-    growthPath:
-      'Developing genuine self-sufficiency. Learning to ask directly for what they need.',
+    growthPath: 'Counter says: Without providing, no one will want me for what I am. What falsifies it is being sought for interiority rather than utility — arranged from outside, never performed, and registered as a flash you did not summon. With SP first the substrate pressure runs in material stability, so the reduction that comes first is this: stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
     commonMistype: '7 (positive affect), 3 (charm)',
   },
   '2_SX': {
@@ -79,8 +76,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Can become controlling or possessive in the name of care. May confuse intensity with love.',
-    growthPath:
-      "Learning that love doesn't require being indispensable. Trusting that genuine connection can exist without strings.",
+    growthPath: 'Counter says: Without providing, no one will want me for what I am. What falsifies it is being sought for interiority rather than utility — arranged from outside, never performed, and registered as a flash you did not summon. With SX first the substrate pressure runs in dyadic intensity, so the reduction that comes first is this: stabilize the dyad — one reliable intense connection whose continuity does not track the fixation\'s strategy.',
     commonMistype: '8 (aggression), 4 (emotional intensity)',
   },
   '2_SO': {
@@ -96,8 +92,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'May not admit how much they want recognition and power. Frames self-interest as service.',
-    growthPath:
-      'Acknowledging their own needs for recognition and influence. Separating genuine care from strategic help.',
+    growthPath: 'Counter says: Without providing, no one will want me for what I am. What falsifies it is being sought for interiority rather than utility — arranged from outside, never performed, and registered as a flash you did not summon. With SO first the substrate pressure runs in group standing, so the reduction that comes first is this: stabilize standing — a group, a role, a place at the table that does not depend on the fixation\'s performance.',
     commonMistype: '3 (ambition), 8 (power-seeking)',
   },
 
@@ -114,7 +109,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       "May not recognize their own image-management. 'I'm not vain, I just have high standards.'",
-    growthPath: 'Slowing down. Recognizing that their worth is not tied to productivity.',
+    growthPath: 'Counter says: Non-performance cascades to material and relational collapse. What falsifies it is support arriving without performing for it; structures holding during non-performance — arranged from outside, never performed, and registered as a flash you did not summon. With SP first the substrate pressure runs in material stability, so the reduction that comes first is this: stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
     commonMistype: '1 (work ethic), 6 (responsibility)',
   },
   '3_SX': {
@@ -130,8 +125,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Confuses their image with their identity. Deep fear that the real self is not lovable.',
-    growthPath:
-      'Distinguishing between performance and authentic self-expression. Allowing vulnerability.',
+    growthPath: 'Counter says: Non-performance cascades to material and relational collapse. What falsifies it is support arriving without performing for it; structures holding during non-performance — arranged from outside, never performed, and registered as a flash you did not summon. With SX first the substrate pressure runs in dyadic intensity, so the reduction that comes first is this: stabilize the dyad — one reliable intense connection whose continuity does not track the fixation\'s strategy.',
     commonMistype: '2 (relating through charm), 7 (enthusiasm)',
   },
   '3_SO': {
@@ -147,8 +141,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       "Loses track of authentic self through constant persona-shifting. May not know who they are without an audience.",
-    growthPath:
-      'Staying consistent across contexts. Building identity not tied to external validation.',
+    growthPath: 'Counter says: Non-performance cascades to material and relational collapse. What falsifies it is support arriving without performing for it; structures holding during non-performance — arranged from outside, never performed, and registered as a flash you did not summon. With SO first the substrate pressure runs in group standing, so the reduction that comes first is this: stabilize standing — a group, a role, a place at the table that does not depend on the fixation\'s performance.',
     commonMistype: '8 (authority), 6 (institutional achievement)',
   },
 
@@ -165,8 +158,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Represses emotional needs until crisis. May dismiss therapy or emotional support as weakness.',
-    growthPath:
-      'Learning that asking for help is strength, not weakness. Allowing others to witness their pain.',
+    growthPath: 'Counter says: I am too broken to sustain ordinary commitments. What falsifies it is consistent principled functioning available while the deficiency feeling persists — arranged from outside, never performed, and registered as a flash you did not summon. With SP first the substrate pressure runs in material stability, so the reduction that comes first is this: stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
     commonMistype: '1 (self-discipline), 5 (withdrawal), 3 (pushing through)',
   },
   '4_SX': {
@@ -182,8 +174,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Envy disguised as ambition. May alienate others through competitiveness or emotional volatility.',
-    growthPath:
-      "Recognizing envy when it arises. Learning that others' success doesn't diminish their own worth.",
+    growthPath: 'Counter says: I am too broken to sustain ordinary commitments. What falsifies it is consistent principled functioning available while the deficiency feeling persists — arranged from outside, never performed, and registered as a flash you did not summon. With SX first the substrate pressure runs in dyadic intensity, so the reduction that comes first is this: stabilize the dyad — one reliable intense connection whose continuity does not track the fixation\'s strategy.',
     commonMistype: '8 (assertion), 3 (competition)',
   },
   '4_SO': {
@@ -199,8 +190,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       "May use suffering as a bid for connection. 'If you see my pain, you'll love me.'",
-    growthPath:
-      "Finding belonging through contribution rather than suffering. Building identity beyond 'the one who suffers.'",
+    growthPath: 'Counter says: I am too broken to sustain ordinary commitments. What falsifies it is consistent principled functioning available while the deficiency feeling persists — arranged from outside, never performed, and registered as a flash you did not summon. With SO first the substrate pressure runs in group standing, so the reduction that comes first is this: stabilize standing — a group, a role, a place at the table that does not depend on the fixation\'s performance.',
     commonMistype: '2 (desire for connection), 6 (comparison to group norms)',
   },
 
@@ -217,8 +207,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Can become completely isolated, losing contact with the outer world and basic relationships.',
-    growthPath:
-      'Taking small risks with resources. Allowing others into their space without feeling depleted.',
+    growthPath: 'Counter says: Engagement will drain me to nothing. What falsifies it is direct engagement generating rather than depleting energy — arranged from outside, never performed, and registered as a flash you did not summon. With SP first the substrate pressure runs in material stability, so the reduction that comes first is this: stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
     commonMistype: '9 (withdrawal), 1 (self-sufficiency)',
   },
   '5_SX': {
@@ -234,8 +223,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       "Can idealize the partner and then withdraw when reality doesn't match expectations.",
-    growthPath:
-      'Generalizing intimacy. Learning that multiple relationships can deepen rather than dilute connection.',
+    growthPath: 'Counter says: Engagement will drain me to nothing. What falsifies it is direct engagement generating rather than depleting energy — arranged from outside, never performed, and registered as a flash you did not summon. With SX first the substrate pressure runs in dyadic intensity, so the reduction that comes first is this: stabilize the dyad — one reliable intense connection whose continuity does not track the fixation\'s strategy.',
     commonMistype: '4 (intensity), 8 (confidence)',
   },
   '5_SO': {
@@ -251,8 +239,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Substitutes intellectual engagement for genuine emotional connection. May feel seen as a resource rather than a person.',
-    growthPath:
-      'Sharing personal feelings, not just ideas. Allowing others to know the person behind the expertise.',
+    growthPath: 'Counter says: Engagement will drain me to nothing. What falsifies it is direct engagement generating rather than depleting energy — arranged from outside, never performed, and registered as a flash you did not summon. With SO first the substrate pressure runs in group standing, so the reduction that comes first is this: stabilize standing — a group, a role, a place at the table that does not depend on the fixation\'s performance.',
     commonMistype: '1 (principled knowledge), 6 (group loyalty through expertise)',
   },
 
@@ -269,8 +256,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       "May become dependent on others' reassurance. Can over-commit to relationships to maintain security.",
-    growthPath:
-      "Building internal sense of safety. Learning that warmth doesn't require constant approval-seeking.",
+    growthPath: 'Counter says: Relaxing monitoring lets catastrophe arrive undetected. What falsifies it is rest with vigilance suspended; things hold without monitoring — arranged from outside, never performed, and registered as a flash you did not summon. With SP first the substrate pressure runs in material stability, so the reduction that comes first is this: stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
     commonMistype: '2 (warmth), 9 (agreeableness)',
   },
   '6_SX': {
@@ -286,7 +272,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Aggression is fear in disguise. May exhaust themselves and others with constant testing and provocation.',
-    growthPath: 'Recognizing the anxiety beneath the bravado. Learning to trust before testing.',
+    growthPath: 'Counter says: Relaxing monitoring lets catastrophe arrive undetected. What falsifies it is rest with vigilance suspended; things hold without monitoring — arranged from outside, never performed, and registered as a flash you did not summon. With SX first the substrate pressure runs in dyadic intensity, so the reduction that comes first is this: stabilize the dyad — one reliable intense connection whose continuity does not track the fixation\'s strategy.',
     commonMistype: '8 (aggression), 3 (confidence projection)',
   },
   '6_SO': {
@@ -302,8 +288,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       "May follow rules even when they're unjust, to avoid the anxiety of deviation. Can become rigid and rule-bound.",
-    growthPath:
-      'Developing the capacity to question authority. Finding inner guidance beyond external rules.',
+    growthPath: 'Counter says: Relaxing monitoring lets catastrophe arrive undetected. What falsifies it is rest with vigilance suspended; things hold without monitoring — arranged from outside, never performed, and registered as a flash you did not summon. With SO first the substrate pressure runs in group standing, so the reduction that comes first is this: stabilize standing — a group, a role, a place at the table that does not depend on the fixation\'s performance.',
     commonMistype: '1 (rule-following), 3 (performing duty)',
   },
 
@@ -320,8 +305,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Can become gluttonous or self-indulgent under stress. The hedonic treadmill — always needing more stimulation.',
-    growthPath:
-      "Finding satisfaction in what's already here. Practicing stillness and depth rather than constant stimulation.",
+    growthPath: 'Counter says: Committing to one thing exhausts all exits. What falsifies it is depth that is spacious rather than trapping — arranged from outside, never performed, and registered as a flash you did not summon. With SP first the substrate pressure runs in material stability, so the reduction that comes first is this: stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
     commonMistype: '3 (planning), 5 (strategizing)',
   },
   '7_SX': {
@@ -337,8 +321,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Idealization leads to inevitable disappointment when reality intrudes. May cycle through relationships or interests quickly.',
-    growthPath:
-      'Developing tolerance for reality over fantasy. Learning that imperfect things can be deeply satisfying.',
+    growthPath: 'Counter says: Committing to one thing exhausts all exits. What falsifies it is depth that is spacious rather than trapping — arranged from outside, never performed, and registered as a flash you did not summon. With SX first the substrate pressure runs in dyadic intensity, so the reduction that comes first is this: stabilize the dyad — one reliable intense connection whose continuity does not track the fixation\'s strategy.',
     commonMistype: '4 (romanticizing), 2 (idealization of relationships)',
   },
   '7_SO': {
@@ -354,8 +337,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       "Service can be another form of avoidance — staying busy with others' needs to avoid their own inner life.",
-    growthPath:
-      'Allowing themselves to receive. Recognizing that self-care is not selfishness.',
+    growthPath: 'Counter says: Committing to one thing exhausts all exits. What falsifies it is depth that is spacious rather than trapping — arranged from outside, never performed, and registered as a flash you did not summon. With SO first the substrate pressure runs in group standing, so the reduction that comes first is this: stabilize standing — a group, a role, a place at the table that does not depend on the fixation\'s performance.',
     commonMistype: '2 (service), 1 (idealism)',
   },
 
@@ -372,8 +354,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Can appear blunt or demanding without realizing the impact. May prioritize own needs without considering others.',
-    growthPath:
-      'Developing awareness of how their territorial behavior affects relationships. Learning to share resources and space.',
+    growthPath: 'Counter says: Tenderness will be weaponized against me. What falsifies it is care given returning as care rather than leverage — arranged from outside, never performed, and registered as a flash you did not summon. With SP first the substrate pressure runs in material stability, so the reduction that comes first is this: stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
     commonMistype: '6 (territorial anxiety), 1 (principled control)',
   },
   '8_SX': {
@@ -389,8 +370,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Intensity can become destructive. May push others away through the very possessiveness that seeks connection.',
-    growthPath:
-      'Learning that vulnerability is the path to the surrender they seek. Opening to tenderness.',
+    growthPath: 'Counter says: Tenderness will be weaponized against me. What falsifies it is care given returning as care rather than leverage — arranged from outside, never performed, and registered as a flash you did not summon. With SX first the substrate pressure runs in dyadic intensity, so the reduction that comes first is this: stabilize the dyad — one reliable intense connection whose continuity does not track the fixation\'s strategy.',
     commonMistype: '4 (emotional intensity), 3 (charisma)',
   },
   '8_SO': {
@@ -406,8 +386,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'May become paternalistic — decides for others what they need without asking. Can be controlling in the name of protection.',
-    growthPath:
-      "Learning to empower rather than protect. Trusting others to handle their own lives.",
+    growthPath: 'Counter says: Tenderness will be weaponized against me. What falsifies it is care given returning as care rather than leverage — arranged from outside, never performed, and registered as a flash you did not summon. With SO first the substrate pressure runs in group standing, so the reduction that comes first is this: stabilize standing — a group, a role, a place at the table that does not depend on the fixation\'s performance.',
     commonMistype: '2 (protective care), 1 (principled advocacy)',
   },
 
@@ -424,8 +403,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Comfort-seeking becomes a way to avoid the deeper work of self-assertion and genuine engagement with life.',
-    growthPath:
-      'Choosing discomfort deliberately. Taking action even when the body wants to settle.',
+    growthPath: 'Counter says: Asserting myself damages the field beyond repair. What falsifies it is assertion deepening connection; mattering welcomed — arranged from outside, never performed, and registered as a flash you did not summon. With SP first the substrate pressure runs in material stability, so the reduction that comes first is this: stabilize material and physical ground first — income, housing, health, schedule; the fixation is reading these as the emergency.',
     commonMistype: '7 (comfort-seeking), 5 (withdrawal)',
   },
   '9_SX': {
@@ -441,8 +419,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       "Loses their own identity in relationships. May not know what they want separate from the partner.",
-    growthPath:
-      'Maintaining a sense of self within intimacy. Knowing and asserting their own preferences.',
+    growthPath: 'Counter says: Asserting myself damages the field beyond repair. What falsifies it is assertion deepening connection; mattering welcomed — arranged from outside, never performed, and registered as a flash you did not summon. With SX first the substrate pressure runs in dyadic intensity, so the reduction that comes first is this: stabilize the dyad — one reliable intense connection whose continuity does not track the fixation\'s strategy.',
     commonMistype: '2 (devotion), 4 (romantic longing)',
   },
   '9_SO': {
@@ -458,8 +435,7 @@ export const SUBTYPES = {
     ],
     blindSpot:
       'Mistakes participation for genuine belonging. May be well-liked but feel invisible and unimportant.',
-    growthPath:
-      'Developing individual voice within the group. Speaking a personal perspective even when it differs.',
+    growthPath: 'Counter says: Asserting myself damages the field beyond repair. What falsifies it is assertion deepening connection; mattering welcomed — arranged from outside, never performed, and registered as a flash you did not summon. With SO first the substrate pressure runs in group standing, so the reduction that comes first is this: stabilize standing — a group, a role, a place at the table that does not depend on the fixation\'s performance.',
     commonMistype: '6 (group loyalty), 2 (community service)',
   },
 };

@@ -6,6 +6,7 @@ import { COG_FUNCTIONS } from '../data/cognitive.js';
 import FnBadge from '../components/FnBadge.jsx';
 import { computeArchetypeName } from '../utils/archetype.js';
 import { COMBINATION_PROFILES } from '../data/combinationProfiles.js';
+import { growthPathFor } from '../utils/stack.js';
 import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
 
 function readLS(key) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; } }
@@ -69,6 +70,10 @@ export default function CombinedProfile({ onBack = () => {} }) {
   const instKey = instStack.map(i => i.toUpperCase()).join('');
   const combKey = `${coreType}w${enn.wing}_${mbtiResult}_${instKey}`;
   const combo = COMBINATION_PROFILES[combKey] ?? null;
+
+  // Derived from the fixation, the function at Gamble, and the first instinct,
+  // rather than stored on the profile — see growthPathFor().
+  const growthPath = growthPathFor(coreType, enn.wing, mbtiResult, instStack.map(i => i.toUpperCase()).join('/'));
   const narrative = INTEGRATION_NARRATIVES[`${coreType}_${mbtiResult}`] ?? null;
 
   // Derived data for rich sections
@@ -228,7 +233,7 @@ export default function CombinedProfile({ onBack = () => {} }) {
         </p>
         {instStack[2] && (
           <p style={{ ...S.body, marginTop: 10, color: G.textDim }}>
-            Your repressed instinct — <strong style={{ color: G.textDim }}>{instStack[2].toUpperCase()} ({INSTINCT_META[instStack[2]]?.label})</strong> — is the area where this profile's blind spots tend to appear. Growth often comes from developing awareness in this domain.
+            Your repressed instinct — <strong style={{ color: G.textDim }}>{instStack[2].toUpperCase()} ({INSTINCT_META[instStack[2]]?.label})</strong> — is the area where this profile's blind spots tend to appear — the domain that gets least attention, and so the one others notice first. Distinct from the growth direction above, which is a specific prediction being falsified rather than a domain to work on.
           </p>
         )}
       </div>
@@ -264,10 +269,10 @@ export default function CombinedProfile({ onBack = () => {} }) {
           <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{combo.stressBehavior}</p>
         </div>
       )}
-      {combo?.growthPath && (
+      {growthPath && (
         <div style={S.card}>
           <h3 style={S.h3}>Growth Path</h3>
-          <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{combo.growthPath}</p>
+          <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{growthPath}</p>
           {combo.notes?.map((note, i) => (
             <p key={i} style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic', marginTop: 8 }}>{note}</p>
           ))}

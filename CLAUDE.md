@@ -36,7 +36,9 @@ spastic-typer/
 │   ├── vite.config.js
 │   └── package.json
 ├── scripts/
-│   └── generatePairs.mjs   # One-off script — regenerates pairLookup.js
+│   ├── generatePairs.mjs       # Regenerates pairLookup.js
+│   ├── generateCombinations.mjs # Regenerates combinationProfiles.js
+│   └── splitCombinations.mjs    # Splits it into data/combinations/*.js for lazy loading
 ├── docs/
 │   ├── specs/              # Owner-supplied feature specs, checked in verbatim (stack-view.md)
 │   └── plans/              # Session-by-session implementation plans (stack-view-sessions.md)
@@ -98,7 +100,7 @@ spastic-typer/
 | `group.js` | `analyzeGroup` (patterns for 3+ people) |
 | `shadow.js` | `flipAttitude`, `getShadowStack`, `getFullStack`, `getShadowType`, `getStackInverse`, `getPositionCrossings` |
 | `route.js` | `parseHash`, `buildHash`, `VIEWS` (`typer`, `explorer`, `compare`, `stack`), `DEFAULT_VIEW` — URL-hash ↔ view mapping (accepts legacy `#p1=…` links; `#/model` → Explorer) |
-| `stack.js` | `captureState(level)`, `capturedAt`, `captureLevelOf`, `isCaptured`, `tierForLevel`, `stageForLevel`, `sealedStages`, `nestedPartner`, `domainPartner`, `substrateFor`, `fixationFor`, `fillTemplate`, `positionLabel(pos, level?)`, `fnAtPositionLabel`, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, `stackLayout()`, `bezierPoint`, `MIN_LEVEL` / `MAX_LEVEL` — pure Stack-view logic and diagram geometry |
+| `stack.js` | `captureState(level)`, `capturedAt`, `captureLevelOf`, `isCaptured`, `tierForLevel`, `stageForLevel`, `sealedStages`, `nestedPartner`, `domainPartner`, `substrateFor`, `fixationFor`, `growthPathFor`, `fillTemplate`, `positionLabel(pos, level?)`, `fnAtPositionLabel`, `parseStackQuery`, `readSavedTypes`, `counterThreatOutput`, `stackLayout()`, `bezierPoint`, `MIN_LEVEL` / `MAX_LEVEL` — pure Stack-view logic and diagram geometry |
 | `compare.js`, `share.js` | Compare-page analyses (`getCognitiveHarmony`, …) and profile-code encode/decode |
 | `scroll.js` | `scrollToTop`, `useScrollToTop(...deps)` — resets scroll when a view, tab, or detail selection changes |
 
@@ -152,7 +154,7 @@ All tests live in `frontend/src/test/`:
 | File | What it covers |
 |------|---------------|
 | `scoring.test.js` | All three scoring algorithms, `buildFairSequence`, `shuffleArray`, question bank data integrity. ~140 individual `it()` assertions. |
-| `guided-typer.test.jsx` | Quiz flows (start, advance, adaptive exit, disambiguation), choose screen state, combined-profile phase, share/export gating, localStorage persistence, retake behavior |
+| `guided-typer.test.jsx` | Quiz flows (start, advance, adaptive exit, disambiguation), choose screen state, combined-profile phase, share/export gating, localStorage persistence, retake behavior, and a harness regression test proving an abandoned `answerUpTo` loop cannot click into the next test |
 | `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button, share links, sticky person bar, expand/collapse all pairs |
 | `navigation.test.jsx` | Nav landmark and labels, `aria-current`, hash routing (boot from hash, legacy share links, hashchange), scroll reset |
 | `route.test.js` | `parseHash` / `buildHash`, legacy view aliases |
@@ -165,6 +167,8 @@ All tests live in `frontend/src/test/`:
 | `stack-view.test.jsx` | Stack page: type selection and deep links (on mount **and** on `hashchange`), diagram `data-` state per level, scrubber label/caveat/narration/More/falsifier/capture kind, tap and keyboard selection, purpose panel inert/active and both pairings, Replay with fake timers and reduced motion, personalization (fixation + substrate) and malformed storage, the utility selector, both Anchor thresholds, Gamble's three properties, the odd/even tag |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js` | Compare-page analyses: `getCognitiveHarmony`, `analyzeGroup`, distribution helpers |
 | `combinations.test.js`, `subtypes.test.js` | Combined-profile loading and subtype data integrity |
+| `growth-direction.test.js` | `growthPathFor` across every type × wing × MBTI × instinct stack; that the direction comes from the fixation, is wing-invariant, names the Gamble function and the first instinct's substrate; that nothing stores what is derivable; and that no growth copy is instruction-shaped |
+| `combined-growth.test.jsx` | The combined profile renders the derived growth path and varies it by stack and instinct; the repressed instinct stays separate from the growth direction |
 
 ### Exported Test Helpers (from `GuidedTyper.jsx`)
 
@@ -202,11 +206,11 @@ Run `npm test` from inside `frontend/`. Expected output format:
  ✓ src/test/stack-view.test.jsx (XX tests)
  …
 
- Test Files  16 passed (16)
+ Test Files  19 passed (19)
  Tests       XXX passed (XXX)
 ```
 
-The full run takes a couple of minutes; the quiz-flow suites in `guided-typer.test.jsx` are the slow part.
+The full run takes about 30 seconds. It took several minutes until 3.1.0, when the quiz-flow helper stopped using role queries in a loop; if it creeps back up, see the `*ByRole` pitfall below.
 
 A failing test suite blocks merging. Fix the root cause — do not skip or suppress tests.
 
@@ -255,7 +259,7 @@ Use `vi.useFakeTimers()` / `vi.useRealTimers()` in `beforeEach`/`afterEach` for 
 
 The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (ego arc 1–4) and Counter, Critic, Gamble, Flood (shadow arc 5–8). Never use Beebe model terminology (Opposing Personality, Critical Parent, Trickster, Demon) in UI copy or code comments.
 
-`POSITIONS` in `data/shadow.js` holds the names and arcs. Its `brief` strings predate the consolidated document and are **not** aligned with it — Stack surfaces use `ROLES` from `data/stack.js` instead, which is sourced. Do not reach for `brief` in new Stack work.
+`POSITIONS` in `data/shadow.js` holds identity only: `pos`, `name`, `arc`. What a position *does* is `ROLES` in `data/stack.js`, which is sourced and provenance-tested, and is the single definition used by Explorer and the Stack view. The unsourced `brief` strings that used to sit on `POSITIONS` were removed in 3.0.0, and `shadow.test.js` asserts they stay gone.
 
 **Two pairings, kept distinct.** Confusing them is the most common contamination error, so both are data (`NESTED_PAIRS`, `DOMAIN_PAIRS` in `data/stack.js`; `nestedPartner`, `domainPartner` in `utils/stack.js`):
 
@@ -265,6 +269,12 @@ The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (
 | **Domain** | 1–5, 2–6, 3–7, 4–8 | Same base function in opposing attitudes. One territory, two access profiles. Colonization must capture both members to seal a domain. |
 
 **"Mirror" is reserved for the nested partner.** The type whose ego stack *is* another type's shadow stack is the **stack inverse** (`getStackInverse`, `STACK_INVERSION_NARRATIVE`, Compare's "Full Stack Inversion"). Calling that a mirror is the domain/nested confusion above.
+
+**"Growth" has exactly one meaning.** The growth direction is the experience Counter's threat output says will not arrive (`FIXATION[type].falsifies`, Appendix C). It is set by the fixation alone, cannot be self-performed, and is registered rather than produced. Nothing else in the app may use the word:
+
+- `growthPathFor(ennType, wing, mbtiType, instStack)` in `utils/stack.js` composes the per-cell text from three sourced axes — the fixation, the function at Gamble (registration channel), and the first instinct (substrate pressure). **It is derived, never stored.** `combinationProfiles.js` deliberately has no `growthPath` field: storing it meant 1,728 copies of 216 distinct strings and a second place to drift.
+- Wing does not change the direction. The source calls wing the angular precision of a point on the circle, not a separate variable, so both wings of a type share one `growthSummary` in `ennBase.js` (18 entries, 9 distinct).
+- The least-attended instinct is `underdeveloped` in `instinctStackProfiles.js`, not `growth`. It is the app's own instinctual-variant layer; the source says nothing about developing a repressed instinct, so it is not presented as a growth path.
 
 **Two stress events, not one.** `STRESS_EVENTS` keeps them apart: Hunger Reaching at moderate stress is the inferior grip; Flood forced-primary at extreme stress is the background channel becoming the only input. Same domain pair, different events. Copy describing one must say which.
 
@@ -310,6 +320,7 @@ Reusable patterns belong in `src/styles/styles.js`. One-off local styles stay in
 | `typer_enn` | `{ coreType, wing, wingStrengthDelta, instinctStack, display, scores }` |
 | `typer_mbti` | `{ result, scores }` |
 | `typer_inst` | `{ instinctStack, instScores }` |
+| `typer_session` | In-progress quiz: `{ phase, qi, answers, mbtiAnswers, instAnswers, branchAnswers, disambigPair, ennSeqIds, mbtiSeqIds, instSeqIds }`. Written by `GuidedTyper` while a quiz phase is active and cleared when it ends, so a quiz survives a tab switch. Tests clear it with the rest of `localStorage` in `beforeEach`; two live `GuidedTyper` instances share it, so don't mount two in one test. |
 
 Always parse with `JSON.parse(localStorage.getItem(key))` and guard for `null`.
 
@@ -322,6 +333,19 @@ Profile data is encoded as the query part of the Compare view's hash:
 ```
 
 Legacy links without the view prefix (`#p1=…&p2=…`) still route to Compare. Person encoding/decoding lives in `ComparePage.jsx`; view/query splitting lives in `utils/route.js`.
+
+### Generated Combination Data
+
+`combinationProfiles.js` and `data/combinations/*.js` are both machine-generated and hold the same 1,728 profiles — the monolith and its lazy-loaded per-wing split. Regenerate both, in order, after changing `ennBase.js`, the modifiers, or the cross rules:
+
+```bash
+node scripts/generateCombinations.mjs
+node scripts/splitCombinations.mjs
+```
+
+The wing files were previously checked in as "auto-generated" with no generator in the repo, so they could not be kept in step; `splitCombinations.mjs` is that missing generator. Do not hand-edit either store.
+
+`CombinedProfile.jsx` still imports the 5 MB monolith statically while `GuidedTyper.jsx` lazy-loads the split — so the split does not currently save anything on the main bundle. Untouched here, but worth fixing.
 
 ### Pre-computed Pair Data
 
@@ -347,12 +371,14 @@ All pole values must be consistent (MBTI: `'E'/'S'/'T'/'J'`; Enneagram: `1`; Ins
 
 ### Adaptive Quiz Logic
 
-Both MBTI and Enneagram quizzes use early-exit confidence checks:
+All three quizzes use early-exit confidence checks. **No check runs until `MIN_COMPLETE_ROUNDS` (3) full rounds have been presented** — 12 questions for MBTI, 27 for Enneagram, 9 for Instinct — so no quiz can exit before then. After that (constants at the top of `GuidedTyper.jsx`):
 
-- `isMBTIDimConfident`: requires ≥2 answers for the dim and `|rawSum|/count ≥ 1.5`
+- `isMBTIDimConfident`: ≥3 answers for the dim (`MBTI_MIN_PER_DIM`) and `|rawSum|/count ≥ 1.8` (`MBTI_CONFIDENCE_RATIO`)
 - `allMBTIDimsConfident`: all 4 dims confident
-- `isEnnConfident`: requires ≥2 answers per type and gap between top-2 types exceeds threshold
-- `isInstConfident`: requires ≥2 answers per instinct and both adjacent gaps exceed threshold
+- `isEnnConfident`: ≥3 answers per type (`ENN_MIN_PER_TYPE`) and the top type leads the second by ≥5 raw points (`ENN_GAP_THRESHOLD`)
+- `isInstConfident`: ≥3 answers per instinct (`INST_MIN_PER_INST`) and each adjacent pair in the ranking differs by ≥3 (`INST_GAP_THRESHOLD`)
+
+These figures were stale here until 3.1.0 (they read ≥2 answers and a 1.5 ratio). Read the constants rather than this list if the two ever disagree.
 
 **Do not lower thresholds** without a corresponding regression test showing that result accuracy is preserved.
 
@@ -424,6 +450,11 @@ Entry method (URL hash | file upload | manual form)
 - **Per-type content generated across all 16 stacks must be scoped per type.** The shadow briefs in `mbtiDetails.js` are generated by applying the source's per-position account to each type's stack. A generator that matches `shadow7: { function: 'Te'` globally will overwrite every type sharing that function at that position. `shadow.test.js` asserts every function a brief names belongs to that type's stack; keep it.
 - **Prose strings must carry exactly the punctuation the source gives them.** Truncating a sentence just before its period makes joined sentences run together on the page; adding a period to a string the JSX already punctuates shows a double stop. Fix by extending or trimming the *selection*, never by editing wording. `stack-data.test.js` asserts both directions.
 - **New edges need a `ROUTES` entry and non-colliding label coordinates.** The eight edges share a narrow channel between the two columns; two geometry tests guard it, one for node bodies and one for label legibility. Verify in a browser as well — the label collision that shipped in 1.6.0 passed every test that existed at the time.
+- **Never use `*ByRole` inside a loop, and bind any loop to the render it started on.** `guided-typer.test.jsx` was flaky for exactly these two reasons, now fixed in its `answerUpTo` helper:
+  - `*ByRole` computes accessible names across the whole DOM on every call. At 70 iterations that put a full Enneagram run at ~11.6s of the 15s default timeout, so ordinary machine variance pushed it over. A Likert button's accessible name is its text, so `within(root).queryByText(value, { selector: 'button' })` matches the same element in ~0.7s. Use role queries for single assertions, where their cost is irrelevant.
+  - A test that times out is abandoned but its async work keeps running. A loop that queries the global `screen` then clicks the *next* test's buttons, which is why a trivial test like "advances to question 2" failed in ~450ms right after a long flow timed out. Capture the render's root at the start of the loop and stop once `root.isConnected` is false. The harness regression test at the bottom of `guided-typer.test.jsx` reproduces this with a DOM decoy; keep it.
+
+  If a test in this file starts failing intermittently again, look for either pattern before anything else. Seeding `Math.random` was tried first and addressed neither cause, so don't reach for it.
 - **Nav tests select by `data-view`.** Tab labels also appear as page headings, so tests find nav buttons via `button[data-view="…"]` inside the `Primary` navigation landmark rather than by text.
 - **Wing wrap-around.** Type 1's wings are 9 and 2; type 9's wings are 8 and 1. See the wing wrap tests in `scoring.test.js`.
 - **Disambiguation.** When top-2 Enneagram types are within threshold after bank exhaustion, a `branchKey` (e.g. `'4-5'`) triggers additional clarifying questions. This path is covered in tests — preserve it.
@@ -477,11 +508,7 @@ Version numbering guidance:
 
 ### Known documentation and content drift
 
-As of 3.0.0 the whole app follows `ct-consolidated.md`; the drift table that stood here at 2.0.0 is cleared. What remains is one deliberate exception, recorded so it is not mistaken for an oversight:
-
-| Surface | Status |
-|---|---|
-| `data/combinationProfiles.js` (~1,700 strings), `data/combinations/`, `data/ennBase.js`, `data/subtypes.js` | Growth copy is generated and instruction-shaped. Not rewritten: the source supplies one growth line per type (Appendix C), not per type-wing-instinct cell, so a faithful rewrite needs content that does not exist. Explorer carries Appendix C and a caveat stating what the generated copy is — descriptions of what the arrival looks like, not instructions for producing it. Revisit only with owner-supplied per-cell content, via `scripts/`. |
+None. As of 3.1.0 every growth string in the app is composed from the source document rather than authored, so there is nothing left on this list. If something lands here again, record what is stale and what would be needed to fix it, rather than leaving it to be rediscovered.
 
 ### When to update `CLAUDE.md`
 

@@ -73,7 +73,7 @@ An interactive model of the eight cognitive-function positions — Lead, Anchor,
 
 The app follows **The Cognitive Thumbprint** (`docs/specs/ct-consolidated.md`). The mechanism is adjacency corruption: a shadow position's corrupted output becomes an ego position's input, and sustained corrupted input recalibrates the receiver. Critic write-back is one instance of it.
 
-Content lives in `frontend/src/data/stack.js` and is sourced verbatim — a test asserts that every prose string is a substring of a checked-in source document, so the framework prose cannot drift into paraphrase. As of 3.0.0 Explorer and Compare follow the same document; the one deliberate exception is the generated growth copy, which CLAUDE.md records.
+Content lives in `frontend/src/data/stack.js` and is sourced verbatim — a test asserts that every prose string is a substring of a checked-in source document, so the framework prose cannot drift into paraphrase. Explorer and Compare follow the same document. Growth copy is composed rather than authored: the growth direction is the experience the fixation's own defense says will not arrive, so it is derived per person from the type, the function at Gamble and the first instinct rather than stored.
 
 ---
 
@@ -144,8 +144,9 @@ Expected output:
  ✓ src/test/guided-typer.test.jsx
  ✓ src/test/compare-page.test.jsx
  ✓ src/test/navigation.test.jsx
+ …
 
- Test Files  4 passed (4)
+ Test Files  19 passed (19)
 ```
 
 ### Test files
@@ -153,7 +154,7 @@ Expected output:
 | File | What it covers |
 |------|----------------|
 | `scoring.test.js` | All three scoring algorithms, `buildFairSequence`, `shuffleArray`, question bank data integrity (~140 assertions) |
-| `guided-typer.test.jsx` | Quiz flows, choose screen, share/export gating, localStorage persistence, retake, disambiguation |
+| `guided-typer.test.jsx` | Quiz flows, choose screen, share/export gating, localStorage persistence, retake, disambiguation, and a harness test that an abandoned answer loop cannot reach the next test |
 | `compare-page.test.jsx` | Editor tabs, URL/file/manual entry, instinct reordering, save button |
 | `navigation.test.jsx` | Nav landmark/labels, `aria-current`, hash routing, scroll reset |
 | `route.test.js` | URL-hash parsing and building |
@@ -164,6 +165,8 @@ Expected output:
 | `stack-logic.test.js` | Capture state across levels 1–9, stage and pair helpers, query parsing, diagram geometry |
 | `stack-view.test.jsx` | Stack page behaviour: diagram state, scrubber, selection, purpose panel, replay, personalization, utility, thresholds, Gamble |
 | `stack-reading.test.jsx` | Reading tab: tab switching, coaching bands tracking the level, diagnostics, clinical sequence, test set |
+| `growth-direction.test.js` | Growth paths across every type × wing × MBTI × instinct stack, and that none of the copy is instruction-shaped |
+| `combined-growth.test.jsx` | The combined profile's derived growth path |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js`, `combinations.test.js`, `subtypes.test.js` | Compare analyses, group patterns, combined-profile data |
 
 All tests must pass before merging. Fix root causes — do not skip or suppress tests.
@@ -221,7 +224,9 @@ spastic-typer/
 │   ├── vite.config.js            # Base path: /spastic-typer/
 │   └── package.json
 ├── scripts/
-│   └── generatePairs.mjs         # Regenerates pairLookup.js — run after changing dynamics logic
+│   ├── generatePairs.mjs         # Regenerates pairLookup.js — run after changing dynamics logic
+│   ├── generateCombinations.mjs  # Regenerates combinationProfiles.js from ennBase + modifiers
+│   └── splitCombinations.mjs     # Splits it into data/combinations/*.js for lazy loading
 ├── docs/
 │   ├── specs/                    # Source documents checked in verbatim (ct-consolidated.md, stack-view.md)
 │   └── plans/                    # Implementation plans (stack-view-sessions.md)
@@ -253,7 +258,7 @@ App.jsx
 User selects quiz (enn | mbti | inst)
   → buildFairSequence(bank, keyFn)   — interleaved shuffle, one question per category per round
   → user answers stored in answers{} map: { questionIndex: likertValue }
-  → after each answer: confidence check
+  → after each answer, once three full rounds have been presented: confidence check
       → if confident: show result immediately (early exit)
       → if bank exhausted (Enneagram): run disambiguation branch if top-2 within threshold
       → otherwise: advance to next question
