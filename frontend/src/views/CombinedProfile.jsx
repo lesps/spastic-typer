@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { G, alpha } from '../styles/theme.js';
 import { S } from '../styles/styles.js';
 import { MBTI_TYPES } from '../data/mbti.js';
@@ -5,11 +6,36 @@ import { ENN_TYPES, ENN_CENTER, ENN_ARROWS, ENN_HARMONIC, WING_DESC } from '../d
 import { COG_FUNCTIONS } from '../data/cognitive.js';
 import FnBadge from '../components/FnBadge.jsx';
 import { computeArchetypeName } from '../utils/archetype.js';
-import { COMBINATION_PROFILES } from '../data/combinationProfiles.js';
 import { growthPathFor } from '../utils/stack.js';
 import { INTEGRATION_NARRATIVES } from '../data/integrationNarratives.js';
 
 function readLS(key) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; } }
+
+/**
+ * Loads one combination profile from its per-wing chunk (~250 KB) on demand.
+ *
+ * Never import data/combinationProfiles.js from the app: it is the ~5 MB
+ * generator artifact the chunks are split from, and importing it statically
+ * put the whole file in the main bundle. combinations.test.js guards this.
+ *
+ * Each result is tagged with the key it was loaded for, so `settled` is only
+ * true for the current inputs and a stale profile can never show.
+ */
+function useCombinationProfile(ennType, wing, mbtiType, instStack) {
+  const key = ennType && wing && mbtiType && instStack ? `${ennType}w${wing}_${mbtiType}_${instStack}` : null;
+  const [loaded, setLoaded] = useState({ key: null, combo: null });
+  useEffect(() => {
+    if (!key) return undefined;
+    let live = true;
+    import('../data/combinations/index.js')
+      .then(({ getCombinationProfile }) => getCombinationProfile(ennType, wing, mbtiType, instStack))
+      .catch(() => null)
+      .then((combo) => { if (live) setLoaded({ key, combo: combo ?? null }); });
+    return () => { live = false; };
+  }, [key]); // key encodes every input
+  const settled = key != null && loaded.key === key;
+  return { combo: settled ? loaded.combo : null, settled };
+}
 
 const INSTINCT_META = {
   sp: { label: 'Self-Preservation' },
@@ -23,6 +49,9 @@ export default function CombinedProfile({ onBack = () => {} }) {
   const enn = readLS('typer_enn');
   const mbti = readLS('typer_mbti');
   const inst = readLS('typer_inst');
+  // Called before the early returns below, as hooks must be.
+  const instStr = Array.isArray(inst?.instinctStack) ? inst.instinctStack.map(i => String(i).toUpperCase()).join('/') : null;
+  const { combo, settled } = useCombinationProfile(enn?.coreType, enn?.wing, mbti?.result, instStr);
 
   const doneCount = [enn, mbti, inst].filter(Boolean).length;
 
@@ -65,11 +94,6 @@ export default function CombinedProfile({ onBack = () => {} }) {
   const mbtiType = MBTI_TYPES[mbtiResult];
   const ennType = ENN_TYPES[coreType];
   const instStack = inst.instinctStack;
-
-  // COMBINATION_PROFILES lookup
-  const instKey = instStack.map(i => i.toUpperCase()).join('');
-  const combKey = `${coreType}w${enn.wing}_${mbtiResult}_${instKey}`;
-  const combo = COMBINATION_PROFILES[combKey] ?? null;
 
   // Derived from the fixation, the function at Gamble, and the first instinct,
   // rather than stored on the profile — see growthPathFor().
@@ -166,7 +190,7 @@ export default function CombinedProfile({ onBack = () => {} }) {
         </div>
       </div>
 
-      {/* Who You Are — portrait from COMBINATION_PROFILES */}
+      {/* Who You Are — portrait from the lazily loaded combination profile */}
       {combo?.portrait && (
         <div style={S.card}>
           <h3 style={S.h3}>Who You Are</h3>
@@ -238,8 +262,9 @@ export default function CombinedProfile({ onBack = () => {} }) {
         )}
       </div>
 
-      {/* Strengths & Challenges */}
-      <div style={S.card}>
+      {/* Strengths & Challenges — held until the profile has loaded or is known
+          to be absent, so the generic fallback never flashes up first. */}
+      {settled && <div style={S.card}>
         <h3 style={S.h3}>Strengths</h3>
         <div style={{ marginTop: 8 }}>
           {strengths.map((s, i) => <p key={i} style={itemStyle}>· {s}</p>)}
@@ -248,7 +273,7 @@ export default function CombinedProfile({ onBack = () => {} }) {
           <p style={labelStyle}>Growth Edges</p>
           {challenges.map((c, i) => <p key={i} style={itemStyle}>· {c}</p>)}
         </div>
-      </div>
+      </div>}
 
       {/* In Relationships / At Work / Under Stress / Growth Path */}
       {combo?.inRelationships && (
@@ -273,7 +298,7 @@ export default function CombinedProfile({ onBack = () => {} }) {
         <div style={S.card}>
           <h3 style={S.h3}>Growth Path</h3>
           <p style={{ ...S.body, marginTop: 8, lineHeight: 1.75 }}>{growthPath}</p>
-          {combo.notes?.map((note, i) => (
+          {combo?.notes?.map((note, i) => (
             <p key={i} style={{ ...S.body, fontSize: 12, color: G.textFaint, fontStyle: 'italic', marginTop: 8 }}>{note}</p>
           ))}
         </div>
