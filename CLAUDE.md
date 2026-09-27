@@ -60,7 +60,7 @@ spastic-typer/
 | `GuidedTyper.jsx` | ~1,375 | All three quiz flows + choose screen + share/export; links into Explorer and Stack |
 | `ComparePage.jsx` | ~1,185 | Pairwise & group dynamics analysis; receives `setView` for its Stack links |
 | `Explorer.jsx` | ~860 | Reference tool: Enneagram, MBTI (quadrant grid, position reference, typing SOP), Instinct, Integration |
-| `CombinedProfile.jsx` | ~315 | Integrated profile from all three saved results; rendered by `GuidedTyper` in its `combined` phase |
+| `CombinedProfile.jsx` | ~340 | Integrated profile from all three saved results; rendered by `GuidedTyper` in its `combined` phase. Loads its combination profile lazily from the per-wing chunk (`useCombinationProfile`) — never from the monolith. |
 | `StackView.jsx` | ~440 | Stack page: type selector, `StackDiagram`, colonization scrubber (levels 1–9) with narration, More expander, falsifier, capture kind and the equilibrium caveat, purpose panel (native vs. captured, plus role and both pairings), Replay, personalization from saved results, Counter threat-output form. Two tabs: **Model** (diagram, scrubber, purposes, Anchor drift, Gamble, utility) and **Reading** (renders `StackReading`). Reads `#/stack?type=…&level=…` on mount **and on `hashchange`**. |
 
 ### Components (`src/components/`)
@@ -166,9 +166,9 @@ All tests live in `frontend/src/test/`:
 | `stack-reading.test.jsx` | Model/Reading tab switching, coaching bands tracking the scrubber (including level 6 being the Reality-testing stage but the Maintenance band), diagnostic rows, activations, clinical sequence, failure modes, the test set |
 | `stack-view.test.jsx` | Stack page: type selection and deep links (on mount **and** on `hashchange`), diagram `data-` state per level, scrubber label/caveat/narration/More/falsifier/capture kind, tap and keyboard selection, purpose panel inert/active and both pairings, Replay with fake timers and reduced motion, personalization (fixation + substrate) and malformed storage, the utility selector, both Anchor thresholds, Gamble's three properties, the odd/even tag |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js` | Compare-page analyses: `getCognitiveHarmony`, `analyzeGroup`, distribution helpers |
-| `combinations.test.js`, `subtypes.test.js` | Combined-profile loading and subtype data integrity |
+| `combinations.test.js`, `subtypes.test.js` | Combined-profile loading and subtype data integrity, plus the **bundle boundary**: no application module may import the combination monolith |
 | `growth-direction.test.js` | `growthPathFor` across every type × wing × MBTI × instinct stack; that the direction comes from the fixation, is wing-invariant, names the Gamble function and the first instinct's substrate; that nothing stores what is derivable; and that no growth copy is instruction-shaped |
-| `combined-growth.test.jsx` | The combined profile renders the derived growth path and varies it by stack and instinct; the repressed instinct stays separate from the growth direction |
+| `combined-growth.test.jsx` | The combined profile renders the derived growth path and varies it by stack and instinct; the repressed instinct stays separate from the growth direction; the lazily loaded profile arrives with unchanged content, no fallback flashes first, and the fallback still appears when no profile exists |
 
 ### Exported Test Helpers (from `GuidedTyper.jsx`)
 
@@ -345,7 +345,9 @@ node scripts/splitCombinations.mjs
 
 The wing files were previously checked in as "auto-generated" with no generator in the repo, so they could not be kept in step; `splitCombinations.mjs` is that missing generator. Do not hand-edit either store.
 
-`CombinedProfile.jsx` still imports the 5 MB monolith statically while `GuidedTyper.jsx` lazy-loads the split — so the split does not currently save anything on the main bundle. Untouched here, but worth fixing.
+**Application code must never import `combinationProfiles.js`.** It is the ~5 MB generator artifact the chunks are split from, and it is the input to `splitCombinations.mjs`, nothing else. `CombinedProfile.jsx` loads the one profile it needs through `useCombinationProfile()`, which dynamically imports `data/combinations/index.js`, and `GuidedTyper.jsx` prefetches that wing chunk once all three results exist. Until 3.1.1 `CombinedProfile` imported the monolith statically, which put the whole file in the main bundle (5,297 KB, 388 KB gzipped) and meant the split saved nothing; the main bundle is now 865 KB (205 KB gzipped). A lint-style test in `combinations.test.js` fails on any static or dynamic import of it outside `src/test/`.
+
+Because the profile now arrives after first render, `combo` is `null` on the first pass: guard every read with `combo?.`. The Strengths card is held until `settled`, so its generic fallback never flashes up before the real profile.
 
 ### Pre-computed Pair Data
 
@@ -508,7 +510,11 @@ Version numbering guidance:
 
 ### Known documentation and content drift
 
-None. As of 3.1.0 every growth string in the app is composed from the source document rather than authored, so there is nothing left on this list. If something lands here again, record what is stale and what would be needed to fix it, rather than leaving it to be rediscovered.
+Record what is stale and what would be needed to fix it, rather than leaving it to be rediscovered.
+
+| Surface | Drift |
+|---|---|
+| `CombinedProfile.jsx` "Growth Edges" and "Growth Edge" labels; the `growthEdges` field in `ennBase.js`, `combinationProfiles.js` and every `data/combinations/*.js` | Breaks the "growth has exactly one meaning" rule above: these list challenges and blind spots, not the growth direction. Found in 3.1.1 and deliberately not fixed there. Fix by renaming the label and the field (e.g. to challenges), changing `generateCombinations.mjs` to emit the new name, and regenerating both stores. "Growth & Stress Dynamics" in Compare and "premature growth work" in the Reading tab are consistent with the rule and stay. |
 
 ### When to update `CLAUDE.md`
 

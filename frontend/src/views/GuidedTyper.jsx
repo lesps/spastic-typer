@@ -349,16 +349,17 @@ export default function GuidedTyper({ setView = () => {}, setExplorerTab = () =>
   }));
   const [confirmClear, setConfirmClear] = useState(false);
   const [confirmCancel, setConfirmCancel] = useState(false);
-  const [combinationProfile, setCombinationProfile] = useState(null);
-
-  // --- Load combination profile when all 3 assessments complete ---
+  // --- Prefetch the combination profile's wing chunk once all 3 assessments
+  // are complete, so the combined profile usually opens without a wait.
+  // CombinedProfile loads it itself; the loader caches per wing, so this only
+  // warms that cache. (It used to store the result in state nothing read.)
   useEffect(() => {
     const { enn, mbti, inst } = saved;
-    if (!enn || !mbti || !inst) { setCombinationProfile(null); return; }
-    import('../data/combinations/index.js').then(({ getCombinationProfile: load }) => {
-      const instStackStr = (inst.instinctStack || []).map(s => s.toUpperCase()).join('/');
-      load(enn.coreType, enn.wing, mbti.result, instStackStr).then(p => setCombinationProfile(p));
-    }).catch(() => setCombinationProfile(null));
+    if (!enn || !mbti || !inst) return;
+    const instStackStr = (inst.instinctStack || []).map(s => s.toUpperCase()).join('/');
+    import('../data/combinations/index.js')
+      .then(({ getCombinationProfile }) => getCombinationProfile(enn.coreType, enn.wing, mbti.result, instStackStr))
+      .catch(() => {});
   }, [saved.enn?.display, saved.mbti?.result, saved.inst?.instinctStack?.join()]);
 
 

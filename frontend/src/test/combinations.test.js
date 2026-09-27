@@ -3,6 +3,8 @@
  * Tests for the combination profile data and lazy-loading index.
  */
 import { describe, it, expect } from 'vitest';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { combinationKey, AVAILABLE_WINGS } from '../data/combinations/index.js';
 
 const ENN_TYPES = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -97,5 +99,36 @@ describe('getCombinationProfile — async loading', () => {
     const p2 = await getCombinationProfile(4, 5, 'INFJ', 'SX/SO/SP');
     expect(p1).not.toBeNull();
     expect(p2).not.toBeNull();
+  });
+});
+
+/**
+ * Bundle boundary. combinationProfiles.js is a ~5 MB generator artifact: it is
+ * the input to scripts/splitCombinations.mjs, which writes the per-wing chunks
+ * the app is meant to load lazily. Until 3.1.1 CombinedProfile imported the
+ * monolith statically, so the whole file sat in the main bundle and the split
+ * saved nothing. Any application import of it, static or dynamic, puts that
+ * back; tests may still read it.
+ */
+describe('combination data — bundle boundary', () => {
+  const SRC = join(__dirname, '..');
+  const appFiles = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
+    const full = join(dir, d.name);
+    if (d.isDirectory()) return d.name === 'test' ? [] : appFiles(full);
+    return /\.(js|jsx)$/.test(d.name) && !full.endsWith(join('data', 'combinationProfiles.js')) ? [full] : [];
+  });
+
+  it('no application module imports the combination monolith', () => {
+    const offenders = appFiles(SRC)
+      .filter(f => /combinationProfiles(\.js)?['"]/.test(readFileSync(f, 'utf8')))
+      .map(f => f.slice(SRC.length + 1));
+    expect(offenders).toEqual([]);
+  });
+
+  it('scans a meaningful set of application files', () => {
+    const files = appFiles(SRC).map(f => f.slice(SRC.length + 1));
+    expect(files).toContain(join('views', 'CombinedProfile.jsx'));
+    expect(files.length).toBeGreaterThan(40);
+    expect(files.some(f => f.startsWith('test'))).toBe(false);
   });
 });

@@ -18,6 +18,15 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ## [3.1]
 
+### 3.1.1 — 2026-09-27
+
+- Fixed: **the main bundle carried the whole 5 MB combination monolith.** `CombinedProfile` imported `combinationProfiles.js` statically, so the per-wing split saved nothing. It now loads the one profile it needs from its ~250 KB wing chunk through a new `useCombinationProfile()` hook. Main bundle 5,297 KB → 865 KB (388 KB → 205 KB gzipped); verified in a production build that the chunk is fetched on demand and the profile renders.
+- Fixed: `GuidedTyper` lazy-loaded the same profile into state that nothing ever read. It is now an explicit prefetch that warms the loader's cache, so the combined profile usually opens without a wait.
+- Fixed: a latent crash from 3.1.0. The Growth Path card was re-guarded on the derived path but still read `combo.notes` unguarded; it never fired while the profile was synchronous. Five existing tests that assert on the first render caught it.
+- Changed: the Strengths card waits until the profile has loaded or is known to be absent, so its generic fallback never flashes up first.
+- Tests: a lint-style guard in `combinations.test.js` fails on any application import of the monolith, and was written to fail first. `combined-growth.test.jsx` covers the lazy path: unchanged content, no fallback flash, fallback when no profile exists.
+- Docs: CLAUDE.md records a remaining conflict with the one-meaning rule for "growth": the combined profile's "Growth Edges" labels and the `growthEdges` field name challenges, not the growth direction. Not fixed here.
+
 ### 3.1.0 — 2026-09-26
 
 Closes the one exception 3.0.0 recorded. Every growth string in the app is now composed from the source document instead of authored, and "growth" has exactly one meaning.
