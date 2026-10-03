@@ -79,7 +79,7 @@ Content lives in `frontend/src/data/stack.js` and is sourced verbatim — a test
 
 ### Your Profile
 
-Once all three quizzes are complete, the Typer home screen links to a **full profile**: archetype name, portrait, wing, cognitive stack, Enneagram × MBTI correlation, instinct coloring, strengths and growth edges, and integration narrative. It reads your saved results directly.
+Once all three quizzes are complete, the Typer home screen links to a **full profile**: archetype name, portrait, wing, cognitive stack, Enneagram × MBTI correlation, instinct coloring, strengths and challenges, the growth path, the movement lines, and integration narrative. It reads your saved results directly and loads the combination profile on demand.
 
 ---
 
@@ -89,7 +89,7 @@ From the Typer choose screen (once all three quizzes are complete):
 
 - **Share Link** — copy a URL that encodes the full profile as a hash fragment
 - **Export JSON** — download a machine-readable backup of the raw quiz results
-- **Export Markdown** — download a human-readable profile report with AI context notes (communication preferences, stress patterns, growth edges, tips for AI assistants)
+- **Export Markdown** — download a human-readable profile report with AI context notes (communication preferences, stress patterns, the growth direction, tips for AI assistants)
 
 ---
 

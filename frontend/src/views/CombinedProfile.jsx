@@ -103,7 +103,6 @@ export default function CombinedProfile({ onBack = () => {} }) {
   // Derived data for rich sections
   const mbtiStack = mbtiType?.stack || [];
   const domFnKey = mbtiStack[0];
-  const auxFnKey = mbtiStack[1];
   const infFnKey = mbtiStack[3];
   const domFn = COG_FUNCTIONS[domFnKey] || {};
   const infFn = COG_FUNCTIONS[infFnKey] || {};
@@ -125,8 +124,8 @@ export default function CombinedProfile({ onBack = () => {} }) {
         `Motivated by: ${ennType?.desire?.toLowerCase()}`,
       ];
 
-  const challenges = combo?.growthEdges?.length
-    ? combo.growthEdges
+  const challenges = combo?.challenges?.length
+    ? combo.challenges
     : [
         ...(infFn.shadow ? infFn.shadow.split(',').slice(0, 2).map(s => s.trim()) : []),
         `Core anxiety: ${ennType?.fear?.toLowerCase()}`,
@@ -270,7 +269,7 @@ export default function CombinedProfile({ onBack = () => {} }) {
           {strengths.map((s, i) => <p key={i} style={itemStyle}>· {s}</p>)}
         </div>
         <div style={sectionStyle}>
-          <p style={labelStyle}>Growth Edges</p>
+          <p style={labelStyle}>Challenges</p>
           {challenges.map((c, i) => <p key={i} style={itemStyle}>· {c}</p>)}
         </div>
       </div>}
@@ -325,13 +324,13 @@ export default function CombinedProfile({ onBack = () => {} }) {
         </div>
       </div>
 
-      {/* Growth Edge */}
-      <div style={S.card}>
-        <h3 style={S.h3}>Growth Edge</h3>
+      {/* Movement Lines — where the arrows point. What the growth arrow means
+          is the Growth Path above; it is not a set of qualities to work on. */}
+      <div style={S.card} data-testid="movement-lines">
+        <h3 style={S.h3}>Movement Lines</h3>
         <div style={{ marginTop: 8 }}>
-          {growth && <p style={itemStyle}>· Working toward Type {growth} qualities — {ENN_TYPES[growth]?.name}</p>}
-          {auxFnKey && <p style={{ ...itemStyle, marginTop: 6 }}>· Developing your {auxFnKey} ({COG_FUNCTIONS[auxFnKey]?.name}) supports this direction</p>}
-          {stress && <p style={{ ...itemStyle, marginTop: 6, color: G.textFaint }}>· Under stress, Type {stress} ({ENN_TYPES[stress]?.name}) patterns emerge — notice and return to center</p>}
+          {growth && <p style={itemStyle}>· Growth → Type {growth} · {ENN_TYPES[growth]?.name} — the direction the Growth Path above describes</p>}
+          {stress && <p style={{ ...itemStyle, marginTop: 6, color: G.textFaint }}>· Stress → Type {stress} · {ENN_TYPES[stress]?.name}</p>}
         </div>
       </div>
 

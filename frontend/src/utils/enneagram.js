@@ -1,3 +1,4 @@
+import { FIXATION } from '../data/stack.js';
 import { ENN_TYPES, ENN_ARROWS, ENN_CENTER, ENN_HARMONIC, INSTINCT_COMPAT } from '../data/enneagram.js';
 import { G } from '../styles/theme.js';
 
@@ -69,7 +70,7 @@ export function getEnnInteraction(c1, c2) {
 
   if (sameType) dynamics.push({ icon: '✦', label: 'Mirror Dynamic', desc: `Both Type ${c1}s — you share the same core fear, desire, and worldview. This creates deep understanding and immediate resonance, but also a risk of amplifying each other's blind spots and compulsions.`, color: G.gold });
   if (sameCenter && !sameType) dynamics.push({ icon: '◆', label: `Shared ${ENN_CENTER[c1].charAt(0).toUpperCase() + ENN_CENTER[c1].slice(1)} Center`, desc: `Both operate from the ${ENN_CENTER[c1]} center — sharing core concerns around ${ENN_CENTER[c1] === 'gut' ? 'anger and autonomy' : ENN_CENTER[c1] === 'heart' ? 'shame and identity' : 'fear and security'}.`, color: G.gold });
-  if (a1.growth === c2 || a2.growth === c1) dynamics.push({ icon: '↗', label: 'Growth Arrow Connection', desc: `One type's growth direction points toward the other — ${a1.growth === c2 ? `Type ${c1} grows toward Type ${c2}` : ''}${a2.growth === c1 ? `Type ${c2} grows toward Type ${c1}` : ''}. At their best, one partner naturally models what the other is working toward.`, color: '#50c878' });
+  if (a1.growth === c2 || a2.growth === c1) dynamics.push({ icon: '↗', label: 'Growth Arrow Connection', desc: `One type's growth direction points toward the other — ${a1.growth === c2 ? `Type ${c1}'s growth arrow points to Type ${c2}` : ''}${a2.growth === c1 ? `Type ${c2}'s growth arrow points to Type ${c1}` : ''}. At their best, one partner naturally models what the other is working toward.`, color: '#50c878' });
   if (a1.stress === c2 || a2.stress === c1) dynamics.push({ icon: '↘', label: 'Stress Arrow Connection', desc: `One type's stress direction points toward the other — ${a1.stress === c2 ? `Type ${c1} under stress takes on Type ${c2} patterns` : ''}${a2.stress === c1 ? `Type ${c2} under stress takes on Type ${c1} patterns` : ''}. One partner may trigger the other's stress behavior without meaning to.`, color: '#e88050' });
   if (!sameType && !sameCenter) dynamics.push({ icon: '↕', label: 'Cross-Center Pairing', desc: `Operating from different centers (${ENN_CENTER[c1]} vs ${ENN_CENTER[c2]}) — each brings a fundamentally different emotional orientation to the relationship.`, color: G.gold });
   if (sameHarmonic && !sameType) dynamics.push({ icon: '⟷', label: `Shared Conflict Style: ${h1.charAt(0).toUpperCase() + h1.slice(1)}`, desc: `Both use the ${h1} harmonic strategy when under stress. They'll tend to handle conflict similarly, which can create harmony — or mutual blind spots.`, color: '#4a88d8' });
@@ -89,7 +90,7 @@ export function getEnnTips(c1, c2) {
         `Their core fear is "${ENN_TYPES[c2].fear.toLowerCase()}" — avoid framing that triggers it.`,
         `They need ${ENN_TYPES[c2].desire.toLowerCase()}.`,
         `Under stress they move toward Type ${ENN_ARROWS[c2].stress} patterns — ${ENN_TYPES[ENN_ARROWS[c2].stress].name.replace('The ', '')}.`,
-        `Their growth edge is Type ${ENN_ARROWS[c2].growth} qualities — ${ENN_TYPES[ENN_ARROWS[c2].growth].name.replace('The ', '')}.`,
+        `Their growth direction (→ Type ${ENN_ARROWS[c2].growth}) is ${FIXATION[c2].falsifies} — it has to arrive from outside rather than be performed.`,
       ],
     },
     {
@@ -97,7 +98,7 @@ export function getEnnTips(c1, c2) {
         `Their core fear is "${ENN_TYPES[c1].fear.toLowerCase()}" — avoid framing that triggers it.`,
         `They need ${ENN_TYPES[c1].desire.toLowerCase()}.`,
         `Under stress they move toward Type ${ENN_ARROWS[c1].stress} patterns — ${ENN_TYPES[ENN_ARROWS[c1].stress].name.replace('The ', '')}.`,
-        `Their growth edge is Type ${ENN_ARROWS[c1].growth} qualities — ${ENN_TYPES[ENN_ARROWS[c1].growth].name.replace('The ', '')}.`,
+        `Their growth direction (→ Type ${ENN_ARROWS[c1].growth}) is ${FIXATION[c1].falsifies} — it has to arrive from outside rather than be performed.`,
       ],
     },
   ];

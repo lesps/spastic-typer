@@ -18,6 +18,14 @@ Format: `X.Y.Z` (Major.Minor.Patch)
 
 ## [3.1]
 
+### 3.1.2 — 2026-09-27
+
+- Fixed: **"growth" named things that are not the growth direction.** The combination profile's difficulties are now `challenges` ("Challenges") in `ennBase.js`, the generator, and both generated stores. The MBTI pair insight that called the inferior function a "Growth Edge" and an "area of growth" now reads "X's Lead = Y's Hunger", which is what the dominant-on-inferior crossing is; `pairLookup.js` regenerated. The ISTP's inferior Fe is "the function at Hunger", not a "growth edge".
+- Fixed: **the growth direction was framed as something to acquire or practise.** The combined profile's "Growth Edge" card said "working toward Type N qualities" and claimed developing the auxiliary "supports this direction", which the source does not say; it is now a Movement Lines card that says where the arrows point and defers to the Growth Path. The AI-context export told the reader to "gently encourage" the growth type's strengths; it now states the falsification and the source's instruction not to have the person perform it. Compare's arrow narratives ("becoming more open, joyful…", "grows toward Type N") and the Enneagram pair tips ("their growth edge is Type N qualities") now state each person's falsification from Appendix C.
+- Changed: the CLAUDE.md rule was narrowed to what the source requires and a test can enforce. "Growth" as a label means only the growth direction, and the direction is never framed as a quality or practice. Ordinary prose like a pairing's "growth potential" is untouched; banning the word outright was neither.
+- Tests: `growth-direction.test.js` fails on every retired phrasing across all application code and generated data, and was written to fail first — it flagged 35 hits. 12 of them, across six files (`mbti.js`, `enneagram.js`, `compare.js`, `export.js`, `mbtiDetails.js`, `pairLookup.js`), were in places the 3.1.1 drift note had missed. It also covers the export's Growth Direction section. 833 of 833 pass.
+- Docs: CLAUDE.md listed a `generateExportMarkdown` export that does not exist; corrected to the real `generateSystemPrompt`, `generateCompareSystemPrompt` and `downloadJSON`. The 3.1.1 drift note under-recorded this item's scope, and says so.
+
 ### 3.1.1 — 2026-09-27
 
 - Fixed: **the main bundle carried the whole 5 MB combination monolith.** `CombinedProfile` imported `combinationProfiles.js` statically, so the per-wing split saved nothing. It now loads the one profile it needs from its ~250 KB wing chunk through a new `useCombinationProfile()` hook. Main bundle 5,297 KB → 865 KB (388 KB → 205 KB gzipped); verified in a production build that the chunk is fetched on demand and the profile renders.

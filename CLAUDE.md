@@ -95,7 +95,7 @@ spastic-typer/
 |------|-------------|
 | `enneagram.js` | `computeWingStrengthDelta`, `wingStrengthLabel`, `getWingDynamics`, `getInstinctStackInteraction`, `getEnnInteraction` |
 | `mbti.js` | `getMBTIInteraction`, `getMBTITips` |
-| `export.js` | `generateExportMarkdown` (full profile report + AI context notes) |
+| `export.js` | `generateSystemPrompt(ennResult, mbtiResult)` and `generateCompareSystemPrompt(persons)` (AI-context Markdown for one person or a group), `downloadJSON`. This table listed a `generateExportMarkdown` that does not exist until 3.1.2. |
 | `archetype.js` | `computeArchetypeName` (Enneagram + MBTI combo name) |
 | `group.js` | `analyzeGroup` (patterns for 3+ people) |
 | `shadow.js` | `flipAttitude`, `getShadowStack`, `getFullStack`, `getShadowType`, `getStackInverse`, `getPositionCrossings` |
@@ -167,7 +167,7 @@ All tests live in `frontend/src/test/`:
 | `stack-view.test.jsx` | Stack page: type selection and deep links (on mount **and** on `hashchange`), diagram `data-` state per level, scrubber label/caveat/narration/More/falsifier/capture kind, tap and keyboard selection, purpose panel inert/active and both pairings, Replay with fake timers and reduced motion, personalization (fixation + substrate) and malformed storage, the utility selector, both Anchor thresholds, Gamble's three properties, the odd/even tag |
 | `cognitive-harmony.test.js`, `group.test.js`, `group-analysis.test.js` | Compare-page analyses: `getCognitiveHarmony`, `analyzeGroup`, distribution helpers |
 | `combinations.test.js`, `subtypes.test.js` | Combined-profile loading and subtype data integrity, plus the **bundle boundary**: no application module may import the combination monolith |
-| `growth-direction.test.js` | `growthPathFor` across every type × wing × MBTI × instinct stack; that the direction comes from the fixation, is wing-invariant, names the Gamble function and the first instinct's substrate; that nothing stores what is derivable; and that no growth copy is instruction-shaped |
+| `growth-direction.test.js` | `growthPathFor` across every type × wing × MBTI × instinct stack; that the direction comes from the fixation, is wing-invariant, names the Gamble function and the first instinct's substrate; that nothing stores what is derivable; that no growth copy is instruction-shaped; that **retired labels and framings stay retired** across all application code and generated data; and the AI-context export's Growth Direction section |
 | `combined-growth.test.jsx` | The combined profile renders the derived growth path and varies it by stack and instinct; the repressed instinct stays separate from the growth direction; the lazily loaded profile arrives with unchanged content, no fallback flashes first, and the fallback still appears when no profile exists |
 
 ### Exported Test Helpers (from `GuidedTyper.jsx`)
@@ -270,7 +270,10 @@ The 8-function stack uses a custom naming system: Lead, Anchor, Refuge, Hunger (
 
 **"Mirror" is reserved for the nested partner.** The type whose ego stack *is* another type's shadow stack is the **stack inverse** (`getStackInverse`, `STACK_INVERSION_NARRATIVE`, Compare's "Full Stack Inversion"). Calling that a mirror is the domain/nested confusion above.
 
-**"Growth" has exactly one meaning.** The growth direction is the experience Counter's threat output says will not arrive (`FIXATION[type].falsifies`, Appendix C). It is set by the fixation alone, cannot be self-performed, and is registered rather than produced. Nothing else in the app may use the word:
+**"Growth" as a label means only the growth direction.** The growth direction is the experience Counter's threat output says will not arrive (`FIXATION[type].falsifies`, Appendix C), which the Enneagram growth arrow points to. It is set by the fixation alone, cannot be self-performed, and is registered rather than produced. Two rules follow, and `growth-direction.test.js` enforces both with a list of phrasings this app actually shipped:
+
+- **No label or field uses "growth" for anything else.** Challenges are `challenges` ("Challenges"), not "growth edges"; the inferior function is Hunger, not an "area of growth". Ordinary prose such as a pairing's "growth potential" is not a label and is left alone — an earlier version of this rule banned the word outright, which was neither what the source requires nor enforceable.
+- **The direction is never framed as a quality to acquire or a practice to perform.** No "working toward Type N qualities", no "grows toward Type N", no "encourage their strengths". Say where the arrow points, state the falsification, and say it has to arrive from outside.
 
 - `growthPathFor(ennType, wing, mbtiType, instStack)` in `utils/stack.js` composes the per-cell text from three sourced axes — the fixation, the function at Gamble (registration channel), and the first instinct (substrate pressure). **It is derived, never stored.** `combinationProfiles.js` deliberately has no `growthPath` field: storing it meant 1,728 copies of 216 distinct strings and a second place to drift.
 - Wing does not change the direction. The source calls wing the angular precision of a point on the circle, not a separate variable, so both wings of a type share one `growthSummary` in `ennBase.js` (18 entries, 9 distinct).
@@ -512,9 +515,7 @@ Version numbering guidance:
 
 Record what is stale and what would be needed to fix it, rather than leaving it to be rediscovered.
 
-| Surface | Drift |
-|---|---|
-| `CombinedProfile.jsx` "Growth Edges" and "Growth Edge" labels; the `growthEdges` field in `ennBase.js`, `combinationProfiles.js` and every `data/combinations/*.js` | Breaks the "growth has exactly one meaning" rule above: these list challenges and blind spots, not the growth direction. Found in 3.1.1 and deliberately not fixed there. Fix by renaming the label and the field (e.g. to challenges), changing `generateCombinations.mjs` to emit the new name, and regenerating both stores. "Growth & Stress Dynamics" in Compare and "premature growth work" in the Reading tab are consistent with the rule and stay. |
+None. 3.1.2 cleared the one item recorded here, and it turned out wider than recorded: besides the combined profile's "Growth Edges" labels and the `growthEdges` field, "growth edge" and "area of growth" labelled the inferior function in the MBTI pair insights (and `pairLookup.js`), the export told an AI to "gently encourage" the growth type's strengths, and Compare's arrow narratives described growth as "becoming more…" of the target type's qualities. A test now fails on all of them.
 
 ### When to update `CLAUDE.md`
 

@@ -43,8 +43,8 @@ function assembleCombination(ennType, wing, mbtiType, instStack) {
     mbtiMod.workStyle ? mbtiMod.workStyle.split('.')[0] : '',
   ].filter(Boolean).slice(0, 5);
 
-  const growthEdges = [
-    ...(ennBase.growthEdges || []),
+  const challenges = [
+    ...(ennBase.challenges || []),
     instMod.blindSpot || '',
   ].filter(Boolean).slice(0, 4);
 
@@ -71,7 +71,7 @@ function assembleCombination(ennType, wing, mbtiType, instStack) {
     instStack,
     portrait: portrait.trim(),
     strengths,
-    growthEdges,
+    challenges,
     inRelationships: inRelationships.trim(),
     atWork: atWork.trim(),
     stressBehavior: [ennBase.stressSummary, mbtiMod.stressGrip].filter(Boolean).join(' '),

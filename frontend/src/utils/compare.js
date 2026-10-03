@@ -1,3 +1,4 @@
+import { FIXATION } from '../data/stack.js';
 import { ENN_CENTER, ENN_ARROWS } from '../data/enneagram.js';
 import { MBTI_TYPES } from '../data/mbti.js';
 import { getFullStack, getStackInverse } from './shadow.js';
@@ -94,17 +95,6 @@ export function getCommunicationMatrix(profileA, profileB) {
 // --- Growth & Stress Interaction Map ---
 
 const ARROW_NARRATIVES = {
-  growth: {
-    1: 'becoming more open, joyful, and spontaneous (toward 7)',
-    2: 'becoming more authentic, emotionally honest, and self-caring (toward 4)',
-    3: 'becoming more collaborative, loyal, and team-oriented (toward 6)',
-    4: 'becoming more principled, disciplined, and action-oriented (toward 1)',
-    5: 'becoming more bold, confident, and decisive (toward 8)',
-    6: 'becoming more calm, trusting, and grounded (toward 9)',
-    7: 'becoming more focused, present, and deeply engaged (toward 5)',
-    8: 'becoming more open-hearted, caring, and nurturing (toward 2)',
-    9: 'becoming more driven, purposeful, and self-asserting (toward 3)',
-  },
   stress: {
     1: 'becoming moody, withdrawn, and self-indulgent (toward 4)',
     2: 'becoming aggressive, controlling, and entitled (toward 8)',
@@ -127,23 +117,23 @@ export function getGrowthStressInteraction(profileA, profileB, nameA = 'A', name
   const arrowsB = ENN_ARROWS[tB];
 
   const aGrowthImpactOnB = arrowsA.growth === tB
-    ? `When ${nameA} grows toward Type ${arrowsA.growth}, they move toward ${ARROW_NARRATIVES.growth[tA]} — embodying qualities that resonate deeply with ${nameB}'s own core type. ${nameB} may feel unusually energized by ${nameA} in these moments.`
-    : `${nameA}'s growth direction (toward Type ${arrowsA.growth}) does not directly point toward ${nameB}'s type. However, ${nameA}'s healthier version brings ${ARROW_NARRATIVES.growth[tA]}, which may complement or challenge ${nameB}'s natural style.`;
+    ? `${nameA}'s growth arrow points at ${nameB}'s type (Type ${arrowsA.growth}). For ${nameA} the growth direction is ${FIXATION[tA].falsifies} — it has to arrive from outside rather than be performed, and ${nameB}'s type sits at the end of that arrow.`
+    : `${nameA}'s growth direction (toward Type ${arrowsA.growth}) does not point toward ${nameB}'s type. For ${nameA} it is ${FIXATION[tA].falsifies} — something that has to arrive from outside rather than be performed.`;
 
   const aStressImpactOnB = arrowsA.stress === tB
     ? `When ${nameA} is stressed, they move toward Type ${arrowsA.stress} — directly mimicking ${nameB}'s core type patterns, often in a disintegrated form. ${nameB} may feel triggered or see an unflattering mirror of their own tendencies in ${nameA} under pressure.`
     : `${nameA}'s stress direction (toward Type ${arrowsA.stress}) doesn't point to ${nameB}'s type. ${nameA} under stress shows ${ARROW_NARRATIVES.stress[tA]}, which ${nameB} may find confusing or destabilizing.`;
 
   const bGrowthImpactOnA = arrowsB.growth === tA
-    ? `When ${nameB} grows toward Type ${arrowsB.growth}, they embody qualities associated with ${nameA}'s core type. ${nameA} may feel a sense of recognition and deep appreciation when ${nameB} is operating from their best self.`
-    : `${nameB}'s growth direction (toward Type ${arrowsB.growth}) does not directly point toward ${nameA}. ${nameB}'s healthiest version brings ${ARROW_NARRATIVES.growth[tB]}, which may be a welcome complement to ${nameA}.`;
+    ? `${nameB}'s growth arrow points at ${nameA}'s type (Type ${arrowsB.growth}). For ${nameB} the growth direction is ${FIXATION[tB].falsifies} — it has to arrive from outside rather than be performed, and ${nameA}'s type sits at the end of that arrow.`
+    : `${nameB}'s growth direction (toward Type ${arrowsB.growth}) does not point toward ${nameA}'s type. For ${nameB} it is ${FIXATION[tB].falsifies} — something that has to arrive from outside rather than be performed.`;
 
   const bStressImpactOnA = arrowsB.stress === tA
     ? `When ${nameB} is stressed toward Type ${arrowsB.stress}, they mimic ${nameA}'s type in disintegrated form. ${nameA} may see a distorted version of themselves in ${nameB}, creating confusion, sympathy, or friction.`
     : `${nameB} under stress moves toward ${ARROW_NARRATIVES.stress[tB]}, which ${nameA} may experience as ${arrowsA.stress === arrowsB.stress ? 'a shared stress pattern that compounds' : 'an unfamiliar or destabilizing behavioral shift'}.`;
 
   const sharedGrowthPath = arrowsA.growth === arrowsB.growth
-    ? `Both share the same growth direction (toward Type ${arrowsA.growth}). When both are growing, they move in parallel — reinforcing each other's development and recognizing the shared journey.`
+    ? `Both share the same growth direction (toward Type ${arrowsA.growth}): ${FIXATION[tA].falsifies}. For each of them it has to arrive from outside rather than be performed.`
     : null;
 
   const potentialFriction = arrowsA.stress === tB || arrowsB.stress === tA
